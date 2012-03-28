@@ -1,0 +1,1 @@
+/Users/Yasu/dotfiles/.zsh

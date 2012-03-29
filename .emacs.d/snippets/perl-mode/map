@@ -1,0 +1,4 @@
+# name: map { ... } @array
+# key: map
+# --
+map { $1 } @${2:array}

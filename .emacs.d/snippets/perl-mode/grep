@@ -1,0 +1,4 @@
+# name: grep { ... } @array
+# key: grep
+# --
+grep { $1 } @${2:array}

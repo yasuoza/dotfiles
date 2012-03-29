@@ -1,16 +1,17 @@
 # How to install
-Clone from github
+First clone from github
 
-git clone git@github.com:YasuOza/dotfiles.git
+    $ git clone git@github.com:YasuOza/dotfiles.git
 
-ln -s dotfiles/.zshrc ~/.zshrc
+Then make a symbolic link
+
+    $ ln -s dotfiles/.zshrc ~/.zshrc
 
 ## Kinds of dotfiles
-.vimrc
-
-.vim/
-
-.zshrc
+* .vimrc
+* .vim/
+* .zshrc
+* .tmux.conf
 
 and more!
 

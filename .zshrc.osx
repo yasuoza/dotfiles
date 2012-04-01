@@ -43,6 +43,12 @@ nodebrew use v0.6.12
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin
 
+# perlbrew
+export PERLBREW_ROOT=~/.perlbrew
+if [ -f $HOME/.perlbrew/etc/bashrc ]; then
+  source $HOME/.perlbrew/etc/bashrc
+fi
+
 # tmux
 #alias tmux='tmuxx'
 #alias tm='tmuxx'

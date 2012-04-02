@@ -9,8 +9,8 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vi='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 
 # Emacs
 alias emacs='env LANG=en_US.UTF-8 /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'

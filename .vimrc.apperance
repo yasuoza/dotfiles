@@ -8,8 +8,8 @@ set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形�
 set display=uhex      " 印字不可能文字を16進数で表示
 
 " 全角スペースの表示
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-match ZenkakuSpace /　/
+" highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+" match ZenkakuSpace /　/
 
 " カーソル行をハイライト
 set cursorline

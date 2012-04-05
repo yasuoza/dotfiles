@@ -5,7 +5,8 @@ First clone from github
 
 Then make a symbolic link
 
-    $ ln -s dotfiles/.zshrc ~/.zshrc
+    $ cd dotfiles
+    $ sh setup.sh
 
 ## Kinds of dotfiles
 * .vimrc

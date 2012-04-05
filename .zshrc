@@ -2,7 +2,6 @@
 # http://curiousabt.blog27.fc2.com/blog-entry-65.html
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
-export LC_MESSAGES=en_US.UTF-8
 
 ## Default shell configuration
 #
@@ -40,7 +39,7 @@ PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[blue]%}${USER}@
 RPROMPT='${RESET}${BLUE}[${BLUE}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
 
 #
-# Vi入力モードでPROMPTの色を変える
+# Change color when terminal is vim mode
 # http://memo.officebrook.net/20090226.html
 function zle-line-init zle-keymap-select {
   case $KEYMAP in
@@ -56,8 +55,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# 直前のコマンドの終了ステータスが0以外のときは赤くする。
-# ${MY_MY_PROMPT_COLOR}はprecmdで変化させている数値。
+# Blight red when previous command failed status 0
 local MY_COLOR="$ESCX"'%(0?.${MY_PROMPT_COLOR}.31)'m
 local NORMAL_COLOR="$ESCX"m
 
@@ -76,10 +74,9 @@ zstyle ':vcs_info:bzr:*' use-simple true
 
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
-  # この check-for-changes が今回の設定するところ
   zstyle ':vcs_info:git:*' check-for-changes true
-  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-  zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
+  zstyle ':vcs_info:git:*' stagedstr "+"
+  zstyle ':vcs_info:git:*' unstagedstr "-"
   zstyle ':vcs_info:git:*' formats '(%s)-[%c%u%b]'
   zstyle ':vcs_info:git:*' actionformats '(%s)-[%c%u%b|%a]'
 fi
@@ -121,65 +118,65 @@ esac
 #    ;;
 #esac
 
-# 指定したコマンド名がなく、ディレクトリ名と一致した場合 cd する
+# auto cd
 setopt auto_cd
 
-# cd でTabを押すとdir list を表示
+# show dir list pushing Tab
 setopt auto_pushd
 
-# ディレクトリスタックに同じディレクトリを追加しないようになる
+# Do not add directory to same directory stack
 setopt pushd_ignore_dups
 
-# コマンドのスペルチェックをする
+# command spell check
 setopt correct
 
-# コマンドライン全てのスペルチェックをする
+# Check all spell on command line
 setopt correct_all
 
-# 上書きリダイレクトの禁止
+# Forbit to overwrite redirect
 setopt no_clobber
 
-# 補完候補リストを詰めて表示
+# Shorten complete list
 setopt list_packed
 
-# auto_list の補完候補一覧で、ls -F のようにファイルの種別をマーク表示
+# Show file type with auto_list
 setopt list_types
 
-# 補完候補が複数ある時に、一覧表示する
+# Show all complete candidate
 setopt auto_list
 
-# コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+# Autocomplete after = prefix
 setopt magic_equal_subst
 
-# カッコの対応などを自動的に補完する
+# Autocomplete parentheses
 setopt auto_param_keys
 
-# ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+# Autocomplete / after directory list
 setopt auto_param_slash
 
-# {a-c} を a b c に展開する機能を使えるようにする
+# Autocomplete {a-c} to a b c
 setopt brace_ccl
 
-# シンボリックリンクは実体を追うようになる
+# Chase real file from symbolic file
 #setopt chase_links
 
-# 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
+# Autocomplete by Tab
 setopt auto_menu
 
-# sudoも補完の対象
+# Autocomplete when sudo
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
-# 色付きで補完する
+# Autocomplete with color
 zstyle ':completion:*' list-colors di=34 fi=0
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# 複数のリダイレクトやパイプなど、必要に応じて tee や cat の機能が使われる
+# Use tee and cat in necessary
 setopt multios
 
-# 最後がディレクトリ名で終わっている場合末尾の / を自動的に取り除かない
+# Do not remove / when directory
 setopt noautoremoveslash
 
-# beepを鳴らさないようにする
+# Do not beep
 setopt nolistbeep
 
 # Match without pattern
@@ -204,7 +201,7 @@ bindkey "^n" history-beginning-search-forward-end
 bindkey "\\ep" history-beginning-search-backward-end
 bindkey "\\en" history-beginning-search-forward-end
 
-# glob(*)によるインクリメンタルサーチ
+# Incremental search
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
@@ -213,87 +210,79 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-# 登録済コマンド行は古い方を削除
+# Delete old command line
 setopt hist_ignore_all_dups
 
-# historyの共有
+# Share history
 setopt share_history
 
-# 余分な空白は詰める
+# Delete vain space
 setopt hist_reduce_blanks
 
 # add history when command executed.
 setopt inc_append_history
 
-# history (fc -l) コマンドをヒストリリストから取り除く。
+# Remove history command
 setopt hist_no_store
-# サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
+# Auto resume suspended process
 #setopt auto_resume
 
-# =command を command のパス名に展開する
+# expand =command command
 #setopt equals
 
-# ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
+# Treat #, ~, and ^ as regular expression
 #setopt extended_glob
 
-# zsh の開始・終了時刻をヒストリファイルに書き込む
+# Write start and end time to history file
 #setopt extended_history
 
-# Ctrl+S/Ctrl+Q によるフロー制御を使わないようにする
+# Do not use Ctr+S/Ctr+Q to controll flow
 #setopt NO_flow_control
 
-# 各コマンドが実行されるときにパスをハッシュに入れる
+# Add path to hash when command executed
 #setopt hash_cmds
 
-# コマンドラインの先頭がスペースで始まる場合ヒストリに追加しない
+# Do not add history when command starts with space
 #setopt hist_ignore_space
 
-# ヒストリを呼び出してから実行する間に一旦編集できる状態になる
+# Edit after recall history
 #setopt hist_verify
 
-# シェルが終了しても裏ジョブに HUP シグナルを送らないようにする
+# Do not send HUP signal when shell terminates
 #setopt NO_hup
 
-# Ctrl+D では終了しないようになる（exit, logout などを使う）
+# Do not terminates with Ctrl+D
 #setopt ignore_eof
 
-# コマンドラインでも # 以降をコメントと見なす
+# Treat # as comment in command line
 #setopt interactive_comments
 
-# メールスプール $MAIL が読まれていたらワーニングを表示する
+# Show warnings if $MAIL is read
 #setopt mail_warning
 
-# ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
-#setopt mark_dirs
-
-# ファイル名の展開で、辞書順ではなく数値的にソートされるようになる
+# Sort file by numeric order not by directory order
 #setopt numeric_glob_sort
 
-# コマンド名に / が含まれているとき PATH 中のサブディレクトリを探す
+# Search PATH sub directory if command contain /
 setopt path_dirs
 
-# 戻り値が 0 以外の場合終了コードを表示する
+# Show terminate code if return value is not 0
 # setopt print_exit_value
 
-# pushd を引数なしで実行した場合 pushd $HOME と見なされる
+# Treat as pushd $HOME if pushd with no arguments
 #setopt pushd_to_home
 
-# rm * などの際、本当に全てのファイルを消して良いかの確認しないようになる
+# Do not confirm if all files to delete
 #setopt rm_star_silent
 
-# rm_star_silent の逆で、10 秒間反応しなくなり、頭を冷ます時間が与えられる
-#setopt rm_star_wait
-
-# for, repeat, select, if, function などで簡略文法が使えるようになる
+# Enable easy literal in for, repeat, select, if, and function
 #setopt short_loops
 
-# デフォルトの複数行コマンドライン編集ではなく、１行編集モードになる
-#setopt single_line_zle
 
-# コマンドラインがどのように展開され実行されたかを表示するようになる
+# Show detail when command executed
 #setopt xtrace
 
-# ^でcd ..する
+# Treat ^ as cd ..
 function cdup() {
 echo
 cd ..
@@ -302,24 +291,24 @@ zle reset-prompt
 zle -N cdup
 # bindkey '\^' cdup
 
-# ctrl-w, ctrl-bキーで単語移動
+# Move by words with Ctrl+w, Ctrl+b
 bindkey "^W" forward-word
 bindkey "^B" backward-word
 
-# back-wordでの単語境界の設定
+# Set word border with back-word
 autoload -Uz select-word-style
 select-word-style default
 zstyle ':zle:*' word-chars " _-./;@"
 zstyle ':zle:*' word-style unspecified
 
-# URLをコピペしたときに自動でエスケープ
+# Auto escape when paste URL
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-# 勝手にpushd
+# Auto pushd
 setopt autopushd
 
-# エラーメッセージ本文出力に色付け
+# Add color to error message
 e_normal=`echo -e "¥033[0;30m"`
 e_RED=`echo -e "¥033[1;31m"`
 e_BLUE=`echo -e "¥033[1;36m"`
@@ -359,23 +348,22 @@ bindkey -a 'q' push-line
    zstyle ':completion:*' list-colors \
            'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-## alias設定
+## alias
+#
 # [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 
 case "${OSTYPE}" in
 # Mac(Unix)
 darwin*)
-    # ここに設定
     [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
     ;;
 # Linux
 linux*)
-    # ここに設定
     [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
     ;;
 esac
 
 
-## local固有設定
+## local setting
 #
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

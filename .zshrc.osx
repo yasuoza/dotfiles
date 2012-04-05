@@ -3,7 +3,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # osx alias
 alias pbc='pbcopy'
 
-# Terminal Colorの設定
+# Terminal color setting
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 

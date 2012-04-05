@@ -12,6 +12,9 @@ export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vim='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 
+# Emacs
+alias emacs='env LANG=en-US.utf-8 /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
+
 
 # man path
 MANPATH=/usr/local/man:$MANPATH

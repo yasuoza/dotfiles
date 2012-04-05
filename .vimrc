@@ -1,30 +1,30 @@
-"vunlde.vimで管理してるpluginを読み込む
+"load pulgins
 source ~/dotfiles/.vimrc.bundle
 
-"基本設定
+"Basic settings
 source ~/dotfiles/.vimrc.basic
-"StatusLine設定
+"StatusLine settings
 source ~/dotfiles/.vimrc.statusline
-"インデント設定
+"Indent settings
 source ~/dotfiles/.vimrc.indent
-"表示関連
+"Apperance settings
 source ~/dotfiles/.vimrc.apperance
-"補完関連
+"Autocomplete settings
 source ~/dotfiles/.vimrc.completion
-"Tags関連
+"Tags settings
 source ~/dotfiles/.vimrc.tags
-"検索関連
+"Search settings
 source ~/dotfiles/.vimrc.search
-"移動関連
+"Move settings
 source ~/dotfiles/.vimrc.moving
-"Color関連
+"Color setings
 source ~/dotfiles/.vimrc.colors
-"編集関連
+"Edit settings
 source ~/dotfiles/.vimrc.editing
-"エンコーディング関連
+"Encode settings
 source ~/dotfiles/.vimrc.encoding
-"その他
+"Others
 source ~/dotfiles/.vimrc.misc
-"プラグインに依存するアレ
+"Plugin settins
 source ~/dotfiles/.vimrc.plugins_setting
 

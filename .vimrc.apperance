@@ -1,19 +1,15 @@
 "-------------------------------------------------------------------------------
-" 表示 Apperance
+" Apperance
 "-------------------------------------------------------------------------------
-set showmatch         " 括弧の対応をハイライト
-set number            " 行番号表示
-set list              " 不可視文字表示
-set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
-set display=uhex      " 印字不可能文字を16進数で表示
+set showmatch         " highlight correspongind parentheses
+set number            " show line number
+set list              " show hidden words
+set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
+set display=uhex      " show unrecognized words via uhex
 
-" 全角スペースの表示
-" highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-" match ZenkakuSpace /　/
-
-" カーソル行をハイライト
+" highlight current cursor line
 set cursorline
-" カレントウィンドウにのみ罫線を引く
+" show line on current window
 augroup cch
   autocmd! cch
   autocmd WinLeave * set nocursorline
@@ -24,7 +20,7 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-" コマンド実行中は再描画しない
+" do not rerender while command execution
 set lazyredraw
-" 高速ターミナル接続を行う
+" use fast terminal connection
 set ttyfast

@@ -1,21 +1,18 @@
 "-------------------------------------------------------------------------------
-" インデント Indent
+" Indent
 "-------------------------------------------------------------------------------
-set autoindent   " 自動でインデント
-"set paste        " ペースト時にautoindentを無効に(onにするとautocomplpop.vimが動かない)
-set smartindent  " 新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする。
-set cindent      " Cプログラムファイルの自動インデントを始める
+set autoindent   " auto indent
+set smartindent  " set same amount of indent when insert new line
+set cindent      " start c lang indent mode
 
-" softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
+" tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
 
 if has("autocmd")
-  "ファイルタイプの検索を有効にする
+  " enable file type search
   filetype plugin on
-  "そのファイルタイプにあわせたインデントを利用する
+  " use filetype indent
   filetype indent on
-  " これらのftではインデントを無効に
-  "autocmd FileType php filetype indent off
 
   autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
   autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et

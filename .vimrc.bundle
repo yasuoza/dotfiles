@@ -1,99 +1,90 @@
-"vunlde.vimで管理してるpluginを読み込む
-
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Edit {{{
-  " NERD_commenter.vim :最強コメント処理 (<Leader>c<space>でコメントをトグル)
+  " NERD_commenter.vim :toggle comment via <Leader>c<space>
   Bundle 'scrooloose/nerdcommenter.git'
 
-  " 自動閉じタグ
+  " auto close parentheses
   " Bundle 'yuroyoro/vim-autoclose'
 
-  " -- でメソッドチェーン整形
+  " reorder method chain via --
   Bundle 'c9s/cascading.vim'
 
   " visually indent guide
   Bundle 'nathanaelkane/vim-indent-guides'
 
-  " XMLとかHTMLとかの編集機能を強化する
+  " Power to edi xml and html
   Bundle 'xmledit'
 
-  " Align : 高機能整形・桁揃えプラグイン
+  " Align
   Bundle 'Align'
 
-  " フィルタリングと整形
+  " Filtering and reordering
   Bundle 'godlygeek/tabular'
 
-  " マルチバイト対応の整形
+  " Reorder text even if multi byte
   Bundle 'h1mesuke/vim-alignta'
 
-  " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
+  " YankRing.vim
   Bundle 'YankRing.vim'
 
-  " undo履歴を追える (need python support)
+  " Chase undo
   Bundle 'Gundo'
 
-  " surround.vim : テキストを括弧で囲む／削除する
+  " surround.vim : surround text and comment with parentheses
   Bundle 'tpope/surround.vim'
 
-  " smartchr.vim : ==などの前後を整形
+  " smartchr.vim : reorder nearby ==
   Bundle 'smartchr'
 
-  " vim-operator-user : 簡単にoperatorを定義できるようにする
+  " vim-operator-user : easy operator definition
   Bundle 'operator-user'
 
-  " operator-camelize : camel-caseへの変換
+  " operator-camelize : change camel-case
   Bundle 'operator-camelize'
 
-  " operator-replace : yankしたものでreplaceする
+  " operator-replace : replace with yank ring
   Bundle 'operator-replace'
 
-  " textobj-user : 簡単にVimエディタのテキストオブジェクトをつくれる
+  " textobj-user : make vim object easily
   Bundle 'textobj-user'
 
-  " vim-textobj-syntax : syntax hilightされたものをtext-objectに
+  " vim-textobj-syntax : change selected text to text object
   Bundle 'kana/vim-textobj-syntax.git'
 
-  " vim-textobj-plugins : いろんなものをtext-objectにする
+  " vim-textobj-plugins : change to text object
   Bundle 'thinca/vim-textobj-plugins.git'
 
-  " vim-textobj-lastpat : 最後に検索されたパターンをtext-objectに
+  " vim-textobj-lastpat : change last searched text to text object
   Bundle 'kana/vim-textobj-lastpat.git'
 
-  " vim-textobj-indent : インデントされたものをtext-objectに
+  " vim-textobj-indent : convert indented text to text object
   Bundle 'kana/vim-textobj-indent.git'
 
-  " vim-textobj-function : 関数の中身をtext-objectに
+  " vim-textobj-function : convert function text to text object
   Bundle 'kana/vim-textobj-function.git'
 
-  " vim-textobj-fold : 折りたたまれたアレをtext-objectに
+  " vim-textobj-fold : convet folded text to text object
   Bundle 'kana/vim-textobj-fold.git'
   Bundle 'textobj-rubyblock'
 
-  " vim-textobj-entire : buffer全体をtext-objectに
+  " vim-textobj-entire : convert buffer to text-object
   Bundle 'textobj-entire'
 
-  " 「foo」 or 【bar】などをtext-objectに
+  " convert 「foo」 or 【bar】to text-object
   Bundle 'textobj-jabraces'
 
-  " 改造したmonday.vim(git rebase -i とかtrue/falseとか)
-  " Bundle 'yuroyoro/monday'
-
-  " <C-a>でtrue/false切替。他色々
+  " toggle true/false and so on via <C-a>
   Bundle 'taku-o/vim-toggle'
 
 " }}}
 
-" Completion {{{
-  " 補完 autocomplpop.vim : insertmodeで自動で補完をpopup
-  " Bundle 'AutoComplPop'
-
-  " 補完 neocomplcache.vim : 究極のVim的補完環境
+  " neocomplcache.vim
   Bundle 'Shougo/neocomplcache'
 
-  " rubyでrequire先を補完する
+  " autocomplete require in ruby
   " Bundle 'ujihisa/neco-ruby'
 
   " A neocomplcache plugin for English, using look command
@@ -101,61 +92,60 @@ call vundle#rc()
 " }}}
 
 " Searching/Moving{{{
-  " smooth_scroll.vim : スクロールを賢く
   Bundle 'Smooth-Scroll'
 
-  " vim-smartword : 単語移動がスマートな感じで
+  " vim-smartword : smart word moving
   Bundle 'smartword'
 
-  " camelcasemotion : CamelCaseやsnake_case単位でのワード移動
+  " camelcasemotion :
   Bundle 'camelcasemotion'
 
-  " <Leader><Leader>w/fなどで、motion先をhilightする
+  " highlight <motion via Leader><Leader>w/f
   Bundle 'EasyMotion'
 
-  " matchit.vim : 「%」による対応括弧へのカーソル移動機能を拡張
+  " matchit.vim : move to corresponding parentheses via %
   Bundle 'matchit.zip'
 
-  " ruby用のmatchit拡張
+  " expand ruby matchit
   Bundle 'ruby-matchit'
 
-  " grep.vim : 外部のgrep利用。:Grepで対話形式でgrep :Rgrepは再帰
+  " grep.vim
   Bundle 'grep.vim'
 
-  " eregex.vim : vimの正規表現をrubyやperlの正規表現な入力でできる :%S/perlregex/
+  " eregex.vim : enable ruby or perl regular expression via %S/perlregex/
   Bundle 'eregex.vim'
 
-  " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
+  " open-browser.vim : open url or search under coursor
   Bundle 'tyru/open-browser.vim'
 
 " }}}
 
 " Programming {{{
-  " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
+  " quickrun.vim
   Bundle 'thinca/vim-quickrun'
 
-  " perldocやphpmanual等のリファレンスをvim上で見る
+  " see refference such as perldoc and phpmanual on vim
   Bundle 'thinca/vim-ref'
 
-  " SQLUtilities : SQL整形、生成ユーティリティ
+  " SQLUtilities : SQL generator
   Bundle 'SQLUtilities'
 
-  " vim-ruby : VimでRubyを扱う際の最も基本的な拡張機能
+  " vim-ruby
   Bundle 'ruby.vim'
 
-  " rails.vim : rails的なアレ
+  " rails.vim
   Bundle 'tpope/vim-rails'
 
-  " Pydiction : Python用の入力補完
+  " Pydiction : for python
   Bundle 'Pydiction'
 
-  " ソースコード上のメソッド宣言、変数宣言の一覧を表示
+  " Show tablist on source
   Bundle 'taglist.vim'
 
-  " tagsを利用したソースコード閲覧・移動補助機能 tagsファイルの自動生成
+  " auto generator for tags
   Bundle 'Source-Explorer-srcexpl.vim'
 
-  " NERD_tree, taglist, srcexpl の統合
+  " conject NERD_tree, taglist, srcexpl
   Bundle 'trinity.vim'
 " }}}
 "
@@ -189,16 +179,16 @@ call vundle#rc()
 " }}}
 
 " Buffer {{{
-  " DumbBuf.vim : quickbufっぽくbufferを管理。 "<Leader>b<Space>でBufferList
+  " DumbBuf.vim : handle buffer like quickbuf "<Leader>b<Space>BufferList
   Bundle 'DumbBuf'
 
-  " minibufexpl.vim : タブエディタ風にバッファ管理ウィンドウを表示
+  " minibufexpl.vim: manage buffers like tab window
   Bundle 'minibufexpl.vim'
 
-  " NERDTree : ツリー型エクスプローラ
+  " NERDTree : explorer like tree
   Bundle 'The-NERD-tree'
 
-  " vtreeexplorer.vim : ツリー状にファイルやディレクトリの一覧を表示
+  " vtreeexplorer.vim : show files and directories like tree
   Bundle 'vtreeexplorer'
 " }}}
 
@@ -209,46 +199,40 @@ call vundle#rc()
 
 " Utility {{{
 
-  " vimshell : vimのshell
+  " vimshell
   Bundle 'Shougo/vimshell.git'
 
-  " vimproc : vimから非同期実行。vimshelleで必要
+  " vimproc : asynchronous executin from vimshell
   Bundle 'Shougo/vimproc.git'
 
-  " vim-altercmd : Ex command拡張
+  " vim-altercmd : expand Ex command
   Bundle 'tyru/vim-altercmd'
 
   " vim Interface to Web API
   Bundle 'mattn/webapi-vim'
 
-  " cecutil.vim : 他のpluginのためのutillity1
+  " cecutil.vim : for utility for another plugin
   Bundle 'cecutil'
 
-  " urilib.vim : vim scriptからURLを扱うライブラリ
+  " urilib.vim : handle url from vim script
   Bundle 'tyru/urilib'
-
-  " ステータスラインに顔文字を表示
-  " Bundle 'mattn/hahhah-vim'
 
   " utillity
   Bundle 'L9'
 
-  " Buffer管理のLibrary
+  " Library for Buffer
   Bundle 'thinca/vim-openbuf'
 
-  " vimdoc 日本語
+  " vimdoc japanese
   Bundle 'yuroyoro/vimdoc_ja'
 
-  " vim上のtwitter client
-  Bundle 'TwitVim'
-
-  " Lingrのclient
+  " Lingr client
   Bundle 'tsukkee/lingr-vim'
 
-  " vimからGit操作する
+  " GIT from vim
   Bundle 'tpope/vim-fugitive'
 
-  " ステータスラインをカッコよくする
+  " Cool status line
   Bundle 'Lokaltog/vim-powerline'
 
   " Gist.vim
@@ -266,7 +250,7 @@ call vundle#rc()
 " }}}
 
 " Unite {{{{
-  " unite.vim : - すべてを破壊し、すべてを繋げ - vim scriptで実装されたanythingプラグイン
+  " unite.vim
   Bundle 'Shougo/unite.vim'
   Bundle 'tsukkee/unite-help'
   Bundle 'h1mesuke/unite-outline'

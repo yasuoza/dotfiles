@@ -1,8 +1,8 @@
 "-------------------------------------------------------------------------------
-" 移動設定 Move
+" Move
 "-------------------------------------------------------------------------------
 
-" カーソルを表示行で移動する。論理行移動は<C-n>,<C-p>
+" moving setting <C-n>,<C-p> gives logic moving
 nnoremap h <Left>
 nnoremap j gj
 nnoremap k gk
@@ -10,66 +10,57 @@ nnoremap l <Right>
 nnoremap <Down> gj
 nnoremap <Up>   gk
 
-" 0, 9で行頭、行末へ
+" set 0 to line first, 9 to line end
 nmap 1 0
 nmap 0 ^
 nmap 9 $
 
-" insert mode での移動
+" Insert mode moving
 inoremap  <C-e> <END>
 inoremap  <C-a> <HOME>
-" インサートモードでもhjklで移動（Ctrl押すけどね）
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 "inoremap <C-h> <Left>
 "inoremap <C-l> <Right>
 
-"<space>j, <space>kで画面送り
+" window up and down via <space>j, <space>k
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
-" spaceで次のbufferへ。back-spaceで前のbufferへ
+" next buffer by pushing space twice,  previous buffer by pushing back-space twice
 nmap <Space><Space> ;MBEbn<CR>
 nmap <BS><BS> ;MBEbp<CR>
 
-" F2で前のバッファ
-map <F2> <ESC>;bp<CR>
-" F3で次のバッファ
-map <F3> <ESC>;bn<CR>
-" F4でバッファを削除する
-map <F4> <ESC>:bnext \| bdelete #<CR>
-command! Bw :bnext \| bdelete #
-
-"フレームサイズを怠惰に変更する
+" change frame size loosely
 map <kPlus> <C-W>+
 map <kMinus> <C-W>-
 
-" 前回終了したカーソル行に移動
+" goto previous editted line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" 最後に編集された位置に移動
+" move to last edit place
 nnoremap gb '[
 nnoremap gp ']
 
-" 対応する括弧に移動
+" go to corresponding parentheses
 nnoremap ( %
 nnoremap ) %
 
-" 最後に変更されたテキストを選択する
+" select last editted
 nnoremap gc  `[v`]
 vnoremap gc <C-u>normal gc<Enter>
 onoremap gc <C-u>normal gc<Enter>
 
-" カーソル位置の単語をyankする
+" yank under cursor
 nnoremap vy vawy
 
-" 矩形選択で自由に移動する
+" move freely when block select mode
 set virtualedit+=block
 
-"ビジュアルモード時vで行末まで選択
+" move to line end by pushing v when visual mode
 vnoremap v $h
 
-" CTRL-hjklでウィンドウ移動
+" window move via CTRL-hjkl
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -100,5 +91,5 @@ function! s:do_git_diff_aware_gf(command)
   endif
 endfunction
 
-" insert mode でjjでesc
+" esape from insert mode via jj
 inoremap jj <Esc>

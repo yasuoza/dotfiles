@@ -1,9 +1,9 @@
 "-------------------------------------------------------------------------------
-" タグ関連 Tags
+" Tags
 "-------------------------------------------------------------------------------
 " set tags
 if has("autochdir")
-  " 編集しているファイルのディレクトリに自動で移動
+  " move to editting file's directory automatically
   set autochdir
   set tags=tags;
 else
@@ -12,8 +12,7 @@ endif
 
 set notagbsearch
 
-"<C-t>はscreentとかぶるので削除
-"tab pagesを使い易くする
+"enable easy use for tab pages
 " nnoremap <C-t>  <Nop>
 " nnoremap <C-t>n  ;<C-u>tabnew<CR>
 " nnoremap <C-t>c  ;<C-u>tabclose<CR>
@@ -21,14 +20,14 @@ set notagbsearch
 " nnoremap <C-t>j  ;<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 " nnoremap <C-t>k  gT
 
-"tags-and-searchesを使い易くする
+"enable easy use for tags-and-searches
 nnoremap t  <Nop>
-"「飛ぶ」
+" jump
 nnoremap tt  <C-]>
-"「進む」
+" forward
 nnoremap tj  ;<C-u>tag<CR>
-"「戻る」
+" back
 nnoremap tk  ;<C-u>pop<CR>
-"履歴一覧
+" history
 nnoremap tl  ;<C-u>tags<CR>
 

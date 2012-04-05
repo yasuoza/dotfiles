@@ -1,22 +1,19 @@
 "-------------------------------------------------------------------------------
-" 補完・履歴 Complete
+" Complete
 "-------------------------------------------------------------------------------
-set wildmenu               " コマンド補完を強化
-set wildchar=<tab>         " コマンド補完を開始するキー
-set wildmode=list:full     " リスト表示，最長マッチ
-set history=1000           " コマンド・検索パターンの履歴数
-set complete+=k            " 補完に辞書ファイル追加
+set wildmenu               " power to command completeion
+set wildchar=<tab>         " command completion hot key
+set wildmode=list:full     " show list and long match
+set history=1000           " number of command and search history
+set complete+=k            " add dictionary file to complete
 
-" Ex-modeでの<C-p><C-n>をzshのヒストリ補完っぽくする
+" change Ex-mode <C-p><C-n> to like zsh
 cnoremap <C-p> <Up>
 cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
 
-" 補完にneocomplcacheを使う
+" use neocomplcache
 source ~/dotfiles/.vimrc.completion.neocomplcache
-
-" 補完にAutoComplPopを使う
-" source ~/dotfiles/.vimrc.completion.autocomplpop
 
 

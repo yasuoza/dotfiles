@@ -1,13 +1,13 @@
 "-------------------------------------------------------------------------------
-" カラー関連 Colors
+" Colors
 "-------------------------------------------------------------------------------
 
 " colorscheme mrkn256
 colorscheme yuroyoro256
 
-" ターミナルタイプによるカラー設定
+" color setting according to terminal color setting
 if &term =~ "xterm-256color" || "screen-256color"
-  " 256色
+  " 256
   set t_Co=256
   set t_Sf=[3%dm
   set t_Sb=[4%dm
@@ -21,15 +21,15 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
-"ポップアップメニューのカラーを設定
+"popup menu setting
 "hi Pmenu guibg=#666666
 "hi PmenuSel guibg=#8cd0d3 guifg=#666666
 "hi PmenuSbar guibg=#333333
 
-" ハイライト on
+" highlight on
 syntax enable
 
-" 補完候補の色づけ for vim7
+" completeion highlight
 hi Pmenu ctermbg=white ctermfg=darkgray
 hi PmenuSel ctermbg=blue ctermfg=white
 hi PmenuSbar ctermbg=0 ctermfg=9

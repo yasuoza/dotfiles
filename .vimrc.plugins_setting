@@ -7,6 +7,7 @@
 "------------------------------------
 " show Yank history
 nmap ,y ;YRShow<CR>
+let g:yankring_manual_clipboard_check = 1
 
 "------------------------------------
 " MiniBufExplorer

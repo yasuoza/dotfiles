@@ -7,7 +7,7 @@ set laststatus=2 " always show statusline
 set ruler
 
 " comment out if no patch for vim-powerline
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 
 "show encode and breakline code
 " if winwidth(0) >= 120

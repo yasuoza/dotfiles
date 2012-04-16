@@ -1,9 +1,8 @@
-
 # Terminal Color setting
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-alias ls='ls -alh --color'
+alias ls='ls --color'
 alias vi='/usr/bin/vim'
 alias vim='/usr/bin/vim'
 

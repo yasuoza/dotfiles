@@ -33,6 +33,8 @@ export INFOPATH
 # export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
+# Perl
+export PERL5LIB=~/perl5/lib/perl5/
 
 # Ruby
 if [[ -s /Users/Yasu/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi

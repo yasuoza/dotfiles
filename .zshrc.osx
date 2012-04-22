@@ -33,9 +33,6 @@ export INFOPATH
 # export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
-# Perl
-export PERL5LIB=~/perl5/lib/perl5/
-
 # Ruby
 if [[ -s /Users/Yasu/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
@@ -48,11 +45,17 @@ nodebrew use v0.6.12
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin
 
+# Perl
 # perlbrew
 export PERLBREW_ROOT=~/.perlbrew
 if [ -f $HOME/.perlbrew/etc/bashrc ]; then
   source $HOME/.perlbrew/etc/bashrc
 fi
+export PERL_LOCAL_LIB_ROOT="/Users/Yasu/perl5";
+export PERL_MB_OPT="--install_base /Users/Yasu/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/Users/Yasu/perl5";
+export PERL5LIB="/Users/Yasu/perl5/lib/perl5/darwin-thread-multi-2level:/Users/Yasu/perl5/lib/perl5:$PERL5LIB";
+export PATH="/Users/Yasu/perl5/bin:$PATH";
 
 # tmux
 #alias tmux='tmuxx'
@@ -62,3 +65,4 @@ fi
 
 # autojump
 source /etc/profile.d/autojump.zsh
+perl -I$HOME/perl5/lib/perl5 -Mlocal::lib

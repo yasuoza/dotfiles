@@ -3,10 +3,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # osx alias
 alias pbc='pbcopy'
 
-# Terminal color setting
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
-
 # vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -40,7 +36,7 @@ export REFE_DATA_DIR=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-nodebrew use v0.6.12
+nodebrew use v0.6.15
 
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin

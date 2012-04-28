@@ -34,7 +34,7 @@ WHITE="%{${fg[white]}%}"
 # Prompt
 #
 setopt prompt_subst
-PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[green]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
+PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
 RPROMPT='${RESET}${GREEN}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
 
 #
@@ -46,7 +46,7 @@ function zle-line-init zle-keymap-select {
     PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
     ;;
     main|viins)
-    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[green]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
+    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
     ;;
   esac
   zle reset-prompt

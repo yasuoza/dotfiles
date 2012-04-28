@@ -34,9 +34,8 @@ WHITE="%{${fg[white]}%}"
 # Prompt
 #
 setopt prompt_subst
-#PROMPT='${fg[white]}%(5~,%-2~/.../%2~,%~)% ${RED} $ ${RESET}'
-PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[blue]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
-RPROMPT='${RESET}${BLUE}[${BLUE}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
+PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[green]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
+RPROMPT='${RESET}${GREEN}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
 
 #
 # Change color when terminal is vim mode
@@ -47,7 +46,7 @@ function zle-line-init zle-keymap-select {
     PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
     ;;
     main|viins)
-    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[blue]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
+    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[green]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
     ;;
   esac
   zle reset-prompt

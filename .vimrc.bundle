@@ -137,7 +137,7 @@ call vundle#rc()
   Bundle 'tpope/vim-rails'
 
   " Pydiction : for python
-  Bundle 'Pydiction'
+  " Bundle 'Pydiction'
 
   " Show tablist on source
   Bundle 'taglist.vim'

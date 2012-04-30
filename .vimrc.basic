@@ -36,3 +36,5 @@ set helpfile=$VIMRUNTIME/doc/help.txt
 
 " detect filetype
 filetype plugin on
+autocmd BufNewFile,BufRead *.psgi set filetype=perl
+autocmd BufNewFile,BufRead *.t   set filetype=perl

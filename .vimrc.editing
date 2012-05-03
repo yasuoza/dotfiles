@@ -95,3 +95,6 @@ match OverLength /\%81v.\+/
 
 " Enable perltidy by command ,ptv
 map ,ptv <Esc>:'<,'>! perltidy<CR>
+
+" tie perl.vim to perl file
+autocmd FileType perl :compiler perl

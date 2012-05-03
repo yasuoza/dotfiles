@@ -84,6 +84,9 @@ call vundle#rc()
   " neocomplcache.vim
   Bundle 'Shougo/neocomplcache'
 
+  " neocomplcache-snippets-complete.vim
+  Bundle 'Shougo/neocomplcache-snippets-complete'
+
   " autocomplete require in ruby
   " Bundle 'ujihisa/neco-ruby'
 
@@ -238,6 +241,11 @@ call vundle#rc()
   " Gist.vim
   " Bundle 'Gist.vim'
 
+  " perlomni.vim
+  " Bundle 'perlomni.vim'
+
+  " perl-vim
+   Bundle 'petdance/vim-perl'
 
 " }}}
 

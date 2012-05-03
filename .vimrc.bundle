@@ -239,7 +239,7 @@ call vundle#rc()
   Bundle 'Lokaltog/vim-powerline'
 
   " Gist.vim
-  " Bundle 'Gist.vim'
+  Bundle 'Gist.vim'
 
   " perlomni.vim
   " Bundle 'perlomni.vim'

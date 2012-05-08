@@ -40,7 +40,7 @@ export REFE_DATA_DIR=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-nodebrew use v0.6.15
+nodebrew use v0.6.17
 
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin

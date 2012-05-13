@@ -90,8 +90,8 @@ endfunction
 nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
 " Highlight over 80 columns
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
 
 " Enable perltidy by command ,ptv
 map ,ptv <Esc>:'<,'>! perltidy<CR>

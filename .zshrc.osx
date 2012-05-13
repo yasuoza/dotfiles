@@ -1,4 +1,9 @@
+# $PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+if [ -s $HOME/.bin ]; then
+    export PATH=$HOME/.bin:$PATH
+fi
+
 
 # osx alias
 alias pbc='pbcopy'
@@ -15,13 +20,11 @@ alias vim='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"
 # Emacs
 alias emacs='env LANG=en-US.utf-8 /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
 
-
 # man path
 MANPATH=/usr/local/man:$MANPATH
 export MANPATH
 INFOPATH=/usr/local/info:$INFOPATH
 export INFOPATH
-
 
 # Python
 # alias python='/usr/local/bin/python'
@@ -35,8 +38,6 @@ export INFOPATH
 
 # Ruby
 if [[ -s /Users/Yasu/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-
-export REFE_DATA_DIR=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/share/refe
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -56,6 +57,7 @@ export PERL_MB_OPT="--install_base /Users/Yasu/perl5";
 export PERL_MM_OPT="INSTALL_BASE=/Users/Yasu/perl5";
 export PERL5LIB="/Users/Yasu/perl5/lib/perl5/darwin-thread-multi-2level:/Users/Yasu/perl5/lib/perl5:$PERL5LIB";
 export PATH="/Users/Yasu/perl5/bin:$PATH";
+perl -I$HOME/perl5/lib/perl5 -Mlocal::lib
 
 # tmux
 #alias tmux='tmuxx'
@@ -65,4 +67,3 @@ export PATH="/Users/Yasu/perl5/bin:$PATH";
 
 # autojump
 source /etc/profile.d/autojump.zsh
-perl -I$HOME/perl5/lib/perl5 -Mlocal::lib

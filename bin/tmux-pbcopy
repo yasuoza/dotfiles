@@ -1,7 +1,7 @@
 #!/bin/sh
 COPY=`tmux save-buffer -`
-echo "$COPY" | pbcopy
+echo $COPY | pbcopy
 
 # Show message
-LINES=`echo "$COPY" | wc -l | tr -d ' '`
+LINES=`echo $COPY | wc -l | tr -d ' '`
 tmux display-message "Copy: $LINES lines"

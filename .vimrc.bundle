@@ -247,6 +247,9 @@ call vundle#rc()
   " perl-vim
    Bundle 'petdance/vim-perl'
 
+   "Indent-Guides
+   Bundle 'Indent-Guides'
+
 " }}}
 
 " ColorSchema{{{{

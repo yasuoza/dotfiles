@@ -170,9 +170,8 @@ let Tlist_Enable_Fold_Column = 1
 " let Tlist_Auto_Open = 1                   " auto start
 let Tlist_Auto_Update = 1
 let Tlist_WinWidth = 30
-nmap <silent> <leader>tl :Tlist<CR>      " shorcut key
+nmap <silent> <leader>tl :TlistToggle<CR>
 nmap <F7> :CMiniBufExplorer<CR>:TrinityToggleTagList<CR>:TMiniBufExplorer<CR>
-nmap <Leader>tl :CMiniBufExplorer<CR>:TrinityToggleTagList<CR>:TMiniBufExplorer<CR>
 
 "------------------------------------
 " Srcexp

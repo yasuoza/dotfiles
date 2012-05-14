@@ -5,7 +5,7 @@ if [ -s $HOME/.bin ]; then
 fi
 
 
-# osx alias
+# pbcopy setting
 alias pbc='pbcopy'
 
 # Terminal color setting

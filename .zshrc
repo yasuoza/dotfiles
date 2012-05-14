@@ -350,7 +350,7 @@ bindkey -a 'q' push-line
 
 ## alias
 #
-# [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 
 case "${OSTYPE}" in
 # Mac(Unix)

@@ -8,6 +8,8 @@
 " show Yank history
 nmap ,y ;YRShow<CR>
 let g:yankring_manual_clipboard_check = 1
+" Set place of yankring_history_v2.txt
+let g:yankring_history_dir = '$HOME/.vim'
 
 "------------------------------------
 " MiniBufExplorer
@@ -134,23 +136,6 @@ let dumbbuf_single_key  = 1
 let dumbbuf_updatetime  = 1
 let dumbbuf_wrap_cursor = 0
 let dumbbuf_remove_marked_when_close = 1
-
-"------------------------------------
-" vim-indent-guides
-"------------------------------------
-nnoremap <silent> <Space>id :<C-u>IndentGuidesToggle<Enter>
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 4
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-if 'dark' == &background
-    hi IndentGuidesOdd  ctermbg=black
-    hi IndentGuidesEven ctermbg=darkgrey
-else
-    hi IndentGuidesOdd  ctermbg=white
-    hi IndentGuidesEven ctermbg=lightgrey
-endif
 
 "------------------------------------
 " gundo.Vim

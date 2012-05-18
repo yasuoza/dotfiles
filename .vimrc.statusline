@@ -24,8 +24,8 @@ let g:Powerline_symbols = 'fancy'
 " augroup END
 
 "show QuickFix automatically
-" autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
-" autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
+" autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cw
+" autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lw
 
 function! GetB()
   let c = matchstr(getline('.'), '.', col('.') - 1)

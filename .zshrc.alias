@@ -4,6 +4,7 @@ alias l="ls"
 alias la="ls -a"
 alias lf="ls -F"
 alias ll="ls -l"
+alias lal="ls -al"
 
 # process
 # alias j="jobs -l"

@@ -41,7 +41,6 @@ if [[ -s /Users/Yasu/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; 
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-nodebrew use v0.6.17
 
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin

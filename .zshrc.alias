@@ -52,6 +52,9 @@ alias p='ping -c 4'
 alias g='git'
 alias gi='git'
 
+# open with Google Chrome
+alias ogc='open -a Google\ Chrome'
+
 # nocorrect
 #alias java='nocorrect java'
 #alias cp='nocorrect cp -irp'

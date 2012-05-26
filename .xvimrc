@@ -1,0 +1,10 @@
+" Moving
+imap jj <Esc>
+nmap 9 $
+
+" Auto space
+imap , ,<Space>
+
+
+" Remap ; -> :
+nmap ; :

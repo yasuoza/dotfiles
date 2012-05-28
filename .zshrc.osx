@@ -37,7 +37,9 @@ export INFOPATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
 # Ruby
-if [[ -s /Users/Yasu/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+if [ -s /Users/Yasu/.rvm/scripts/rvm ]; then
+    $HOME/.rvm/scripts/rvm
+fi
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -49,6 +51,11 @@ export JSTESTDRIVER_HOME=/usr/local/bin
 # perlbrew
 export PERLBREW_ROOT=~/.perlbrew
 source $HOME/.perlbrew/etc/bashrc
+
+# Haskell
+if [ -s $HOME/Library/Haskell/bin ]; then
+    PATH=$HOME/Library/Haskell/bin:$PATH
+fi
 
 # tmux
 #alias tmux='tmuxx'

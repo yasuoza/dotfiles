@@ -56,4 +56,4 @@ func! String2Hex(str)
 endfunc
 
 " Show full path
-let g:Powerline_stl_path_style = 'full'
+" let g:Powerline_stl_path_style = 'full'

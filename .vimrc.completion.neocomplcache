@@ -89,6 +89,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
+autocmd FileType ha set omnifunc=necoghc#omnifunc
 
 " Enable heavy omni completion.
 " if !exists('g:neocomplcache_omni_patterns')

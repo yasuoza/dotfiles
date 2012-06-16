@@ -39,7 +39,7 @@ endif
   NeoBundle 'Gundo'
 
   " surround.vim : surround text and comment with parentheses
-  NeoBundle 'tpope/surround.vim'
+  NeoBundle 'surround.vim'
 
   " smartchr.vim : reorder nearby ==
   NeoBundle 'smartchr'
@@ -82,7 +82,7 @@ endif
   NeoBundle 'textobj-jabraces'
 
   " toggle true/false and so on via <C-a>
-  NeoBundle 'taku-o/vim-toggle'
+  NeoBundle 'https://github.com/taku-o/vim-toggle'
 
 " }}}
 
@@ -226,7 +226,7 @@ endif
   NeoBundle 'cecutil'
 
   " urilib.vim : handle url from vim script
-  NeoBundle 'tyru/urilib'
+  NeoBundle 'https://github.com/tyru/urilib.vim.git'
 
   " utillity
   NeoBundle 'L9'

@@ -51,6 +51,7 @@ alias p='ping -c 4'
 # git
 alias g='git'
 alias gi='git'
+alias gst='git status'
 alias gs='git status -s -b'
 
 # open with Google Chrome

@@ -64,4 +64,4 @@ fi
 #alias tml='tmux list-window'
 
 # autojump
-source /etc/profile.d/autojump.zsh
+# source /etc/profile.d/autojump.zsh

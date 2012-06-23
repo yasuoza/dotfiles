@@ -38,3 +38,4 @@ set helpfile=$VIMRUNTIME/doc/help.txt
 filetype plugin on
 autocmd BufNewFile,BufRead *.psgi set filetype=perl
 autocmd BufNewFile,BufRead *.t   set filetype=perl
+let g:filetype_m = 'objc'

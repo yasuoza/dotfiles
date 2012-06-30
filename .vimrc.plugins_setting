@@ -344,6 +344,8 @@ let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:syntastic_enable_signs = 1
 " highlight if possible
 let g:syntastic_enable_highlighting = 1
+" Default off
+let g:syntastic_mode_map = { 'mode': 'passive' }
 
 "------------------------------------
 " toggle.vim

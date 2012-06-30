@@ -2,20 +2,20 @@
 ( if (eq window-system 'ns )
     (when (>= emacs-major-version 23)
       (set-face-attribute 'default nil
-                          :family "monaco"
-                          :height 124)
+                          :family "Ricty"
+                          :height 190)
       (set-fontset-font
        (frame-parameter nil 'font)
        'japanese-jisx0208
-       '("Hiragino Kaku Gothic Pro" . "iso10646-1"))
+       '("Ricty" . "iso10646-1"))
       (set-fontset-font
        (frame-parameter nil 'font)
        'japanese-jisx0212
-       '("Hiragino Kaku Gothic Pro" . "iso10646-1"))
+       '("Ricty" . "iso10646-1"))
       (set-fontset-font
        (frame-parameter nil 'font)
        'mule-unicode-0100-24ff
-       '("monaco" . "iso10646-1"))
+       '("Ricty" . "iso10646-1"))
       (setq face-font-rescale-alist
             '(("^-apple-hiragino.*" . 1.0)
               (".*osaka-bold.*" . 1.0)

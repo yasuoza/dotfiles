@@ -84,6 +84,9 @@ endif
   " toggle true/false and so on via <C-a>
   NeoBundle 'https://github.com/taku-o/vim-toggle'
 
+  " VIM-LESS : for the dynamic stylesheet language LESS.
+  NeoBundle 'https://github.com/groenewege/vim-less.git'
+
 " }}}
 
   " neocomplcache.vim

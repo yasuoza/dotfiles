@@ -37,9 +37,7 @@ export INFOPATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
 # Ruby
-if [ -s /Users/Yasu/.rvm/scripts/rvm ]; then
-    $HOME/.rvm/scripts/rvm
-fi
+eval "$(rbenv init -)"
 
 # node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH

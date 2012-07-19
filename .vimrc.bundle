@@ -87,6 +87,9 @@ endif
   " VIM-LESS : for the dynamic stylesheet language LESS.
   NeoBundle 'https://github.com/groenewege/vim-less.git'
 
+  " vim-haml Vim runtime files for Haml,  Sass,  and SCSS
+  NeoBundle 'https://github.com/tpope/vim-haml.git'
+
 " }}}
 
   " neocomplcache.vim

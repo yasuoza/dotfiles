@@ -53,9 +53,16 @@ nmap y0 y^
 "vnoremap ' "zdi'<C-R>z'<ESC>
 
 " delete line end whitespace
-autocmd BufWritePre * :%s/\s\+$//ge
 " convert tab to space when save file
-autocmd BufWritePre * :%s/\t/  /ge
+" http://qiita.com/items/bc9720826120f5f61fc1
+function! s:remove_dust()
+    let cursor = getpos(".")
+    %s/\s\+$//ge
+    %s/\t/  /ge
+    call setpos(".", cursor)
+    unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_dust()
 
 " autocomplete date
 inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')

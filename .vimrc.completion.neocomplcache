@@ -49,7 +49,9 @@ let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 
 " Snippets
 imap <C-y> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-y> <Plug>(neocomplcache_snippets_expand)
+imap <C-l>    <Plug>(neocomplcache_snippets_expand)
+smap <C-l>    <Plug>(neocomplcache_snippets_expand)
 
 " Select candidate and close popup
 " inoremap <expr><C-y> neocomplcache#close_popup()

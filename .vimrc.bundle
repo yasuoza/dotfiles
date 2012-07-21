@@ -99,7 +99,7 @@ endif
   NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
   " autocomplete require in ruby
-  " NeoBundle 'ujihisa/neco-ruby'
+  NeoBundle 'ujihisa/neco-ruby'
 
   " A neocomplcache plugin for English, using look command
   " NeoBundle 'ujihisa/neco-look'
@@ -151,7 +151,7 @@ endif
   NeoBundle 'tpope/vim-rails'
 
   " Pydiction : for python
-  NeoBundle 'Pydiction'
+  " NeoBundle 'Pydiction'
 
   " noco-ghc : for Haskell
   NeoBundle 'git://github.com/ujihisa/neco-ghc.git'

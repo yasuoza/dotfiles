@@ -86,6 +86,12 @@ function _update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
     psvar[2]=$(_git_not_pushed)
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+
+    # http://stnard.jp/2010/10/25/402/
+    if [[ -e $PWD/.git/refs/stash ]]; then
+        stashes=$(git stash list 2>/dev/null | wc -l)
+        psvar[2]=" @${stashes// /}"
+    fi
 }
 add-zsh-hook precmd _update_vcs_info_msg
 

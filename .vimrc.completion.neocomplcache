@@ -18,7 +18,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " Show num of line by -
 let g:neocomplcache_enable_quick_match = 1
 " Select first candidate
-let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_auto_select = 1
 " Do not open Scratch window
 set completeopt=menuone
 

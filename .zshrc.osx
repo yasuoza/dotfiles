@@ -21,7 +21,7 @@ alias vim='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"
 alias emacs='env LANG=en-US.utf-8 /Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
 
 # man path
-MANPATH=/usr/local/man:$MANPATH
+MANPATH=/usr/share/man/:/usr/local/share/man:$MANPATH
 export MANPATH
 INFOPATH=/usr/local/info:$INFOPATH
 export INFOPATH

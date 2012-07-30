@@ -1,7 +1,6 @@
 # Setting
 set show-rev-graph = yes
 set show-date = short
-set read-git-colors = yes
 
 # Keymap
 ## For general

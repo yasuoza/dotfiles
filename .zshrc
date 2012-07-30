@@ -313,6 +313,13 @@ zle -N self-insert url-quote-magic
 autoload -Uz git-escape-magic
 git-escape-magic
 
+# git flow completion
+# https://github.com/nvie/gitflow
+# https://github.com/bobthecow/git-flow-completion
+if [ -s $HOME/.zsh/functions/git-flow-completion.zsh ]; then
+    source $HOME/.zsh/functions/git-flow-completion.zsh
+fi
+
 # Auto pushd
 setopt autopushd
 

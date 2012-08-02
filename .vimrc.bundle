@@ -193,6 +193,9 @@ endif
 
   " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
   NeoBundle 'scrooloose/syntastic'
+
+  " vim-slim
+  NeoBundle 'https://github.com/bbommarito/vim-slim.git'
 " }}}
 
 " Buffer {{{

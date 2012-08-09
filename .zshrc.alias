@@ -77,6 +77,9 @@ alias cpa='cp -a'
 #alias sci='scala -deprecation -unchecked -explaintypes -cp $SCALA_CLASSPATH -i ~/import.scala'
 #alias sce='scala'
 
+# Rails
+alias r='rails'
+
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
 extract () {
   if [ -f $1 ] ; then

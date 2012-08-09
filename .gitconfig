@@ -16,8 +16,8 @@
     changed = green
     untracked = cyan
 [alias]
-  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  gr    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
+  gr    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
   st    = status
   cm    = commit
   stt   = status -uno
@@ -25,7 +25,7 @@
   co    = checkout
   br    = branch
   ps    = push
-  logg  = log -p --pretty=format:'%C(green bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
-  lg    = log -p --pretty=format:'%C(green bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  lg    = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  lgg  = log -p --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
 [push]
   default = upstream

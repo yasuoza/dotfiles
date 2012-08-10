@@ -54,6 +54,10 @@ alias gi='git'
 alias gst='git status'
 alias gs='git status -s -b'
 
+# tig
+alias t='tig'
+alias tb='tig blame'
+
 # open with Google Chrome
 alias ogc='open -a Google\ Chrome'
 

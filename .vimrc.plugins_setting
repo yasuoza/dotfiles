@@ -32,11 +32,6 @@ command! Mt :TMiniBufExplorer
 " to use Align in Japanese environment
 let g:Align_xstrlen = 3
 
-"------------------------------------
-" VTreeExplorer
-"------------------------------------
-" Show vertically
-let g:treeExplVertical=1
 
 "------------------------------------
 " NERD_commenter.vim
@@ -47,6 +42,11 @@ let NERDSpaceDelims = 1
 map <Leader>x, c<space>
 " do not show error although opening incorrect file
 let NERDShutUp=1
+
+"------------------------------------
+" NERDTree.vim
+"------------------------------------
+nmap <silent> <leader>fl :NERDTreeToggle<CR>
 
 " ------------------------------------
 " grep.vim
@@ -111,16 +111,6 @@ nnoremap <Space>ga :<C-u>Gwrite<Enter>
 nnoremap <Space>gc :<C-u>Gcommit<Enter>
 nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
-
-
-"------------------------------------
-" VTreeExplorer
-"------------------------------------
-let g:treeExplVertical=1
-"directory tree via <Leader>t<Space>
-noremap <Leader>t<Space> :VSTreeExplore<CR>
-"divided window size
-let g:treeExplWinSize=30
 
 "------------------------------------
 " DumbBuf.vim

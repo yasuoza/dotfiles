@@ -210,8 +210,6 @@ endif
   " NERDTree : explorer like tree
   NeoBundle 'The-NERD-tree'
 
-  " vtreeexplorer.vim : show files and directories like tree
-  NeoBundle 'vtreeexplorer'
 " }}}
 
 

@@ -255,9 +255,6 @@ endif
   " Cool status line
   NeoBundle 'Lokaltog/vim-powerline'
 
-  " Gist.vim
-  NeoBundle 'Gist.vim'
-
   " perlomni.vim
   " NeoBundle 'perlomni.vim'
 

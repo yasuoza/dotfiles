@@ -47,6 +47,7 @@ let NERDShutUp=1
 " NERDTree.vim
 "------------------------------------
 nmap <silent> <leader>fl :NERDTreeToggle<CR>
+let NERDTreeWinSize=25
 
 " ------------------------------------
 " grep.vim

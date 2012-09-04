@@ -91,5 +91,5 @@ function! s:do_git_diff_aware_gf(command)
   endif
 endfunction
 
-" esape from insert mode via jj
-inoremap jj <Esc>
+" esape from insert mode via Ctrl-j
+inoremap <C-j> <C-[>

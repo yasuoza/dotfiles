@@ -25,9 +25,6 @@ set mouse=a
 set guioptions+=a
 set ttymouse=xterm2
 
-" set Ctr+o to  paste clipboard "
-imap <C-p>  <ESC>"*pa
-
 " edit and reflect via  Ev/Rv
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC

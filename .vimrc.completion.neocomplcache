@@ -56,10 +56,6 @@ smap <C-y> <Plug>(neocomplcache_snippets_expand)
 imap <C-l>    <Plug>(neocomplcache_snippets_expand)
 smap <C-l>    <Plug>(neocomplcache_snippets_expand)
 
-" Select candidate and close popup
-" inoremap <expr><C-y> neocomplcache#close_popup()
-" Cancel completion and close popup
-" inoremap <expr><C-e> neocomplcache#cancel_popup()
 " Complete by TAB
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " undo
@@ -69,9 +65,9 @@ inoremap <expr><C-s> neocomplcache#complete_common_string()
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 " neocomlcache by C-n
-inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+" inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 " Complete by C-p
-inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
+" inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
 " Complete if popup, otherwise new line
 inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 
@@ -107,27 +103,3 @@ let g:neocomplcache_plugin_disable = {
   \ 'include_complete' : 1
 \ }
 
-" Inclide path
-" let g:neocomplcache_include_paths = {
-  " \ 'cpp'  : '.,/opt/local/include/gcc46/c++,/opt/local/include,/usr/include',
-  " \ 'c'    : '.,/usr/include',
-  " \ 'ruby' : '.,$HOME/.rvm/rubies/**/lib/ruby/1.8/',
-  " \ }
-" let g:neocomplcache_include_paths = {
-  " \ 'cpp'  : '.,/opt/local/include/gcc46/c++,/opt/local/include,/usr/include',
-  " \ 'c'    : '.,/usr/include',
-  " \ }
-" Include pattern
-" let g:neocomplcache_include_patterns = {
-  " \ 'cpp' : '^\s*#\s*include',
-  " \ 'ruby' : '^\s*require',
-  " \ 'perl' : '^\s*use',
-  " \ }
-" let g:neocomplcache_include_patterns = {
-  " \ 'cpp' : '^\s*#\s*include',
-  " \ 'perl' : '^\s*use',
-  " \ }
-" Include file pattern
-" let g:neocomplcache_include_exprs = {
-  " \ 'ruby' : substitute(substitute(v:fname,'::','/','g'),'$','\.rb','')
-  " \ }

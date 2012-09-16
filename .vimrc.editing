@@ -113,3 +113,8 @@ map ,ptv <Esc>:'<,'>! perltidy<CR>
 
 " tie perl.vim to perl file
 autocmd FileType perl :compiler perl
+
+" Perl filetype
+filetype plugin on
+autocmd BufNewFile,BufRead *.psgi set filetype=perl
+autocmd BufNewFile,BufRead *.t   set filetype=perl

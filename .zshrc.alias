@@ -83,6 +83,7 @@ alias cpa='cp -a'
 
 # Rails
 alias r='rails'
+alias be='bundle exec'
 
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
 extract () {

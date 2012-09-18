@@ -143,6 +143,9 @@ endif
   " see refference such as perldoc and phpmanual on vim
   NeoBundle 'thinca/vim-ref'
 
+  " see ri doc on vim
+  NeoBundle 'https://github.com/taka84u9/vim-ref-ri.git'
+
   " SQLUtilities : SQL generator
   NeoBundle 'SQLUtilities'
 

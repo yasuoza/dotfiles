@@ -11,20 +11,6 @@ set nocompatible " Disable vi-compatibility
 " comment out if no patch for vim-powerline
 let g:Powerline_symbols = 'fancy'
 
-"show encode and breakline code
-" if winwidth(0) >= 120
-  " set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %{g:HahHah()}\ %F%=[%{GetB()}]\ %{fugitive#statusline()}\ %l,%c%V%8P
-" else
-  " set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %{g:HahHah()}\ %f%=[%{GetB()}]\ %{fugitive#statusline()}\ %l,%c%V%8P
-" endif
-
-"Change color when input mode
-" augroup InsertHook
-" autocmd!
-" autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340 ctermfg=cyan
-" autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90 ctermfg=white
-" augroup END
-
 "show QuickFix automatically
 " autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cw
 " autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lw
@@ -34,6 +20,7 @@ function! GetB()
   let c = iconv(c, &enc, &fenc)
   return String2Hex(c)
 endfunction
+
 " help eval-examples
 " The function Nr2Hex() returns the Hex string of a number.
 func! Nr2Hex(nr)
@@ -45,6 +32,7 @@ func! Nr2Hex(nr)
   endwhile
   return r
 endfunc
+
 " The function String2Hex() converts each character in a string to a two
 " character Hex string.
 func! String2Hex(str)
@@ -59,3 +47,6 @@ endfunc
 
 " Show full path
 let g:Powerline_stl_path_style = 'full'
+
+" Set owerline normal mode name ' N '
+let g:Powerline_mode_n = ' N '

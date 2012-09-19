@@ -4,7 +4,6 @@ if [ -s $HOME/.bin ]; then
     export PATH=$HOME/.bin:$PATH
 fi
 
-
 # pbcopy setting
 alias pbc='pbcopy'
 
@@ -36,30 +35,11 @@ export INFOPATH
 # export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
-# Ruby
-eval "$(rbenv init -)"
-
-# node.js
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin
-
-# Perl
-# perlbrew
-export PERLBREW_ROOT=~/.perlbrew
-source $HOME/.perlbrew/etc/bashrc
 
 # Haskell
 if [ -s $HOME/Library/Haskell/bin ]; then
     PATH=$HOME/Library/Haskell/bin:$PATH
 fi
 
-# tmux
-#alias tmux='tmuxx'
-#alias tm='tmuxx'
-#alias tma='tmux attach'
-#alias tml='tmux list-window'
-
-# autojump
-# source /etc/profile.d/autojump.zsh

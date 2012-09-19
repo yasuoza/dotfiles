@@ -22,9 +22,3 @@ export PATH=$JAVA_HOME/bin:$PATH
 export MAVEN_HOME=/usr/local/apache-maven-2.2.1
 export PATH=$MAVEN_HOME/bin:$PATH
 export MAVEN_OPTS=-Xmx1024M
-
-# Perlbrew
-if [ -s $HOME/.perlbrew/etc/bashrc ]; then
-    export PERLBREW_ROOT=~/.perlbrew
-    source $HOME/.perlbrew/etc/bashrc
-fi

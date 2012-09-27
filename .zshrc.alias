@@ -57,6 +57,7 @@ alias gs='git status -s -b'
 # tig
 alias t='tig'
 alias tb='tig blame'
+alias tal='tig --all'
 
 # open with Google Chrome
 alias ogc='open -a Google\ Chrome'

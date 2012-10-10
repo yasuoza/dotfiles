@@ -1,4 +1,6 @@
 #=============================
 # rbenv
 #=============================
-eval "$(rbenv init -)"
+if [ -d $HOME/.rbenv  ] ; then
+    eval "$(rbenv init -)"
+fi

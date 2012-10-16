@@ -1,6 +1,7 @@
 # Setting
 set show-rev-graph = yes
-set show-date = short
+set show-date      = short
+set vertical-split = yes
 
 # Keymap
 ## For general

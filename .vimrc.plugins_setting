@@ -323,6 +323,13 @@ cnoremap UO Unite outline<Enter>
 " quickrun.vim
 "------------------------------------
 let g:quickrun_config = {}
+let g:quickrun_config["_"] = {
+    \ "runner/vimproc/updatetime" : 80,
+    \ "outputter/error/error"     : "quickfix",
+    \ "outputter/error/success"   : "buffer",
+    \ "outputter"                 : "error",
+    \ "runner"                    : "vimproc"
+\ }
 "------------------------------------
 " Pydiction
 "------------------------------------

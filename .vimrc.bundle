@@ -96,7 +96,7 @@ endif
   NeoBundle 'Shougo/neocomplcache'
 
   " neocomplcache-snippets-complete.vim
-  NeoBundle 'Shougo/neocomplcache-snippets-complete'
+  NeoBundle 'https://github.com/Shougo/neosnippet'
 
   " autocomplete require in ruby
   NeoBundle 'ujihisa/neco-ruby'

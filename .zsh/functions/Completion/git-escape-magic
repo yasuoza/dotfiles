@@ -20,7 +20,6 @@
 #
 
 git-escape-magic.self-insert() {
-    git_command='g'
     emulate -L zsh
     setopt extendedglob
     local self_insert_function
@@ -35,7 +34,7 @@ git-escape-magic.self-insert() {
     } && {
         local -a words
         words=("${(@Q)${(z)lbuf}}")
-        [[ "$words[(i)(*/|)$git_command(|-[^/]##)]" -le $#words ]]
+        [[ "$words[(i)(*/|)(git|g)(|-[^/]##)]" -le $#words ]]
     }
     then
         local i
@@ -55,7 +54,7 @@ git-escape-magic.self-insert() {
         while [[ "$words[1]" == [A-Za-z_][A-Za-z0-9_]#=* ]]; do
             shift words
         done
-        [[ "$words[1]" == (*/|)$git_command(|-[^/]##) ]] && {
+        [[ "$words[1]" == (*/|)(git|g)(|-[^/]##) ]] && {
             local subcommand
             subcommand="${words[1]##*/git-}"
             if [[ -z "$subcommand" ]]; then

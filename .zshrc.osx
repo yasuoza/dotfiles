@@ -48,3 +48,8 @@ if [ -s $HOME/Library/Haskell/bin ]; then
     PATH=$HOME/Library/Haskell/bin:$PATH
 fi
 
+# Android
+if [ -s $HOME/Developer/AndroidSDK/platform-tools ]; then
+    PATH=$HOME/Developer/AndroidSDK/platform-tools:$PATH
+fi
+

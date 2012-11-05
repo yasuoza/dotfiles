@@ -10,6 +10,8 @@ bind generic u scroll-page-up
 bind generic d scroll-page-down
 bind generic l scroll-right
 bind generic h scroll-left
+bind generic g move-first-line
+bind generic G move-last-line
 
 ## For main
 bind main Space enter

@@ -16,9 +16,13 @@ bind generic G move-last-line
 ## For main
 bind main Space enter
 bind main Enter view-diff
+bind main s     view-status
 
 ## For diff
 bind diff ; view-next
+
+## For status
+bind status Space enter
 
 ## For blame
 bind blame Space enter

@@ -42,7 +42,8 @@ alias 'mc'='make clean'
 # tmux
 alias tm='tmux'
 alias tma='tmux attach'
-alias tml='tmux list-window'
+alias tml='tmux ls'
+alias tmn='tmux new'
 
 alias pon='predict-on'
 alias poff='predict-off'

@@ -1,5 +1,14 @@
 [include]
   path = .gitconfig.local
+[push]
+  default = upstream
+[merge]
+  ff = false
+[pull]
+  rebase = true
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore_global
 [color]
   ui = auto
 [color "branch"]
@@ -16,26 +25,21 @@
     changed = green
     untracked = cyan
 [alias]
-  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
-  gr    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
-  grn    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+  g     = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
+  gn    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st    = status
   cm    = commit
   stt   = status -uno
-  difff = diff --word-diff
+  d     = diff
+  dc    = diff --cached
+  dw    = diff --word-diff
   co    = checkout
   br    = branch
   ps    = push
-  lg    = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
-  lgg  = log -p --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
-[push]
-  default = upstream
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
-[core]
-  editor = vim
-  excludesfile = ~/.gitignore_global
+  l     = log --graph --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  ll    = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  ln    = log --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b' --name-status
+  lp    = log --oneline -p
+  ls    = log --stat --abbrev-commit -n 1
+  su    = submodule update

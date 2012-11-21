@@ -77,5 +77,6 @@ Session.vim
 *.elc
 .zshrc.local
 samples
+.rbenv-version
 
 .vim/bundle/

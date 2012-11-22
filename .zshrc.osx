@@ -40,6 +40,14 @@ fi
 # export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
+#=============================
+# perlbrew
+#=============================
+if [ -d $HOME/.perlbrew ] ; then
+    # export PERLBREW_ROOT=~/.perlbrew
+    source $HOME/.perlbrew/etc/bashrc
+fi
+
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin
 

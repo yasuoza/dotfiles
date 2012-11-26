@@ -43,4 +43,3 @@
   lp    = log --oneline -p
   ls    = log --stat --abbrev-commit -n 1
   su    = submodule update
-  see   = browse

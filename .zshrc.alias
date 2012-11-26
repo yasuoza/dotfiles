@@ -55,9 +55,6 @@ alias gi='git'
 alias gst='git status'
 alias gs='git status -s -b'
 
-# hub
-eval "$(hub alias -s)"
-
 # tig
 alias t='tig'
 alias tb='tig blame'

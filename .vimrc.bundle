@@ -150,7 +150,7 @@ endif
   NeoBundle 'SQLUtilities'
 
   " vim-ruby
-  " NeoBundle 'ruby.vim'
+  NeoBundle 'vim-ruby/vim-ruby'
 
   " rails.vim
   NeoBundle 'tpope/vim-rails'

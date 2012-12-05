@@ -223,7 +223,11 @@ endif
   NeoBundle 'Shougo/vimshell.git'
 
   " vimproc : asynchronous executin from vimshell
-  NeoBundle 'Shougo/vimproc.git'
+  NeoBundle 'Shougo/vimproc.git', { 'build': {
+  \         'mac' : 'make -f make_mac.mak',
+  \         'unix': 'make -f make_unix.mak',
+  \        },
+  \}
 
   " vim-altercmd : expand Ex command
   NeoBundle 'tyru/vim-altercmd'

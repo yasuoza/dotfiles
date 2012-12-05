@@ -84,8 +84,10 @@ alias cpa='cp -a'
 #alias sce='scala'
 
 # Rails
+# http://travisjeffery.com/b/2012/01/zshs-extended-glob-and-octopresss-new-post-script/
 alias r='rails'
 alias be='bundle exec'
+alias rake='noglob rake'
 
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
 extract () {

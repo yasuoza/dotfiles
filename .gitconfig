@@ -26,6 +26,7 @@
     untracked = cyan
 [alias]
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+  addw  = !"git diff -w --no-color | git apply --cached"
   g     = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
   gn    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st    = status

@@ -155,6 +155,9 @@ endif
   " rails.vim
   NeoBundle 'tpope/vim-rails'
 
+  " play2vim
+  NeoBundle 'https://github.com/gre/play2vim.git'
+
   " Pydiction : for python
   " NeoBundle 'Pydiction'
 
@@ -191,7 +194,7 @@ endif
   NeoBundle 'yuroyoro/vim-python'
 
   " scala
-  NeoBundle 'yuroyoro/vim-scala'
+  NeoBundle 'derekwyatt/vim-scala'
 
   " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
   NeoBundle 'scrooloose/syntastic'

@@ -8,8 +8,8 @@
 " show Yank history
 nmap ,y ;YRShow<CR>
 let g:yankring_manual_clipboard_check = 1
-" Set place of yankring_history_v2.txt
 let g:yankring_history_dir = '$HOME/.vim'
+let g:yankring_max_history = 200
 
 "------------------------------------
 " MiniBufExplorer

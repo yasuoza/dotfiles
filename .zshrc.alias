@@ -79,6 +79,7 @@ alias cpa='cp -a'
 
 # scala & play
 alias scala='scala -deprecation -unchecked -explaintypes'
+alias scalac='scalac'
 alias play='nocorrect play'
 
 # Rails

@@ -63,6 +63,9 @@ alias tal='tig --all'
 # open with Google Chrome
 alias ogc='open -a Google\ Chrome'
 
+# open with IntelliJ IDEA
+alias intelli='open -a IntelliJ\ IDEA\ 12'
+
 # Common sense
 alias rmr='rm -r'
 alias rmrf='rm -rf'

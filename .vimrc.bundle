@@ -200,7 +200,7 @@ endif
   NeoBundle 'scrooloose/syntastic'
 
   " vim-slim
-  NeoBundle 'https://github.com/bbommarito/vim-slim.git'
+  NeoBundle 'https://github.com/slim-template/vim-slim.git'
 " }}}
 
 " Buffer {{{

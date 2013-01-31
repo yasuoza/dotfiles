@@ -30,7 +30,7 @@
   g     = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
   gn    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st    = status
-  cm    = commit
+  cm    = commit -v
   stt   = status -uno
   d     = diff
   dc    = diff --cached

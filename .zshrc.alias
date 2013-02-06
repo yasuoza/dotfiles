@@ -81,7 +81,7 @@ alias cpa='cp -a'
 #alias hg='nocorrect hg --encoding=utf-8'
 
 # scala & play
-alias scala='scala -deprecation -unchecked -explaintypes'
+alias scala='scala -deprecation'
 alias scalac='scalac'
 alias play='nocorrect play'
 

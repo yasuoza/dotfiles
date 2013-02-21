@@ -287,9 +287,9 @@ setopt path_dirs
 
 # Treat ^ as cd ..
 function cdup() {
-echo
-cd ..
-zle reset-prompt
+    echo
+    cd ..
+    zle reset-prompt
 }
 zle -N cdup
 # bindkey '\^' cdup

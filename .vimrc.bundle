@@ -132,8 +132,8 @@ endif
   " open-browser.vim : open url or search under coursor
   NeoBundle 'tyru/open-browser.vim'
 
-  " ack.vim
-  NeoBundle 'ack.vim'
+  " ag.vim
+  NeoBundle 'rking/ag.vim'
 " }}}
 
 " Programming {{{

@@ -31,6 +31,7 @@
   gn    = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st    = status
   cm    = commit -v
+  cmw   = commit -v --cleanup=whitespace
   stt   = status -uno
   d     = diff
   dc    = diff --cached
@@ -44,3 +45,4 @@
   lp    = log --oneline -p
   ls    = log --stat --abbrev-commit -n 1
   su    = submodule update
+  ci    = check-ignore -v

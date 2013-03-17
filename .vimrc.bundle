@@ -93,10 +93,22 @@ endif
 " }}}
 
   " neocomplcache.vim
-  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neocomplcache', '', 'default'
+  call neobundle#config('neocomplcache',  {
+        \ 'lazy' : 1,
+        \ 'autoload' : {
+        \   'insert' : 1,
+        \ }})
 
-  " neocomplcache-snippets-complete.vim
-  NeoBundle 'https://github.com/Shougo/neosnippet'
+  " neosnipet.vim
+  NeoBundle 'Shougo/neosnippet', '', 'default'
+  call neobundle#config('neosnippet', {
+        \ 'lazy' : 1,
+        \ 'autoload' : {
+        \   'insert' : 1,
+        \   'filetypes' : 'snippet',
+        \   'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
+        \ }})
 
   " autocomplete require in ruby
   NeoBundle 'ujihisa/neco-ruby'

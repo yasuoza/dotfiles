@@ -88,6 +88,8 @@ alias play='nocorrect play'
 # Rails
 # http://travisjeffery.com/b/2012/01/zshs-extended-glob-and-octopresss-new-post-script/
 alias r='rails'
+alias bundle='nocorrect bundle'
+alias zeus='nocorrect zeus'
 alias be='bundle exec'
 alias rake='noglob rake'
 

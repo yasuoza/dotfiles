@@ -23,6 +23,7 @@ bind diff ; view-next
 
 ## For status
 bind status Space enter
+bind status u status-update
 
 ## For blame
 bind blame Space enter

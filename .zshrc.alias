@@ -57,6 +57,7 @@ alias gs='git status -s -b'
 
 # tig
 alias t='tig'
+alias ts='tig status'
 alias tb='tig blame'
 alias tal='tig --all'
 

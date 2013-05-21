@@ -1,6 +1,5 @@
 ---
 :benchmark: false
-gem: --no-rdoc --no-ri
 :verbose: true
 :sources:
 - http://gems.github.com
@@ -9,3 +8,4 @@ gem: --no-rdoc --no-ri
 :bulk_threshold: 1000
 :backtrace: false
 :update_sources: true
+gem: --no-rdoc --no-ri

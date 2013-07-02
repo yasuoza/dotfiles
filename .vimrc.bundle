@@ -82,13 +82,13 @@ endif
   NeoBundle 'textobj-jabraces'
 
   " toggle true/false and so on via <C-a>
-  NeoBundle 'https://github.com/taku-o/vim-toggle'
+  NeoBundle 'taku-o/vim-toggle'
 
   " VIM-LESS : for the dynamic stylesheet language LESS.
-  NeoBundle 'https://github.com/groenewege/vim-less.git'
+  NeoBundle 'groenewege/vim-less.git'
 
   " vim-haml Vim runtime files for Haml,  Sass,  and SCSS
-  NeoBundle 'https://github.com/tpope/vim-haml.git'
+  NeoBundle 'tpope/vim-haml.git'
 
 " }}}
 
@@ -123,9 +123,6 @@ endif
   " vim-smartword : smart word moving
   NeoBundle 'smartword'
 
-  " camelcasemotion :
-  NeoBundle 'camelcasemotion'
-
   " highlight <motion via Leader><Leader>w/f
   NeoBundle 'EasyMotion'
 
@@ -156,7 +153,7 @@ endif
   NeoBundle 'thinca/vim-ref'
 
   " see ri doc on vim
-  NeoBundle 'https://github.com/taka84u9/vim-ref-ri.git'
+  NeoBundle 'taka84u9/vim-ref-ri.git'
 
   " SQLUtilities : SQL generator
   NeoBundle 'SQLUtilities'
@@ -168,7 +165,7 @@ endif
   NeoBundle 'tpope/vim-rails'
 
   " play2vim
-  NeoBundle 'https://github.com/gre/play2vim.git'
+  NeoBundle 'gre/play2vim.git'
 
   " Pydiction : for python
   " NeoBundle 'Pydiction'
@@ -212,7 +209,7 @@ endif
   NeoBundle 'scrooloose/syntastic'
 
   " vim-slim
-  NeoBundle 'https://github.com/slim-template/vim-slim.git'
+  NeoBundle 'slim-template/vim-slim.git'
 " }}}
 
 " Buffer {{{
@@ -254,7 +251,7 @@ endif
   NeoBundle 'cecutil'
 
   " urilib.vim : handle url from vim script
-  NeoBundle 'https://github.com/tyru/urilib.vim.git'
+  NeoBundle 'tyru/urilib.vim.git'
 
   " utillity
   NeoBundle 'L9'
@@ -287,9 +284,9 @@ endif
 
 " ColorSchema{{{{
   " color schema 256
-  NeoBundle 'desert256.vim'
-  NeoBundle 'mrkn256.vim'
-  NeoBundle 'tomasr/molokai'
+  " NeoBundle 'desert256.vim'
+  " NeoBundle 'mrkn256.vim'
+  " NeoBundle 'tomasr/molokai'
   NeoBundle 'yuroyoro/yuroyoro256.vim'
 " }}}
 

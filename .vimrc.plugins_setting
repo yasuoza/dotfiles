@@ -199,22 +199,6 @@ map ge  <Plug>(smartword-ge)
 
 
 "------------------------------------
-" camelcasemotion.vim
-"------------------------------------
-
-" word move via <Shift-wbe>
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-" enable to use via text-object
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
-
-"------------------------------------
 " vimshell
 "------------------------------------
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -353,6 +337,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 " Default off
 let g:syntastic_mode_map = { 'mode': 'passive' }
+
 
 "------------------------------------
 " toggle.vim

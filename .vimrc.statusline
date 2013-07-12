@@ -3,4 +3,6 @@
 "-------------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
 
+set ambiwidth=double
+
 let g:Powerline_symbols='fancy'

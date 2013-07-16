@@ -36,7 +36,7 @@ fi
 
 # z. Replacement of autojump
 # https://github.com/rupa/z
-if which brew > /dev/null; then
+if [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
     _Z_CMD=j
     . `brew --prefix`/etc/profile.d/z.sh
 fi

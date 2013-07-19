@@ -269,7 +269,7 @@ endif
   NeoBundle 'tpope/vim-fugitive'
 
   " Cool status line
-  NeoBundle 'bling/vim-airline'
+  NeoBundle 'Lokaltog/vim-powerline'
 
   " perlomni.vim
   " NeoBundle 'perlomni.vim'

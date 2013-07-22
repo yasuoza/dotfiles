@@ -5,7 +5,7 @@ DOT_FILES=( .zsh .zshrc .zshrc.alias .zshrc.linux .zshrc.osx .ctags          \
             .irbrc .sbtconfig .screenrc .vimrc .vrapperrc .tmux.conf         \
             .dir_colors .rdebugrc .perltidyrc .proverc .xvimrc .tigrc        \
             .my.cnf .caprc .rspec .zshenv .zprofile .hgrc .jrubyrc .pryrc    \
-            .npmrc
+            .npmrc .Xresources
           )
 
 for file in ${DOT_FILES[@]}

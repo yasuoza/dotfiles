@@ -3,12 +3,14 @@ source ~/dotfiles/.vimrc.bundle
 
 "Basic settings
 source ~/dotfiles/.vimrc.basic
+"Color setings
+source ~/dotfiles/.vimrc.colors
+"Apperance settings
+source ~/dotfiles/.vimrc.apperance
 "StatusLine settings
 source ~/dotfiles/.vimrc.statusline
 "Indent settings
 source ~/dotfiles/.vimrc.indent
-"Apperance settings
-source ~/dotfiles/.vimrc.apperance
 "Autocomplete settings
 source ~/dotfiles/.vimrc.completion
 "Tags settings
@@ -17,8 +19,6 @@ source ~/dotfiles/.vimrc.tags
 source ~/dotfiles/.vimrc.search
 "Move settings
 source ~/dotfiles/.vimrc.moving
-"Color setings
-source ~/dotfiles/.vimrc.colors
 "Edit settings
 source ~/dotfiles/.vimrc.editing
 "Encode settings

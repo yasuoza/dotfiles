@@ -21,15 +21,5 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
-"popup menu setting
-"hi Pmenu guibg=#666666
-"hi PmenuSel guibg=#8cd0d3 guifg=#666666
-"hi PmenuSbar guibg=#333333
-
 " highlight on
 syntax enable
-
-" completeion highlight
-hi Pmenu ctermbg=white ctermfg=darkgray
-hi PmenuSel ctermbg=blue ctermfg=white
-hi PmenuSbar ctermbg=0 ctermfg=9

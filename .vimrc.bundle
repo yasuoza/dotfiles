@@ -89,9 +89,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " vim-haml Vim runtime files for Haml,  Sass,  and SCSS
   NeoBundle 'tpope/vim-haml.git'
 
-  " neocomplcache.vim
-  NeoBundle 'Shougo/neocomplcache', '', 'default'
-  call neobundle#config('neocomplcache',  {
+  " neocomplete.vim
+  NeoBundle 'Shougo/neocomplete', '', 'default'
+  call neobundle#config('neocomplete',  {
         \ 'lazy' : 1,
         \ 'autoload' : {
         \   'insert' : 1,

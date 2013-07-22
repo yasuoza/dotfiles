@@ -1,0 +1,105 @@
+"------------------------------------
+" neocomplecache.vim
+"------------------------------------
+" Enable NeoComplCahe at vim start
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+
+let bundle = neobundle#get('neocomplete')
+function! bundle.hooks.on_source(bundle)
+  " Disable AutoComplPop
+  " Enable smart case
+  let g:neocomplete#enable_smart_case = 1
+  " Enable camel case
+  let g:neocomplete#enable_camel_case_completion = 1
+  " Cache syntax more than 3 letters
+  let g:neocomplete#min_syntax_length = 3
+  " Lock neocomplete pattern
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  " Show num of line by -
+  let g:neocomplete#enable_quick_match = 1
+  " Select first candidate
+  " let g:neocomplete_enable_auto_select = 1
+  " Do not open Scratch window
+  set completeopt=menuone
+
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scala' : $HOME.'/.vim/bundle/vim-scala/dict/scala.dict',
+        \ 'java' : $HOME.'/.vim/dict/java.dict',
+        \ 'c' : $HOME.'/.vim/dict/c.dict',
+        \ 'cpp' : $HOME.'/.vim/dict/cpp.dict',
+        \ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
+        \ 'ocaml' : $HOME.'/.vim/dict/ocaml.dict',
+        \ 'perl' : $HOME.'/.vim/dict/perl.dict',
+        \ 'php' : $HOME.'/.vim/dict/php.dict',
+        \ 'scheme' : $HOME.'/.vim/dict/scheme.dict',
+        \ 'vm' : $HOME.'/.vim/dict/vim.dict'
+        \ }
+
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " User defined snippet
+  let g:neocomplete#snippets_dir = $HOME.'/.vim/snippets'
+
+  " Snippets
+  imap <C-y> <Plug>(neocomplete_snippets_expand)
+  smap <C-y> <Plug>(neocomplete_snippets_expand)
+  imap <C-l>    <Plug>(neocomplete_snippets_expand)
+  smap <C-l>    <Plug>(neocomplete_snippets_expand)
+
+  " Complete by TAB
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  " undo
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  " Complete to common place of candidate
+  inoremap <expr><C-s> neocomplete#complete_common_string()
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neocomplete#sources#snippets_complete#expandable() ? "\<Plug>(neocomplete_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+  " neocomlcache by C-n
+  " inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+  " Complete by C-p
+  " inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
+
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  endfunction
+
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-x><C-o> &filetype == 'vim' ? "\<C-x><C-v><C-p>" : neocomplete#manual_omni_complete()
+
+  " Cache when buffer opend
+  autocmd BufReadPost,BufEnter,BufWritePost :neocompleteCachingBuffer <buffer>
+
+  " Omni completion by FileType
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
+  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+  autocmd FileType c set omnifunc=ccomplete#Complete
+  autocmd FileType ruby set omnifunc=rubycomplete#Complete
+  autocmd FileType ha set omnifunc=necoghc#omnifunc
+
+  " Enable heavy omni completion.
+  " if !exists('g:neocomplete_omni_patterns')
+  " let g:neocomplete_omni_patterns = {}
+  " endif
+  " let g:neocomplete_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  " let g:neocomplete_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+endfunction

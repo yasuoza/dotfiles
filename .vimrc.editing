@@ -39,7 +39,6 @@ nmap y9 y$
 " yank to line head via y0
 nmap y0 y^
 
-"
 " autocomplete parentheses
 "inoremap { {}<LEFT>
 "inoremap [ []<LEFT>
@@ -55,12 +54,19 @@ nmap y0 y^
 " delete line end whitespace
 " convert tab to space when save file
 " http://qiita.com/items/bc9720826120f5f61fc1
+" when editing markdown, save last 2 spaces
+" https://gist.github.com/yterajima/4353064
 function! s:remove_dust()
-    let cursor = getpos(".")
+  let cursor = getpos(".")
+  if &filetype == "markdown"
+    %s/\s\+\(\s\{2}\)$/\1/e
+    %s/\(\S\+\)\s$/\1/e
+  else
     %s/\s\+$//ge
     %s/\t/  /ge
-    call setpos(".", cursor)
-    unlet cursor
+  endif
+  call setpos(".", cursor)
+  unlet cursor
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 

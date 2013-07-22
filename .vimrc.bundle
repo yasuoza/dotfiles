@@ -1,11 +1,10 @@
 set nocompatible               " be iMproved
-filetype off                   " required!
-filetype plugin indent off     " required!
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Edit {{{
   " NERD_commenter.vim :toggle comment via <Leader>c<space>
@@ -89,8 +88,6 @@ endif
 
   " vim-haml Vim runtime files for Haml,  Sass,  and SCSS
   NeoBundle 'tpope/vim-haml.git'
-
-" }}}
 
   " neocomplcache.vim
   NeoBundle 'Shougo/neocomplcache', '', 'default'
@@ -179,7 +176,7 @@ endif
   " conject NERD_tree, taglist, srcexpl
   NeoBundle 'trinity.vim'
 " }}}
-"
+
 " Syntax {{{
   " haml
   NeoBundle 'haml.zip'
@@ -221,12 +218,6 @@ endif
 
   " NERDTree : explorer like tree
   NeoBundle 'The-NERD-tree'
-
-" }}}
-
-
-" Encording {{{
-  NeoBundle 'banyan/recognize_charcode.vim'
 " }}}
 
 " Utility {{{
@@ -269,7 +260,7 @@ endif
   NeoBundle 'tpope/vim-fugitive'
 
   " Cool status line
-  NeoBundle 'Lokaltog/vim-powerline'
+  NeoBundle 'bling/vim-airline'
 
   " perlomni.vim
   " NeoBundle 'perlomni.vim'
@@ -301,6 +292,8 @@ endif
   NeoBundle 'tsukkee/unite-tag'
   NeoBundle 'choplin/unite-vim_hacks'
 " }}}
-"
+
 
 filetype plugin indent on
+
+NeoBundleCheck

@@ -13,7 +13,7 @@ cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
 
-" use neocomplcache
+" use neocomplete
 source ~/dotfiles/.vimrc.completion.neocomplete
 
 

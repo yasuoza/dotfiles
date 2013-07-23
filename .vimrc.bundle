@@ -164,6 +164,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " play2vim
   NeoBundle 'gre/play2vim.git'
 
+  " vim-json
+  NeoBundle 'elzr/vim-json'
+
   " Pydiction : for python
   " NeoBundle 'Pydiction'
 

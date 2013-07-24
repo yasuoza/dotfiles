@@ -90,22 +90,20 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundle 'tpope/vim-haml.git'
 
   " neocomplete.vim
-  NeoBundle 'Shougo/neocomplete', '', 'default'
-  call neobundle#config('neocomplete',  {
-        \ 'lazy' : 1,
-        \ 'autoload' : {
-        \   'insert' : 1,
-        \ }})
+  NeoBundleLazy 'Shougo/neocomplete', {
+  \  'autoload' : {
+  \     'insert' : 1
+  \  },
+  \}
 
   " neosnipet.vim
-  NeoBundle 'Shougo/neosnippet', '', 'default'
-  call neobundle#config('neosnippet', {
-        \ 'lazy' : 1,
-        \ 'autoload' : {
-        \   'insert' : 1,
-        \   'filetypes' : 'snippet',
-        \   'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
-        \ }})
+  NeoBundleLazy 'Shougo/neosnippet', {
+  \  'autoload' : {
+  \     'insert' : 1,
+  \     'filetypes' : 'snippet',
+  \     'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime']
+  \  },
+  \}
 
   " autocomplete require in ruby
   NeoBundle 'ujihisa/neco-ruby'
@@ -230,9 +228,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
   " vimproc : asynchronous executin from vimshell
   NeoBundle 'Shougo/vimproc.git', { 'build': {
-  \         'mac' : 'make -f make_mac.mak',
-  \         'unix': 'make -f make_unix.mak',
-  \        },
+  \   'mac' : 'make -f make_mac.mak',
+  \   'unix': 'make -f make_unix.mak',
+  \  },
   \}
 
   " vim-altercmd : expand Ex command
@@ -286,15 +284,49 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " }}}
 
 " Unite {{{{
-  " unite.vim
-  NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'tsukkee/unite-help'
-  NeoBundle 'h1mesuke/unite-outline'
+  NeoBundleLazy 'Shougo/unite.vim', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
+  NeoBundleLazy 'tsukkee/unite-help', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
+  NeoBundleLazy 'h1mesuke/unite-outline', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
   " NeoBundle 'Sixeight/unite-grep'
-  NeoBundle 'basyura/unite-rails'
-  NeoBundle 'thinca/vim-unite-history'
-  NeoBundle 'tsukkee/unite-tag'
-  NeoBundle 'choplin/unite-vim_hacks'
+
+  NeoBundleLazy 'basyura/unite-rails', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
+  NeoBundleLazy 'thinca/vim-unite-history', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
+  NeoBundleLazy 'tsukkee/unite-tag', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
+
+  NeoBundleLazy 'choplin/unite-vim_hacks', {
+  \  'autoload' : {
+  \      'commands' : ['Unite']
+  \  },
+  \}
 " }}}
 
 

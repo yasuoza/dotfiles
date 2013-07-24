@@ -164,12 +164,10 @@ nmap <F8> :CMiniBufExplorer<CR>:SrcExplToggle<CR>:TMiniBufExplorer<CR>
 "------------------------------------
 " open-blowser.vim
 "------------------------------------
-
 " open url under cursor
-nmap <Leader>fu <Plug>(openbrowser-open)
-vmap <Leader>fu <Plug>(openbrowser-open)
-" search words under cursor via google
-nnoremap <Leader>fs :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 "------------------------------------
 " operator-camelize.vim

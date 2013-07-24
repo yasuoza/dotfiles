@@ -134,7 +134,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundle 'eregex.vim'
 
   " open-browser.vim : open url or search under coursor
-  NeoBundle 'tyru/open-browser.vim'
+  NeoBundleLazy 'tyru/open-browser.vim', {
+  \  'autoload' : {
+  \      'commands' : ['OpenBrowser', 'OpenBrowserSearch']
+  \  },
+  \}
 
   " ag.vim
   NeoBundle 'rking/ag.vim'

@@ -13,7 +13,7 @@ function! bundle.hooks.on_source(bundle)
   " Enable camel case
   let g:neocomplete#enable_camel_case_completion = 1
   " Cache syntax more than 3 letters
-  let g:neocomplete#min_syntax_length = 3
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
   " Lock neocomplete pattern
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
   " Show num of line by -

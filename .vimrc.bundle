@@ -110,6 +110,14 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
   " A neocomplcache plugin for English, using look command
   " NeoBundle 'ujihisa/neco-look'
+
+  " highlight markdown code block
+  NeoBundleLazy 'joker1007/vim-markdown-quote-syntax', {
+  \  'autoload' : {
+  \     'insert' : 1,
+  \     'filetypes' : 'markdown',
+  \  },
+  \}
 " }}}
 
 " Searching/Moving{{{

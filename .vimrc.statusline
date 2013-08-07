@@ -1,6 +1,12 @@
 "-------------------------------------------------------------------------------
 " StatusLine
 "-------------------------------------------------------------------------------
-"
+
+" Use powerline patched font
 let g:airline_powerline_fonts = 1
+
+" Display full file path
+let g:airline_section_c = '%F%m'
+
+" Enforce to display statusline
 set laststatus=2

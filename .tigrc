@@ -2,6 +2,9 @@
 set show-rev-graph = yes
 set show-date      = short
 set vertical-split = yes
+set show-id        = yes
+set show-refs      = yes
+set line-graphics  = utf-8
 
 # Keymap
 ## For general

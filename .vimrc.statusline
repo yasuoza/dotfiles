@@ -8,5 +8,10 @@ let g:airline_powerline_fonts = 1
 " Display full file path
 let g:airline_section_c = '%F%m'
 
+" Do not warn whitespace, even if there are whitespaces
+" Whitespaces are very important in markdown
+" default: remove all whitespaces on BufWritePre by `remove_dust`
+let g:airline_detect_whitespace = 0
+
 " Enforce to display statusline
 set laststatus=2

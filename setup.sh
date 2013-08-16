@@ -13,3 +13,6 @@ do
     ln -s $HOME/dotfiles/$file $HOME
 done
 
+if [ ! -d $HOME/.bin ]; then
+    ln -s $HOME/dotfiles/bin $HOME/.bin
+fi

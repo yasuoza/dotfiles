@@ -8,11 +8,10 @@ if [ -d $HOME/.rbenv  ] ; then
 fi
 
 #=============================
-# perlbrew
+# plenv
 #=============================
-if [ -d $HOME/.perlbrew ] ; then
-    export PERLBREW_ROOT=~/.perlbrew
-    source $HOME/.perlbrew/etc/bashrc
+if [ -d $HOME/.plenv ] ; then
+    eval "$(plenv init -)"
 fi
 
 #=============================

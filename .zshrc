@@ -377,8 +377,18 @@ function static_httpd {
 #  * Trigger regex: ==ZSH LONGRUN COMMAND TRACKER==(.*)
 #  * Parameters: \1
 #
-autoload -U add-zsh-hook 2>/dev/null || return
-export __timetrack_threshold=20 # seconds
+autoload -Uz add-zsh-hook
+__timetrack_threshold=20 # seconds
+read -r -d '' __timetrack_ignore_progs <<EOF
+less
+emacs vi vim
+git g tig t
+ssh mosh telnet nc netcat
+gdb
+EOF
+
+export __timetrack_threshold
+export __timetrack_ignore_progs
 
 function __my_preexec_start_timetrack() {
     local command=$1
@@ -390,6 +400,7 @@ function __my_preexec_start_timetrack() {
 function __my_preexec_end_timetrack() {
     local exec_time
     local command=$__timetrack_command
+    local prog=$(echo $command|awk '{print $1}')
     local notify_method
     local message
 
@@ -408,6 +419,10 @@ function __my_preexec_end_timetrack() {
     if [ -z "$__timetrack_start" ] || [ -z "$__timetrack_threshold" ]; then
         return
     fi
+
+    for ignore_prog in $(echo $__timetrack_ignore_progs); do
+        [ "$prog" = "$ignore_prog" ] && return
+    done
 
     exec_time=$((__timetrack_end-__timetrack_start))
     if [ -z "$command" ]; then

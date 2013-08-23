@@ -414,7 +414,8 @@ function __my_preexec_end_timetrack() {
         command="<UNKNOWN>"
     fi
 
-    message="Command finished!\nTime: $exec_time seconds\nCOMMAND: $command"
+    title="Command finished!"
+    message="Time: $exec_time seconds"$'\n'"COMMAND: $command"
 
     if [ "$exec_time" -ge "$__timetrack_threshold" ]; then
         case $notify_method in
@@ -426,7 +427,7 @@ function __my_preexec_end_timetrack() {
         echo -e "\e[1A\e[2K"
                 ;;
             "growlnotify" )
-                echo "$message" | growlnotify -n "ZSH timetracker" --appIcon Terminal
+                growlnotify -n "ZSH timetracker" -t $title -m $message --appIcon iTerm
                 ;;
             "notify-send" )
                 notify-send "ZSH timetracker" "$message"

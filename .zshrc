@@ -380,9 +380,11 @@ function static_httpd {
 autoload -Uz add-zsh-hook
 __timetrack_threshold=20 # seconds
 read -r -d '' __timetrack_ignore_progs <<EOF
-less
+tmux tmux-session
+less fg
 emacs vi vim
 git g tig t
+pry
 ssh mosh telnet nc netcat
 gdb
 EOF

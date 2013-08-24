@@ -16,8 +16,6 @@ function! bundle.hooks.on_source(bundle)
   let g:neocomplete#sources#syntax#min_keyword_length = 3
   " Lock neocomplete pattern
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-  " Show num of line by -
-  let g:neocomplete#enable_quick_match = 1
   " Select first candidate
   " let g:neocomplete_enable_auto_select = 1
   " Do not open Scratch window
@@ -97,9 +95,9 @@ function! bundle.hooks.on_source(bundle)
   autocmd FileType ha set omnifunc=necoghc#omnifunc
 
   " Enable heavy omni completion.
-  " if !exists('g:neocomplete_omni_patterns')
-  " let g:neocomplete_omni_patterns = {}
-  " endif
-  " let g:neocomplete_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   " let g:neocomplete_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 endfunction

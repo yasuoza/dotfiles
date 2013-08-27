@@ -6,6 +6,7 @@ set wildchar=<tab>         " command completion hot key
 set wildmode=list:full     " show list and long match
 set history=1000           " number of command and search history
 set complete+=k            " add dictionary file to complete
+set completeopt=menu,preview
 
 " change Ex-mode <C-p><C-n> to like zsh
 cnoremap <C-p> <Up>

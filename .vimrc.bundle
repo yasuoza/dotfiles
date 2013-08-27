@@ -181,13 +181,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " NeoBundle 'Pydiction'
 
   " Show tablist on source
-  NeoBundle 'taglist.vim'
-
-  " auto generator for tags
-  NeoBundle 'Source-Explorer-srcexpl.vim'
-
-  " conject NERD_tree, taglist, srcexpl
-  NeoBundle 'trinity.vim'
+  NeoBundleLazy 'majutsushi/tagbar', {
+  \  'autoload' : {
+  \      'commands' : ['TagbarToggle']
+  \  },
+  \}
 " }}}
 
 " Syntax {{{

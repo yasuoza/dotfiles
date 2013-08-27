@@ -134,32 +134,12 @@ let dumbbuf_remove_marked_when_close = 1
 " nmap U :<C-u>GundoToggle<CR>
 
 "------------------------------------
-" taglist.Vim
+" Tagbar.Vim
 "------------------------------------
-"list functions
-set tags=tags
-"set tags+=~/.tags
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-let Tlist_Show_One_File = 1               " show only editting file
-let Tlist_Exit_OnlyWindow = 1             " close vim when taglist window is last one
-let Tlist_Enable_Fold_Column = 1
-" let Tlist_Auto_Open = 1                   " auto start
-let Tlist_Auto_Update = 1
-let Tlist_WinWidth = 30
-nmap <silent> <leader>tl :TlistToggle<CR>
-nmap <F7> :CMiniBufExplorer<CR>:TrinityToggleTagList<CR>:TMiniBufExplorer<CR>
-
-"------------------------------------
-" Srcexp
-"------------------------------------
-" help moving and showing source using tags
-let g:SrcExpl_UpdateTags    = 1         " reflesh tags
-let g:SrcExpl_RefreshTime   = 0         " time to show
-let g:SrcExpl_WinHeight     = 9         " preview window height
-let g:SrcExpl_RefreshMapKey = "<Space>" " manualy shortcut
-let g:SrcExpl_GoBackMapKey  = "<C-b>"   " back shorcut
-" Source Explorer ON/OFF
-nmap <F8> :CMiniBufExplorer<CR>:SrcExplToggle<CR>:TMiniBufExplorer<CR>
+" The Vim class outline viewer
+let g:tagbar_width = 30
+let g:tagbar_left = 1
+nmap <silent> <leader>tb :TagbarToggle<CR>
 
 "------------------------------------
 " open-blowser.vim

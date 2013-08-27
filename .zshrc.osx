@@ -51,22 +51,15 @@ fi
 # export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin:$PATH
 # export PYTHONSTARTUP=~/.pythonstartup
 
-# perlbrew
-if [ -d $HOME/.perlbrew ] ; then
-    # export PERLBREW_ROOT=~/.perlbrew
-    source $HOME/.perlbrew/etc/bashrc
-fi
-
 # JsTestDriver
 export JSTESTDRIVER_HOME=/usr/local/bin
-
-# Haskell
-if [ -s $HOME/Library/Haskell/bin ]; then
-    PATH=$HOME/Library/Haskell/bin:$PATH
-fi
 
 # Android
 if [ -s $HOME/Developer/AndroidSDK/platform-tools ]; then
     PATH=$HOME/Developer/AndroidSDK/platform-tools:$PATH
 fi
 
+# Go
+if [ -d /usr/local/Cellar/go/1.1.2 ]; then
+    export GOROOT=/usr/local/Cellar/go/1.1.2
+fi

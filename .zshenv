@@ -20,3 +20,11 @@ fi
 if [ -d $HOME/.nodebrew ] ; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
+
+#=============================
+# Go
+#=============================
+if [ -d $HOME/.go ] ; then
+    export GOPATH=$HOME/.go
+    export PATH=$HOME/.go/bin:$PATH
+fi

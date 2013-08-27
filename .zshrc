@@ -25,6 +25,7 @@ case ${UID} in
         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
     ;;
 *)
+
 #
 # Color
 #
@@ -37,6 +38,7 @@ BLUE="%{${fg[blue]}%}"
 RED="%{${fg[red]}%}"
 CYAN="%{${fg[cyan]}%}"
 WHITE="%{${fg[white]}%}"
+
 #
 # Prompt
 #

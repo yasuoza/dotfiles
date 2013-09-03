@@ -80,9 +80,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " convert 「foo」 or 【bar】to text-object
   NeoBundle 'textobj-jabraces'
 
-  " toggle true/false and so on via <C-a>
-  NeoBundle 'taku-o/vim-toggle'
-
   " VIM-LESS : for the dynamic stylesheet language LESS.
   NeoBundle 'groenewege/vim-less.git'
 

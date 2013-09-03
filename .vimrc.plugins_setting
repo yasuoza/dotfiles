@@ -170,7 +170,7 @@ map ge  <Plug>(smartword-ge)
 "------------------------------------
 " The prefix key.
 nnoremap    [unite]   <Nop>
-nmap    f [unite]
+nmap    U [unite]
 
 nnoremap [unite]u  :<C-u>Unite -no-split<Space>
 

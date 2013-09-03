@@ -31,9 +31,6 @@ inoremap <C-w>  <C-g>u<C-w>
 " change indent mode via :Pt
 command! Pt :set paste!
 
-" put yanked words via <C-o> in insert mode
-inoremap <C-o> <ESC>:<C-U>YRPaste 'p'<CR>i
-
 " yank to line end via y9
 nmap y9 y$
 " yank to line head via y0

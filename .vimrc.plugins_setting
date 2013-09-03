@@ -56,16 +56,6 @@ let NERDTreeWinSize=25
 let Grep_Skip_Dirs = '.svn .git .hg'
 let Grep_Skip_Files = '*.bak *~'
 let Grep_Find_Use_Xargs = 0
--
-"------------------------------------
-" surround.vim
-"------------------------------------
-" surround selected words via s, ss
-nmap s <Plug>Ysurround
-nmap ss <Plug>Yssurround
-let g:surround_{char2nr('e')} = "begin \r end"
-let g:surround_{char2nr('d')} = "do \r end"
-let g:surround_{char2nr("-")} = ":\r"
 
 "------------------------------------
 " smartchr.vim
@@ -262,7 +252,6 @@ let g:syntastic_enable_highlighting = 1
 " Default off
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
-
 "------------------------------------
 " toggle.vim
 "------------------------------------
@@ -286,7 +275,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 " VIM-LESS
 "------------------------------------
 noremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
-
 
 "------------------------------------
 " vim-markdown-quote-syntax

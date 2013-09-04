@@ -2,6 +2,7 @@
 " Basics
 "-------------------------------------------------------------------------------
 let mapleader = ","              " keymap loader
+noremap \ ,
 set scrolloff=5                  " buffer for scrolling
 set textwidth=0                  " do not turn back if long line
 set nobackup                     " do not make backup

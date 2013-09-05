@@ -61,9 +61,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " vim-textobj-plugins : change to text object
   NeoBundle 'thinca/vim-textobj-plugins.git'
 
-  " vim-textobj-lastpat : change last searched text to text object
-  NeoBundle 'kana/vim-textobj-lastpat.git'
-
   " vim-textobj-indent : convert indented text to text object
   NeoBundle 'kana/vim-textobj-indent.git'
 

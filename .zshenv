@@ -2,8 +2,7 @@
 # rbenv
 #=============================
 if [ -d $HOME/.rbenv  ] ; then
-    PATH=$HOME/.rbenv/bin:$PATH
-    export PATH
+    export PATH=$HOME/.rbenv/bin:$PATH
     eval "$(rbenv init -)"
 fi
 
@@ -11,6 +10,7 @@ fi
 # plenv
 #=============================
 if [ -d $HOME/.plenv ] ; then
+    export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
     eval "$(plenv init -)"
 fi
 

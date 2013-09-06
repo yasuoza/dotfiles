@@ -3,7 +3,10 @@
 "-------------------------------------------------------------------------------
 
 " command wait via ;
-noremap ; :
+map ; :
+" ;; as ;
+" http://vim.wikia.com/wiki/Map_semicolon_to_colon
+noremap ;; ;
 
 " show QuickFix in bottom
 botright cwindow

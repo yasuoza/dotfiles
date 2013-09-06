@@ -34,6 +34,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " YankRing.vim
   NeoBundle 'YankRing.vim'
 
+  " viaualstar : search *
+  NeoBundle 'thinca/vim-visualstar'
+
   " Chase undo
   NeoBundle 'Gundo'
 

@@ -284,11 +284,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " }}}
 
 " ColorSchema{{{{
-  " color schema 256
-  " NeoBundle 'desert256.vim'
-  " NeoBundle 'mrkn256.vim'
-  " NeoBundle 'tomasr/molokai'
-  " NeoBundle 'yuroyoro/yuroyoro256.vim'
   NeoBundle 'w0ng/vim-hybrid'
 " }}}
 

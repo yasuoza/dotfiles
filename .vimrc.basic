@@ -1,8 +1,13 @@
 "-------------------------------------------------------------------------------
 " Basics
 "-------------------------------------------------------------------------------
-let mapleader = ","              " keymap loader
+" Base key mapping
+let mapleader = ","
 noremap ,, ,
+map ; :
+noremap ;; ;
+inoremap <C-j> <C-[>
+
 set scrolloff=5                  " buffer for scrolling
 set textwidth=0                  " do not turn back if long line
 set nobackup                     " do not make backup
@@ -29,5 +34,8 @@ set ttymouse=xterm2
 " edit and reflect via  Ev/Rv
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
+
+" show quickfix at bottom
+botright cwindow
 
 set helpfile=$VIMRUNTIME/doc/help.txt

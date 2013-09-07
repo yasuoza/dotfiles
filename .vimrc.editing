@@ -31,25 +31,13 @@ inoremap <C-w>  <C-g>u<C-w>
 " change indent mode via :Pt
 command! Pt :set paste!
 
-" put yanked words via <C-o> in insert mode
-inoremap <C-o> <ESC>:<C-U>YRPaste 'p'<CR>i
-
 " yank to line end via y9
 nmap y9 y$
 " yank to line head via y0
 nmap y0 y^
 
-" autocomplete parentheses
-"inoremap { {}<LEFT>
-"inoremap [ []<LEFT>
-"inoremap ( ()<LEFT>
-"inoremap " ""<LEFT>
-"inoremap ' ''<LEFT>
-"vnoremap { "zdi^V{<C-R>z}<ESC>
-"vnoremap [ "zdi^V[<C-R>z]<ESC>
-"vnoremap ( "zdi^V(<C-R>z)<ESC>
-"vnoremap " "zdi^V"<C-R>z^V"<ESC>
-"vnoremap ' "zdi'<C-R>z'<ESC>
+" alias %% = %:h<Tab>
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " delete line end whitespace
 " convert tab to space when save file

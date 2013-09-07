@@ -23,8 +23,6 @@ source ~/dotfiles/.vimrc.moving
 source ~/dotfiles/.vimrc.editing
 "Encode settings
 source ~/dotfiles/.vimrc.encoding
-"Others
-source ~/dotfiles/.vimrc.misc
 "Plugin settins
 source ~/dotfiles/.vimrc.plugins_setting
 

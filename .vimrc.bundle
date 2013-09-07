@@ -34,6 +34,15 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " YankRing.vim
   NeoBundle 'YankRing.vim'
 
+  " Abolish.vim
+  NeoBundle "tpope/vim-abolish"
+
+  " viaualstar : search *
+  NeoBundle 'thinca/vim-visualstar'
+
+  " search and replace using quicfix list
+  NeoBundle 'nelstrom/vim-qargs'
+
   " Chase undo
   NeoBundle 'Gundo'
 
@@ -61,9 +70,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " vim-textobj-plugins : change to text object
   NeoBundle 'thinca/vim-textobj-plugins.git'
 
-  " vim-textobj-lastpat : change last searched text to text object
-  NeoBundle 'kana/vim-textobj-lastpat.git'
-
   " vim-textobj-indent : convert indented text to text object
   NeoBundle 'kana/vim-textobj-indent.git'
 
@@ -79,9 +85,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
   " convert 「foo」 or 【bar】to text-object
   NeoBundle 'textobj-jabraces'
-
-  " toggle true/false and so on via <C-a>
-  NeoBundle 'taku-o/vim-toggle'
 
   " VIM-LESS : for the dynamic stylesheet language LESS.
   NeoBundle 'groenewege/vim-less.git'
@@ -281,11 +284,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " }}}
 
 " ColorSchema{{{{
-  " color schema 256
-  " NeoBundle 'desert256.vim'
-  " NeoBundle 'mrkn256.vim'
-  " NeoBundle 'tomasr/molokai'
-  " NeoBundle 'yuroyoro/yuroyoro256.vim'
   NeoBundle 'w0ng/vim-hybrid'
 " }}}
 

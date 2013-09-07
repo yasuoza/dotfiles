@@ -15,14 +15,6 @@ nmap 1 0
 nmap 0 ^
 nmap 9 $
 
-" Insert mode moving
-inoremap  <C-e> <END>
-inoremap  <C-a> <HOME>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
-
 " window up and down via <space>j, <space>k
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
@@ -31,16 +23,18 @@ noremap <Space>k <C-b>
 nmap <Space><Space> ;MBEbn<CR>
 nmap <BS><BS> ;MBEbp<CR>
 
+" map quickfix moving
+nnoremap <silent> [c :cprevious<CR>
+nnoremap <silent> ]c :cnext<CR>
+nnoremap <silent> [C :cfirst<CR>
+nnoremap <silent> ]C :clast<CR>
+
 " change frame size loosely
 map <kPlus> <C-W>+
 map <kMinus> <C-W>-
 
 " goto previous editted line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
-" move to last edit place
-nnoremap gb '[
-nnoremap gp ']
 
 " go to corresponding parentheses
 nnoremap ( %
@@ -91,5 +85,3 @@ function! s:do_git_diff_aware_gf(command)
   endif
 endfunction
 
-" esape from insert mode via Ctrl-j
-inoremap <C-j> <C-[>

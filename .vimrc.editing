@@ -98,6 +98,12 @@ function! s:toggle_qf_window()
 endfunction
 nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
+" map quickfix moving
+nnoremap <silent> [c :cprevious<CR>
+nnoremap <silent> ]c :cnext<CR>
+nnoremap <silent> [C :cfirst<CR>
+nnoremap <silent> ]C :clast<CR>
+
 " Highlight over 80 columns
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/

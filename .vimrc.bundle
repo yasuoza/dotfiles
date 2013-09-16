@@ -228,7 +228,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundle 'DumbBuf'
 
   " minibufexpl.vim: manage buffers like tab window
-  NeoBundle 'minibufexpl.vim'
+  NeoBundle 'fholgado/minibufexpl.vim'
 
   " NERDTree : explorer like tree
   NeoBundle 'The-NERD-tree'

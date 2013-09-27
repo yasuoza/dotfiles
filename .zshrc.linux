@@ -3,10 +3,6 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias ls='ls --color'
-alias vi='/usr/local/bin/vim'
-alias vim='/usr/local/bin/vim'
-
-export PATH
 
 # man path
 MANPATH=/usr/local/man:$MANPATH

@@ -1,7 +1,7 @@
 [include]
   path = .gitconfig.local
 [push]
-  default = upstream
+  default = simple
 [merge]
   ff = false
 [pull]

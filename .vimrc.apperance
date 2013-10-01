@@ -24,3 +24,5 @@ highlight CursorLine ctermbg=234 guibg=black cterm=underline
 set lazyredraw
 " use fast terminal connection
 set ttyfast
+" Scroll 5 lines at a time at bottom/top
+set scrolljump=5

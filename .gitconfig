@@ -26,30 +26,31 @@
     changed = green
     untracked = cyan
 [alias]
-  alias    = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-  addw     = !"git diff -w --no-color | git apply --cached"
-  g        = log --graph --date=short --decorate=short --pretty=format:'%C(magenta)%h %Cblue%cd %C(blue bold)%cn %Cred%d %Creset%s'
-  ga       = log --all --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
-  gn       = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
-  st       = status
-  cm       = commit -v
-  cmw      = commit -v --cleanup=whitespace
-  stt      = status -uno
-  d        = diff
-  dc       = diff --cached
-  dw       = diff --word-diff
-  co       = checkout
-  br       = branch
-  ps       = push
-  l        = log --graph --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
-  ll       = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
-  ln       = log --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b' --name-status
-  lt       = log --pretty=format:'%C(white bold)%s\n\n%Creset%b'
-  lp       = log --oneline -p
-  ls       = log --stat --abbrev-commit -n 1
-  su       = submodule update
-  ci       = check-ignore -v
-  ignore   = !"f() { local s=$1; shift; \
-           while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\
-           curl "http://gitignore.io/api/$s"; }; f"
-  reamend = commit --amend -C HEAD
+  aliases    = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+  addw       = !"git diff -w --no-color | git apply --cached"
+  g          = log --graph --date=short --decorate=short --pretty=format:'%C(magenta)%h %Cblue%cd %C(blue bold)%cn %Cred%d %Creset%s'
+  ga         = log --all --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s'
+  gn         = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
+  st         = status
+  cm         = commit -v
+  cmw        = commit -v --cleanup=whitespace
+  stt        = status -uno
+  d          = diff
+  dc         = diff --cached
+  dw         = diff --word-diff
+  co         = checkout
+  br         = branch
+  ps         = push
+  l          = log --graph --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  ll         = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  ln         = log --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b' --name-status
+  lt         = log --pretty=format:'%C(white bold)%s\n\n%Creset%b'
+  lp         = log --oneline -p
+  ls         = log --stat --abbrev-commit -n 1
+  su         = submodule update
+  ci         = check-ignore -v
+  ignore     = !"f() { local s=$1; shift; \
+                 while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\
+                 curl "http://gitignore.io/api/$s"; }; f"
+  reamend    = commit --amend -C HEAD
+  fetch-pull = !sh -c 'git fetch $1 pull/$2/head:remotes/$1/pull/$2' -

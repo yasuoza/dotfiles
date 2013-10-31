@@ -27,11 +27,10 @@ let g:miniBufExplMaxSize = 10
 command! Mt :TMiniBufExplorer
 
 "------------------------------------
-" Align
+" vim-easy-align
 "------------------------------------
-" to use Align in Japanese environment
-let g:Align_xstrlen = 3
-
+" to use vim-easy-align in Japanese environment
+vnoremap <silent> <Enter> :EasyAlign<Enter>
 
 "------------------------------------
 " NERD_commenter.vim

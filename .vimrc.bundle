@@ -22,8 +22,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " Power to edi xml and html
   NeoBundle 'xmledit'
 
-  " Align
-  NeoBundle 'Align'
+  " vim-easy-align
+  " https://github.com/junegunn/vim-easy-align
+  NeoBundle 'junegunn/vim-easy-align'
 
   " Filtering and reordering
   NeoBundle 'godlygeek/tabular'

@@ -15,6 +15,14 @@ if [ -d $HOME/.plenv ] ; then
 fi
 
 #=============================
+# pyenv
+#=============================
+if [ -d $HOME/.pyenv ] ; then
+    export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
+    eval "$(pyenv init -)"
+fi
+
+#=============================
 # nodebrew
 #=============================
 if [ -d $HOME/.nodebrew ] ; then

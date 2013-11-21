@@ -5,6 +5,7 @@ set vertical-split = yes
 set show-id        = yes
 set show-refs      = yes
 set line-graphics  = utf-8
+set ignore-case    = yes
 
 # Keymap
 ## For general

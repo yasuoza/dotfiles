@@ -9,6 +9,7 @@
 .gemrc
 .gitconfig
 .gitignore_global
+.gitattributes_global
 .inputrc
 .irbrc
 .sbtconfig

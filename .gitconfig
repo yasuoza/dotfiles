@@ -9,7 +9,8 @@
 [rerere]
   enabled = true
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile   = ~/.gitignore_global
+  attributesfile = ~/.gitattributes_global
 [color]
   ui = auto
 [color "branch"]

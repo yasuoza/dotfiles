@@ -1,0 +1,4 @@
+*.rb   diff=ruby
+*.pl   diff=perl
+*.m    diff=objc
+*.java diff=java

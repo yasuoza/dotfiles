@@ -53,6 +53,8 @@
   ignore     = !"f() { local s=$1; shift; \
                  while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\
                  curl "http://gitignore.io/api/$s"; }; f"
+  ignore-update = !"git update-index --assume-unchanged $1"
+  assume-update = !"git update-index --no-assume-unchanged $1"
   reamend    = commit --amend -C HEAD
   fetch-pull = !sh -c 'git fetch $1 pull/$2/head:remotes/$1/pull/$2' -
   br-merged  = !"git branch --merged | grep -v master | grep -v '*'"

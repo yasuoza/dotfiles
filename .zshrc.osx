@@ -26,10 +26,12 @@ INFOPATH=/usr/local/info:$INFOPATH
 export INFOPATH
 
 # zsh-completion from Homebrew
+if [ -s /usr/local/share/zsh/site-functions ]; then
+    fpath=(/usr/local/share/zsh/site-functions $fpath)
+fi
 if [ -s /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
-# zsh-complete functions from Homebrew
 if [ -s /usr/local/share/zsh/zsh-completions ]; then
     fpath=(/usr/local/share/zsh/zsh-completions $fpath)
 fi

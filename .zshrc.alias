@@ -20,7 +20,7 @@ alias duh="du -h ./ --max-depth=1"
 alias su="su -l"
 
 # vim
-alias 'src'='exec zsh'
+alias 'src'='. $HOME/.zshrc'
 alias -g V="| vim -"
 
 # grep

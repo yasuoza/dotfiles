@@ -473,7 +473,6 @@ fi
            'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 ## alias
-#
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 
 case "${OSTYPE}" in
@@ -489,5 +488,4 @@ esac
 
 
 ## local setting
-#
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

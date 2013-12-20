@@ -34,6 +34,11 @@ if [ -s /usr/local/share/zsh/zsh-completions ]; then
 fi
 autoload -U compinit && compinit -u
 
+# tig-completion
+if [ -s /usr/local/etc/bash_completion.d/tig-completion.bash  ]; then
+    source /usr/local/etc/bash_completion.d/tig-completion.bash
+fi
+
 # z. Replacement of autojump
 # https://github.com/rupa/z
 if [ -s `brew --prefix`/etc/profile.d/z.sh ]; then

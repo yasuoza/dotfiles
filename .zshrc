@@ -5,6 +5,7 @@ export LC_ALL=en_US.UTF-8
 export LESSCHARSET=utf-8
 
 ## Completion configuration
+autoload -U bashcompinit && bashcompinit -i
 fpath=(~/.zsh/functions/Completion ~/.zsh/zsh-completions/src ${fpath})
 autoload -U compinit && compinit -u
 

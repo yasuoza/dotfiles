@@ -29,12 +29,10 @@ export INFOPATH
 if [ -s /usr/local/share/zsh/site-functions ]; then
     fpath=(/usr/local/share/zsh/site-functions $fpath)
 fi
-if [ -s /usr/local/share/zsh-completions ]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
-fi
 if [ -s /usr/local/share/zsh/zsh-completions ]; then
     fpath=(/usr/local/share/zsh/zsh-completions $fpath)
 fi
+autoload -U compinit && compinit -u
 
 # z. Replacement of autojump
 # https://github.com/rupa/z

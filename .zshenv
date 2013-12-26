@@ -3,7 +3,10 @@
 #=============================
 if [ -d $HOME/.rbenv  ] ; then
     export PATH=$HOME/.rbenv/bin:$PATH
-    eval "$(rbenv init -)"
+
+    if type "rbenv" > /dev/null; then
+        eval "$(rbenv init -)"
+    fi
 fi
 
 #=============================
@@ -11,7 +14,10 @@ fi
 #=============================
 if [ -d $HOME/.plenv ] ; then
     export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
-    eval "$(plenv init -)"
+
+    if type "plenv" > /dev/null; then
+        eval "$(plenv init -)"
+    fi
 fi
 
 #=============================
@@ -19,7 +25,10 @@ fi
 #=============================
 if [ -d $HOME/.pyenv ] ; then
     export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
-    eval "$(pyenv init -)"
+
+    if type "pyenv" > /dev/null; then
+        eval "$(pyenv init -)"
+    fi
 fi
 
 #=============================

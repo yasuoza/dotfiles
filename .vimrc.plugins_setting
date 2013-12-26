@@ -128,7 +128,8 @@ let dumbbuf_remove_marked_when_close = 1
 " The Vim class outline viewer
 let g:tagbar_width = 30
 let g:tagbar_left = 1
-nmap <silent> <leader>tb :TagbarToggle<CR>
+let g:tagbar_sort = 0
+nmap <silent> <leader>t :TagbarToggle<CR>
 
 "------------------------------------
 " open-blowser.vim

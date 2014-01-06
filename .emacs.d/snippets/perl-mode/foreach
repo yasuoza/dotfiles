@@ -1,6 +1,0 @@
-# name: foreach (...) { ... }
-# key: foreach
-# --
-foreach ( ${1:array} ) {
-    ${2:# body...}
-}

@@ -16,6 +16,10 @@ vnoremap p <Esc>;let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 " convert Tab to space
 set expandtab
 
+" use always very magic
+" http://deris.hatenablog.jp/entry/2013/05/15/024932
+nnoremap /  /\v
+
 " auto insert close tag in xml
 augroup MyXML
   autocmd!

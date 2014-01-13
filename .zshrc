@@ -485,6 +485,8 @@ linux*)
     ;;
 esac
 
-
 ## local setting
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh

@@ -25,9 +25,7 @@ case ${UID} in
     ;;
 *)
 
-#
 # Color
-#
 DEFAULT=$'%{\e[1;0m%}'
 RESET="%{${reset_color}%}"
 #GREEN=$'%{\e[1;32m%}'
@@ -38,14 +36,11 @@ RED="%{${fg[red]}%}"
 CYAN="%{${fg[cyan]}%}"
 WHITE="%{${fg[white]}%}"
 
-#
 # Prompt
-#
 setopt prompt_subst
 PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
 RPROMPT='${RESET}${GREEN}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
 
-#
 # Change color when terminal is vim mode
 # http://memo.officebrook.net/20090226.html
 function zle-line-init zle-keymap-select {
@@ -66,10 +61,8 @@ zle -N zle-keymap-select
 local MY_COLOR="$ESCX"'%(0?.${MY_PROMPT_COLOR}.31)'m
 local NORMAL_COLOR="$ESCX"m
 
-
 # Show git branch when you are in git repository
 # http://d.hatena.ne.jp/mollifier/20100906/p1
-
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 
@@ -231,60 +224,8 @@ setopt hist_no_store
 # Auto resume suspended process
 #setopt auto_resume
 
-# expand =command command
-#setopt equals
-
-# Treat #, ~, and ^ as regular expression
-#setopt extended_glob
-
-# Write start and end time to history file
-#setopt extended_history
-
-# Do not use Ctr+S/Ctr+Q to controll flow
-#setopt NO_flow_control
-
-# Add path to hash when command executed
-#setopt hash_cmds
-
-# Do not add history when command starts with space
-#setopt hist_ignore_space
-
-# Edit after recall history
-#setopt hist_verify
-
-# Do not send HUP signal when shell terminates
-#setopt NO_hup
-
-# Do not terminates with Ctrl+D
-#setopt ignore_eof
-
-# Treat # as comment in command line
-#setopt interactive_comments
-
-# Show warnings if $MAIL is read
-#setopt mail_warning
-
-# Sort file by numeric order not by directory order
-#setopt numeric_glob_sort
-
 # Search PATH sub directory if command contain /
 setopt path_dirs
-
-# Show terminate code if return value is not 0
-# setopt print_exit_value
-
-# Treat as pushd $HOME if pushd with no arguments
-#setopt pushd_to_home
-
-# Do not confirm if all files to delete
-#setopt rm_star_silent
-
-# Enable easy literal in for, repeat, select, if, and function
-#setopt short_loops
-
-
-# Show detail when command executed
-#setopt xtrace
 
 # Treat ^ as cd ..
 function cdup() {
@@ -337,14 +278,10 @@ function cwaf() {
 }
 
 ## zsh editor
-#
 autoload zed
 
-
 ## Prediction configuration
-#
 autoload predict-on
-#predict-off
 
 ## Command Line Stack [Esc]-[q]
 bindkey -a 'q' push-line
@@ -362,7 +299,6 @@ function static_httpd {
     php -S 0.0.0.0:5000
   fi
 }
-
 
 # Automatic notification via growlnotify / notify-send
 #

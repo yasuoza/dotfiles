@@ -12,12 +12,9 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # vim
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=en-US.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-
-# Emacs
-alias emacs='env LANG=en-US.utf-8 /Applications/Emacs.app/Contents/MacOS/Emacs -nw "$@"'
+export EDITOR=/usr/local/bin/vim
+alias vi='env LANG=en-US.utf-8 /usr/local/bin/vim'
+alias vim='env LANG=en-US.utf-8 /usr/local/bin/vim'
 
 # man path
 MANPATH=/usr/share/man/:/usr/local/share/man:$MANPATH

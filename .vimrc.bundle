@@ -178,9 +178,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " vim-ruby
   NeoBundle 'vim-ruby/vim-ruby'
 
-  " rails.vim
-  NeoBundle 'tpope/vim-rails'
-
   " play2vim
   NeoBundle 'gre/play2vim.git'
 

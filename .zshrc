@@ -289,10 +289,10 @@ bindkey -a 'q' push-line
 ## Start static server
 # http://blog.kamipo.net/entry/2013/02/20/122225
 function static_httpd {
-  if which node > /dev/null; then
-      node -e "var c=require('connect'), d=process.env.PWD; c().use(c.logger()).use(c.static(d)).use(c.directory(d)).listen(5000);"
-  elif which ruby > /dev/null; then
+  if which ruby > /dev/null; then
     ruby -rwebrick -e 'WEBrick::HTTPServer.new(:Port => 5000, :DocumentRoot => ".").start'
+  elif which node > /dev/null; then
+      node -e "var c=require('connect'), d=process.env.PWD; c().use(c.logger()).use(c.static(d)).use(c.directory(d)).listen(5000);"
   elif which plackup > /dev/null; then
     plackup -MPlack::App::Directory -e 'Plack::App::Directory->new(root => ".")->to_app'
   elif which php > /dev/null && php -v | grep -qm1 'PHP 5\.[45]\.'; then

@@ -168,48 +168,16 @@ map ge  <Plug>(smartword-ge)
 "------------------------------------
 " unite.vim
 "------------------------------------
-" The prefix key.
-nnoremap    [unite]   <Nop>
-nmap    U [unite]
-
-nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-
-" all list
-nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file<CR>
 " all files
-nnoremap <silent> [unite]f  :<C-u>Unite -no-split -buffer-name=files file<CR>
+nnoremap <silent> <leader>uf  :<C-u>Unite -buffer-name=files file<CR>
 " all bufferlist
-nnoremap <silent> [unite]b  :<C-u>Unite -no-split buffer<CR>
+nnoremap <silent> <leader>ub  :<C-u>Unite buffer<CR>
 " normal unite
-nnoremap <silent> [unite]u  :<C-u>Unite -no-split buffer file_mru<CR>
+nnoremap <silent> <leader>uu  :<C-u>Unite buffer file_mru<CR>
 " show recent used files
-nnoremap <silent> [unite]m  :<C-u>Unite -no-split file_mru<CR>
+nnoremap <silent> <leader>um  :<C-u>Unite file_mru<CR>
 " show files from current directory
-nnoremap <silent> [unite]d  :<C-u>UniteWithBufferDir -no-split file<CR>
-
-" nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-  " Overwrite settings.
-
-  " quit by pushing ESC twice
-  nmap <buffer> <ESC>      <Plug>(unite_exit)
-  nmap <buffer> <ESC><ESC> <Plug>(unite_exit)
-  imap <buffer> jj      <Plug>(unite_insert_leave)
-  nnoremap <silent><buffer> <C-k> :<C-u>call unite#mappings#do_action('preview')<CR>
-  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-  " Start insert.
-  let g:unite_enable_start_insert = 1
-
-  " split window horizontally
-  nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('split')
-  inoremap <silent> <buffer> <expr> <C-l> unite#do_action('split')
-
-  " split window vertically
-  nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-  inoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-endfunction"}}}
+nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
 
 let g:unite_source_file_mru_limit = 200
 

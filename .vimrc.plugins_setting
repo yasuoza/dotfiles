@@ -169,7 +169,7 @@ map ge  <Plug>(smartword-ge)
 " unite.vim
 "------------------------------------
 " all files
-nnoremap <silent> <leader>uf  :<C-u>Unite -buffer-name=files file<CR>
+nnoremap <silent> <leader>uf  :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
 " all bufferlist
 nnoremap <silent> <leader>ub  :<C-u>Unite buffer<CR>
 " normal unite
@@ -180,6 +180,7 @@ nnoremap <silent> <leader>um  :<C-u>Unite file_mru<CR>
 nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
 
 let g:unite_source_file_mru_limit = 200
+let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
 
 " unite-plugins
 cnoremap UH Unite help<Enter>

@@ -78,6 +78,6 @@ if [ -s /usr/local/opt/android-sdk ]; then
 fi
 
 # Go
-if [ -d /usr/local/opt/go ]; then
-    export GOROOT=/usr/local/opt/go
+if [ -d /usr/local/opt/go/libexec ]; then
+    export GOROOT=/usr/local/opt/go/libexec
 fi

@@ -45,3 +45,10 @@ if [ -d $HOME/.go ] ; then
     export GOPATH=$HOME/.go
     export PATH=$HOME/.go/bin:$PATH
 fi
+
+#=============================
+# direnv
+#=============================
+if type direnv > /dev/null; then
+    eval "$(direnv hook $0)"
+fi

@@ -45,9 +45,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   sudo chsh -s $(which zsh) vagrant
 
   sudo apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
-  su vagrant -c "git clone https://github.com/sstephenson/rbenv.git ~/.rbenv                         && \
-                 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build && \
-                 ~/.rbenv/bin/rbenv install #{RUBY_VER}                                              && \
+  su vagrant -c "git clone https://github.com/sstephenson/rbenv.git ~/.rbenv                                     && \
+                 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build             && \
+                 git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash && \
+                 ~/.rbenv/bin/rbenv install #{RUBY_VER}                                                          && \
                  ~/.rbenv/bin/rbenv global #{RUBY_VER}"
   SHELL
 

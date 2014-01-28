@@ -12,8 +12,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box      = 'raring64'
   config.vm.box_url  = 'http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-amd64-vagrant-disk1.box'
 
-  config.vm.network 'private_network', ip: '192.168.50.4'
-
   config.vm.provision :shell, inline: <<-SHELL
   sudo aptitude update
   sudo aptitude install -y git language-pack-en zsh
@@ -50,6 +48,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash && \
                  ~/.rbenv/bin/rbenv install #{RUBY_VER}                                                          && \
                  ~/.rbenv/bin/rbenv global #{RUBY_VER}"
+
+  sudp apt-get -y python-software-properties python g++ make
+  sudo add-apt-repository -y ppa:chris-lea/node.js
+  sudo apt-get update
+  sudo apt-get install -y nodejs
   SHELL
 
   config.vm.provider "virtualbox" do |v|

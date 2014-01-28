@@ -143,7 +143,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundle 'matchit.zip'
 
   " expand ruby matchit
-  NeoBundle 'ruby-matchit'
+  NeoBundle 'yasuoza/ruby-matchit'
 
   " grep.vim
   NeoBundle 'grep.vim'

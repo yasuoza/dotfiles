@@ -100,20 +100,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \  },
   \}
 
-  " neosnipet.vim
-  NeoBundleLazy 'Shougo/neosnippet', {
-  \  'autoload' : {
-  \     'insert' : 1,
-  \     'filetypes' : 'snippet',
-  \     'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime']
-  \  },
-  \}
-
   " autocomplete require in ruby
   NeoBundle 'ujihisa/neco-ruby'
-
-  " A neocomplcache plugin for English, using look command
-  " NeoBundle 'ujihisa/neco-look'
 
   " highlight markdown code block
   NeoBundleLazy 'joker1007/vim-markdown-quote-syntax', {
@@ -234,8 +222,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " minibufexpl.vim: manage buffers like tab window
   NeoBundle 'fholgado/minibufexpl.vim'
 
-  " NERDTree : explorer like tree
-  NeoBundle 'The-NERD-tree'
+  " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+  NeoBundle 'kien/ctrlp.vim'
 " }}}
 
 " Utility {{{

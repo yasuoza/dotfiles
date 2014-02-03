@@ -43,10 +43,12 @@ map <Leader>x, c<space>
 let NERDShutUp=1
 
 "------------------------------------
-" NERDTree.vim
+" CtrlP
 "------------------------------------
-nmap <silent> <leader>fl :NERDTreeToggle<CR>
-let NERDTreeWinSize=25
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " ------------------------------------
 " grep.vim

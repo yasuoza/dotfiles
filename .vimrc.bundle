@@ -32,8 +32,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " Reorder text even if multi byte
   NeoBundle 'h1mesuke/vim-alignta'
 
-  " YankRing.vim
-  NeoBundle 'YankRing.vim'
+  " yankround.vim
+  NeoBundle 'LeafCage/yankround.vim'
 
   " Abolish.vim
   NeoBundle "tpope/vim-abolish"

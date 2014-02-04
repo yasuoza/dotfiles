@@ -62,41 +62,6 @@ let Grep_Skip_Files = '*.bak *~'
 let Grep_Find_Use_Xargs = 0
 
 "------------------------------------
-" smartchr.vim
-"------------------------------------
-" inoremap <expr> = smartchr#loop('=', '==', '=>')
-" inoremap <expr> . smartchr#loop('.',  '->', '=>')
-
-"
-" "  put space between calculate figure
-" inoremap <buffer><expr> + smartchr#one_of(' + ', ' ++ ', '+')
-" inoremap <buffer><expr> +=  smartchr#one_of(' += ')
-" " inoremap <buffer><expr> - smartchr#one_of(' - ', ' -- ', '-')
-" inoremap <buffer><expr> -=  smartchr#one_of(' -= ')
-" " inoremap <buffer><expr> / smartchr#one_of(' / ', ' // ', '/')
-" inoremap <buffer><expr> /=  smartchr#one_of(' /= ')
-" inoremap <buffer><expr> * smartchr#one_of(' * ', ' ** ', '*')
-" inoremap <buffer><expr> *=  smartchr#one_of(' *= ')
-" inoremap <buffer><expr> & smartchr#one_of(' & ', ' && ', '&')
-" inoremap <buffer><expr> % smartchr#one_of(' % ', '%')
-" inoremap <buffer><expr> =>  smartchr#one_of(' => ')
-" inoremap <buffer><expr> <-   smartchr#one_of(' <-  ')
-" inoremap <buffer><expr> <Bar> smartchr#one_of(' <Bar> ', ' <Bar><Bar> ', '<Bar>')
-" inoremap <buffer><expr> , smartchr#one_of(', ', ',')
-" inoremap <buffer><expr> ? smartchr#one_of('? ', '?')
-" " inoremap <buffer><expr> : smartchr#one_of(': ', '::', ':')
-
-" inoremap <buffer><expr> = search('促(&促<bar><bar>促<bar>+促<bar>-促<bar>/促<bar>>促<bar><促) 促%#', 'bcn')? '<bs>= '  : search('促(*促<bar>!促)促%#', 'bcn') ? '= '  : smartchr#one_of(' = ', ' == ', '=')
-
-" inoremap <buffer><expr> } smartchr#one_of('}', '}<cr>')
-" inoremap <buffer><expr> ; smartchr#one_of(';', ';<cr>')
-" inoremap <buffer><expr> ( smartchr#one_of('( ')
-" inoremap <buffer><expr> ) smartchr#one_of(' )')
-
-" inoremap <buffer><expr> ( search('促<促if促%#', 'bcn')? ' (': '('
-
-
-"------------------------------------
 " Fugitive.vim
 "------------------------------------
 nnoremap <Space>gd :<C-u>Gdiff<Enter>

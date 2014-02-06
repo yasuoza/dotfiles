@@ -10,6 +10,8 @@ nmap ,y ;YRShow<CR>
 let g:yankring_manual_clipboard_check = 1
 let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_max_history = 200
+let g:yankring_replace_n_pkey = '<c-k>'
+let g:yankring_replace_n_nkey = '<c-j>'
 
 "------------------------------------
 " MiniBufExplorer
@@ -55,7 +57,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
 endif
-let g:ctrlp_map = '<c-\>'
 let g:ctrlp_show_hidden = 1
 
 " ------------------------------------

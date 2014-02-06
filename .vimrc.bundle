@@ -222,6 +222,9 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " minibufexpl.vim: manage buffers like tab window
   NeoBundle 'fholgado/minibufexpl.vim'
 
+  " NERDTree : explorer like tree
+  NeoBundle 'The-NERD-tree'
+
   " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
   NeoBundle 'kien/ctrlp.vim'
 " }}}

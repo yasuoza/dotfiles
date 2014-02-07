@@ -36,3 +36,4 @@ install ctags
 install z
 install heroku-toolbelt
 install phantomjs
+install chromedriver

@@ -35,3 +35,4 @@ install the_silver_searcher
 install ctags
 install z
 install heroku-toolbelt
+install phantomjs

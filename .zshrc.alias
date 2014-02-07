@@ -86,13 +86,9 @@ alias scala='scala -deprecation'
 alias scalac='scalac'
 alias play='nocorrect play'
 
-# Rails
+# Ruby
 # http://travisjeffery.com/b/2012/01/zshs-extended-glob-and-octopresss-new-post-script/
-alias r='rails'
-alias bundle='nocorrect bundle'
-alias zeus='nocorrect zeus'
 alias be='bundle exec'
-alias rake='noglob rake'
 
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
 extract () {

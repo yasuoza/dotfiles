@@ -15,3 +15,6 @@ let g:airline_detect_whitespace = 0
 
 " Enforce to display statusline
 set laststatus=2
+
+" Use luna theme
+let g:airline_theme='luna'

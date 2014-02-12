@@ -101,8 +101,8 @@ bindkey '^S' history-incremental-pattern-search-forward
 
 ## Command history configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000
+SAVEHIST=1000
 
 # Delete old command line
 setopt hist_ignore_all_dups
@@ -188,13 +188,6 @@ source $HOME/dotfiles/.zsh/plugins/static_server.plugin.zsh
 
 # Load notify plugin
 source $HOME/dotfiles/.zsh/plugins/notify.plugin.zsh
-
-## terminal configuration
-# http://journal.mycom.co.jp/column/zsh/009/index.html
-   export CLICOLOR=1
-   export LSCOLORS=GxFxCxDxBxegedabagacad
-   zstyle ':completion:*' list-colors \
-           'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 ## alias
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias

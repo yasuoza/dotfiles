@@ -13,13 +13,10 @@ case ${UID} in
             PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
         ;;
     *)
-
         # Color
         DEFAULT=$'%{\e[1;0m%}'
         RESET="%{${reset_color}%}"
-        #GREEN=$'%{\e[1;32m%}'
         GREEN="%{${fg[green]}%}"
-        #BLUE=$'%{\e[1;35m%}'
         BLUE="%{${fg[blue]}%}"
         RED="%{${fg[red]}%}"
         CYAN="%{${fg[cyan]}%}"
@@ -103,3 +100,7 @@ RPROMPT="%1(v|%F${CYAN}%1v%2v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}
 
 ;;
 esac
+
+
+# http://linuxshellaccount.blogspot.jp/2008/12/color-completion-using-zsh-modules-on.html
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}

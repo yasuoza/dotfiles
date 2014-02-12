@@ -4,6 +4,9 @@
   default = simple
 [merge]
   ff = false
+  tool = vimdiff
+[mergetool]
+  prompt = false
 [pull]
   rebase = true
 [rerere]

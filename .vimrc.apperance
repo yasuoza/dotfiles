@@ -6,6 +6,7 @@ set number            " show line number
 set list              " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex      " show unrecognized words via uhex
+set t_Co=256
 
 " highlight current cursor line
 set cursorline

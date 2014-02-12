@@ -35,3 +35,6 @@ bind status u status-update
 ## For blame
 bind blame Space enter
 bind blame Enter view-diff
+
+# Color
+color cursor black green bold

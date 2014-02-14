@@ -10,322 +10,237 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " NERD_commenter.vim :toggle comment via <Leader>c<space>
   NeoBundle 'scrooloose/nerdcommenter.git'
 
-  " auto close parentheses
-  " NeoBundle 'yuroyoro/vim-autoclose'
-
-  " reorder method chain via --
-  NeoBundle 'c9s/cascading.vim'
-
-  " visually indent guide
+   " visually indent guide
   NeoBundle 'nathanaelkane/vim-indent-guides'
 
-  " Power to edi xml and html
-  NeoBundle 'xmledit'
+   " vim-easy-align
+   " https://github.com/junegunn/vim-easy-align
+   NeoBundle 'junegunn/vim-easy-align'
 
-  " vim-easy-align
-  " https://github.com/junegunn/vim-easy-align
-  NeoBundle 'junegunn/vim-easy-align'
+   " YankRing.vim
+   NeoBundle 'YankRing.vim'
 
-  " Filtering and reordering
-  NeoBundle 'godlygeek/tabular'
+   " viaualstar : search *
+   NeoBundle 'thinca/vim-visualstar'
 
-  " Reorder text even if multi byte
-  NeoBundle 'h1mesuke/vim-alignta'
+   " surround.vim : surround text and comment with parentheses
+   NeoBundle 'surround.vim'
 
-  " YankRing.vim
-  NeoBundle 'YankRing.vim'
+   " vim-operator-user : easy operator definition
+   NeoBundle 'operator-user'
 
-  " Abolish.vim
-  NeoBundle "tpope/vim-abolish"
+   " textobj-user : make vim object easily
+   NeoBundle 'textobj-user'
 
-  " viaualstar : search *
-  NeoBundle 'thinca/vim-visualstar'
+   " vim-textobj-syntax : change selected text to text object
+   NeoBundle 'kana/vim-textobj-syntax.git'
 
-  " search and replace using quicfix list
-  NeoBundle 'nelstrom/vim-qargs'
+   " vim-textobj-plugins : change to text object
+   NeoBundle 'thinca/vim-textobj-plugins.git'
 
-  " Chase undo
-  NeoBundle 'Gundo'
+   " vim-textobj-indent : convert indented text to text object
+   NeoBundle 'kana/vim-textobj-indent.git'
 
-  " surround.vim : surround text and comment with parentheses
-  NeoBundle 'surround.vim'
+   " vim-textobj-function : convert function text to text object
+   NeoBundle 'kana/vim-textobj-function.git'
 
-  " smartchr.vim : reorder nearby ==
-  NeoBundle 'smartchr'
+   " vim-textobj-fold : convet folded text to text object
+   NeoBundle 'kana/vim-textobj-fold.git'
+   NeoBundleLazy 'textobj-rubyblock' , {
+   \  'autoload' : {
+   \      'filetypes': 'ruby'
+   \  },
+   \}
 
-  " vim-operator-user : easy operator definition
-  NeoBundle 'operator-user'
+   " vim-textobj-entire : convert buffer to text-object
+   NeoBundle 'textobj-entire'
 
-  " operator-camelize : change camel-case
-  NeoBundle 'operator-camelize'
+   " neocomplete.vim
+   NeoBundleLazy 'Shougo/neocomplete', {
+   \  'disabled' : !has('lua'),
+   \  'autoload' : {
+   \     'insert' : 1
+   \  },
+   \}
 
-  " operator-replace : replace with yank ring
-  NeoBundle 'operator-replace'
+   " autocomplete require in ruby
+   NeoBundleLazy 'ujihisa/neco-ruby' , {
+   \  'autoload' : {
+   \      'filetypes': 'ruby'
+   \  },
+   \}
 
-  " textobj-user : make vim object easily
-  NeoBundle 'textobj-user'
+   " highlight markdown code block
+   NeoBundleLazy 'joker1007/vim-markdown-quote-syntax', {
+   \  'autoload' : {
+   \     'insert' : 1,
+   \     'filetypes' : 'markdown',
+   \  },
+   \}
 
-  " vim-textobj-syntax : change selected text to text object
-  NeoBundle 'kana/vim-textobj-syntax.git'
-
-  " vim-textobj-plugins : change to text object
-  NeoBundle 'thinca/vim-textobj-plugins.git'
-
-  " vim-textobj-indent : convert indented text to text object
-  NeoBundle 'kana/vim-textobj-indent.git'
-
-  " vim-textobj-function : convert function text to text object
-  NeoBundle 'kana/vim-textobj-function.git'
-
-  " vim-textobj-fold : convet folded text to text object
-  NeoBundle 'kana/vim-textobj-fold.git'
-  NeoBundle 'textobj-rubyblock'
-
-  " vim-textobj-entire : convert buffer to text-object
-  NeoBundle 'textobj-entire'
-
-  " convert 「foo」 or 【bar】to text-object
-  NeoBundle 'textobj-jabraces'
-
-  " VIM-LESS : for the dynamic stylesheet language LESS.
-  NeoBundle 'groenewege/vim-less.git'
-
-  " vim-haml Vim runtime files for Haml,  Sass,  and SCSS
-  NeoBundle 'tpope/vim-haml.git'
-
-  " neocomplete.vim
-  NeoBundleLazy 'Shougo/neocomplete', {
-  \  'autoload' : {
-  \     'insert' : 1
-  \  },
-  \}
-
-  " autocomplete require in ruby
-  NeoBundle 'ujihisa/neco-ruby'
-
-  " highlight markdown code block
-  NeoBundleLazy 'joker1007/vim-markdown-quote-syntax', {
-  \  'autoload' : {
-  \     'insert' : 1,
-  \     'filetypes' : 'markdown',
-  \  },
-  \}
-
-  NeoBundleLazy 'osyo-manga/vim-over', {
-  \  'autoload' : {
-  \      'commands' : ['OverCommandLine']
-  \  },
-  \}
+   NeoBundleLazy 'osyo-manga/vim-over', {
+   \  'autoload' : {
+   \      'commands' : ['OverCommandLine']
+   \  },
+   \}
 " }}}
 
 " Searching/Moving{{{
-  NeoBundle 'Smooth-Scroll'
+   " vim-smartword : smart word moving
+   NeoBundle 'smartword'
 
-  " vim-smartword : smart word moving
-  NeoBundle 'smartword'
+   " matchit.vim : move to corresponding parentheses via %
+   NeoBundle 'matchit.zip'
 
-  " highlight <motion via Leader><Leader>w/f
-  NeoBundle 'EasyMotion'
+   " expand ruby matchit
+   NeoBundleLazy 'yasuoza/ruby-matchit' , {
+   \  'autoload' : {
+   \      'filetypes': 'ruby'
+   \  },
+   \}
 
-  " matchit.vim : move to corresponding parentheses via %
-  NeoBundle 'matchit.zip'
+   " open-browser.vim : open url or search under coursor
+   NeoBundleLazy 'tyru/open-browser.vim', {
+   \  'autoload' : {
+   \      'commands' : ['OpenBrowser', 'OpenBrowserSearch']
+   \  },
+   \}
 
-  " expand ruby matchit
-  NeoBundle 'yasuoza/ruby-matchit'
-
-  " grep.vim
-  NeoBundle 'grep.vim'
-
-  " eregex.vim : enable ruby or perl regular expression via %S/perlregex/
-  NeoBundle 'eregex.vim'
-
-  " open-browser.vim : open url or search under coursor
-  NeoBundleLazy 'tyru/open-browser.vim', {
-  \  'autoload' : {
-  \      'commands' : ['OpenBrowser', 'OpenBrowserSearch']
-  \  },
-  \}
-
-  " ag.vim
-  NeoBundle 'rking/ag.vim'
+   " ag.vim
+   NeoBundle 'rking/ag.vim'
 " }}}
 
 " Programming {{{
-  " quickrun.vim
-  NeoBundle 'thinca/vim-quickrun'
+   " quickrun.vim
+   NeoBundle 'thinca/vim-quickrun'
 
-  " see refference such as perldoc and phpmanual on vim
-  NeoBundle 'thinca/vim-ref'
+   " vim-ruby
+   NeoBundleLazy 'vim-ruby/vim-ruby' , {
+   \  'autoload' : {
+   \      'filetypes': 'ruby'
+   \  },
+   \}
 
-  " see ri doc on vim
-  NeoBundle 'taka84u9/vim-ref-ri.git'
-
-  " SQLUtilities : SQL generator
-  NeoBundle 'SQLUtilities'
-
-  " vim-ruby
-  NeoBundle 'vim-ruby/vim-ruby'
-
-  " play2vim
-  NeoBundle 'gre/play2vim.git'
-
-  " vim-json
-  NeoBundle 'elzr/vim-json'
-
-  " Pydiction : for python
-  " NeoBundle 'Pydiction'
-
-  " Show tablist on source
-  NeoBundleLazy 'majutsushi/tagbar', {
-  \  'autoload' : {
-  \      'commands' : ['TagbarToggle']
-  \  },
-  \}
+   " Show tablist on source
+   NeoBundleLazy 'majutsushi/tagbar', {
+   \  'autoload' : {
+   \      'commands' : ['TagbarToggle']
+   \  },
+   \}
 " }}}
 
-" Syntax {{{
-  " haml
-  NeoBundle 'haml.zip'
+" " Syntax {{{
+   " JavaScript
+   NeoBundle 'JavaScript-syntax'
 
-  " JavaScript
-  NeoBundle 'JavaScript-syntax'
+   " nginx conf
+   NeoBundleLazy 'nginx.vim' , {
+   \  'autoload' : {
+   \      'filetypes': 'nginx'
+   \  },
+   \}
 
-  " jQuery
-  NeoBundle 'jQuery'
+   " markdown
+   NeoBundleLazy 'tpope/vim-markdown' , {
+   \  'autoload' : {
+   \      'filetypes': 'markdown'
+   \  },
+   \}
 
-  " nginx conf
-  NeoBundle 'nginx.vim'
+   " coffee script
+   NeoBundleLazy 'kchmck/vim-coffee-script' , {
+   \  'autoload' : {
+   \      'filetypes': 'coffee'
+   \  },
+   \}
 
-  " markdown
-  NeoBundle 'tpope/vim-markdown'
+   " vim-slim
+   NeoBundleLazy 'slim-template/vim-slim.git' , {
+   \  'autoload' : {
+   \      'filetypes': 'slim'
+   \  },
+   \}
+ " }}}
 
-  " coffee script
-  NeoBundle 'kchmck/vim-coffee-script'
+ " Buffer {{{
+   " minibufexpl.vim: manage buffers like tab window
+   NeoBundle 'fholgado/minibufexpl.vim'
 
-  " python
-  NeoBundle 'yuroyoro/vim-python'
+   " NERDTree : explorer like tree
+   NeoBundle 'The-NERD-tree'
 
-  " scala
-  NeoBundle 'derekwyatt/vim-scala'
+   " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
+   NeoBundle 'kien/ctrlp.vim'
+ " }}}
 
-  " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-  NeoBundle 'scrooloose/syntastic'
-
-  " vim-slim
-  NeoBundle 'slim-template/vim-slim.git'
-" }}}
-
-" Buffer {{{
-  " DumbBuf.vim : handle buffer like quickbuf "<Leader>b<Space>BufferList
-  NeoBundle 'DumbBuf'
-
-  " minibufexpl.vim: manage buffers like tab window
-  NeoBundle 'fholgado/minibufexpl.vim'
-
-  " NERDTree : explorer like tree
-  NeoBundle 'The-NERD-tree'
-
-  " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
-  NeoBundle 'kien/ctrlp.vim'
-" }}}
-
-" Utility {{{
-  " vimproc : asynchronous execution from vimshell
-  NeoBundle 'Shougo/vimproc.git', { 'build': {
-  \   'mac' : 'make -f make_mac.mak',
-  \   'unix': 'make -f make_unix.mak',
-  \  },
-  \}
-
-  " vim-altercmd : expand Ex command
-  NeoBundle 'tyru/vim-altercmd'
-
-  " vim Interface to Web API
-  NeoBundle 'mattn/webapi-vim'
-
-  " cecutil.vim : for utility for another plugin
-  NeoBundle 'cecutil'
-
-  " urilib.vim : handle url from vim script
-  NeoBundle 'tyru/urilib.vim.git'
-
-  " utillity
-  NeoBundle 'L9'
-
-  " Library for Buffer
-  NeoBundle 'thinca/vim-openbuf'
-
-  " vimdoc japanese
-  NeoBundle 'yuroyoro/vimdoc_ja'
-
-  " Lingr client
-  NeoBundle 'tsukkee/lingr-vim'
+ " Utility {{{
+   " vimproc : asynchronous execution from vimshell
+   NeoBundle 'Shougo/vimproc.git', { 'build': {
+   \   'mac' : 'make -f make_mac.mak',
+   \   'unix': 'make -f make_unix.mak',
+   \  },
+   \}
 
   " GIT from vim
-  NeoBundle 'tpope/vim-fugitive'
+   NeoBundle 'tpope/vim-fugitive'
 
   " Cool status line
   NeoBundle 'bling/vim-airline'
 
-  " perlomni.vim
-  " NeoBundle 'perlomni.vim'
-
-  " perl-vim
-   NeoBundle 'petdance/vim-perl'
-
-   "Indent-Guides
-   NeoBundle 'Indent-Guides'
-
+  "Indent-Guides
+  NeoBundle 'Indent-Guides'
 " }}}
 
 " ColorSchema{{{{
+
   NeoBundle 'w0ng/vim-hybrid'
+
 " }}}
 
 " Unite {{{{
-  NeoBundleLazy 'Shougo/unite.vim', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'Shougo/unite.vim', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  NeoBundleLazy 'tsukkee/unite-help', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'tsukkee/unite-help', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  NeoBundleLazy 'h1mesuke/unite-outline', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'h1mesuke/unite-outline', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  " NeoBundle 'Sixeight/unite-grep'
+   " NeoBundle 'Sixeight/unite-grep'
 
-  NeoBundleLazy 'basyura/unite-rails', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'basyura/unite-rails', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  NeoBundleLazy 'thinca/vim-unite-history', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'thinca/vim-unite-history', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  NeoBundleLazy 'tsukkee/unite-tag', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'tsukkee/unite-tag', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 
-  NeoBundleLazy 'choplin/unite-vim_hacks', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+   NeoBundleLazy 'choplin/unite-vim_hacks', {
+   \  'autoload' : {
+   \      'commands' : ['Unite']
+   \  },
+   \}
 " }}}
 
 

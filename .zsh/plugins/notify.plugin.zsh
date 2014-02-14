@@ -37,7 +37,7 @@ function __my_preexec_start_timetrack() {
 function __my_preexec_end_timetrack() {
     local exec_time
     local command=$__timetrack_command
-    local prog=$(echo $command|awk '{print $1}')
+    local prog=$(echo $command | tr -d '\r\n' |awk '{print $1}')
     local notify_method
     local message
 

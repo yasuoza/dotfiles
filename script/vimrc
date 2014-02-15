@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
+
+function setup () {
+    ln -s $DOTFILES_DIR/.vimrc $HOME/.vimrc
+    mkdir -p $HOME/.vim/bundle                        
+    cd $HOME/.vim/bundle                              
+    git clone git://github.com/Shougo/neobundle.vim.git 
+    git clone git://github.com/Shougo/vimproc.git       
+    make vimproc                                        
+    $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
+}
+
+function update () {
+    cd $HOME/.vim/bundle/neobundle.vim
+    git pull
+    $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
+}
+
+function clean () {
+    rm -rf $HOME/.vimrc
+    rm -rf $HOME/.vim
+}
+
+function usage () {
+    echo  "setup: symlink .vimrc and install bundles"
+    echo "clean: cleanup .vimrc and .vim"
+}
+
+while [ "$1" != "" ]; do
+    case "$1" in
+        setup | install )       setup
+                                exit
+                                ;;
+        update )                update
+                                exit
+                                ;;
+        clean | uninstall )     clean
+                                exit
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done

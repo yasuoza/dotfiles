@@ -131,7 +131,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " " Syntax {{{
    " JavaScript
-   NeoBundle 'JavaScript-syntax'
+   NeoBundleLazy 'JavaScript-syntax' , {
+   \  'autoload' : {
+   \      'filetypes': 'javascript'
+   \  },
+   \}
 
    " nginx conf
    NeoBundleLazy 'nginx.vim' , {

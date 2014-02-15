@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR=$(cd $(dirname $(dirname $0));pwd)
+
+function setup () {
+    clean
+    ln -s $DOTFILES_DIR/.zshrc $HOME/.zshrc
+    ln -s $DOTFILES_DIR/.zsenv $HOME/.zshenv
+}
+
+function clean () {
+    rm -f $HOME/.zshrc
+    rm -f $HOME/.zshenv
+}
+
+function usage () {
+    echo "setup: symlink .zshrc(s)"
+    echo "clean: remove .zshrc(s)"
+}
+
+while [ "$1" != "" ]; do
+    case "$1" in
+        setup | install )       setup
+                                exit
+                                ;;
+        clean | uninstall )     clean
+                                exit
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done

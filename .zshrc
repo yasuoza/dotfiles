@@ -6,11 +6,11 @@ export LESSCHARSET=utf-8
 
 ## Completion configuration
 autoload -U bashcompinit && bashcompinit -i
-fpath=(~/.zsh/functions/Completion ~/.zsh/zsh-completions/src ${fpath})
+fpath=($HOME/dotfiles/zsh/completion ${fpath})
 autoload -U compinit && compinit -u
 
 # Load terminal color configuration
-source $HOME/dotfiles/.zsh/plugins/color.plugin.zsh
+source $HOME/dotfiles/zsh/plugins/color.plugin.zsh
 
 # auto cd
 setopt auto_cd
@@ -79,14 +79,12 @@ setopt nolistbeep
 setopt extended_glob
 
 ## Keybind configuration
-#
 # emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
 #   to end of it)
 #
 bindkey -v
 
 # historical backward/forward search with linehead string binded to ^P/^N
-#
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -118,20 +116,9 @@ setopt inc_append_history
 
 # Remove history command
 setopt hist_no_store
-# Auto resume suspended process
-#setopt auto_resume
 
 # Search PATH sub directory if command contain /
 setopt path_dirs
-
-# Treat ^ as cd ..
-function cdup() {
-    echo
-    cd ..
-    zle reset-prompt
-}
-zle -N cdup
-# bindkey '\^' cdup
 
 # Move by words with Ctrl+w, Ctrl+b
 bindkey "^W" forward-word
@@ -155,24 +142,12 @@ git-escape-magic
 # git flow completion
 # https://github.com/nvie/gitflow
 # https://github.com/bobthecow/git-flow-completion
-if [ -s $HOME/.zsh/functions/git-flow-completion.zsh ]; then
-    source $HOME/.zsh/functions/git-flow-completion.zsh
+if [ -s $HOME/zsh/functions/git-flow-completion.zsh ]; then
+    source $HOME/zsh/functions/git-flow-completion.zsh
 fi
 
 # Auto pushd
 setopt autopushd
-
-# Add color to error message
-e_normal=`echo -e "¥033[0;30m"`
-e_RED=`echo -e "¥033[1;31m"`
-e_BLUE=`echo -e "¥033[1;36m"`
-
-function make() {
-    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot¥sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
-function cwaf() {
-    LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot¥sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
 
 ## zsh editor
 autoload zed
@@ -184,10 +159,10 @@ autoload predict-on
 bindkey -a 'q' push-line
 
 # Load static server plugin
-source $HOME/dotfiles/.zsh/plugins/static_server.plugin.zsh
+source $HOME/dotfiles/zsh/plugins/static_server.plugin.zsh
 
 # Load notify plugin
-source $HOME/dotfiles/.zsh/plugins/notify.plugin.zsh
+source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 
 ## alias
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias

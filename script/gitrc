@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
+LOCAL_CONFIG=$HOME/.gitconfig.local
+GIT_CONFIG_FILES=(.gitattributes_global .gitconfig .gitignore_global)
+
+function run_local_configure () {
+	if [ -f $LOCAL_CONFIG ]; then
+		echo -n "$LOCAL_CONFIG already exist. Do you override it? (y/n) "
+		read override
+		if ! [[ $override =~ ^(y|Y)$ ]]; then
+			return 0
+		fi
+	fi
+
+	echo -n "git user.name: "
+	read name
+
+	echo -n "git user.email: "
+	read email
+
+	cat <<-_EOF_ > $LOCAL_CONFIG
+		[user]
+			name=$name
+			email=$email
+	_EOF_
+}
+
+function setup () {
+	for file in ${GIT_CONFIG_FILES[@]}; do 
+		ln -s $DOTFILES_DIR/$file $HOME/$file
+	done
+
+	run_local_configure
+}
+
+function clean () {
+	for file in ${GIT_CONFIG_FILES[@]}; do 
+		rm -rf $HOME/$file
+	done
+	rm -rf $LOCAL_CONFIG
+}
+
+while [ "$1" != "" ]; do
+	case "$1" in
+		setup | install )         setup
+															exit
+															;;
+		update )									run_local_configure
+															exit
+															;;
+		clean | uninstall )				clean
+															exit
+															;;
+		-h | --help )							usage
+															exit
+															;;
+		* )												usage
+															exit 1
+	esac
+	shift
+done

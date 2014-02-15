@@ -11,10 +11,8 @@ alias pbc='pbcopy'
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-# vim
+# $EDOTOR
 export EDITOR=/usr/local/bin/vim
-alias vi='env LANG=en-US.utf-8 /usr/local/bin/vim'
-alias vim='env LANG=en-US.utf-8 /usr/local/bin/vim'
 
 # man path
 MANPATH=/usr/share/man/:/usr/local/share/man:$MANPATH

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
+
+function setup () {
+  sudo echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" | sudo tee -a /etc/apt/sources.list
+  wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get -y install linux-headers-$(uname -r)
+  sudo apt-get -y install virtualbox-4.2
+  VBoxManage -v
+  wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_x86_64.deb
+  sudo dpkg -i vagrant_1.4.3_x86_64.deb
+}
+
+function build_vm() {
+  cd $DOTFILES_DIR
+  /opt/vagrant/bin/vagrant up
+}
+
+while [ "$1" != "" ]; do
+  case "$1" in
+    setup | install ) setup
+                      exit
+                      ;;
+    build )           build_vm
+                      exit
+                      ;;
+    * )               exit 1
+  esac
+  shift
+done

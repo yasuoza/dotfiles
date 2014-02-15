@@ -1,0 +1,18 @@
+language: ruby
+
+rvm:
+  - "2.1.0"
+
+branches:
+  only:
+    - master
+
+install:
+  - ./ci/vagrant setup
+
+script:
+  - ./ci/vagrant build
+
+notifications:
+  email:
+    on_failure: never

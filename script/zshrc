@@ -5,7 +5,7 @@ DOTFILES_DIR=$(cd $(dirname $(dirname $0));pwd)
 function setup () {
     clean
     ln -s $DOTFILES_DIR/.zshrc $HOME/.zshrc
-    ln -s $DOTFILES_DIR/.zsenv $HOME/.zshenv
+    ln -s $DOTFILES_DIR/.zshenv $HOME/.zshenv
 }
 
 function clean () {

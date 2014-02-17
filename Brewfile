@@ -4,6 +4,10 @@ update
 # tap homebrew/versions
 tap homebrew/versions
 
+# tap homebrew-cask
+tap phinze/cask
+install brew-cask
+
 # version control
 install git
 install git-now
@@ -37,3 +41,4 @@ install z
 install heroku-toolbelt
 install phantomjs
 install chromedriver
+cask install colorpicker-developer

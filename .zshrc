@@ -164,6 +164,10 @@ source $HOME/dotfiles/zsh/plugins/static_server.plugin.zsh
 # Load notify plugin
 source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 
+if [ -f $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]; then
+    source $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+fi
+
 ## alias
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 
@@ -183,3 +187,4 @@ esac
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+

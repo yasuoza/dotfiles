@@ -15,7 +15,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
    " vim-easy-align
    " https://github.com/junegunn/vim-easy-align
-   NeoBundle 'junegunn/vim-easy-align'
+   NeoBundleLazy 'junegunn/vim-easy-align', {
+   \  'autoload' : {
+   \      'commands' : ['EasyAlign']
+   \  },
+   \}
 
    " YankRing.vim
    NeoBundle 'YankRing.vim'
@@ -154,7 +158,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    " coffee script
    NeoBundleLazy 'kchmck/vim-coffee-script' , {
    \  'autoload' : {
-   \      'filetypes': 'coffee'
+   \      'filetypes': 'coffee',
+   \      'functions': 'markdown_quote_syntax#include_other_syntax'
    \  },
    \}
 
@@ -171,10 +176,19 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    NeoBundle 'fholgado/minibufexpl.vim'
 
    " NERDTree : explorer like tree
-   NeoBundle 'The-NERD-tree'
+   NeoBundleLazy 'The-NERD-tree', {
+   \  'autoload' : {
+   \      'commands' : ['NERDTreeToggle']
+   \  },
+   \}
 
    " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
-   NeoBundle 'kien/ctrlp.vim'
+   NeoBundleLazy 'kien/ctrlp.vim', {
+   \  'autoload' : {
+   \      'mappings' : ['<c-\>'],
+   \      'commands' : ['CtrlP']
+   \  },
+   \}
  " }}}
 
  " Utility {{{

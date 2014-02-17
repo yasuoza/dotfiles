@@ -37,8 +37,6 @@ vnoremap <silent> <Enter> :EasyAlign<Enter>
 "------------------------------------
 " put space between comment
 let NERDSpaceDelims = 1
-"toggle comemnt via <Leader>
-map <Leader>x, c<space>
 " do not show error although opening incorrect file
 let NERDShutUp=1
 

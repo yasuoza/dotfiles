@@ -19,6 +19,13 @@ autoload -U compinit && compinit -u
 source $HOME/dotfiles/zsh/plugins/color.plugin.zsh
 
 #=============================
+# Keybind
+#=============================
+bindkey -v # Keybind configuration
+bindkey "^W" forward-word
+bindkey "^B" backward-word
+
+#=============================
 # zstyle
 #=============================
 # Autocomplete when sudo
@@ -57,19 +64,6 @@ setopt path_dirs            # Search PATH sub directory if command contain /
 setopt autopushd            # Auto pushd
 
 #=============================
-# history
-#=============================
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt hist_ignore_dups     # ignore duplication command history list
-setopt share_history        # share command history data
-setopt extended_history
-function history-all { history -E 1 }
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-
-#=============================
 # Search History
 #=============================
 autoload history-search-end
@@ -79,13 +73,21 @@ bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
 #=============================
+# history
+#=============================
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+function history-all { history -E 1 }
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+bindkey "\\ep" history-beginning-search-backward-end
+bindkey "\\en" history-beginning-search-forward-end
+
+#=============================
 # misc
 #=============================
 WORDCHARS=${WORDCHARS:s,/,,}
-
-bindkey -v # Keybind configuration
-bindkey "^W" forward-word
-bindkey "^B" backward-word
 
 # git escape for zsh
 # https://github.com/knu/zsh-git-escape-magic

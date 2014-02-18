@@ -33,8 +33,9 @@ function fish_prompt --description "Write out the prompt"
         set -g __fish_prompt_cwd (set_color $fish_color_cwd)
       end
 
-      echo -n -s "$__fish_prompt_cwd" "$USER" @ "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ~> '
+      echo -n -s "$__fish_prompt_cwd" "$USER" @ "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ><(((\"> '
 
     end
 
+  z --add "$PWD" # z-fish
 end

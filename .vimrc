@@ -1,5 +1,5 @@
 "runtime path
-source ~/dotfiles/.vimrc.rtp
+source ~/dotfiles/.vimrc.runtime
 
 "load pulgins
 source ~/dotfiles/.vimrc.bundle

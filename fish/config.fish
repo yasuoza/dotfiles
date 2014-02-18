@@ -56,3 +56,4 @@ function rmrf ; command rm -rf $argv      ; end
 function ps?  ; command pgrep -l -f $argv ; end
 function du   ; command du -h  $argv      ; end
 function tm   ; command tmux  $argv       ; end
+function tma  ; command tmux attach $argv ; end

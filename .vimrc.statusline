@@ -17,4 +17,4 @@ let g:airline_detect_whitespace = 0
 set laststatus=2
 
 " Use hybrid statusline theme
-let g:airline_theme='hybrid'
+let g:airline_theme='super_hybrid'

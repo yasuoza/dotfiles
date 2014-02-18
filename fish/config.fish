@@ -1,14 +1,15 @@
 #=============================
 # misc
 #=============================
+set -x PATH /usr/local/bin $PATH
 set -gx EDITOR vim
 
 #=============================
 # rbenv
 #=============================
 if test -d $HOME/.rbenv
-  set PATH $HOME/.rbenv/bin   $PATH
-  set PATH $HOME/.rbenv/shims $PATH
+  set -x PATH $HOME/.rbenv/bin   $PATH
+  set -x PATH $HOME/.rbenv/shims $PATH
   rbenv rehash >/dev/null ^&1
 end
 
@@ -16,22 +17,22 @@ end
 # nodebrew
 #=============================
 if test -d $HOME/.nodebrew
-  set PATH $HOME/.nodebrew/current/bin $PATH
+  set -x PATH $HOME/.nodebrew/current/bin $PATH
 end
 
 #=============================
 # Go
 #=============================
 if test -d $HOME/.go
-  set GOPATH $HOME/.go
+  set -x GOPATH $HOME/.go
 end
 
 #=============================
 # plenv
 #=============================
 if test -d $HOME/.plenv
-  set PATH $HOME/.plenv/bin   $PATH
-  set PATH $HOME/.plenv/shims $PATH
+  set -x PATH $HOME/.plenv/bin   $PATH
+  set -x PATH $HOME/.plenv/shims $PATH
   rbenv plenv init - >/dev/null ^&1
 end
 
@@ -39,7 +40,7 @@ end
 # bin
 #=============================
 if test -d $HOME/.bin
-  set PATH $HOME/.bin $PATH
+  set -x PATH $HOME/.bin $PATH
 end
 
 #=============================

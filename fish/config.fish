@@ -1,8 +1,7 @@
 #=============================
 # misc
 #=============================
-set -x PATH /usr/local/bin $PATH
-set -gx EDITOR vim
+set -U EDITOR vim
 
 #=============================
 # rbenv

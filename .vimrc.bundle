@@ -211,6 +211,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
   " Cool status line
   NeoBundle 'bling/vim-airline'
+  NeoBundle 'yasuoza/airline-super-hybrid-theme'
 
   "Indent-Guides
   NeoBundle 'Indent-Guides'

@@ -169,6 +169,13 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    \      'filetypes': 'slim'
    \  },
    \}
+
+   " fish
+   NeoBundleLazy 'aliva/vim-fish' , {
+   \  'autoload' : {
+   \      'filename_patterns': '\.fish$'
+   \  },
+   \}
  " }}}
 
  " Buffer {{{

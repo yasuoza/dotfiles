@@ -1,4 +1,2 @@
-/fish/*
-!/fish/config.fish
-!/fish/functions/*
-!/fish/plugins/*
+/fish/fish_history
+/fish/fishd*

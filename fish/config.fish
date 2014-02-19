@@ -4,6 +4,14 @@
 set -x PATH /usr/local/bin $PATH
 
 #=============================
+# bin
+#=============================
+if test -d $HOME/.bin
+  set -x PATH $HOME/.bin $PATH
+end
+
+
+#=============================
 # misc
 #=============================
 set -U EDITOR vim
@@ -48,10 +56,10 @@ if type hub > /dev/null
 end
 
 #=============================
-# bin
+# direnv
 #=============================
-if test -d $HOME/.bin
-  set -x PATH $HOME/.bin $PATH
+if type direnv > /dev/null
+  eval (direnv hook fish)
 end
 
 #=============================

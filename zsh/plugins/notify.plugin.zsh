@@ -15,12 +15,9 @@
 autoload -Uz add-zsh-hook
 __timetrack_threshold=20 # seconds
 read -r -d '' __timetrack_ignore_progs <<EOF
-tmux tmux-session
-less fg
-emacs vi vim
-git g tig t
-pry
-ssh mosh telnet nc netcat
+tmux tmux-session less fg     emacs vi
+vim  git          g    tig    t
+pry  ssh          mosh telnet nc    netcat
 gdb
 EOF
 
@@ -72,11 +69,11 @@ function __my_preexec_end_timetrack() {
     if [ "$exec_time" -ge "$__timetrack_threshold" ]; then
         case $notify_method in
             "remotehost" )
-        # show trigger string
+                # show trigger string
                 echo -e "\e[0;30m==ZSH LONGRUN COMMAND TRACKER==$(hostname -s): $command ($exec_time seconds)\e[m"
-        sleep 1
-        # wait 1 sec, and then delete trigger string
-        echo -e "\e[1A\e[2K"
+                sleep 1
+                # wait 1 sec, and then delete trigger string
+                echo -e "\e[1A\e[2K"
                 ;;
             "growlnotify" )
                 growlnotify -n "ZSH timetracker" -t $title -m $message --appIcon iTerm

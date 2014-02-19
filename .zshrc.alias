@@ -1,4 +1,3 @@
-
 # ls
 alias l="ls"
 alias la="ls -a"
@@ -31,23 +30,11 @@ alias 'm'='make'
 alias 'mn'='make native-code'
 alias 'mc'='make clean'
 
-# screen
-#alias s='screen -U'
-#alias sc='screen -S main'
-#alias sn='screen'
-#alias sl='screen -ls'
-#alias sr='screen -r main'
-#alias srr='screen -U -D -RR'
-
 # tmux
 alias tm='tmux'
 alias tma='tmux attach'
 alias tml='tmux ls'
 alias tmn='tmux new'
-
-alias pon='predict-on'
-alias poff='predict-off'
-alias p='ping -c 4'
 
 # git
 alias g='git'
@@ -64,27 +51,10 @@ alias tal='tig --all'
 # open with Google Chrome
 alias ogc='open -a Google\ Chrome'
 
-# open with IntelliJ IDEA
-alias intelli='open -a IntelliJ\ IDEA\ 12'
-
 # Common sense
 alias rmr='rm -r'
 alias rmrf='rm -rf'
 alias cpa='cp -a'
-
-# nocorrect
-#alias java='nocorrect java'
-#alias cp='nocorrect cp -irp'
-#alias erl='nocorrect erl'
-#alias sbcl='nocorrect sbcl'
-#alias gosh='nocorrect gosh'
-#alias node='nocorrect node'
-#alias hg='nocorrect hg --encoding=utf-8'
-
-# scala & play
-alias scala='scala -deprecation'
-alias scalac='scalac'
-alias play='nocorrect play'
 
 # Ruby
 # http://travisjeffery.com/b/2012/01/zshs-extended-glob-and-octopresss-new-post-script/
@@ -115,6 +85,3 @@ extract () {
   fi
 }
 alias ex='extract'
-
-alias ev='vi ~/dotfiles/.vimrc*'
-

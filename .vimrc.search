@@ -17,11 +17,6 @@ vnoremap /r "xy;%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 "replace word under cursor via s*after/g<Cr>
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
-" show help Ctr-i
-" nnoremap <C-i>  :<C-u>help<Space>
-" show help under cursor
-" nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
-
 " GrepBuffer via :Gb <args>
 command! -nargs=1 Gb :GrepBuffer <args>
 " GrepBuffer under cursor

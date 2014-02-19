@@ -8,12 +8,6 @@ set iminsert=0 imsearch=0
 set noimcmdline
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
-" auto insert close tag in xml
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-augroup END
-
 " alias %% = %:h<Tab>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -82,3 +76,8 @@ function! s:write_check_typo(file)
         execute 'write'.(v:cmdbang ? '!' : '') a:file
     endif
 endfunction
+
+"-------------------------------------------------------------------------------
+" FileType
+"-------------------------------------------------------------------------------
+autocmd BufNewFile,BufRead PULLREQ_EDITMSG  set filetype=gitcommit

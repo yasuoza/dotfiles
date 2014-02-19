@@ -37,7 +37,7 @@ end
 if test -d $HOME/.plenv
   set -x PATH $HOME/.plenv/bin   $PATH
   set -x PATH $HOME/.plenv/shims $PATH
-  rbenv plenv init - >/dev/null ^&1
+  plenv init - >/dev/null ^&1
 end
 
 #=============================
@@ -56,14 +56,16 @@ end
 #=============================
 # alias
 #=============================
-function t    ; command tig $argv         ; end
-function l    ; command ls $argv          ; end
-function git  ; command hub $argv         ; end
-function gst  ; git status $argv          ; end
-function g    ; git $argv                 ; end
-function j    ; z $argv                   ; end
-function rmrf ; command rm -rf $argv      ; end
-function ps?  ; command pgrep -l -f $argv ; end
-function du   ; command du -h  $argv      ; end
-function tm   ; command tmux  $argv       ; end
-function tma  ; command tmux attach $argv ; end
+alias t    tig
+alias l    ls
+alias g    git
+alias gst  'git status'
+alias j    z
+alias rmrf 'rm -rf'
+alias ps?  'pgrep -l -f'
+alias du   'du -h'
+alias tm   tmux
+alias tma  'tmux attach'
+if type hub >/dev/null ^&1
+  alias git hub
+end

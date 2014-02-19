@@ -30,23 +30,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    " surround.vim : surround text and comment with parentheses
    NeoBundle 'surround.vim'
 
-   " vim-operator-user : easy operator definition
-   NeoBundle 'operator-user'
-
-   " textobj-user : make vim object easily
-   NeoBundle 'textobj-user'
-
    " vim-textobj-syntax : change selected text to text object
-   NeoBundle 'kana/vim-textobj-syntax.git'
-
-   " vim-textobj-plugins : change to text object
-   NeoBundle 'thinca/vim-textobj-plugins.git'
-
-   " vim-textobj-indent : convert indented text to text object
-   NeoBundle 'kana/vim-textobj-indent.git'
-
-   " vim-textobj-function : convert function text to text object
-   NeoBundle 'kana/vim-textobj-function.git'
+   NeoBundle 'kana/vim-textobj-syntax.git', { 'depends': 'kana/vim-textobj-user'}
 
    " vim-textobj-fold : convet folded text to text object
    NeoBundle 'kana/vim-textobj-fold.git'
@@ -111,7 +96,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    \}
 
    " ag.vim
-   NeoBundle 'rking/ag.vim'
+   NeoBundleLazy 'rking/ag.vim', {
+   \  'autoload' : {
+   \      'commands' : 'Ag'
+   \  },
+   \}
 " }}}
 
 " Programming {{{
@@ -166,7 +155,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    " vim-slim
    NeoBundleLazy 'slim-template/vim-slim.git' , {
    \  'autoload' : {
-   \      'filetypes': 'slim'
+   \      'filetypes': 'slim',
+   \      'functions': 'markdown_quote_syntax#include_other_syntax'
    \  },
    \}
 
@@ -212,9 +202,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " Cool status line
   NeoBundle 'bling/vim-airline'
   NeoBundle 'yasuoza/airline-super-hybrid-theme'
-
-  "Indent-Guides
-  NeoBundle 'Indent-Guides'
 " }}}
 
 " ColorSchema{{{{
@@ -241,8 +228,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
    \      'commands' : ['Unite']
    \  },
    \}
-
-   " NeoBundle 'Sixeight/unite-grep'
 
    NeoBundleLazy 'basyura/unite-rails', {
    \  'autoload' : {

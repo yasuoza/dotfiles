@@ -41,6 +41,13 @@ if test -d $HOME/.plenv
 end
 
 #=============================
+# hub
+#=============================
+if type hub > /dev/null
+  eval (command hub alias -s)
+end
+
+#=============================
 # bin
 #=============================
 if test -d $HOME/.bin
@@ -66,6 +73,3 @@ alias ps?  'pgrep -l -f'
 alias du   'du -h'
 alias tm   tmux
 alias tma  'tmux attach'
-if type hub >/dev/null ^&1
-  alias git hub
-end

@@ -13,6 +13,20 @@ fpath=($HOME/dotfiles/zsh/completion ${fpath})
 autoload -U compinit && compinit -u
 
 #=============================
+# OS
+#=============================
+case "${OSTYPE}" in
+    # Mac(Unix)
+    darwin*)
+        [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+        ;;
+    # Linux
+    linux*)
+        [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+        ;;
+esac
+
+#=============================
 # Color
 #=============================
 # Load terminal color configuration
@@ -115,17 +129,3 @@ fi
 # Alias
 #=============================
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
-
-#=============================
-# OS
-#=============================
-case "${OSTYPE}" in
-# Mac(Unix)
-darwin*)
-    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
-    ;;
-# Linux
-linux*)
-    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
-    ;;
-esac

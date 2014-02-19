@@ -8,6 +8,9 @@ tap homebrew/versions
 tap phinze/cask
 install brew-cask
 
+# gls, gdircolor
+install coreutils
+
 # version control
 install git
 install git-now

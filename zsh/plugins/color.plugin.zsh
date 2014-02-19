@@ -1,7 +1,3 @@
-## Default shell configuration
-#
-# set prompt
-# colors enables us to idenfity color by $fg[red].
 autoload colors
 colors
 case ${UID} in
@@ -101,6 +97,5 @@ RPROMPT="%1(v|%F${CYAN}%1v%2v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}
 ;;
 esac
 
-
-# http://linuxshellaccount.blogspot.jp/2008/12/color-completion-using-zsh-modules-on.html
+eval `dircolors $HOME/dotfiles/zsh/colors/dircolors.ansi-dark`
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}

@@ -10,7 +10,6 @@ if test -d $HOME/.bin
   set -x PATH $HOME/.bin $PATH
 end
 
-
 #=============================
 # misc
 #=============================
@@ -73,7 +72,6 @@ end
 #=============================
 alias t    tig
 alias l    ls
-alias g    git
 alias gst  'git status'
 alias j    z
 alias rmrf 'rm -rf'

@@ -314,10 +314,14 @@ set wildmode=list:full          " show list and long match
 set history=100                 " number of command and search history
 set complete+=k                 " add dictionary file to complete
 set completeopt=menu,preview
+set wrapscan                    " go back to top after bottom
+set ignorecase                  " ignore charactor case
+set smartcase                   " Consider capital case when keyword contains it
+set incsearch                   " Incremental search
+set hlsearch                    " highlight searched words
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
-
 
 " edit and reflect via  Ev/Rv
 command! Ev edit $MYVIMRC
@@ -325,6 +329,9 @@ command! Rv source $MYVIMRC
 
 " show quickfix at bottom
 botright cwindow
+
+" remove highlight by pushing Esc twice
+nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
 
 "------------------------------------------------------------------------------
@@ -476,14 +483,19 @@ nmap <BS><BS> ;MBEbp<CR>
 
 set virtualedit+=block " move freely when block select mode
 
-vnoremap v $h " move to line end by pushing v when visual mode
-nnoremap vy vawy " yank under cursor
+" move to line end by pushing v when visual mode
+vnoremap v $h
+" yank under cursor
+nnoremap vy vawy
 
 " window move via CTRL-hjkl
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+" goto previous editted line
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 
 "------------------------------------------------------------------------------

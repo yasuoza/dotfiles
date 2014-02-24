@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 DOTFILES_DIR=$(cd $(dirname $(dirname $0));pwd)
-DOTFILES=$(find $(dirname $(dirname $0)) -type f -d 1 -name .\*     \
-           ! \( -name "*vim*" -o -name "*zsh*" -o -name "*git*" \)  \
+DOTFILES=$(find $(dirname $(dirname $0)) -type f -d 1 -name .\*                           \
+           ! \( -name "*vim*" -o -name "*zsh*" -o -name "*git*" -o -name ".travis.yml" \) \
            | sed 's/^\.\///')
 
 function setup () {
@@ -10,7 +10,7 @@ function setup () {
 
     for file in ${DOTFILES[@]}
     do
-        ln -s {$DOTFILES_DIR,$HOME}/$file 
+        ln -s {$DOTFILES_DIR,$HOME}/$file
     done
 
     ln -s $DOTFILES_DIR/bin $HOME/.bin

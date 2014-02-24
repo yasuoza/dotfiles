@@ -2,7 +2,7 @@
 # PATH
 #=============================
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-if [ -s $HOME/.bin ]; then
+if [ -d $HOME/.bin ]; then
     export PATH=$HOME/.bin:$PATH
 fi
 
@@ -12,10 +12,10 @@ INFOPATH=/usr/local/info:$INFOPATH
 export INFOPATH
 
 # zsh-completion from Homebrew
-if [ -s /usr/local/share/zsh/site-functions ]; then
+if [ -d /usr/local/share/zsh/site-functions ]; then
     fpath=(/usr/local/share/zsh/site-functions $fpath)
 fi
-if [ -s /usr/local/share/zsh/zsh-completions ]; then
+if [ -d /usr/local/share/zsh/zsh-completions ]; then
     fpath=(/usr/local/share/zsh/zsh-completions $fpath)
 fi
 autoload -U compinit && compinit -u

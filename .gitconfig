@@ -52,7 +52,6 @@
   lp         = log --oneline -p
   ls         = log --stat --abbrev-commit -n 1
   su         = submodule update
-  ci         = check-ignore -v
   ignore     = !"f() { local s=$1; shift; \
                  while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\
                  curl "http://www.gitignore.io/api/$s"; }; f"

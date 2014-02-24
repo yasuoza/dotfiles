@@ -28,9 +28,10 @@ bind main s     view-status
 ## For diff
 bind diff ; view-next
 
-## For status
+## For status/stage
 bind status Space enter
 bind status u status-update
+bind stage u status-update
 
 ## For blame
 bind blame Space enter

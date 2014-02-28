@@ -1,9 +1,18 @@
 .PHONY: install uninstall vim zsh git misc
 
 all:
-	@echo "usage"
-	@echo "  install: creates symlinks"
-	@echo "  uninstall: remvoe symlinks"
+	@echo "install-usage"
+	@echo "  install:       creates symlinks"
+	@echo "  vim:           create vim related symlinks"
+	@echo "  git:           create git related symlinks"
+	@echo "  zsh:           create zsh related symlinks"
+	@echo "  misc:          create other dotfiles"
+	@echo "clean-usage"
+	@echo "  clean:         remvoe all symlinks"
+	@echo "  clean_vim:     remove vim related symlinks"
+	@echo "  clean_git:     remove git related symlinks"
+	@echo "  clean_zsh:     remove zsh related symlinks"
+	@echo "  clean_misc:    remove other dotfiles"
 
 vim:
 	script/vimrc install

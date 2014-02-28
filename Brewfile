@@ -4,10 +4,6 @@ update
 # tap homebrew/versions
 tap homebrew/versions
 
-# tap homebrew-cask
-tap phinze/cask
-install brew-cask
-
 # gls, gdircolor
 install coreutils
 

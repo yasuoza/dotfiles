@@ -354,7 +354,6 @@ set t_Co=256
 set lazyredraw                                    " do not rerender while command execution
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
-set cursorline                                    " highlight current cursor line
 set laststatus=2                                  " Enforce to display statusline
 
 " {{{ Cursor

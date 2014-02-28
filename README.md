@@ -1,53 +1,51 @@
-# Set up
+# dotfiles
 
 ## Clone
 
     $ git clone https://github.com/yasuoza/dotfiles.git
 
-## Create dofiles symlink
+## Create all dotfile symlink
 
-    $ cd dotfiles
-    $ sh setup.sh
+```bash
+$ cd dotfiles
+$ make # shows available commands
+$ make install
+```
+
+## Homebrew
+
+With homebrew, install vital packages as
+
+```bash
+$ cd ~/dotfiles
+$ brew bundle
+```
 
 ## Vim
 
-First, install latest vim with enabling lua:
+Install latest vim with enabling lua script:
 
-```
+```bash
 $ cd /tmp && git clone https://github.com/vim-jp/vim.git && cd vim
 $ sudo apt-get install -y build-essential gettext libncurses5-dev luajit lua5.2 liblua5.2-dev python-dev python3-dev ruby-dev libperl-dev tcl-dev
-$ ./configure \
---with-features=huge \
---enable-multibyte \
---enable-rubyinterp \
---enable-pythoninterp \
+$ ./configure          \
+--with-features=huge   \
+--enable-multibyte     \
+--enable-rubyinterp    \
+--enable-pythoninterp  \
 --enable-python3interp \
---enable-luainterp \
+--enable-luainterp     \
 --with-lua-prefix=/usr \
---enable-perlinterp \
---enable-tclinterp \
---enable-cscope \
+--enable-perlinterp    \
+--enable-tclinterp     \
+--enable-cscope        \
 --enable-fontset
 $ make
 $ sudo make install
 ```
 
-Then, install `NeoBundle` and `vimproc`:
+Keep bundles up to date, run `update_vim` make command.
 
+```bash
+$ make update_vim
 ```
-$ cd dotfiles
-$ cp -r .vim ~/.vim cd ~/.vim && mkdir bundle && cd bundle
-$ git clone https://github.com/Shougo/neobundle.vim.git
-$ git clone https://github.com/Shougo/vimproc.git
-$ sudo apt-get install build-essential
-$ cd vimproc && make -f make_unix.mak
-```
-
-## Kinds of dotfiles
-* .vimrc
-* .vim/
-* .zshrc
-* .tmux.conf
-
-and more!
-

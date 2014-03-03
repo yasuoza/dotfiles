@@ -37,8 +37,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     make
     sudo make install
 
-    su vagrant -c "git clone https://github.com/yasuoza/dotfiles.git ~/dotfiles && \
-    cd ~/dotfiles && make install"                                              && \
+    su vagrant -c "git clone --recursive https://github.com/yasuoza/dotfiles.git ~/dotfiles && \
+    cd ~/dotfiles && make install"                                                          && \
     sudo chsh -s $(which zsh) vagrant
 
     sudo apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev

@@ -15,34 +15,34 @@ all:
 	@echo "  clean_misc:    remove other dotfiles"
 
 vim:
-	script/vimrc install
+	scripts/vimrc install
 
 update_vim:
-	script/vimrc update
+	scripts/vimrc update
 
 clean_vim:
-	script/vimrc uninstall
+	scripts/vimrc uninstall
 
 git:
-	script/gitrc install
+	scripts/gitrc install
 
 update_git:
-	script/gitrc update
+	scripts/gitrc update
 
 clean_git:
-	script/gitrc uninstall
+	scripts/gitrc uninstall
 
 zsh:
-	script/zshrc install
+	scripts/zshrc install
 
 clean_zsh:
-	script/zshrc uninstall
+	scripts/zshrc uninstall
 
 misc:
-	script/misc install
+	scripts/misc install
 
 clean_misc:
-	script/misc uninstall
+	scripts/misc uninstall
 
 install:
 	make zsh

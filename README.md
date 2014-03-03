@@ -7,6 +7,13 @@
 ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
 ```
 
+## Clone
+
+This repository contains some submodules. So clone this repository with `--recursive` strategy.
+
+```bash
+$ git clone --recursive https://github.com/yasuoza/dotfiles.git
+```
 
 ## Create all symlinks
 

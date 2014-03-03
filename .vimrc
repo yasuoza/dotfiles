@@ -517,11 +517,10 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 function! s:remove_dust()
   let cursor = getpos(".")
   if &filetype == "markdown"
-    silent %s/\s\+\(\s\{2}\)$/\1/e
+    silent %s/\(\s\{2}\)\s\+$/\1/e
     silent %s/\(\S\+\)\s$/\1/e
   else
     silent %s/\s\+$//ge
-    silent %s/\t/  /ge
   endif
   call setpos(".", cursor)
   unlet cursor

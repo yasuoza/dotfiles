@@ -206,7 +206,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \}
  " }}}
 
- " Utility {{{
+" Utility {{{
   " vimproc : asynchronous execution from vimshell
   NeoBundle 'Shougo/vimproc.git', { 'build': {
   \   'mac' : 'make -f make_mac.mak',
@@ -275,6 +275,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 filetype plugin indent on
 
 NeoBundleCheck
+
 
 "------------------------------------------------------------------------------
 " Basic

@@ -27,7 +27,7 @@ function run_local_configure () {
 }
 
 function setup () {
-	for file in ${GIT_CONFIG_FILES[@]}; do 
+	for file in ${GIT_CONFIG_FILES[@]}; do
 		ln -s $DOTFILES_DIR/$file $HOME/$file
 	done
 
@@ -35,11 +35,23 @@ function setup () {
 }
 
 function clean () {
-	for file in ${GIT_CONFIG_FILES[@]}; do 
+	for file in ${GIT_CONFIG_FILES[@]}; do
 		rm -rf $HOME/$file
 	done
 	rm -rf $LOCAL_CONFIG
 }
+
+function usage () {
+		echo "setup:  symlink .gitconfig and ~/.gitconfig.local"
+		echo "update: update ~/.gitconfig.local"
+		echo "clean:  cleanup .gitconfig and ~/.gitconfig.local"
+}
+
+
+if [ $1 == ""]; then
+	usage
+	exit 1
+fi
 
 while [ "$1" != "" ]; do
 	case "$1" in
@@ -49,13 +61,13 @@ while [ "$1" != "" ]; do
 		update )									run_local_configure
 															exit
 															;;
-		clean | uninstall )				clean
+		clean | uninstall ) 			clean
 															exit
 															;;
-		-h | --help )							usage
+		-h | --help )			 			usage
 															exit
 															;;
-		* )												usage
+		* )								 			usage
 															exit 1
 	esac
 	shift

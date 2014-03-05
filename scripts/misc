@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOTFILES_DIR=$(cd $(dirname $(dirname $0));pwd)
-DOTFILES=$(find $(dirname $(dirname $0)) -type f -d 1 -name .\*                           \
+DOTFILES=$(find $(dirname $(dirname $0)) -maxdepth 1 -type f  -name .\*                   \
            ! \( -name "*vim*" -o -name "*zsh*" -o -name "*git*" -o -name ".travis.yml" \) \
            | sed 's/^\.\///')
 
@@ -31,7 +31,7 @@ function usage () {
 }
 
 
-if [ $1 == ""]; then
+if [ $1 == "" ]; then
   usage
   exit 1
 fi

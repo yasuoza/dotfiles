@@ -19,3 +19,8 @@ set horizontal-scroll-mode on
 # Histrory viewing keymap
 "\C-p": history-search-backward
 "\C-n": history-search-forward
+
+# Clear the screen with Ctrl-l
+$if Bash
+  "\C-l": "\e\C-la"
+$endif

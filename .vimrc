@@ -593,6 +593,7 @@ endfunction
   let g:miniBufExplModSelTarget=1
   let g:miniBufExplSplitToEdge=1
   let g:miniBufExplMaxSize = 10
+  let g:miniBufExplCycleArround=1
   command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
 " }}}
 

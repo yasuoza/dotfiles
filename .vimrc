@@ -626,9 +626,27 @@ endfunction
 
 " Tagbar.Vim {{{
   let g:tagbar_width = 30
+  let g:tagbar_compact = 1
   let g:tagbar_left = 1
   let g:tagbar_sort = 0
   nmap <silent> <leader>t :TagbarToggle<CR>
+  " If there is [ripper-tags](https://github.com/tmm1/ripper-tags), use it for ruby ctags generator
+  if executable('ripper-tags')
+    let ripper_tags_path = substitute(system('which ripper-tags'), '\n$', '', 'g')
+    let g:tagbar_type_ruby = {
+        \ 'ctagsbin'  : ripper_tags_path,
+        \ 'ctagsargs' : ['-R', '--exclude=vendor', '-f', '-'],
+        \ 'kinds' : [
+                      \ 'a:aliases',
+                      \ 'm:modules',
+                      \ 'c:classes',
+                      \ 'd:describes',
+                      \ 'C:constants',
+                      \ 'f:methods',
+                      \ 'F:singleton methods'
+                    \ ]
+    \ }
+  endif
 " }}}
 
 " open-blowser.vim {{{

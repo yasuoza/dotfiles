@@ -635,7 +635,7 @@ endfunction
     let ripper_tags_path = substitute(system('which ripper-tags'), '\n$', '', 'g')
     let g:tagbar_type_ruby = {
         \ 'ctagsbin'  : ripper_tags_path,
-        \ 'ctagsargs' : ['-R', '--exclude=vendor', '-f', '-'],
+        \ 'ctagsargs' : ['-f', '-', '-R', '--exclude=vendor'],
         \ 'kinds' : [
                       \ 'a:aliases',
                       \ 'm:modules',

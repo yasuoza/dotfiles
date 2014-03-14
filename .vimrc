@@ -630,7 +630,7 @@ endfunction
   let g:tagbar_left = 1
   let g:tagbar_sort = 0
   nmap <silent> <leader>t :TagbarToggle<CR>
-  " If there is [ripper-tags](https://github.com/tmm1/ripper-tags), use it for ruby ctags generator
+  " If there is patched [ripper-tags](https://github.com/yasuoza/ripper-tags/tree/vim%2Bline_no), use it for ruby ctags generator
   if executable('ripper-tags')
     let ripper_tags_path = substitute(system('which ripper-tags'), '\n$', '', 'g')
     let g:tagbar_type_ruby = {

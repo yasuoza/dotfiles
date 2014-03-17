@@ -59,6 +59,15 @@ if type "plenv" > /dev/null; then
     eval "$(plenv init -)"
 fi
 
+if type "rmtrash" > /dev/null; then
+    alias rm='rmtrash'
+    alias rmr='rmtrash'
+    alias rmrf='rmtrash'
+fi
+
+#=============================
+# Dev-PATH
+#=============================
 if [ -s /usr/local/opt/android-sdk ]; then
     export ANDROID_HOME=/usr/local/opt/android-sdk
 fi

@@ -40,4 +40,6 @@ install z
 install heroku-toolbelt
 install phantomjs
 install chromedriver
-cask install colorpicker-developer
+
+# Utility
+install rmtrash

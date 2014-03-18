@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y python-software-properties python g++ make
+    sudo apt-get install -y python-software-properties python g++ make curl
     sudo add-apt-repository -y ppa:git-core/ppa
     sudo add-apt-repository -y ppa:chris-lea/node.js
     sudo apt-get update

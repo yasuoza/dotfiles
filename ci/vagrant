@@ -3,7 +3,7 @@
 DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
 
 function setup () {
-  sudo echo "deb http://download.virtualbox.org/virtualbox/debian precise contrib" | sudo tee -a /etc/apt/sources.list
+  sudo echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -c -s) contrib" | sudo tee -a /etc/apt/sources.list
   wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
   sudo apt-get update
   sudo apt-get -y install linux-headers-$(uname -r)

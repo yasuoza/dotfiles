@@ -52,8 +52,12 @@ alias tal='tig --all'
 alias ogc='open -a Google\ Chrome'
 
 # Common sense
-alias rmr='rm -r'
-alias rmrf='rm -rf'
+if ! type rmr > /dev/null; then
+    alias rmr='rm -r'
+fi
+if ! type rmrf > /dev/null; then
+    alias rmrf='rm -rf'
+fi
 alias cpa='cp -a'
 
 # Ruby

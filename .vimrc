@@ -235,41 +235,11 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \  },
   \}
 
-  NeoBundleLazy 'tsukkee/unite-help', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+  NeoBundle 'h1mesuke/unite-outline'
 
-  NeoBundleLazy 'h1mesuke/unite-outline', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+  NeoBundle 'thinca/vim-unite-history'
 
-  NeoBundleLazy 'basyura/unite-rails', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
-
-  NeoBundleLazy 'thinca/vim-unite-history', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
-
-  NeoBundleLazy 'tsukkee/unite-tag', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
-
-  NeoBundleLazy 'choplin/unite-vim_hacks', {
-  \  'autoload' : {
-  \      'commands' : ['Unite']
-  \  },
-  \}
+  NeoBundle 'tsukkee/unite-tag'
 " }}}
 
 filetype plugin indent on
@@ -668,10 +638,9 @@ endfunction
   nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
 
   let g:unite_source_file_mru_limit = 200
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+  let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
 
   " unite-plugins
-  cnoremap UH Unite help<Enter>
   cnoremap UO Unite outline<Enter>
 " }}}
 

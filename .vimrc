@@ -235,11 +235,33 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \  },
   \}
 
-  NeoBundle 'h1mesuke/unite-outline'
+  NeoBundleLazy 'Shougo/neomru.vim', {
+  \  'depends' : 'Shougo/unite.vim',
+  \  'autoload' : {
+  \    'unite_sources' : ['file_mru'],
+  \  },
+  \}
 
-  NeoBundle 'thinca/vim-unite-history'
+  NeoBundleLazy 'h1mesuke/unite-outline', {
+  \  'depends' : 'Shougo/unite.vim',
+  \  'autoload' : {
+  \    'unite_sources' : ['outline'],
+  \  },
+  \}
 
-  NeoBundle 'tsukkee/unite-tag'
+  NeoBundleLazy 'thinca/vim-unite-history', {
+  \  'depends' : 'Shougo/unite.vim',
+  \  'autoload' : {
+  \    'unite_sources' : ['history'],
+  \  },
+  \}
+
+  NeoBundleLazy 'tsukkee/unite-tag', {
+  \  'depends' : 'Shougo/unite.vim',
+  \  'autoload' : {
+  \    'unite_sources' : ['tag'],
+  \  },
+  \}
 " }}}
 
 filetype plugin indent on
@@ -392,8 +414,8 @@ cnoremap <Down>  <C-n>
   let g:acp_enableAtStartup = 0   " Enable NeoComplCahe at vim start
   let g:neocomplete#enable_at_startup = 1
 
-  let bundle = neobundle#get('neocomplete')
-  function! bundle.hooks.on_source(bundle)
+  let s:bundle = neobundle#get('neocomplete')
+  function! s:bundle.hooks.on_source(bundle)
     let g:neocomplete#enable_smart_case = 1   " Use smartcase.
     let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
     let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
@@ -433,6 +455,7 @@ cnoremap <Down>  <C-n>
       let g:neocomplete#sources#omni#input_patterns = {}
     endif
   endfunction
+  unlet s:bundle
 " }}}
 
 
@@ -636,12 +659,16 @@ endfunction
   nnoremap <silent> <leader>um  :<C-u>Unite file_mru<CR>
   " show files from current directory
   nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
-
-  let g:unite_source_file_mru_limit = 200
-  let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
-
-  " unite-plugins
+  " unite outline
   cnoremap UO Unite outline<Enter>
+
+  " configuration
+  let s:bundle = neobundle#get('unite.vim')
+  function! s:bundle.hooks.on_source(bundle)
+    let g:unite_source_file_mru_limit = 200
+    let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+  endfunction
+  unlet s:bundle
 " }}}
 
 " quickrun.vim {{{

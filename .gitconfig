@@ -45,12 +45,11 @@
   co         = checkout
   br         = branch
   ps         = push
-  l          = log --graph --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
+  l          = log --graph --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n\n%Creset%b'
   ll         = log --stat --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b'
   ln         = log --pretty=format:'%C(blue bold)%h %C(yellow bold)%cd %C(magenta bold)%cn %C(red bold)%d\n\n%C(white bold)%s\n%Creset%b' --name-status
   lt         = log --pretty=format:'%C(white bold)%s\n\n%Creset%b'
   lp         = log --oneline -p
-  ls         = log --stat --abbrev-commit -n 1
   su         = submodule update
   ignore     = !"f() { local s=$1; shift; \
                  while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\

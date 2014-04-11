@@ -516,6 +516,7 @@ function! s:remove_dust()
     silent %s/\(\S\+\)\s$/\1/e
   else
     silent %s/\s\+$//ge
+    " silent %s/\t/  /ge
   endif
   call setpos(".", cursor)
   unlet cursor

@@ -11,6 +11,8 @@
   rebase = true
 [rerere]
   enabled = true
+[grep]
+  linenumber = true
 [core]
   excludesfile   = ~/.gitignore_global
   attributesfile = ~/.gitattributes_global

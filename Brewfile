@@ -40,6 +40,7 @@ install z
 install heroku-toolbelt
 install phantomjs
 install chromedriver
+install pngquant
 
 # Utility
 install rmtrash

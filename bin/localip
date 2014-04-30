@@ -1,3 +1,17 @@
 #!/bin/sh
 
-ifconfig en0 inet | sed -e '1d' -e 's/^.*inet //' -e 's/ netmask.*$//'
+# Thunderbolt Ethernet
+if ifconfig | grep 'en2' > /dev/null; then
+	ip=$(ifconfig en2 inet | sed -e '1d' -e '2d' -e 's/^.*inet //' -e 's/ netmask.*$//')
+fi
+
+# Wi-Fi
+if [ -z $ip ]; then
+	ip=$(ifconfig en0 inet | sed -e '1d' -e 's/^.*inet //' -e 's/ netmask.*$//')
+fi
+
+if [[ ! -z $ip ]]; then
+	echo $ip
+else
+	echo "OFFLINE"
+fi

@@ -224,7 +224,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " ColorSchema{{{{
 
-  NeoBundle 'w0ng/vim-hybrid'
+  NeoBundle 'yasuoza/vim-hybrid'
 
 " }}}
 

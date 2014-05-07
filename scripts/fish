@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR=$(cd $(dirname $(dirname $0));pwd)
+
+function setup () {
+    mkdir -p $HOME/.config
+    ln -s $DOTFILES_DIR/.fish $HOME/.config/
+}
+
+function clean () {
+    rm -rf $HOME/.config/fish
+}
+
+function usage () {
+    echo "setup: symlink fish directory"
+    echo "clean: remove fish directory"
+}
+
+
+if [ -z $1 ]; then
+  usage
+  exit 1
+fi
+
+while [ "$1" != "" ]; do
+    case "$1" in
+        setup | install )       setup
+                                exit
+                                ;;
+        clean | uninstall )     clean
+                                exit
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done

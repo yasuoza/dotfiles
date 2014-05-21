@@ -38,8 +38,8 @@ if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
     alias dircolors=gdircolors
 fi
 
-if [ -s /usr/local/etc/bash_completion.d/tig-completion.bash  ]; then
-    source /usr/local/etc/bash_completion.d/tig-completion.bash
+if [ -s $HOME/dotfiles/bash/completion.d/tig-completion.bash ]; then
+    source $HOME/dotfiles/bash/completion.d/tig-completion.bash
 fi
 
 if [ -s `brew --prefix`/etc/profile.d/z.sh ]; then

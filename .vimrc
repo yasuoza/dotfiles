@@ -77,13 +77,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \  },
   \}
 
-  " highlight markdown code block
-  NeoBundleLazy 'joker1007/vim-markdown-quote-syntax', {
-  \  'autoload' : {
-  \     'insert' : 1,
-  \     'filetypes' : 'markdown',
-  \  },
-  \}
 
   NeoBundleLazy 'osyo-manga/vim-over', {
   \  'autoload' : {
@@ -165,16 +158,14 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " coffee script
   NeoBundleLazy 'kchmck/vim-coffee-script' , {
   \  'autoload' : {
-  \      'filetypes': 'coffee',
-  \      'functions': 'markdown_quote_syntax#include_other_syntax'
+  \      'filetypes': ['coffee', 'markdown'],
   \  },
   \}
 
   " vim-slim
   NeoBundleLazy 'slim-template/vim-slim.git' , {
   \  'autoload' : {
-  \      'filetypes': 'slim',
-  \      'functions': 'markdown_quote_syntax#include_other_syntax'
+  \      'filetypes': ['slim', 'markdown'],
   \  },
   \}
 
@@ -367,6 +358,20 @@ set laststatus=2                                  " Enforce to display statuslin
   let g:airline_section_c = '%F%m'   " Display full file path
   let g:airline_detect_whitespace = 0
   let g:airline_theme='super_hybrid' " Use hybrid statusline theme
+" }}}
+
+" markdown {{{
+let g:markdown_fenced_languages = [
+      \  'coffee',
+      \  'css',
+      \  'erb=eruby',
+      \  'javascript',
+      \  'js=javascript',
+      \  'json=javascript',
+      \  'ruby',
+      \  'sass',
+      \  'xml',
+      \]
 " }}}
 
 
@@ -701,17 +706,3 @@ endfunction
   let g:indent_guides_enable_on_vim_startup = 1
 " }}}
 
-" vim-markdown-quote-syntax {{{
-  let s:bundle = neobundle#get("vim-markdown-quote-syntax")
-  function! s:bundle.hooks.on_source(bundle)
-    let g:markdown_quote_syntax_filetypes = {
-          \ "coffee" : {
-          \   "start" : "coffee",
-          \},
-          \ "css" : {
-          \   "start" : "\\%(css\\|scss\\)",
-          \},
-        \}
-  endfunction
-  unlet s:bundle
-" }}}

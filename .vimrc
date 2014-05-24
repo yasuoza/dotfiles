@@ -210,7 +210,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
   " Cool status line
   NeoBundle 'bling/vim-airline'
-  NeoBundle 'yasuoza/airline-super-hybrid-theme'
+  NeoBundle 'yasuoza/vim-airline-super-hybrid-theme'
 " }}}
 
 " ColorSchema{{{{

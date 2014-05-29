@@ -380,6 +380,7 @@ let g:markdown_fenced_languages = [
       \  'ruby',
       \  'sass',
       \  'xml',
+      \  'objc'
       \]
 " }}}
 

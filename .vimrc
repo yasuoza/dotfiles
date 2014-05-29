@@ -635,7 +635,7 @@ endfunction
 
   " directory on startup
   for arg in argv()
-    if isdirectory(getcwd().'/'.arg)
+    if isdirectory(arg) || isdirectory(getcwd().'/'.arg)
       NeoBundleSource vimfiler.vim
       autocmd! LoadVimFiler
       break

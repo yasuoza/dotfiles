@@ -85,7 +85,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \}
 " }}}
 
-" Searching/Moving{{{
+" Searching/Moving {{{
   " vim-smartword : smart word moving
   NeoBundle 'smartword'
 
@@ -211,6 +211,15 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " Cool status line
   NeoBundle 'bling/vim-airline'
   NeoBundle 'yasuoza/vim-airline-super-hybrid-theme'
+
+  NeoBundleLazy 'Shougo/vimfiler.vim', {
+  \   'depends' : 'Shougo/unite.vim',
+  \   'autoload' : {
+  \       'commands' : ['VimFiler', 'VimFilerCurrentDir',
+  \                     'VimFilerBufferDir', 'VimFilerSplit',
+  \                     'VimFilerExplorer', 'VimFilerDouble']
+  \   }
+  \ }
 " }}}
 
 " ColorSchema{{{{
@@ -596,6 +605,42 @@ endfunction
   command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
 " }}}
 
+" VimFiler {{{
+  let g:vimfiler_as_default_explorer = 1
+  augroup LoadVimFiler
+    autocmd!
+    autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
+  augroup END
+
+  " :edit {dir}
+  function! s:load_vimfiler(path)
+    if exists('g:loaded_vimfiler')
+      autocmd! LoadVimFiler
+      return
+    endif
+
+    let path = a:path
+    " for ':edit ~'
+    if fnamemodify(path, ':t') ==# '~'
+      let path = expand('~')
+    endif
+
+    if isdirectory(path)
+      NeoBundleSource vimfiler
+    endif
+
+    autocmd! LoadVimFiler
+  endfunction
+
+  " directory on startup
+  for arg in argv()
+    if isdirectory(getcwd().'/'.arg)
+      NeoBundleSource vimfiler.vim
+      autocmd! LoadVimFiler
+      break
+    endif
+  endfor
+" }}}
 
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment

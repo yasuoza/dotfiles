@@ -108,6 +108,9 @@ WORDCHARS=${WORDCHARS:s,/,,}
 autoload -Uz git-escape-magic
 git-escape-magic
 
+# `bundle open` opens with vim +VimFiler
+export BUNDLER_EDITOR="vim +VimFiler"
+
 #=============================
 # Plugins
 #=============================

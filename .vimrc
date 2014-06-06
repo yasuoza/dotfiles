@@ -5,6 +5,10 @@ if &shell =~# 'fish$'
     set shell=sh
 endif
 
+if isdirectory($HOME.'/dotfiles/vim')
+  set rtp+=$HOME/dotfiles/vim/
+endif
+
 " http://mattn.kaoriya.net/software/vim/20130531000559.htm
 if ($GOROOT != "") && ($GOPATH != "")
   set rtp+=$GOROOT/misc/vim

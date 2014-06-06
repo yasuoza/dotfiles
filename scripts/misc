@@ -14,6 +14,7 @@ function setup () {
     done
 
     ln -s $DOTFILES_DIR/bin $HOME/.bin
+		ln -s $DOTFILES_DIR/percol.d $HOME/.percol.d
 }
 
 function clean () {
@@ -23,6 +24,7 @@ function clean () {
     done
 
     rm -rf $HOME/.bin
+		rm -rf $DOTFILES_DIR/.percol.d
 }
 
 function usage () {

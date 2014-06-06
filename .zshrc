@@ -123,6 +123,9 @@ source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 # Load nocorrecting alias plugin
 source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 
+# Load percol plugin
+source $HOME/dotfiles/zsh/plugins/percol.plugin.zsh
+
 if [ -f $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]; then
     source $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 fi
@@ -135,3 +138,4 @@ fi
 # Alias
 #=============================
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+

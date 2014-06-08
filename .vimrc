@@ -185,13 +185,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   " minibufexpl.vim: manage buffers like tab window
   NeoBundle 'fholgado/minibufexpl.vim'
 
-  " NERDTree : explorer like tree
-  NeoBundleLazy 'The-NERD-tree', {
-  \  'autoload' : {
-  \      'commands' : ['NERDTreeToggle']
-  \  },
-  \}
-
   " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
   NeoBundleLazy 'kien/ctrlp.vim', {
   \  'autoload' : {
@@ -645,6 +638,8 @@ endfunction
       break
     endif
   endfor
+
+  nmap <silent> <leader>fl :VimFilerExplorer<CR>
 " }}}
 
 " vim-easy-align {{{
@@ -657,11 +652,6 @@ endfunction
   let NERDSpaceDelims = 1
   " do not show error although opening incorrect file
   let NERDShutUp=1
-" }}}
-
-" NERDTree.vim {{{
- nmap <silent> <leader>fl :NERDTreeToggle<CR>
- let NERDTreeWinSize=25
 " }}}
 
 " CtrlP {{{

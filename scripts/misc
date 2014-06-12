@@ -24,7 +24,7 @@ function clean () {
     done
 
     rm -rf $HOME/.bin
-		rm -rf $DOTFILES_DIR/.percol.d
+		rm -rf $HOME/.percol.d
 }
 
 function usage () {

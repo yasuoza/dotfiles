@@ -138,4 +138,3 @@ fi
 # Alias
 #=============================
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
-

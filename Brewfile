@@ -10,7 +10,7 @@ install coreutils
 # version control
 install git
 install git-now
-install hub
+install gh
 install tig
 install mercurial
 

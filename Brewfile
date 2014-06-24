@@ -1,8 +1,9 @@
 # Update formulas
 update
 
-# tap homebrew/versions
+# tap formulas
 tap homebrew/versions
+tap homebrew/dupes
 
 # gls, gdircolor
 install coreutils
@@ -33,6 +34,7 @@ install go
 install vim --with-lua --with-perl --with-python3 --with-python --with-ruby
 
 # dev-tools
+install apple-gcc42
 install tree
 install the_silver_searcher
 install ctags

@@ -256,7 +256,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   NeoBundleLazy 'tsukkee/unite-tag', {
   \  'depends' : 'Shougo/unite.vim',
   \  'autoload' : {
-  \    'unite_sources' : ['tag'],
+  \    'commands' : ['UniteWithCursorWord'],
+  \    'unite_sources' : ['tag', 'tag/file', 'tag/include'],
   \  },
   \}
 " }}}
@@ -707,6 +708,12 @@ endfunction
   nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
   " unite outline
   cnoremap UO Unite outline<Enter>
+
+  " unite tag
+  autocmd BufEnter *
+    \   if empty(&buftype)
+    \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+    \|  endif
 
   " configuration
   let s:bundle = neobundle#get('unite.vim')

@@ -21,7 +21,8 @@ if type peco &> /dev/null; then
         fi
         local dest=$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk '{ print $2 }')
         if [ -n "${dest}" ]; then
-            cd ${dest}
+            BUFFER="cd ${dest}"
+            zle accept-line
         fi
         zle reset-prompt
     }

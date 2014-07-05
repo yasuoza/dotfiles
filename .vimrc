@@ -214,7 +214,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
   \   'autoload' : {
   \       'commands' : ['VimFiler', 'VimFilerCurrentDir',
   \                     'VimFilerBufferDir', 'VimFilerSplit',
-  \                     'VimFilerExplorer', 'VimFilerDouble']
+  \                     'VimFilerExplorer', 'VimFilerDouble'],
+  \       'explorer' : 1
   \   }
   \ }
 " }}}
@@ -605,40 +606,8 @@ endfunction
 " }}}
 
 " VimFiler {{{
+  " Use VimFiler instead of netrw
   let g:vimfiler_as_default_explorer = 1
-  augroup LoadVimFiler
-    autocmd!
-    autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
-  augroup END
-
-  " :edit {dir}
-  function! s:load_vimfiler(path)
-    if exists('g:loaded_vimfiler')
-      autocmd! LoadVimFiler
-      return
-    endif
-
-    let path = a:path
-    " for ':edit ~'
-    if fnamemodify(path, ':t') ==# '~'
-      let path = expand('~')
-    endif
-
-    if isdirectory(path)
-      NeoBundleSource vimfiler
-    endif
-
-    autocmd! LoadVimFiler
-  endfunction
-
-  " directory on startup
-  for arg in argv()
-    if isdirectory(arg) || isdirectory(getcwd().'/'.arg)
-      NeoBundleSource vimfiler.vim
-      autocmd! LoadVimFiler
-      break
-    endif
-  endfor
 
   nmap <silent> <leader>fl :VimFilerExplorer<CR>
 " }}}

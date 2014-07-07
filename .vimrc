@@ -608,6 +608,7 @@ endfunction
 " VimFiler {{{
   " Use VimFiler instead of netrw
   let g:vimfiler_as_default_explorer = 1
+  let g:loaded_netrwPlugin = 1
 
   nmap <silent> <leader>fl :VimFilerExplorer<CR>
 " }}}

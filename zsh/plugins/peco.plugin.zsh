@@ -28,4 +28,7 @@ if type peco &> /dev/null; then
     }
     zle -N peco_select_directory
     bindkey '^X^J' peco_select_directory
+
+    # List all local branches
+    alias -g B='`command git branch | peco | sed -e "s/^\*[ ]*//g"`'
 fi

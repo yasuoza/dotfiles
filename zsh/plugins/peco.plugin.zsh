@@ -8,7 +8,6 @@ if type peco &> /dev/null; then
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
-
     zle -N peco_select_history
     bindkey '^R' peco_select_history
 
@@ -19,9 +18,9 @@ if type peco &> /dev/null; then
         else
             tac='tail -r'
         fi
-        local dest=$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk '{ print $2 }')
+        local dest="$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk -F '    ' '{ print $2 }')"
         if [ -n "${dest}" ]; then
-            BUFFER="cd ${dest}"
+            BUFFER="cd '${dest}'"
             zle accept-line
         fi
         zle reset-prompt

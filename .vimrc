@@ -684,6 +684,8 @@ endfunction
     \   if empty(&buftype)
     \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
     \|  endif
+  let g:unite_source_tag_max_fname_length = 50
+  let g:unite_source_tag_strict_truncate_string = 0
 
   " configuration
   let s:bundle = neobundle#get('unite.vim')

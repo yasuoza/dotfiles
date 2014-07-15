@@ -42,5 +42,6 @@ Session.vim
 .zshrc.local
 samples
 .rbenv-version
+.test_queue_stats
 
 .vim/bundle/

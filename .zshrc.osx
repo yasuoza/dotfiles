@@ -58,8 +58,8 @@ if [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
     . `brew --prefix`/etc/profile.d/z.sh
 fi
 
-if type "gh" > /dev/null ; then
-    alias git=gh
+if type "hub" > /dev/null ; then
+    alias git=hub
 fi
 
 if type "rbenv" > /dev/null; then

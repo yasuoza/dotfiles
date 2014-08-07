@@ -24,6 +24,7 @@ bind generic o !@sh -c "hub browse -- commit/%(commit)"
 bind main <Space> enter
 bind main <Enter> view-diff
 bind main s       view-status
+bind main R       !git rebase -i %(commit)
 
 ## For diff
 bind diff ; view-next

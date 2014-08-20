@@ -21,12 +21,28 @@ autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 "------------------------------------------------------------------------------
 " Bundle
 "
-set nocompatible
-filetype off
 if has('vim_starting')
+  set nocompatible               " Be iMproved
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+
+let vundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
+
+if !filereadable(vundle_readme)
+  echo "Installing NeoBundle..."
+  echo ""
+  silent !mkdir -p ~/.vim/bundle
+  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Edit {{{
   " NERD_commenter.vim :toggle comment via <Leader>c<space>

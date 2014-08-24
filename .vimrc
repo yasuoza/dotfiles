@@ -362,7 +362,9 @@ set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
 set t_Co=256
 set lazyredraw                                    " do not rerender while command execution
+set bomb
 set ttyfast                                       " use fast terminal connection
+set binary
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
 
@@ -513,6 +515,10 @@ set virtualedit+=block " move freely when block select mode
 vnoremap v $h
 " yank under cursor
 nnoremap vy vawy
+
+" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
 
 " window move via CTRL-hjkl
 nnoremap <C-j> <C-w>j

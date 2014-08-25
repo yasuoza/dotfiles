@@ -16,6 +16,8 @@
 [core]
   excludesfile   = ~/.gitignore_global
   attributesfile = ~/.gitattributes_global
+[credential]
+	helper = osxkeychain
 [color]
   ui = auto
 [color "branch"]

@@ -79,7 +79,7 @@ fi
 
 # vim as a $EDITOR
 if type vim > /dev/null ; then
-  export $EDITOR=vim
+  export EDITOR='vim'
 fi
 
 # some more ls aliases

@@ -8,6 +8,8 @@ DOTFILES=$(find $(dirname $(dirname $0)) -maxdepth 1 -type f  -name .\*         
 function setup () {
     clean
 
+		mkdir -p $HOME/.config
+
     for file in ${DOTFILES[@]}
     do
         ln -s {$DOTFILES_DIR,$HOME}/$file

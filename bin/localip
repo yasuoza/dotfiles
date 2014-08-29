@@ -1,17 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-# Thunderbolt Ethernet
-if ifconfig | grep 'en2' > /dev/null; then
-	ip=$(ifconfig en2 inet | sed -e '1d' -e '2d' -e 's/^.*inet //' -e 's/ netmask.*$//')
-fi
+# http://qiita.com/saltheads/items/cc49fcf2af37cb277c4f
 
-# Wi-Fi
-if [ -z $ip ]; then
-	ip=$(ifconfig en0 inet | sed -e '1d' -e 's/^.*inet //' -e 's/ netmask.*$//')
-fi
+require 'socket'
 
-if [[ ! -z $ip ]]; then
-	echo $ip
-else
-	echo "OFFLINE"
-fi
+def my_address
+ udp = UDPSocket.new
+ udp.connect("128.0.0.0", 7)
+ adrs = Socket.unpack_sockaddr_in(udp.getsockname)[1]
+ udp.close
+ adrs
+end
+
+puts my_address

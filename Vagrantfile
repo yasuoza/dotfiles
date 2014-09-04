@@ -8,7 +8,7 @@ CORES                   = ENV['RAILS_VAGRANT_CORES']  || '2'
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = 'base.box'
 
-  config.vm.box = "chef/ubuntu-14.04"
+  config.vm.box = 'ubuntu/trusty64'
 
   config.vm.provision :shell, inline: <<-SHELL
     su vagrant -c "/vagrant/scripts/bootstrap"

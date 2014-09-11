@@ -212,7 +212,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Utility {{{
   " vimproc : asynchronous execution from vimshell
-  NeoBundle 'Shougo/vimproc.git', { 'build': {
+  NeoBundle 'Shougo/vimproc.vim', { 'build': {
   \   'mac' : 'make -f make_mac.mak',
   \   'unix': 'make -f make_unix.mak',
   \  },
@@ -232,6 +232,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \                     'VimFilerBufferDir', 'VimFilerSplit',
   \                     'VimFilerExplorer', 'VimFilerDouble'],
   \       'explorer' : 1
+  \   }
+  \ }
+
+  NeoBundleLazy 'Shougo/vimshell.vim', {
+  \   'depends' : 'Shougo/vimproc.vim',
+  \   'autoload' : {
+  \       'commands' : ['VimShell', 'VimShellPop', 'VimShellInteractive']
   \   }
   \ }
 " }}}

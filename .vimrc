@@ -644,6 +644,27 @@ endfunction
   nmap <silent> <leader>fl :VimFilerExplorer<CR>
 " }}}
 
+" VimFiler {{{
+  nnoremap <silent> <leader>vs :<C-U>VimShell<CR>
+
+  let s:bundle = neobundle#get('vimshell.vim')
+  function! s:bundle.hooks.on_source(bundle)
+    let g:vimshell_prompt = $USER . "@" . hostname() . " $ "
+    let g:vimshell_right_prompt = '"[" . getcwd() . "]"'
+
+    autocmd FileType vimshell
+      \ call vimshell#altercmd#define('g', 'git')
+      \| call vimshell#altercmd#define('i', 'iexe')
+      \| call vimshell#altercmd#define('l', 'll')
+      \| call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
+
+    function! MyChpwd(args, context)
+      call vimshell#execute('ls')
+    endfunction \| call vimshell#altercmd#define('ll', 'ls -l')
+  endfunction
+  unlet s:bundle
+" }}}
+
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>

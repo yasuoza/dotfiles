@@ -198,9 +198,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " }}}
 
 " Buffer {{{
-  " minibufexpl.vim: manage buffers like tab window
-  NeoBundle 'fholgado/minibufexpl.vim'
-
   " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
   NeoBundleLazy 'kien/ctrlp.vim', {
   \  'autoload' : {
@@ -389,6 +386,13 @@ set laststatus=2                                  " Enforce to display statuslin
 " }}}
 
 " Airline {{{
+  " tabline
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+  " statusline
   let g:airline_powerline_fonts = 1  " Use powerline patched font
   let g:airline_section_c = '%F%m'   " Display full file path
   let g:airline_detect_whitespace = 0
@@ -513,8 +517,8 @@ noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
 " next buffer by pushing space twice,  previous buffer by pushing back-space twice
-nmap <Space><Space> ;MBEbn<CR>
-nmap <BS><BS> ;MBEbp<CR>
+nmap <Space><Space> :<C-U>bn<CR>
+nmap <BS><BS> :<C-U>bp<CR>
 
 set virtualedit+=block " move freely when block select mode
 

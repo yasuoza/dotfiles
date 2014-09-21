@@ -126,10 +126,6 @@ source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 # Load peco plugin
 source $HOME/dotfiles/zsh/plugins/peco.plugin.zsh
 
-if [ -f $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]; then
-    source $HOME/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-fi
-
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

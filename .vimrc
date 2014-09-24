@@ -750,6 +750,15 @@ endfunction
     let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
   endfunction
   unlet s:bundle
+
+  autocmd FileType unite call s:unite_my_settings()
+  function! s:unite_my_settings() "{{{
+    " Open like a VimFiler
+    nnoremap <silent><buffer><expr> e   unite#do_action('open')
+
+    " Delete buffer with 'dd'
+    nnoremap <silent><buffer><expr> dd  unite#do_action('delete')
+  endfunction "}}}
 " }}}
 
 " quickrun.vim {{{

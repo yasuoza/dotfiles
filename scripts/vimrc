@@ -14,8 +14,6 @@ function setup () {
 }
 
 function update () {
-    cd $HOME/.vim/bundle/neobundle.vim
-    git pull
     $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
 }
 

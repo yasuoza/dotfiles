@@ -2,6 +2,9 @@
   path = .gitconfig.local
 [push]
   default = simple
+[diff]
+  tool = vimdiff
+  algorithm = histogram
 [merge]
   ff = false
   tool = vimdiff

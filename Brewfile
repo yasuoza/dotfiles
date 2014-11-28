@@ -11,7 +11,6 @@ install coreutils
 # version control
 install git
 install git-now
-install gh
 install tig
 install mercurial
 

@@ -10,6 +10,7 @@
   tool = vimdiff
 [mergetool]
   prompt = false
+  writeToTemp = true
 [pull]
   rebase = true
 [rerere]

@@ -1,4 +1,14 @@
 "*****************************************************************************
+"" SPELLs
+"*****************************************************************************
+scriptencoding utf-8
+
+" Register vimrc augroup
+augroup vimrc
+  autocmd!
+augroup END
+
+"*****************************************************************************
 "" RUNTIME
 "*****************************************************************************
 if &shell =~# 'fish$'
@@ -14,8 +24,7 @@ if ($GOROOT != "") && ($GOPATH != "")
   set rtp+=$GOROOT/misc/vim
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
-
-autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
+autocmd vimrc BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 
 
 "*****************************************************************************
@@ -375,7 +384,7 @@ set laststatus=2                                  " Enforce to display statuslin
 " {{{ Cursor
   " show line on current window
   augroup cch
-    autocmd! cch
+    autocmd!
     autocmd WinLeave * set nocursorline
     autocmd WinEnter,BufRead * set cursorline
   augroup END
@@ -418,34 +427,36 @@ let g:markdown_fenced_languages = [
 "*****************************************************************************
 "" Indent
 "*****************************************************************************
-autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
-autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
-autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
-autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
-autocmd FileType go         setlocal sw=4 sts=4 ts=4 et
-autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
-autocmd FileType diff       setlocal sw=4 sts=4 ts=4 et
-autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
-autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
-autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
-autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
-autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
-autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
-autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
-autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
-autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
-autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
-autocmd FileType zsh        setlocal sw=4 sts=4 ts=4 et
-autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
-
+augroup indention
+  autocmd!
+  autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType go         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType diff       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType zsh        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
+augroup END
 
 "*****************************************************************************
 "" Completion
@@ -489,11 +500,11 @@ cnoremap <Down>  <C-n>
     inoremap <expr><C-y>  neocomplete#close_popup()
     inoremap <expr><C-e>  neocomplete#cancel_popup()
     " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd vimrc FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd vimrc FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
     " Enable heavy omni completion.
     if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -538,7 +549,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 " goto previous editted line
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 
 "*****************************************************************************
@@ -570,7 +581,7 @@ function! s:remove_dust()
   call setpos(".", cursor)
   unlet cursor
 endfunction
-autocmd BufWritePre * call <SID>remove_dust()
+autocmd vimrc BufWritePre * call <SID>remove_dust()
 
 " entrust fold to FileType
 set foldmethod=syntax
@@ -578,8 +589,8 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 " close quickfix via q/ESC
-autocmd FileType qf nnoremap <buffer> q :ccl<CR>
-autocmd FileType qf nnoremap <buffer> <ESC> :ccl<CR>
+autocmd vimrc FileType qf nnoremap <buffer> q :ccl<CR>
+autocmd vimrc FileType qf nnoremap <buffer> <ESC> :ccl<CR>
 
 " toggle quickfix window via cw
 function! s:toggle_qf_window()
@@ -608,7 +619,7 @@ endfunction
 
 " Checking file save typo.
 " http://d.hatena.ne.jp/hyuki/20140211/vim
-autocmd BufWriteCmd ;*,:*,*[,*] call s:write_check_typo(expand('<afile>'))
+autocmd vimrc BufWriteCmd ;*,:*,*[,*] call s:write_check_typo(expand('<afile>'))
 function! s:write_check_typo(file)
     let prompt = "possible typo: really want to write to '" . a:file . "'?(y/n):"
     let input = input(prompt)
@@ -656,7 +667,7 @@ endfunction
     let g:vimshell_prompt = $USER . "@" . hostname() . " $ "
     let g:vimshell_right_prompt = '"[" . getcwd() . "]"'
 
-    autocmd FileType vimshell
+    autocmd vimrc FileType vimshell
       \ call vimshell#altercmd#define('g', 'git')
       \| call vimshell#altercmd#define('i', 'iexe')
       \| call vimshell#altercmd#define('l', 'll')
@@ -736,7 +747,7 @@ endfunction
   cnoremap UO Unite outline<Enter>
 
   " unite tag
-  autocmd BufEnter *
+  autocmd vimrc BufEnter *
     \   if empty(&buftype)
     \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
     \|  endif
@@ -751,7 +762,7 @@ endfunction
   endfunction
   unlet s:bundle
 
-  autocmd FileType unite call s:unite_my_settings()
+  autocmd vimrc FileType unite call s:unite_my_settings()
   function! s:unite_my_settings() "{{{
     " Open like a VimFiler
     nnoremap <silent><buffer><expr> e   unite#do_action('open')
@@ -785,7 +796,7 @@ endfunction
   let g:indent_guides_start_level = 2
   let g:indent_guides_guide_size = 1
   let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
+  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
+  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
   let g:indent_guides_enable_on_vim_startup = 1
 " }}}

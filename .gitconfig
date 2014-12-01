@@ -62,9 +62,6 @@
   lt         = log --pretty=format:'%C(white bold)%s\n\n%Creset%b'
   lp         = log --oneline -p
   su         = submodule update
-  ignore     = !"f() { local s=$1; shift; \
-                 while [ $# -gt 0 ]; do s="$s, $1"; shift; done;\
-                 curl "http://www.gitignore.io/api/$s"; }; f"
   ignore-update = !"git update-index --assume-unchanged $1"
   assume-update = !"git update-index --no-assume-unchanged $1"
   reamend    = commit --amend -C HEAD

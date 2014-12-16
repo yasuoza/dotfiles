@@ -18,7 +18,9 @@ if type peco &> /dev/null; then
         else
             tac='tail -r'
         fi
-        local dest="$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk -F '    ' '{ print $2 }' | sed 's/^ *//g' | sed 's/ *$//g')"
+        # Remove score and space
+        # '5.13      /PATH/TO/DESTINATION' => '/PATH/TO/DESTINATION'
+        local dest="$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | sed 's/^\([0-9.]*\)\( *\)//g')"
         if [ -n "${dest}" ]; then
             BUFFER="cd '${dest}'"
             zle accept-line

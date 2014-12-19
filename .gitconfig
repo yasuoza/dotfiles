@@ -11,6 +11,7 @@
 [mergetool]
   prompt = false
   writeToTemp = true
+  keepBackup = false
 [pull]
   rebase = true
 [rerere]

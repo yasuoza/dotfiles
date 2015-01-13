@@ -32,10 +32,12 @@ function __my_preexec_start_timetrack() {
 }
 
 function __my_preexec_end_timetrack() {
+    local last_status=$?
     local exec_time
     local command=$__timetrack_command
     local prog=$(echo $command | tr -d '\r\n' |awk '{print $1}')
     local notify_method
+    local status_message
     local message
 
     export __timetrack_end=`date +%s`
@@ -63,7 +65,13 @@ function __my_preexec_end_timetrack() {
         command="<UNKNOWN>"
     fi
 
-    title="Command finished!"
+    if [ $last_status -eq 0 ]; then
+        status_message="success"
+    else
+        status_message="failure"
+    fi
+
+    title="Command finished with $status_message"
     message="Time: $exec_time seconds"$'\n'"COMMAND: $command"
 
     if [ "$exec_time" -ge "$__timetrack_threshold" ]; then

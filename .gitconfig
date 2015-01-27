@@ -5,6 +5,8 @@
 [diff]
   tool = vimdiff
   algorithm = histogram
+[diff  "localizablestrings"]
+  textconv = "iconv -f utf-16 -t utf-8"
 [merge]
   ff = false
   tool = vimdiff

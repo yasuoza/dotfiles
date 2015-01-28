@@ -25,14 +25,15 @@ bind main <Space> enter
 bind main <Enter> view-diff
 bind main s       view-status
 bind main R       !git rebase -i %(commit)
+bind main G       move-last-line
 
 ## For diff
 bind diff ; view-next
 
 ## For status/stage
 bind status <Space> enter
-bind status u       status-update
-bind stage  u       status-update
+bind status u       scroll-page-up
+bind stage  u       scroll-page-up
 bind status C       !git commit -v
 
 ## For blame

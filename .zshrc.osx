@@ -69,10 +69,3 @@ fi
 if type "plenv" > /dev/null; then
     eval "$(plenv init -)"
 fi
-
-if type "rmtrash" > /dev/null; then
-    alias orig-rm='command rm'
-    alias rm='rmtrash'
-    alias rmr='rmtrash'
-    alias rmrf='rmtrash'
-fi

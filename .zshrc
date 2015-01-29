@@ -78,6 +78,15 @@ setopt path_dirs            # Search PATH sub directory if command contain /
 setopt autopushd            # Auto pushd
 
 #=============================
+# Search History
+#=============================
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+#=============================
 # history
 #=============================
 HISTFILE=~/.zsh_history

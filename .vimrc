@@ -204,6 +204,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \      'filename_patterns': '\.fish$'
   \  },
   \}
+
+  " swift
+  NeoBundleLazy 'toyamarinyon/vim-swift' , {
+  \  'autoload' : {
+  \      'filename_patterns': '\.swift$'
+  \  },
+  \}
+
 " }}}
 
 " Buffer {{{

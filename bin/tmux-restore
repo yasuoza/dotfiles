@@ -1,0 +1,13 @@
+#!/usr/bin/env expect
+
+# start tmux
+spawn tmux
+
+sleep 2
+
+# run restore script directly
+send "~/dotfiles/tmux/plugins/tmux-resurrect/scripts/restore.sh\r"
+
+send "tmux kill-session -t 0\r"
+
+interact

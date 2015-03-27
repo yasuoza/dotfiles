@@ -3,6 +3,7 @@ set vertical-split = yes
 set line-graphics  = utf-8
 set ignore-case    = yes
 set diff-options   = -m --first-parent
+set main-options   = -n 1000
 
 # View specific settings
 set main-view      = id:yes date:short author:yes commit-title:yes,graph=yes,refs=yes,overflow=no
@@ -17,7 +18,7 @@ bind generic l scroll-right
 bind generic h scroll-left
 bind generic g move-first-line
 bind generic G move-last-line
-bind generic c !@sh -c 'echo %(commit) | tr -d "\n" | pbcopy'
+bind generic c !@sh -c 'echo %(commit) | tr -d "\\n" | pbcopy'
 bind generic o !@sh -c "hub browse -- commit/%(commit)"
 
 ## For main

@@ -32,4 +32,7 @@ if type peco &> /dev/null; then
 
     # List all local branches
     alias -g B='`command git branch | peco | sed -e "s/^\*[ ]*//g"`'
+
+    # List all tmux sessions
+    alias -g S='`tmux ls | peco | cut -d':' -f 1`'
 fi

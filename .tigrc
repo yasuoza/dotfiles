@@ -41,5 +41,9 @@ bind status C       !git commit -v
 bind blame <Space> enter
 bind blame <Enter> view-diff
 
+## For stash
+bind stash <Space> enter
+bind stash <Enter> view-diff
+
 # Color
 color cursor black green bold

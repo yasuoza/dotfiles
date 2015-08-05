@@ -259,7 +259,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ColorSchema{{{{
 
-  NeoBundle 'yasuoza/vim-hybrid'
+  NeoBundle 'w0ng/vim-hybrid'
 
 " }}}
 
@@ -412,7 +412,7 @@ set laststatus=2                                  " Enforce to display statuslin
   " statusline
   let g:airline_powerline_fonts = 1  " Use powerline patched font
   let g:airline_section_c = '%F%m'   " Display full file path
-  let g:airline_detect_whitespace = 0
+  let g:airline#extensions#whitespace#enabled = 0
   let g:airline_theme='super_hybrid' " Use hybrid statusline theme
 " }}}
 

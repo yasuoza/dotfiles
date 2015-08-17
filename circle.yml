@@ -1,0 +1,22 @@
+general:
+  artifacts:
+    - 'base.box'
+
+dependencies:
+  cache_directories:
+    - ~/.vagrant.d
+    - ~/tmp
+  pre:
+    - |
+      mkdir -p ~/tmp && cd ~/tmp
+      VERSION=1.7.4
+      if [ ! -f vagrant_${VERSION}_x86_64.deb ]; then
+        wget https://dl.bintray.com/mitchellh/vagrant/vagrant_${VERSION}_x86_64.deb
+      fi
+      sudo dpkg -i vagrant_${VERSION}_x86_64.deb
+
+test:
+  override:
+    - vagrant up
+  post:
+    - vagrant package --output 'base.box'

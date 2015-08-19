@@ -106,7 +106,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \  },
   \}
 
-
   NeoBundleLazy 'osyo-manga/vim-over', {
   \  'autoload' : {
   \      'commands' : ['OverCommandLine']

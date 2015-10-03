@@ -117,7 +117,7 @@ export BUNDLER_EDITOR="vim +VimFiler"
 # Load notify plugin
 # Loading this plugins blocks command line execution on El Capitan.
 # Will be back when zsh(?) has been fixed.
-# source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
+source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 
 # Load nocorrecting alias plugin
 source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh

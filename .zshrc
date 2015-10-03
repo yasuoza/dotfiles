@@ -114,11 +114,10 @@ export BUNDLER_EDITOR="vim +VimFiler"
 #=============================
 # Plugins
 #=============================
-# Load static server plugin
-source $HOME/dotfiles/zsh/plugins/static_server.plugin.zsh
-
 # Load notify plugin
-source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
+# Loading this plugins blocks command line execution on El Capitan.
+# Will be back when zsh(?) has been fixed.
+# source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 
 # Load nocorrecting alias plugin
 source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
@@ -130,7 +129,7 @@ source $HOME/dotfiles/zsh/plugins/peco.plugin.zsh
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-#=============================
-# Alias
-#=============================
+# #=============================
+# # Alias
+# #=============================
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias

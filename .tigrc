@@ -25,7 +25,7 @@ bind generic o !@sh -c "hub browse -- commit/%(commit)"
 bind main <Space> enter
 bind main <Enter> view-diff
 bind main s       view-status
-bind main R       !git rebase -i %(commit)
+bind main R       !git rebase -i --autosquash %(commit)
 bind main G       move-last-line
 
 ## For diff

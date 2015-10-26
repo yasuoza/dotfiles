@@ -122,8 +122,8 @@ source $HOME/dotfiles/zsh/plugins/notify.plugin.zsh
 # Load nocorrecting alias plugin
 source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 
-# Load peco plugin
-source $HOME/dotfiles/zsh/plugins/peco.plugin.zsh
+# Load fzf plugin
+source $HOME/dotfiles/zsh/plugins/fzf.plugin.zsh
 
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 

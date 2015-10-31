@@ -9,9 +9,10 @@ if type fzf &> /dev/null; then
     function _fzf() {
         test -n "$TMUX" && fzf-tmux || fzf
     }
+    alias fzf=_fzf
 
     function fzf_select_history() {
-        BUFFER=$(fc -l -n 1 | _fzf --tac --ansi)
+        BUFFER=$(fc -l -n 1 | fzf --tac --ansi)
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
@@ -21,7 +22,7 @@ if type fzf &> /dev/null; then
     function fzf_select_directory() {
         # Remove score and space
         # '5.13      /PATH/TO/DESTINATION' => '/PATH/TO/DESTINATION'
-        local dest="$(_z -r 2>&1 | _fzf --tac | sed 's/^[0-9. ]*//g')"
+        local dest="$(_z -r 2>&1 | fzf --tac | sed 's/^[0-9. ]*//g')"
         if [ -n "${dest}" ]; then
             BUFFER="cd '${dest}'"
             zle accept-line
@@ -32,8 +33,8 @@ if type fzf &> /dev/null; then
     bindkey '^X^J' fzf_select_directory
 
     # List all local branches
-    alias -g B='`command git branch | _fzf | sed -e "s/^\*[ ]*//g"`'
+    alias -g B='`command git branch | fzf | sed -e "s/^\*[ ]*//g"`'
 
     # List all tmux sessions
-    alias -g S='`tmux ls | _fzf | cut -d':' -f 1`'
+    alias -g S='`tmux ls | fzf | cut -d':' -f 1`'
 fi

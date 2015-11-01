@@ -327,28 +327,28 @@ set vb t_vb=                     " do not make beep
 set browsedir=buffer             " home directory from Explore
 set whichwrap=b,s,h,l,<,>,[,]    " do not stop cursor at frirst and end
 set showcmd                      " show command on status
-set showmode                    " show current mode
-set viminfo='50,<1000,s100,\"50 " setting for viminfo
-set modelines=0                 " disable mode line
-set clipboard=unnamed           " use os's clipboard
-set mouse=a                     " use mouse on terminal
+set showmode                     " show current mode
+set viminfo='50,<1000,s100,\"50  " setting for viminfo
+set modeline                     " enable mode line
+set clipboard=unnamed            " use os's clipboard
+set mouse=a                      " use mouse on terminal
 set guioptions+=a
 set ttymouse=xterm2
 set helpfile=$VIMRUNTIME/doc/help.txt
-set autoindent                  " auto indent
-set smartindent                 " set same amount of indent when insert new line
-set cindent                     " start c lang indent mode
-set wildmenu                    " power to command completeion
-set wildchar=<tab>              " command completion hot key
-set wildmode=list:full          " show list and long match
-set history=100                 " number of command and search history
-set complete+=k                 " add dictionary file to complete
+set autoindent                   " auto indent
+set smartindent                  " set same amount of indent when insert new line
+set cindent                      " start c lang indent mode
+set wildmenu                     " power to command completeion
+set wildchar=<tab>               " command completion hot key
+set wildmode=list:full           " show list and long match
+set history=100                  " number of command and search history
+set complete+=k                  " add dictionary file to complete
 set completeopt=menu,preview
-set wrapscan                    " go back to top after bottom
-set ignorecase                  " ignore charactor case
-set smartcase                   " Consider capital case when keyword contains it
-set incsearch                   " Incremental search
-set hlsearch                    " highlight searched words
+set wrapscan                     " go back to top after bottom
+set ignorecase                   " ignore charactor case
+set smartcase                    " Consider capital case when keyword contains it
+set incsearch                    " Incremental search
+set hlsearch                     " highlight searched words
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
@@ -384,7 +384,6 @@ set t_Co=256
 set lazyredraw                                    " do not rerender while command execution
 set bomb
 set ttyfast                                       " use fast terminal connection
-set binary
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
 

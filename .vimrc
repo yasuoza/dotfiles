@@ -19,6 +19,12 @@ if isdirectory($HOME.'/dotfiles/vim')
   set rtp+=$HOME/dotfiles/vim/
 endif
 
+" Enable FZF command
+" https://github.com/junegunn/fzf#usage-as-vim-plugin
+if isdirectory('/usr/local/opt/fzf')
+  set rtp+=/usr/local/opt/fzf
+endif
+
 " http://mattn.kaoriya.net/software/vim/20130531000559.htm
 if ($GOROOT != "") && ($GOPATH != "")
   set rtp+=$GOROOT/misc/vim
@@ -212,16 +218,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \}
 
 " }}}
-
-" Buffer {{{
-  " ctrlp.vim: Full path fuzzy file, buffer, mru, tag, ... finder for Vim
-  NeoBundleLazy 'kien/ctrlp.vim', {
-  \  'autoload' : {
-  \      'mappings' : ['<c-\>'],
-  \      'commands' : ['CtrlP']
-  \  },
-  \}
- " }}}
 
 " Utility {{{
   " vimproc : asynchronous execution from vimshell
@@ -699,13 +695,9 @@ endfunction
   let NERDShutUp=1
 " }}}
 
-" CtrlP {{{
-  if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
-  endif
-  let g:ctrlp_map = '<c-\>'
-  let g:ctrlp_show_hidden = 1
+" FZF {{{
+  " Like CtrlP
+  noremap <silent> <C-\> :FZF<Enter>
 " }}}
 
 " Tagbar.Vim {{{

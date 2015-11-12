@@ -363,7 +363,8 @@ nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 "*****************************************************************************
 "" Color
 "*****************************************************************************
-let g:hybrid_use_iTerm_colors = 1
+let g:hybrid_use_Xresources = 1
+set background=dark
 colorscheme hybrid
 syntax enable " highlight on
 

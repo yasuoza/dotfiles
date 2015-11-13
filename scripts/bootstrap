@@ -3,7 +3,7 @@
 # Verbose output
 set -x
 
-RUBY_VER='2.1.2'
+RUBY_VER='2.2.3'
 
 # Develop requirements
 sudo apt-get update
@@ -12,10 +12,10 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo add-apt-repository -y ppa:mercurial-ppa/releases
 sudo apt-get update
-sudo apt-get install -y git mercurial language-pack-en zsh nodejs
+sudo apt-get install -y git language-pack-en zsh nodejs
 
 # Vim
-cd /tmp && hg clone https://vim.googlecode.com/hg/ vim && cd vim
+cd /tmp && hg clone https://github.com/vim/vim.git && cd vim
 sudo apt-get install -y build-essential gettext libncurses5-dev luajit lua5.2 liblua5.2-dev python-dev python3-dev ruby-dev libperl-dev tcl-dev
 ./configure            \
 --with-features=huge   \

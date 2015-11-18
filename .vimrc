@@ -311,6 +311,7 @@ map ; :
 noremap ;; ;
 inoremap <C-j> <C-[>
 
+setglobal nobomb                 " disable bomb
 set scrolloff=5                  " buffer for scrolling
 set textwidth=0                  " do not turn back if long line
 set nobackup                     " do not make backup
@@ -379,7 +380,6 @@ set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
 set t_Co=256
 set lazyredraw                                    " do not rerender while command execution
-set bomb
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline

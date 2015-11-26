@@ -18,7 +18,6 @@ function usage () {
     echo "clean: remove .zshrc(s)"
 }
 
-
 if [ -z $1 ]; then
   usage
   exit 1

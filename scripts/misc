@@ -34,7 +34,6 @@ function usage () {
     echo "clean: cleanup dotfiles"
 }
 
-
 if [ -z $1 ]; then
   usage
   exit 1

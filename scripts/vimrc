@@ -27,7 +27,6 @@ function usage () {
     echo "clean: cleanup .vimrc and .vim"
 }
 
-
 if [ -z $1 ]; then
   usage
   exit 1

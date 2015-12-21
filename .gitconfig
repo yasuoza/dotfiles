@@ -41,7 +41,7 @@
     changed = green
     untracked = cyan
 [merge "mergepbx"]
-  name = XCode project files merger
+  name = Xcode project files merger
   driver = mergepbx %O %A %B
 [alias]
   aliases    = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort

@@ -16,6 +16,8 @@
   keepBackup = false
 [pull]
   rebase = true
+[commit]
+ template = ~/dotfiles/.gitcommit_template
 [rerere]
   enabled = true
 [grep]
@@ -24,7 +26,7 @@
   excludesfile   = ~/.gitignore_global
   attributesfile = ~/.gitattributes_global
 [credential]
-	helper = osxkeychain
+ helper = osxkeychain
 [color]
   ui = auto
 [color "branch"]

@@ -477,7 +477,7 @@ cnoremap <Down>  <C-n>
   let s:bundle = neobundle#get('neocomplete')
   function! s:bundle.hooks.on_source(bundle)
     let g:neocomplete#enable_smart_case = 1   " Use smartcase.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 5 " Set minimum syntax keyword length.
     let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
     " Define keyword.

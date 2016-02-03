@@ -142,13 +142,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \      'commands' : ['OpenBrowser', 'OpenBrowserSearch']
   \  },
   \}
-
-  " ag.vim
-  NeoBundleLazy 'rking/ag.vim', {
-  \  'autoload' : {
-  \      'commands' : 'Ag'
-  \  },
-  \}
 " }}}
 
 " Programming {{{
@@ -246,13 +239,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
   \       'explorer' : 1
   \   }
   \ }
-
-  NeoBundleLazy 'Shougo/vimshell.vim', {
-  \   'depends' : 'Shougo/vimproc.vim',
-  \   'autoload' : {
-  \       'commands' : ['VimShell', 'VimShellPop', 'VimShellInteractive']
-  \   }
-  \ }
 " }}}
 
 " ColorSchema{{{{
@@ -264,38 +250,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Unite {{{{
   NeoBundleLazy 'Shougo/unite.vim', {
   \  'autoload' : {
-  \      'commands' : ['Unite']
+  \      'commands' : ['Unite', 'UniteWithCursorWord']
   \  },
   \}
 
-  NeoBundleLazy 'Shougo/neomru.vim', {
-  \  'depends' : 'Shougo/unite.vim',
-  \  'autoload' : {
-  \    'unite_sources' : ['file_mru'],
-  \  },
-  \}
-
-  NeoBundleLazy 'h1mesuke/unite-outline', {
-  \  'depends' : 'Shougo/unite.vim',
-  \  'autoload' : {
-  \    'unite_sources' : ['outline'],
-  \  },
-  \}
-
-  NeoBundleLazy 'thinca/vim-unite-history', {
-  \  'depends' : 'Shougo/unite.vim',
-  \  'autoload' : {
-  \    'unite_sources' : ['history'],
-  \  },
-  \}
-
-  NeoBundleLazy 'tsukkee/unite-tag', {
-  \  'depends' : 'Shougo/unite.vim',
-  \  'autoload' : {
-  \    'commands' : ['UniteWithCursorWord'],
-  \    'unite_sources' : ['tag', 'tag/file', 'tag/include'],
-  \  },
-  \}
+  NeoBundle 'tsukkee/unite-tag'
 " }}}
 
 call neobundle#end()
@@ -665,27 +624,6 @@ endfunction
   nmap <silent> <leader>fl :VimFilerExplorer<CR>
 " }}}
 
-" VimFiler {{{
-  nnoremap <silent> <leader>vs :<C-U>VimShell<CR>
-
-  let s:bundle = neobundle#get('vimshell.vim')
-  function! s:bundle.hooks.on_source(bundle)
-    let g:vimshell_prompt = $USER . "@" . hostname() . " $ "
-    let g:vimshell_right_prompt = '"[" . getcwd() . "]"'
-
-    autocmd vimrc FileType vimshell
-      \ call vimshell#altercmd#define('g', 'git')
-      \| call vimshell#altercmd#define('i', 'iexe')
-      \| call vimshell#altercmd#define('l', 'll')
-      \| call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
-
-    function! MyChpwd(args, context)
-      call vimshell#execute('ls')
-    endfunction \| call vimshell#altercmd#define('ll', 'ls -l')
-  endfunction
-  unlet s:bundle
-" }}}
-
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>
@@ -701,6 +639,25 @@ endfunction
 " FZF {{{
   " Like CtrlP
   noremap <silent> <C-\> :FZF<Enter>
+
+  " <Leader>lb opens buffer list
+  function! s:buflist()
+    redir => ls
+    silent ls
+    redir END
+    return split(ls, '\n')
+  endfunction
+
+  function! s:bufopen(e)
+    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+  endfunction
+
+  nnoremap <silent> <Leader>lb :call fzf#run({
+  \   'source':  reverse(<sid>buflist()),
+  \   'sink':    function('<sid>bufopen'),
+  \   'options': '+m',
+  \   'down':    '50%'
+  \ })<CR>
 " }}}
 
 " Tagbar.Vim {{{
@@ -735,19 +692,6 @@ endfunction
 " }}}
 
 " unite.vim {{{
-  " all files
-  nnoremap <silent> <leader>uf  :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
-  " all bufferlist
-  nnoremap <silent> <leader>ub  :<C-u>Unite buffer<CR>
-  " normal unite
-  nnoremap <silent> <leader>uu  :<C-u>Unite buffer file_mru<CR>
-  " show recent used files
-  nnoremap <silent> <leader>um  :<C-u>Unite file_mru<CR>
-  " show files from current directory
-  nnoremap <silent> <leader>ud  :<C-u>UniteWithBufferDir -no-split file<CR>
-  " unite outline
-  cnoremap UO Unite outline<Enter>
-
   " unite tag
   autocmd vimrc BufEnter *
     \   if empty(&buftype)
@@ -760,7 +704,9 @@ endfunction
   let s:bundle = neobundle#get('unite.vim')
   function! s:bundle.hooks.on_source(bundle)
     let g:unite_source_file_mru_limit = 200
-    let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+    let g:unite_source_rec_async_command =
+          \ ['ag', '--follow', '--nocolor', '--nogroup',
+          \  '--hidden', '-g', '']
   endfunction
   unlet s:bundle
 

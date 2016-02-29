@@ -4,17 +4,12 @@ DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
 
 function setup () {
     ln -s $DOTFILES_DIR/.vimrc $HOME/.vimrc
-    mkdir -p $HOME/.vim/bundle
-    cd $HOME/.vim/bundle
-    git clone git://github.com/Shougo/neobundle.vim.git
-    git clone git://github.com/Shougo/vimproc.git
-    cd $HOME/.vim/bundle/vimproc
-    make
-    $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
+    mkdir -p $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
+    git clone https://github.com/Shougo/dein.vim  $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 }
 
 function update () {
-    $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
+    echo "Launch vim and :call dein#update()"
 }
 
 function clean () {

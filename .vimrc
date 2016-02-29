@@ -36,232 +36,184 @@ autocmd vimrc BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 "*****************************************************************************
 "" Bundle
 "*****************************************************************************
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
-
-let vundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-
-if !filereadable(vundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-endif
+set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('$HOME/.cache/dein'))
 
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#add('Shougo/dein.vim', {'rtp': ''})
 
 " Edit {{{
   " NERD_commenter.vim :toggle comment via <Leader>c<space>
-  NeoBundle 'scrooloose/nerdcommenter.git'
+  call dein#add('scrooloose/nerdcommenter.git')
 
   " visually indent guide
-  NeoBundle 'nathanaelkane/vim-indent-guides'
+  call dein#add('nathanaelkane/vim-indent-guides')
 
   " vim-easy-align
   " https://github.com/junegunn/vim-easy-align
-  NeoBundleLazy 'junegunn/vim-easy-align', {
-  \  'autoload' : {
-  \      'commands' : ['EasyAlign']
-  \  },
-  \}
+  call dein#add('junegunn/vim-easy-align', {
+  \  'lazy': 1,
+  \  'on_cmd' : 'EasyAlign',
+  \ })
 
   " YankRing.vim
-  NeoBundle 'YankRing.vim'
+  call dein#add('YankRing.vim')
 
   " viaualstar : search *
-  NeoBundle 'thinca/vim-visualstar'
+  call dein#add('thinca/vim-visualstar')
 
   " surround.vim : surround text and comment with parentheses
-  NeoBundle 'surround.vim'
+  call dein#add('surround.vim')
 
   " vim-textobj-syntax : change selected text to text object
-  NeoBundle 'kana/vim-textobj-syntax.git', { 'depends': 'kana/vim-textobj-user'}
+  call dein#add('kana/vim-textobj-user')
+  call dein#add('kana/vim-textobj-syntax.git')
 
   " vim-textobj-fold : convet folded text to text object
-  NeoBundle 'kana/vim-textobj-fold.git'
-  NeoBundleLazy 'textobj-rubyblock' , {
-  \  'autoload' : {
-  \      'filetypes': 'ruby'
-  \  },
-  \}
+  call dein#add('kana/vim-textobj-fold.git')
+  call dein#add('textobj-rubyblock', {
+  \  'lazy' : 1,
+  \  'on_ft' : 'ruby',
+  \ })
 
   " vim-textobj-entire : convert buffer to text-object
-  NeoBundle 'textobj-entire'
+  call dein#add('textobj-entire')
 
   " neocomplete.vim
-  NeoBundleLazy 'Shougo/neocomplete', {
+  call dein#add('Shougo/neocomplete', {
   \  'disabled' : !has('lua'),
-  \  'autoload' : {
-  \     'insert' : 1
-  \  },
-  \}
+  \  'lazy' : 1,
+  \  'on_i' : 1
+  \ })
 
   " autocomplete require in ruby
-  NeoBundleLazy 'ujihisa/neco-ruby' , {
-  \  'autoload' : {
-  \      'filetypes': 'ruby'
-  \  },
-  \}
+  call dein#add('ujihisa/neco-ruby' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'ruby',
+  \ })
 
-  NeoBundleLazy 'osyo-manga/vim-over', {
-  \  'autoload' : {
-  \      'commands' : ['OverCommandLine']
-  \  },
-  \}
+  call dein#add('osyo-manga/vim-over', {
+  \  'lazy': 1,
+  \  'on_cmd' : 'OverCommandLine',
+  \ })
 
   " Speed up foldmethod
-  NeoBundle 'Konfekt/FastFold'
+  call dein#add('Konfekt/FastFold')
 " }}}
 
 " Searching/Moving {{{
   " vim-smartword : smart word moving
-  NeoBundle 'smartword'
+  call dein#add('smartword')
 
   " matchit.vim : move to corresponding parentheses via %
-  NeoBundle 'matchit.zip'
+  call dein#add('matchit.zip')
 
   " expand ruby matchit
-  NeoBundleLazy 'yasuoza/ruby-matchit' , {
-  \  'autoload' : {
-  \      'filetypes': 'ruby'
-  \  },
-  \}
-
-  " open-browser.vim : open url or search under coursor
-  NeoBundleLazy 'tyru/open-browser.vim', {
-  \  'autoload' : {
-  \      'commands' : ['OpenBrowser', 'OpenBrowserSearch']
-  \  },
-  \}
+  call dein#add('yasuoza/ruby-matchit' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'ruby',
+  \ })
 " }}}
 
 " Programming {{{
   " quickrun.vim
-  NeoBundle 'thinca/vim-quickrun'
+  call dein#add('thinca/vim-quickrun')
 
   " vim-ruby
-  NeoBundleLazy 'vim-ruby/vim-ruby' , {
-  \  'autoload' : {
-  \      'filetypes': 'ruby'
-  \  },
-  \}
-
-  " Show tablist on source
-  NeoBundleLazy 'majutsushi/tagbar', {
-  \  'autoload' : {
-  \      'commands' : ['TagbarToggle']
-  \  },
-  \}
+  call dein#add('vim-ruby/vim-ruby' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'ruby',
+  \ })
 " }}}
 
 " Syntax {{{
   " JavaScript
-  NeoBundleLazy 'JavaScript-syntax' , {
-  \  'autoload' : {
-  \      'filetypes': 'javascript'
-  \  },
-  \}
+  call dein#add('JavaScript-syntax' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'javascript',
+  \ })
 
   " nginx conf
-  NeoBundleLazy 'nginx.vim' , {
-  \  'autoload' : {
-  \      'filetypes': 'nginx'
-  \  },
-  \}
+  call dein#add('nginx.vim' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'nginx',
+  \ })
 
   " markdown
-  NeoBundleLazy 'tpope/vim-markdown' , {
-  \  'autoload' : {
-  \      'filetypes': 'markdown'
-  \  },
-  \}
+  call dein#add('tpope/vim-markdown' , {
+  \  'lazy' : 1,
+  \  'on_ft' : 'markdown',
+  \ })
 
   " coffee script
-  NeoBundleLazy 'kchmck/vim-coffee-script' , {
-  \  'autoload' : {
-  \      'filetypes': ['coffee', 'markdown'],
-  \  },
-  \}
+  call dein#add('kchmck/vim-coffee-script' , {
+  \  'lazy' : 1,
+  \  'on_ft' : ['coffeescript', 'markdown'],
+  \ })
 
   " vim-slim
-  NeoBundleLazy 'slim-template/vim-slim.git' , {
-  \  'autoload' : {
-  \      'filetypes': ['slim', 'markdown'],
-  \  },
-  \}
-
-  " fish
-  NeoBundleLazy 'aliva/vim-fish' , {
-  \  'autoload' : {
-  \      'filename_patterns': '\.fish$'
-  \  },
-  \}
-
-  " swift
-  NeoBundleLazy 'toyamarinyon/vim-swift' , {
-  \  'autoload' : {
-  \      'filename_patterns': '\.swift$'
-  \  },
-  \}
-
+  call dein#add('slim-template/vim-slim.git' , {
+  \  'lazy' : 1,
+  \  'on_ft' : ['slim', 'markdown'],
+  \ })
 " }}}
 
 " Utility {{{
   " vimproc : asynchronous execution from vimshell
-  NeoBundle 'Shougo/vimproc.vim', { 'build': {
-  \   'mac' : 'make -f make_mac.mak',
-  \   'unix': 'make -f make_unix.mak',
-  \  },
-  \}
+  call dein#add('Shougo/vimproc.vim', {
+  \ 'build': {
+  \     'windows': 'tools\\update-dll-mingw',
+  \     'cygwin': 'make -f make_cygwin.mak',
+  \     'mac': 'make -f make_mac.mak',
+  \     'linux': 'make',
+  \     'unix': 'gmake',
+  \    },
+  \ })
 
   " GIT from vim
-  NeoBundle 'tpope/vim-fugitive'
+  call dein#add('tpope/vim-fugitive')
 
   " Cool status line
-  NeoBundle 'bling/vim-airline'
-  NeoBundle 'yasuoza/vim-airline-super-hybrid-theme'
+  call dein#add('bling/vim-airline')
+  call dein#add('yasuoza/vim-airline-super-hybrid-theme')
 
-  NeoBundleLazy 'Shougo/vimfiler.vim', {
-  \   'depends' : 'Shougo/unite.vim',
-  \   'autoload' : {
-  \       'commands' : ['VimFiler', 'VimFilerCurrentDir',
-  \                     'VimFilerBufferDir', 'VimFilerSplit',
-  \                     'VimFilerExplorer', 'VimFilerDouble'],
-  \       'explorer' : 1
-  \   }
-  \ }
+  call dein#add('Shougo/vimfiler.vim', {
+  \   'lazy' : 1,
+  \   'depends' : 'unite.vim',
+  \   'on_cmd' : ['VimFiler', 'VimFilerCurrentDir',
+  \               'VimFilerBufferDir', 'VimFilerSplit',
+  \               'VimFilerExplorer', 'VimFilerDouble'],
+  \   'on_path' : '.*'
+  \ })
 " }}}
 
 " ColorSchema{{{{
 
-  NeoBundle 'w0ng/vim-hybrid'
+  call dein#add('w0ng/vim-hybrid')
 
 " }}}
 
 " Unite {{{{
-  NeoBundleLazy 'Shougo/unite.vim', {
-  \  'autoload' : {
-  \      'commands' : ['Unite', 'UniteWithCursorWord']
-  \  },
-  \}
+  call dein#add('Shougo/unite.vim', {
+  \ 'lazy' : 1,
+  \ 'on_cmd' : ['Unite', 'UniteWithCursorWord'],
+  \ })
 
-  NeoBundle 'tsukkee/unite-tag'
+  call dein#add('tsukkee/unite-tag')
 " }}}
 
-call neobundle#end()
+call dein#end()
 
 filetype plugin indent on
 
-NeoBundleCheck
+if dein#check_install()
+  call dein#install()
+endif
 
 
 "*****************************************************************************
@@ -436,8 +388,7 @@ cnoremap <Down>  <C-n>
   let g:acp_enableAtStartup = 0   " Enable NeoComplCahe at vim start
   let g:neocomplete#enable_at_startup = 1
 
-  let s:bundle = neobundle#get('neocomplete')
-  function! s:bundle.hooks.on_source(bundle)
+  if dein#tap('neocomplete')
     let g:neocomplete#enable_smart_case = 1   " Use smartcase.
     let g:neocomplete#sources#syntax#min_keyword_length = 5 " Set minimum syntax keyword length.
     let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
@@ -476,8 +427,7 @@ cnoremap <Down>  <C-n>
     if !exists('g:neocomplete#sources#omni#input_patterns')
       let g:neocomplete#sources#omni#input_patterns = {}
     endif
-  endfunction
-  unlet s:bundle
+  endif
 " }}}
 
 
@@ -701,14 +651,12 @@ endfunction
   let g:unite_source_tag_strict_truncate_string = 0
 
   " configuration
-  let s:bundle = neobundle#get('unite.vim')
-  function! s:bundle.hooks.on_source(bundle)
+  if dein#tap('unite.vim')
     let g:unite_source_file_mru_limit = 200
     let g:unite_source_rec_async_command =
           \ ['ag', '--follow', '--nocolor', '--nogroup',
           \  '--hidden', '-g', '']
-  endfunction
-  unlet s:bundle
+  endif
 
   autocmd vimrc FileType unite call s:unite_my_settings()
   function! s:unite_my_settings() "{{{

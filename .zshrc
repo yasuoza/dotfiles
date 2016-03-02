@@ -13,8 +13,10 @@ fpath=($HOME/dotfiles/zsh/completion ${fpath})
 autoload -U compinit && compinit -u
 
 #=============================
-# OS
+# Source
 #=============================
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 case "${OSTYPE}" in
     # Mac(Unix)
     darwin*)
@@ -126,8 +128,6 @@ source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 source $HOME/dotfiles/zsh/plugins/fzf.plugin.zsh
 
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # #=============================
 # # Alias

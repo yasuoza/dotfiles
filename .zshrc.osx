@@ -39,7 +39,7 @@ alias pbc='pbcopy'
 #=============================
 # $EDITOR
 #=============================
-export EDITOR=/usr/local/bin/vim
+export EDITOR=$(which vim)
 
 #=============================
 # Plugins

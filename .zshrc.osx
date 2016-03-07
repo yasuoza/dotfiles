@@ -12,11 +12,14 @@ INFOPATH=/usr/local/info:$INFOPATH
 export INFOPATH
 
 # zsh-completion from Homebrew
-if [ -d /usr/local/share/zsh/site-functions ]; then
-    fpath=(/usr/local/share/zsh/site-functions $fpath)
-fi
-if [ -d /usr/local/share/zsh/zsh-completions ]; then
-    fpath=(/usr/local/share/zsh/zsh-completions $fpath)
+if type "brew" > /dev/null; then
+    if [ -d $(brew --prefix)/share/zsh/site-functions ]; then
+        fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+    fi
+
+    if [ -d $(brew --prefix)/share/zsh/zsh-completions ]; then
+        fpath=($(brew --prefix)/share/zsh/zsh-completions $fpath)
+    fi
 fi
 autoload -U compinit && compinit -u
 
@@ -53,7 +56,7 @@ if [ -s $HOME/dotfiles/bash/completion.d/tig-completion.bash ]; then
     source $HOME/dotfiles/bash/completion.d/tig-completion.bash
 fi
 
-if [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
+if type "brew" > /dev/null && [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
     _Z_CMD=j
     . `brew --prefix`/etc/profile.d/z.sh
 fi

@@ -153,7 +153,7 @@ call dein#add('Shougo/dein.vim', {'rtp': ''})
   " coffee script
   call dein#add('kchmck/vim-coffee-script' , {
   \  'lazy' : 1,
-  \  'on_ft' : ['coffeescript', 'markdown'],
+  \  'on_ft' : ['coffee', 'markdown'],
   \ })
 
   " vim-slim

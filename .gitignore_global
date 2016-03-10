@@ -44,4 +44,8 @@ samples
 .rbenv-version
 .test_queue_stats
 
+# vim
 .vim/bundle/
+
+# Direnv
+.direnv

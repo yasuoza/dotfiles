@@ -1,36 +1,42 @@
-# To use Brewfile, tap bundle command
-#
+# vim: expandtab ft=ruby
+
+# To bootstrap development, run following commands.
 # brew tap Homebrew/bundle
+# brew bundle
 
-# Update formulas
-update
+# Environments
+brew 'z'
+brew 'fzf'
+brew 'reattach-to-user-namespace'
+brew 'the_silver_searcher'
+brew 'tmux'
 
-# gls, gdircolor
-install coreutils
+# Utils
+brew 'coreutils'
+brew 'ctags'
+brew 'readline'
+brew 'tree'
+brew 'hr'
+brew 'direnv'
+brew 'mergepbx'
+brew 'pngquant'
 
-# version control
-install git
-install git-now
-install tig
+# SCM
+brew 'git'
+brew 'git-now'
+brew 'hub'
+brew 'tig'
 
-# tmux
-install tmux
-install reattach-to-user-namespace
+# Rails development
+brew 'chromedriver'
+brew 'phantomjs'
 
-# ruby
-install rbenv
-install rbenv-gem-rehash
-install readline
+# Languages
+brew 'lua'
+brew 'luajit'
+brew 'python3'
+brew 'ruby-build'
+brew 'rbenv'
 
-# go
-install go
-
-# $EDITOR
-install vim --with-lua --with-perl --with-python3 --with-python --with-ruby
-
-# dev-tools
-install tree
-install fzf
-install ctags
-install z
-install pngquant
+# EDITOR
+brew 'vim', args: ['with-python3', 'with-lua']

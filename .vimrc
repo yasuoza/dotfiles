@@ -260,6 +260,7 @@ set ignorecase                   " ignore charactor case
 set smartcase                    " Consider capital case when keyword contains it
 set incsearch                    " Incremental search
 set hlsearch                     " highlight searched words
+set synmaxcol=200                " Restrict syntax search columns
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0

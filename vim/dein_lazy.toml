@@ -1,0 +1,58 @@
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_cmd = 'EasyAlign'
+
+[[plugins]]
+repo = 'textobj-rubyblock'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'Shougo/neocomplete'
+if = "!has('lua')"
+on_i = 1
+
+# autocomplete required in ruby
+[[plugins]]
+repo = 'ujihisa/neco-ruby'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'osyo-manga/vim-over'
+on_cmd = 'OverCommandLine'
+
+# expand ruby matchit
+[[plugins]]
+repo = 'yasuoza/ruby-matchit'
+
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'JavaScript-syntax'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = ['coffee', 'markdown']
+
+[[plugins]]
+repo = 'slim-template/vim-slim.git'
+on_ft = ['slim', 'markdown']
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+on_cmd = ['Unite', 'UniteWithCursorWord']
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+on_cmd = ['VimFiler', 'VimFilerCurrentDir', 'VimFilerBufferDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerDouble']
+on_path = '.*'

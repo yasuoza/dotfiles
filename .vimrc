@@ -39,21 +39,21 @@ autocmd vimrc BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 if &compatible
   set nocompatible
 endif
-set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin(expand('$HOME/.cache/dein'))
+let s:cache_path = expand('$HOME/.cache/dein')
+call dein#load_state(s:cache_path)
 
 let s:toml = '$HOME/dotfiles/vim/dein.toml'
 let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
 
-if dein#load_cache([expand('<sfile>', s:toml, s:lazy_toml)])
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  call dein#save_cache()
-endif
+call dein#begin(s:cache_path, [expand('<sfile>', s:toml, s:lazy_toml)])
+call dein#load_toml(s:toml, {'lazy': 0})
+call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
 call dein#end()
+call dein#save_state()
 
 filetype plugin indent on
 

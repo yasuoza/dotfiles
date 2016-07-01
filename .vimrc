@@ -21,8 +21,10 @@ endif
 
 " Enable FZF command
 " https://github.com/junegunn/fzf#usage-as-vim-plugin
-if isdirectory('/usr/local/opt/fzf')
-  set rtp+=/usr/local/opt/fzf
+let s:brew_prefix = substitute(system('brew --prefix'), '\n\+$', '', '')
+let s:fzf_directory = globpath(s:brew_prefix, '/opt/fzf')
+if isdirectory(s:fzf_directory)
+  exe "set rtp+=".s:fzf_directory
 endif
 
 " http://mattn.kaoriya.net/software/vim/20130531000559.htm

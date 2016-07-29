@@ -39,4 +39,4 @@ brew 'ruby-build'
 brew 'rbenv'
 
 # EDITOR
-brew 'vim', args: ['with-python3', 'with-lua']
+brew 'vim', args: ['with-python3', 'with-lua', 'with-luajit']

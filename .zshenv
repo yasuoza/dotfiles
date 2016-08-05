@@ -1,34 +1,22 @@
 #=============================
 # rbenv
 #=============================
-if [ -d $HOME/.rbenv  ] ; then
-    export PATH=$HOME/.rbenv/bin:$PATH
-
-    if type "rbenv" > /dev/null; then
-        eval "$(rbenv init -)"
-    fi
+if type rbenv > /dev/null; then
+    eval "$(rbenv init -)"
 fi
 
 #=============================
 # plenv
 #=============================
-if [ -d $HOME/.plenv ] ; then
-    export PATH=$HOME/.plenv/bin:$HOME/.plenv/shims:$PATH
-
-    if type "plenv" > /dev/null; then
-        eval "$(plenv init -)"
-    fi
+if type plenv > /dev/null; then
+    eval "$(plenv init -)"
 fi
 
 #=============================
 # pyenv
 #=============================
-if [ -d $HOME/.pyenv ] ; then
-    export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH
-
-    if type "pyenv" > /dev/null; then
-        eval "$(pyenv init -)"
-    fi
+if type pyenv > /dev/null; then
+    eval "$(pyenv init -)"
 fi
 
 #=============================

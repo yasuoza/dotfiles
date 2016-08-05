@@ -49,6 +49,10 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
+
+[[plugins]]
 repo = 'Shougo/unite.vim'
 on_cmd = ['Unite', 'UniteWithCursorWord']
 

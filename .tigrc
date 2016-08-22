@@ -6,8 +6,8 @@ set diff-options   = -m --first-parent
 set main-options   = -n 1000
 
 # View specific settings
-set main-view      = id:yes date:short author:yes commit-title:yes,graph=yes,refs=yes,overflow=no
-set blame-view     = date:short author:full file-name:auto id:yes,color line-number:yes,interval=5 text
+set main-view      = id:yes date:custom author:yes commit-title:yes,graph=yes,refs=yes,overflow=no
+set blame-view     = date:custom author:full file-name:auto id:yes,color line-number:yes,interval=5 text
 
 # Keymap
 ## For general

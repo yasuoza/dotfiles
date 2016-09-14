@@ -22,7 +22,7 @@ endif
 " Enable FZF command
 " https://github.com/junegunn/fzf#usage-as-vim-plugin
 let s:brew_prefix = substitute(system('brew --prefix'), '\n\+$', '', '')
-let s:fzf_directory = globpath(s:brew_prefix, '/opt/fzf')
+let s:fzf_directory = globpath(s:brew_prefix, 'opt/fzf')
 if isdirectory(s:fzf_directory)
   exe "set rtp+=".s:fzf_directory
 endif

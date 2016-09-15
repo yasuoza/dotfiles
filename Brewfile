@@ -28,7 +28,6 @@ brew 'hub'
 brew 'tig'
 
 # Rails development
-brew 'chromedriver'
 brew 'phantomjs'
 
 # Languages

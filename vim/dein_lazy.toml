@@ -29,7 +29,7 @@ repo = 'vim-ruby/vim-ruby'
 on_ft = 'ruby'
 
 [[plugins]]
-repo = 'JavaScript-syntax'
+repo = 'othree/yajs.vim'
 on_ft = 'javascript'
 
 [[plugins]]

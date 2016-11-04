@@ -20,6 +20,8 @@ if type "brew" > /dev/null; then
     if [ -d $(brew --prefix)/share/zsh/zsh-completions ]; then
         fpath=($(brew --prefix)/share/zsh/zsh-completions $fpath)
     fi
+
+    export HOMEBREW_PREFIX=$(brew --prefix)
 fi
 autoload -U compinit && compinit -u
 

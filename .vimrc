@@ -21,8 +21,7 @@ endif
 
 " Enable FZF command
 " https://github.com/junegunn/fzf#usage-as-vim-plugin
-let s:brew_prefix = substitute(system('brew --prefix'), '\n\+$', '', '')
-let s:fzf_directory = globpath(s:brew_prefix, 'opt/fzf')
+let s:fzf_directory = globpath($HOMEBREW_PREFIX, 'opt/fzf')
 if isdirectory(s:fzf_directory)
   exe "set rtp+=".s:fzf_directory
 endif
@@ -32,7 +31,6 @@ if ($GOROOT != "") && ($GOPATH != "")
   set rtp+=$GOROOT/misc/vim
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
-autocmd vimrc BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 
 
 "*****************************************************************************
@@ -50,7 +48,7 @@ call dein#load_state(s:cache_path)
 let s:toml = '$HOME/dotfiles/vim/dein.toml'
 let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
 
-call dein#begin(s:cache_path, [expand('<sfile>', s:toml, s:lazy_toml)])
+call dein#begin(s:cache_path, [expand('<sfile>')])
 call dein#load_toml(s:toml, {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -194,6 +192,7 @@ let g:markdown_fenced_languages = [
 "" Filetype
 "*****************************************************************************
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 
 
 "*****************************************************************************

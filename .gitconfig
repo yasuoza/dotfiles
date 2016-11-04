@@ -73,5 +73,4 @@
   reamend    = commit --amend -C HEAD
   fetch-pull = !sh -c 'git fetch $1 pull/$2/head:remotes/$1/pull/$2' -
   br-merged  = !"git branch --merged | grep -v master | grep -v '*'"
-  br-now     = !"git symbolic-ref --short HEAD"
   pull-req   = !"hub pull-request"

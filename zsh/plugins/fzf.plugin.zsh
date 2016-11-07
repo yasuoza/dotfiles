@@ -28,14 +28,15 @@ if type fzf &> /dev/null; then
     bindkey '^X^J' _fzf_select_directory
 
     # Select local git branche
-    function _fzf_select_local_git_branches() {
-        local branche=$(command git branch | fzf-tmux | sed -e "s/^\*[ ]*//g")
-        if [ -n $branche ]; then
-            BUFFER="$LBUFFER'${branche}'"
+    function _fzf_select_local_git_branch() {
+        local branch=$(command git branch -a | fzf-tmux | sed -e "s/^\*//g" | sed -e "s/^[ ]*//g" | sed -e "s/^remotes\///g")
+        if [ -n "$branch" ]; then
+            BUFFER="$LBUFFER'${branch}'"
             CURSOR=$#BUFFER         # move cursor
             zle -R -c               # refresh
         fi
+        zle reset-prompt
     }
-    zle -N _fzf_select_local_git_branches
-    bindkey '^G^J' _fzf_select_local_git_branches
+    zle -N _fzf_select_local_git_branch
+    bindkey '^G^J' _fzf_select_local_git_branch
 fi

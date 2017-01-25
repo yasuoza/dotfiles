@@ -27,9 +27,6 @@ brew 'git-now'
 brew 'hub'
 brew 'tig'
 
-# Rails development
-brew 'phantomjs'
-
 # Languages
 brew 'lua'
 brew 'luajit'

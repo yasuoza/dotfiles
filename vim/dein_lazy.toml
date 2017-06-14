@@ -3,7 +3,7 @@ repo = 'junegunn/vim-easy-align'
 on_cmd = 'EasyAlign'
 
 [[plugins]]
-repo = 'textobj-rubyblock'
+repo = 'vim-scripts/textobj-rubyblock'
 on_ft = 'ruby'
 
 [[plugins]]

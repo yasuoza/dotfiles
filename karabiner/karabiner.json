@@ -12,9 +12,18 @@
                 },
                 "rules": [
                     {
+                        "description": "control+j to control+j & eisuu",
                         "manipulators": [
                             {
-                                "description": "control+j to control+j & eisuu",
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
@@ -38,9 +47,22 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "escape to escape & eisuu",
+                        "manipulators": [
                             {
-                                "description": "escape to escape & eisuu",
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.googlecode\\.iterm2$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "escape"
                                 },

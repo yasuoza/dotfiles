@@ -74,3 +74,8 @@ fi
 if type "plenv" > /dev/null; then
     eval "$(plenv init -)"
 fi
+
+if [ -d /Applications/MacVim.app ]; then
+    alias vim='env LANG=en_US.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
+    export EDITOR=$(which vim)
+fi

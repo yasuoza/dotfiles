@@ -76,6 +76,7 @@ if type "plenv" > /dev/null; then
 fi
 
 if [ -d /Applications/MacVim.app ]; then
-    alias vim='env LANG=en_US.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
-    export EDITOR=$(which vim)
+    vim='env LANG=en_US.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
+    alias vim=$vim
+    export EDITOR=$vim
 fi

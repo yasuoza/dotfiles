@@ -144,6 +144,7 @@ set lazyredraw                                    " do not rerender while comman
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
+set regexpengine=1                                " Use old regexp engine for cursorline performance
 
 " {{{ Cursor
   " show line on current window

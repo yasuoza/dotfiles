@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'rexml/document'
+require 'date'
+
+if ARGV.empty?
+  puts "USAGE: retouch_mp4_time [MP4_FILE]"
+  return
+end
+
+movie_file = ARGV.first
+xml_file   = movie_file.sub(/(?:-1)?\.MP4/i, 'M01.XML')
+xml        = REXML::Document.new(File.open(xml_file).read)
+created_at = DateTime.parse(xml.elements['NonRealTimeMeta/CreationDate'].attributes['value'])
+
+command = "touch -t #{created_at.strftime('%Y%m%d%H%M.%S')} #{movie_file}"
+puts command
+system command

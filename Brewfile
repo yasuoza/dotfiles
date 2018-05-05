@@ -4,6 +4,12 @@
 # brew tap Homebrew/bundle
 # brew bundle
 
+# Tap
+tap 'heroku/brew'
+tap 'homebrew/core'
+tap 'homebrew/bundle'
+tap 'caskroom/cask'
+
 # Environments
 brew 'z'
 brew 'fzf'
@@ -34,5 +40,11 @@ brew 'python3'
 brew 'ruby-build'
 brew 'rbenv'
 
+# Infra
+brew 'awscli'
+brew 'amazon-ecs-cli'
+brew 'docker'
+brew 'ansible'
+
 # EDITOR
-brew 'vim', args: ['with-python3', 'with-lua', 'with-luajit']
+brew 'vim', args: ['with-lua']

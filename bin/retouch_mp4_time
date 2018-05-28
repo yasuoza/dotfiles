@@ -8,11 +8,16 @@ if ARGV.empty?
   return
 end
 
-movie_file = ARGV.first
-xml_file   = movie_file.sub(/(?:-1)?\.MP4/i, 'M01.XML')
-xml        = REXML::Document.new(File.open(xml_file).read)
-created_at = DateTime.parse(xml.elements['NonRealTimeMeta/CreationDate'].attributes['value'])
+def execute(command)
+  puts command
+  system command
+end
 
-command = "touch -t #{created_at.strftime('%Y%m%d%H%M.%S')} #{movie_file}"
-puts command
-system command
+movie_file     = ARGV.first
+xml_file       = movie_file.sub(/(?:-1)?\.MP4/i, 'M01.XML')
+xml            = REXML::Document.new(File.open(xml_file).read)
+created_at     = DateTime.parse(xml.elements['NonRealTimeMeta/CreationDate'].attributes['value'])
+created_at_utc = created_at.to_time.utc.strftime('%Y:%m:%d %H:%M:%S%:z')
+
+execute "exiftool -overwrite_original -CreateDate='#{created_at_utc}' -MediaCreateDate='#{created_at_utc}' -DateTimeOriginal='#{created_at}' #{movie_file}"
+execute "touch -t #{created_at.strftime('%Y%m%d%H%M.%S')} #{movie_file}"

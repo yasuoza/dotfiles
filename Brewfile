@@ -5,8 +5,6 @@
 # brew bundle
 
 # Tap
-tap 'heroku/brew'
-tap 'homebrew/core'
 tap 'homebrew/bundle'
 tap 'caskroom/cask'
 
@@ -43,8 +41,12 @@ brew 'rbenv'
 # Infra
 brew 'awscli'
 brew 'amazon-ecs-cli'
-brew 'docker'
 brew 'ansible'
 
 # EDITOR
 brew 'vim', args: ['with-lua']
+
+# CASK
+cask "docker"
+cask "keyboard-cleaner"
+cask "vagrant"

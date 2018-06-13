@@ -44,7 +44,7 @@ brew 'amazon-ecs-cli'
 brew 'ansible'
 
 # EDITOR
-brew 'vim', args: ['with-lua']
+brew 'vim', args: ['with-luajit']
 
 # CASK
 cask "docker"

@@ -42,6 +42,7 @@ brew 'rbenv'
 brew 'awscli'
 brew 'amazon-ecs-cli'
 brew 'ansible'
+brew 'terraform'
 
 # EDITOR
 brew 'vim', args: ['with-luajit']

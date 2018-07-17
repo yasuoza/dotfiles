@@ -107,6 +107,7 @@ set smartcase                    " Consider capital case when keyword contains i
 set incsearch                    " Incremental search
 set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
+set noundofile                   " Prevent from creating un~ file
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0

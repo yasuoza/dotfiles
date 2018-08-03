@@ -38,6 +38,9 @@ brew 'python3'
 brew 'ruby-build'
 brew 'rbenv'
 
+# DB
+brew 'mysql-client'
+
 # Infra
 brew 'awscli'
 brew 'amazon-ecs-cli'

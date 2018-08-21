@@ -22,8 +22,9 @@ brew 'readline'
 brew 'tree'
 brew 'hr'
 brew 'direnv'
-brew 'mergepbx'
 brew 'pngquant'
+brew 'pigz'
+brew 'htop'
 
 # SCM
 brew 'git'

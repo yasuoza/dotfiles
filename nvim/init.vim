@@ -15,8 +15,8 @@ if &shell =~# 'fish$'
     set shell=sh
 endif
 
-if isdirectory($HOME.'/dotfiles/vim')
-  set rtp+=$HOME/dotfiles/vim/
+if isdirectory($HOME.'/dotfiles/nvim')
+  set rtp+=$HOME/dotfiles/nvim/
 endif
 
 " Enable FZF command
@@ -42,11 +42,11 @@ endif
 set runtimepath^=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-let s:cache_path = expand('$HOME/.cache/vim/dein')
+let s:cache_path = expand('$HOME/.cache/nvim/dein')
 call dein#load_state(s:cache_path)
 
-let s:toml = '$HOME/dotfiles/vim/dein.toml'
-let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
+let s:toml = '$HOME/dotfiles/nvim/dein.toml'
+let s:lazy_toml = '$HOME/dotfiles/nvim/dein_lazy.toml'
 
 call dein#begin(s:cache_path, [expand('<sfile>')])
 call dein#load_toml(s:toml, {'lazy': 0})
@@ -90,7 +90,6 @@ set modeline                     " enable mode line
 set clipboard=unnamed            " use os's clipboard
 set mouse=a                      " use mouse on terminal
 set guioptions+=a
-set ttymouse=xterm2
 set helpfile=$VIMRUNTIME/doc/help.txt
 set autoindent                   " auto indent
 set smartindent                  " set same amount of indent when insert new line
@@ -145,7 +144,6 @@ set lazyredraw                                    " do not rerender while comman
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
-set regexpengine=1                                " Use old regexp engine for cursorline performance
 
 " {{{ Cursor
   " show line on current window
@@ -242,50 +240,8 @@ cnoremap <C-p> <Up>
 cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
-" NeoComplete {{{
-  let g:acp_enableAtStartup = 0   " Enable NeoComplCahe at vim start
-  let g:neocomplete#enable_at_startup = 1
-
-  if dein#tap('neocomplete')
-    let g:neocomplete#enable_smart_case = 1   " Use smartcase.
-    let g:neocomplete#sources#syntax#min_keyword_length = 5 " Set minimum syntax keyword length.
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-      let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    " Plugin key-mappings.
-    inoremap <expr><C-g>     neocomplete#undo_completion()
-    inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-      return neocomplete#close_popup() . "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplete#close_popup()
-    inoremap <expr><C-e>  neocomplete#cancel_popup()
-    " Enable omni completion.
-    autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd vimrc FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd vimrc FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-    " Enable heavy omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-      let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-  endif
+" deoplete {{{
+  let g:deoplete#enable_at_startup = 1
 " }}}
 
 
@@ -408,8 +364,8 @@ endfunction
 "*****************************************************************************
 " YankRing.vim {{{
   nmap ,y ;YRShow<CR> " show Yank history
-  let g:yankring_manual_clipboard_check = 1
-  let g:yankring_history_dir = '$HOME/.vim'
+  let g:yankring_clipboard_monitor = 0
+  let g:yankring_history_dir = '$HOME/.config/nvim'
   let g:yankring_max_history = 100
 " }}}
 
@@ -468,62 +424,18 @@ endfunction
   \ })<CR>
 " }}}
 
-" Tagbar.Vim {{{
-  let g:tagbar_width = 30
-  let g:tagbar_compact = 1
-  let g:tagbar_left = 1
-  let g:tagbar_sort = 0
-  nmap <silent> <leader>t :TagbarToggle<CR>
-  " If there is patched [ripper-tags](https://github.com/yasuoza/ripper-tags/tree/vim%2Bline_no), use it for ruby ctags generator
-  if executable('ripper-tags')
-    let ripper_tags_path = substitute(system('which ripper-tags'), '\n$', '', 'g')
-    let g:tagbar_type_ruby = {
-        \ 'ctagsbin'  : ripper_tags_path,
-        \ 'ctagsargs' : ['-f', '-', '-R', '--exclude=vendor'],
-        \ 'kinds' : [
-                      \ 'a:aliases',
-                      \ 'm:modules',
-                      \ 'c:classes',
-                      \ 'd:describes',
-                      \ 'C:constants',
-                      \ 'f:methods',
-                      \ 'F:singleton methods'
-                    \ ]
-    \ }
-  endif
-" }}}
-
 " open-blowser.vim {{{
   let g:netrw_nogx = 1 " disable netrw's gx mapping.
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
-" unite.vim {{{
-  " unite tag
+" denite.vim {{{
+  " denite for tag
   autocmd vimrc BufEnter *
     \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately tag<CR>
     \|  endif
-  let g:unite_source_tag_max_fname_length = 50
-  let g:unite_source_tag_strict_truncate_string = 0
-
-  " configuration
-  if dein#tap('unite.vim')
-    let g:unite_source_file_mru_limit = 200
-    let g:unite_source_rec_async_command =
-          \ ['ag', '--follow', '--nocolor', '--nogroup',
-          \  '--hidden', '-g', '']
-  endif
-
-  autocmd vimrc FileType unite call s:unite_my_settings()
-  function! s:unite_my_settings() "{{{
-    " Open like a VimFiler
-    nnoremap <silent><buffer><expr> e   unite#do_action('open')
-
-    " Delete buffer with 'dd'
-    nnoremap <silent><buffer><expr> dd  unite#do_action('delete')
-  endfunction "}}}
 " }}}
 
 " quickrun.vim {{{

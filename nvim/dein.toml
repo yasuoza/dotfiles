@@ -1,0 +1,68 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+
+# NERD_commenter.vim :toggle comment via <Leader>c<space>
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+
+# visually indent guide
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+# [[plugins]]
+# repo = 'vim-scripts/YankRing.vim'
+
+# # viaualstar : search *
+[[plugins]]
+repo = 'thinca/vim-visualstar'
+
+# # surround.vim : surround text and comment with parentheses
+[[plugins]]
+repo = 'vim-scripts/surround.vim'
+
+# # vim-textobj-syntax : change selected text to text object
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+[[plugins]]
+repo = 'kana/vim-textobj-syntax.git'
+
+# vim-textobj-fold : convet folded text to text object
+[[plugins]]
+repo = 'kana/vim-textobj-fold.git'
+
+# # vim-textobj-entire : convert buffer to text-object
+[[plugins]]
+repo = 'vim-scripts/textobj-entire'
+
+# # Speed up foldmethod
+[[plugins]]
+repo = 'Konfekt/FastFold'
+
+# # vim-smartword : smart word moving
+[[plugins]]
+repo = 'vim-scripts/smartword'
+
+# # matchit.vim : move to corresponding parentheses via %
+# [[plugins]]
+repo = 'vim-scripts/matchit.zip'
+
+# [[plugins]]
+repo = 'thinca/vim-quickrun'
+
+# [[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# # Cool status line
+[[plugins]]
+repo = 'bling/vim-airline'
+[[plugins]]
+repo = 'yasuoza/vim-airline-super-hybrid-theme'
+[[plugins]]
+repo = 'w0ng/vim-hybrid'

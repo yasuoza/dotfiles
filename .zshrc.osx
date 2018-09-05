@@ -81,6 +81,8 @@ if [ -d /Applications/MacVim.app ]; then
     export EDITOR=$vim
 fi
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 if [ -d /usr/local/opt/mysql-client/bin ]; then
     export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 fi

@@ -4,6 +4,10 @@ DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
 
 function setup () {
     ln -s $DOTFILES_DIR/.vimrc $HOME/.vimrc
+
+    mkdir -p $HOME/.config/nvim
+    ln -s $DOTFILES_DIR/nvim/init.vim $HOME/.config/nvim/init.vim
+
     mkdir -p $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
     git clone https://github.com/Shougo/dein.vim  $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 }

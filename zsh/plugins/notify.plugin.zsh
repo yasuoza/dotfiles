@@ -16,7 +16,7 @@ autoload -Uz add-zsh-hook
 __timetrack_threshold=20 # seconds
 read -r -d '' __timetrack_ignore_progs <<EOF
 tmux tmux-session less fg     emacs vi
-vim  git          g    tig    t
+nvim vim          git  g      tig   t
 pry  ssh          mosh telnet nc    netcat
 gdb
 EOF

@@ -26,6 +26,11 @@ fi
 autoload -U compinit && compinit -u
 
 #=============================
+# For Neovim
+#=============================
+export XDG_CONFIG_HOME=$HOME/.config
+
+#=============================
 # Dev-PATH
 #=============================
 if [ -s /usr/local/opt/android-sdk ]; then
@@ -75,13 +80,10 @@ if type "plenv" > /dev/null; then
     eval "$(plenv init -)"
 fi
 
-if [ -d /Applications/MacVim.app ]; then
-    vim='env LANG=en_US.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
-    alias vim=$vim
-    export EDITOR=$vim
+if type "nvim" > /dev/null; then
+    alias vim=nvim
+    export EDITOR=nvim
 fi
-
-export XDG_CONFIG_HOME=$HOME/.config
 
 if [ -d /usr/local/opt/mysql-client/bin ]; then
     export PATH="/usr/local/opt/mysql-client/bin:$PATH"

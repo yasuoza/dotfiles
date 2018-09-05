@@ -7,6 +7,9 @@ build = 'make'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
 
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]

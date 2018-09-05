@@ -49,7 +49,7 @@ brew 'ansible'
 brew 'terraform'
 
 # EDITOR
-brew 'vim', args: ['with-luajit']
+brew 'nvim'
 
 # CASK
 cask "docker"

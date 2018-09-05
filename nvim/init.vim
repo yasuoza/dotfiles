@@ -240,10 +240,6 @@ cnoremap <C-p> <Up>
 cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
-" deoplete {{{
-  let g:deoplete#enable_at_startup = 1
-" }}}
-
 
 "*****************************************************************************
 "" Cursor Moving

@@ -358,13 +358,6 @@ endfunction
 "*****************************************************************************
 ""  Bundle setting
 "*****************************************************************************
-" YankRing.vim {{{
-  nmap ,y ;YRShow<CR> " show Yank history
-  let g:yankring_clipboard_monitor = 0
-  let g:yankring_history_dir = '$HOME/.config/nvim'
-  let g:yankring_max_history = 100
-" }}}
-
 " MiniBufExplorer {{{
   let g:miniBufExplMapWindowNavVim=1 "move hjkl
   let g:miniBufExplSplitBelow=0  " Put new window above

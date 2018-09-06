@@ -426,14 +426,6 @@ endfunction
   vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
-" denite.vim {{{
-  " denite for tag
-  autocmd vimrc BufEnter *
-    \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately-1 -mode=normal -highlight-matched-char=Normal tag<CR>
-    \|  endif
-" }}}
-
 " quickrun.vim {{{
   let g:quickrun_config = {}
   let g:quickrun_config = {

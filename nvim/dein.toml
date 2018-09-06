@@ -11,6 +11,26 @@ hook_add = '''
   let g:deoplete#enable_at_startup = 1
 '''
 
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  autocmd vimrc BufEnter *
+    \   if empty(&buftype)
+    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately-1 -mode=normal -highlight-matched-char=Normal tag<CR>
+    \|  endif
+'''
+hook_post_source = '''
+  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+  call denite#custom#source('tag', 'matchers', ['matcher/substring'])
+
+  call denite#custom#map('insert', '<C-n>',
+    \ '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-p>',
+    \ '<denite:move_to_previous_line>', 'noremap')
+'''
+
+
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
@@ -20,7 +40,7 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'nathanaelkane/vim-indent-guides'
 
 # [[plugins]]
-# repo = 'vim-scripts/YankRing.vim'
+repo = 'vim-scripts/YankRing.vim'
 
 # # viaualstar : search *
 [[plugins]]

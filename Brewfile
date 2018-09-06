@@ -49,7 +49,7 @@ brew 'ansible'
 brew 'terraform'
 
 # EDITOR
-brew 'nvim'
+brew 'neovim'
 
 # CASK
 cask "docker"

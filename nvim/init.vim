@@ -430,7 +430,7 @@ endfunction
   " denite for tag
   autocmd vimrc BufEnter *
     \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately tag<CR>
+    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately-1 -mode=normal -highlight-matched-char=Normal tag<CR>
     \|  endif
 " }}}
 

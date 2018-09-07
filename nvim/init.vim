@@ -144,6 +144,7 @@ set lazyredraw                                    " do not rerender while comman
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
+set guicursor=a:block
 
 " {{{ Cursor
   " show line on current window
@@ -437,15 +438,6 @@ endfunction
   \       "runner/vimproc/updatetime" : 40,
   \   }
   \}
-" }}}
-
-" Indent-Guides {{{
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 0
-  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
-  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
-  let g:indent_guides_enable_on_vim_startup = 1
 " }}}
 
 " vim-go {{{

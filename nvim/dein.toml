@@ -37,9 +37,11 @@ repo = 'scrooloose/nerdcommenter'
 
 # visually indent guide
 [[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
-
-# [[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_char = '¦'
+'''
+[[plugins]]
 repo = 'LeafCage/yankround.vim'
 hook_add ='''
   nmap p <Plug>(yankround-p)

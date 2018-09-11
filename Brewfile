@@ -45,7 +45,8 @@ brew 'terraform'
 brew 'neovim'
 
 # CASK
-tap 'homebrew/cask'
 cask 'docker'
 cask 'keyboard-cleaner'
 cask 'vagrant'
+cask 'google-chrome'
+cask 'iterm2'

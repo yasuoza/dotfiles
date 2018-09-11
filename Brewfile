@@ -45,8 +45,11 @@ brew 'terraform'
 brew 'neovim'
 
 # CASK
+cask 'alfred'
 cask 'docker'
 cask 'keyboard-cleaner'
+cask 'karabiner-elements'
+cask 'appcleaner'
 cask 'vagrant'
 cask 'google-chrome'
 cask 'iterm2'

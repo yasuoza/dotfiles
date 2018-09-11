@@ -1,12 +1,7 @@
 # vim: expandtab ft=ruby
 
 # To bootstrap development, run following commands.
-# brew tap Homebrew/bundle
 # brew bundle
-
-# Tap
-tap 'homebrew/bundle'
-tap 'caskroom/cask'
 
 # Environments
 brew 'z'
@@ -33,8 +28,6 @@ brew 'hub'
 brew 'tig'
 
 # Languages
-brew 'lua'
-brew 'luajit'
 brew 'python3'
 brew 'ruby-build'
 brew 'rbenv'
@@ -52,6 +45,7 @@ brew 'terraform'
 brew 'neovim'
 
 # CASK
-cask "docker"
-cask "keyboard-cleaner"
-cask "vagrant"
+tap 'homebrew/cask'
+cask 'docker'
+cask 'keyboard-cleaner'
+cask 'vagrant'

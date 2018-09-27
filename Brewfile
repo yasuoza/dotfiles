@@ -28,7 +28,7 @@ brew 'hub'
 brew 'tig'
 
 # Languages
-brew 'python3'
+brew 'python'
 brew 'ruby-build'
 brew 'rbenv'
 

@@ -16,7 +16,6 @@ function setup () {
     done
 
     ln -s $DOTFILES_DIR/bin $HOME/.bin
-		ln -s $DOTFILES_DIR/peco $HOME/.config/peco
 }
 
 function clean () {
@@ -26,7 +25,6 @@ function clean () {
     done
 
     rm -rf $HOME/.bin
-		rm -rf $HOME/.config/peco
 }
 
 function usage () {

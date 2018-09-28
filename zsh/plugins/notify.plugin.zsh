@@ -46,7 +46,6 @@ function end_timetrack() {
     message="Time: $exec_time seconds"
 
     terminal-notifier -title $title -message $message \
-        -activate com.googlecode.iterm2 \
         > /dev/null 2>&1
 
     unset_last_command

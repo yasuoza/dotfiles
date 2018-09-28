@@ -2,103 +2,58 @@
 #
 # http://qiita.com/hayamiz/items/d64730b61b7918fbb970
 #
-# Notification of remote host command
-# -----------------------------------
-# "==ZSH LONGRUN COMMAND TRACKER==" is printed after long run command execution
-# You can utilize it as a trigger
-#
-# ## Example: iTerm2 trigger( http://qiita.com/yaotti/items/3764572ea1e1972ba928 )
-#
-#  * Trigger regex: ==ZSH LONGRUN COMMAND TRACKER==(.*)
-#  * Parameters: \1
-#
-autoload -Uz add-zsh-hook
-__timetrack_threshold=20 # seconds
-read -r -d '' __timetrack_ignore_progs <<EOF
+timetrack_threshold=20 # seconds
+read -r -d '' timetrack_ignore_progs <<EOF
 tmux tmux-session less fg     emacs vi
 nvim vim          git  g      tig   t
 pry  ssh          mosh telnet nc    netcat
 gdb
 EOF
 
-export __timetrack_threshold
-export __timetrack_ignore_progs
-
-function __my_preexec_start_timetrack() {
-    local command=$1
-
-    export __timetrack_start=`date +%s`
-    export __timetrack_command="$command"
+function unset_last_command() {
+    unset last_command
 }
 
-function __my_preexec_end_timetrack() {
+function store_last_command() {
+  last_command=$2
+}
+
+function end_timetrack() {
     local last_status=$?
-    local exec_time
-    local command=$__timetrack_command
-    local prog=$(echo $command | tr -d '\r\n' |awk '{print $1}')
-    local notify_method
-    local status_message
-    local message
+    local exec_time=$TTYIDLE
+    local prog=$(echo $last_command | tr -d '\r\n' |awk '{print $1}')
+    local status_message title message
 
-    export __timetrack_end=`date +%s`
-
-    if test -n "${REMOTEHOST}${SSH_CONNECTION}"; then
-        notify_method="remotehost"
-    elif which growlnotify >/dev/null 2>&1; then
-        notify_method="growlnotify"
-    elif which notify-send >/dev/null 2>&1; then
-        notify_method="notify-send"
-    else
+    if [ -z "$prog" ] || [ -z "$exec_time" ] || [ $exec_time -lt $timetrack_threshold ]; then
+        unset_last_command
         return
     fi
 
-    if [ -z "$__timetrack_start" ] || [ -z "$__timetrack_threshold" ]; then
-        return
-    fi
-
-    for ignore_prog in $(echo $__timetrack_ignore_progs); do
-        [ "$prog" = "$ignore_prog" ] && return
+    for ignore_prog in $(echo $timetrack_ignore_progs); do
+        if [ "$prog" = "$ignore_prog" ]; then
+            unset_last_command
+            return
+        fi
     done
 
-    exec_time=$((__timetrack_end-__timetrack_start))
-    if [ -z "$command" ]; then
-        command="<UNKNOWN>"
-    fi
-
     if [ $last_status -eq 0 ]; then
-        status_message="success"
+        status_message="✅"
     else
-        status_message="failure"
+        status_message="❌"
     fi
 
-    title="Command finished with $status_message"
-    message="Time: $exec_time seconds"$'\n'"COMMAND: $command"
+    title="$status_message $last_command"
+    message="Time: $exec_time seconds"
 
-    if [ "$exec_time" -ge "$__timetrack_threshold" ]; then
-        case $notify_method in
-            "remotehost" )
-                # show trigger string
-                echo -e "\e[0;30m==ZSH LONGRUN COMMAND TRACKER==$(hostname -s): $command ($exec_time seconds)\e[m"
-                sleep 1
-                # wait 1 sec, and then delete trigger string
-                echo -e "\e[1A\e[2K"
-                ;;
-            "growlnotify" )
-                growlnotify -n "ZSH timetracker" -t $title -m $message --appIcon iTerm
-                ;;
-            "notify-send" )
-                notify-send "ZSH timetracker" "$message"
-                ;;
-        esac
-    fi
+    terminal-notifier -title $title -message $message \
+        -activate com.googlecode.iterm2 \
+        > /dev/null 2>&1
 
-    unset __timetrack_start
-    unset __timetrack_command
+    unset_last_command
 }
 
-if which growlnotify >/dev/null 2>&1 ||
-    which notify-send >/dev/null 2>&1 ||
-    test -n "${REMOTEHOST}${SSH_CONNECTION}"; then
-    add-zsh-hook preexec __my_preexec_start_timetrack
-    add-zsh-hook precmd __my_preexec_end_timetrack
+autoload -Uz add-zsh-hook
+if type terminal-notifier >/dev/null; then
+    add-zsh-hook preexec store_last_command
+    add-zsh-hook precmd end_timetrack
 fi

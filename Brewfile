@@ -19,6 +19,7 @@ brew 'direnv'
 brew 'pngquant'
 brew 'pigz'
 brew 'htop'
+brew 'terminal-notifier'
 
 # SCM
 brew 'git'

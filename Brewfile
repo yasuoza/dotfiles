@@ -38,7 +38,6 @@ brew 'mysql-client'
 # Infra
 brew 'awscli'
 brew 'amazon-ecs-cli'
-brew 'ansible'
 brew 'terraform'
 
 # EDITOR

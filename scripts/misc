@@ -17,6 +17,7 @@ function setup () {
 
     ln -s $DOTFILES_DIR/bin $HOME/.bin
 		ln -s $DOTFILES_DIR/karabiner $HOME/.config/karabiner
+		ln -s $DOTFILES_DIR/direnv $HOME/.config/direnv
 }
 
 function clean () {
@@ -27,6 +28,7 @@ function clean () {
 
     rm -rf $HOME/.bin
 		rm -rf $HOME/.config/karabiner
+		rm -rf $HOME/.config/direnv
 }
 
 function usage () {

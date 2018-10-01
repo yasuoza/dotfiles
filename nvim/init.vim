@@ -371,13 +371,6 @@ endfunction
   command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
 " }}}
 
-" VimFiler {{{
-  " Use VimFiler instead of netrw
-  let g:vimfiler_as_default_explorer = 1
-
-  nmap <silent> <leader>fl :VimFilerExplorer<CR>
-" }}}
-
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>

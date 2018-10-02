@@ -20,6 +20,7 @@ brew 'pngquant'
 brew 'pigz'
 brew 'htop'
 brew 'terminal-notifier'
+brew 'yarn'
 
 # SCM
 brew 'git'

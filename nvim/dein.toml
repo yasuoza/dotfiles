@@ -30,11 +30,15 @@ hook_post_source = '''
     \ '<denite:move_to_previous_line>', 'noremap')
 '''
 
-
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
-
+hook_add = '''
+  " put space between comment
+  let NERDSpaceDelims = 1
+  " do not show error although opening incorrect file
+  let NERDShutUp=1
+'''
 # visually indent guide
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -73,19 +77,19 @@ repo = 'kana/vim-textobj-syntax.git'
 [[plugins]]
 repo = 'kana/vim-textobj-fold.git'
 
-# # vim-textobj-entire : convert buffer to text-object
+# vim-textobj-entire : convert buffer to text-object
 [[plugins]]
 repo = 'vim-scripts/textobj-entire'
 
-# # Speed up foldmethod
+# Speed up foldmethod
 [[plugins]]
 repo = 'Konfekt/FastFold'
 
-# # vim-smartword : smart word moving
+# vim-smartword : smart word moving
 [[plugins]]
 repo = 'vim-scripts/smartword'
 
-# # matchit.vim : move to corresponding parentheses via %
+# matchit.vim : move to corresponding parentheses via %
 # [[plugins]]
 repo = 'vim-scripts/matchit.zip'
 
@@ -95,7 +99,7 @@ repo = 'thinca/vim-quickrun'
 # [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-# # Cool status line
+# Cool status line
 [[plugins]]
 repo = 'bling/vim-airline'
 [[plugins]]

@@ -32,7 +32,6 @@ endif
   " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " endif
 
-
 "*****************************************************************************
 "" Bundle
 "*****************************************************************************
@@ -60,7 +59,6 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
-
 
 "*****************************************************************************
 "" Basic
@@ -121,7 +119,6 @@ botright cwindow
 " remove highlight by pushing Esc twice
 nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
-
 "*****************************************************************************
 "" Color
 "*****************************************************************************
@@ -129,7 +126,6 @@ let g:hybrid_use_Xresources = 1
 set background=dark
 colorscheme hybrid
 syntax enable " highlight on
-
 
 "*****************************************************************************
 "" Apperance
@@ -178,13 +174,11 @@ let g:markdown_fenced_languages = [
       \]
 " }}}
 
-
 "*****************************************************************************
 "" Filetype
 "*****************************************************************************
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
-
 
 "*****************************************************************************
 "" Indent
@@ -240,9 +234,9 @@ nmap 1 0
 nmap 0 ^
 nmap 9 $
 
-" window up and down via <space>j, <space>k
-noremap <Space>j <C-f>
-noremap <Space>k <C-b>
+" half window up and down via <space>j, <space>k
+noremap <Space>j <C-d>
+noremap <Space>k <C-u>
 
 " next buffer by pushing space twice,  previous buffer by pushing back-space twice
 nmap <Space><Space> :<C-U>bn<CR>
@@ -267,7 +261,6 @@ nnoremap <C-h> <C-w>h
 
 " goto previous editted line
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
 
 "*****************************************************************************
 "" Editor Support
@@ -345,7 +338,6 @@ function! s:write_check_typo(file)
     endif
 endfunction
 
-
 "*****************************************************************************
 ""  Bundle setting
 "*****************************************************************************
@@ -364,13 +356,6 @@ endfunction
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>
-" }}}
-
-" NERD_commenter.vim {{{
-  " put space between comment
-  let NERDSpaceDelims = 1
-  " do not show error although opening incorrect file
-  let NERDShutUp=1
 " }}}
 
 " FZF {{{
@@ -395,12 +380,6 @@ endfunction
   \   'options': '+m',
   \   'down':    '50%'
   \ })<CR>
-" }}}
-
-" open-blowser.vim {{{
-  let g:netrw_nogx = 1 " disable netrw's gx mapping.
-  nmap gx <Plug>(openbrowser-smart-search)
-  vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " quickrun.vim {{{

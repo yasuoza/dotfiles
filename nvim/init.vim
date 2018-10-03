@@ -145,19 +145,9 @@ set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
 set guicursor=a:block
-
-" {{{ Cursor
-  " show line on current window
-  augroup cch
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-  augroup END
-
-  hi clear CursorLine
-  hi CursorLine gui=underline
-  highlight CursorLine ctermbg=234 guibg=black cterm=underline
-" }}}
+set cursorline
+hi clear CursorLine
+highlight CursorLine ctermbg=236 guibg=black
 
 " Airline {{{
   " tabline

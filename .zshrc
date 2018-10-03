@@ -124,8 +124,6 @@ source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 # Load fzf plugin
 source $HOME/dotfiles/zsh/plugins/fzf.plugin.zsh
 
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
 #=============================
 # rbenv
 #=============================

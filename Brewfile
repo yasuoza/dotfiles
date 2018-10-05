@@ -21,6 +21,7 @@ brew 'pigz'
 brew 'htop'
 brew 'terminal-notifier'
 brew 'yarn'
+brew 'jq'
 
 # SCM
 brew 'git'

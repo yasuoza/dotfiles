@@ -1211,15 +1211,17 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>573 521 796 486 0 0 1920 1057 </string>
+	<string>526 515 796 486 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 30 1913 1027 0 0 1920 1057 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>1920 -271 1680 1027 1920 -271 1680 1027 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_5527D99F-4842-4618-A2A9-7A73DDE841F9</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_5527D99F-4842-4618-A2A9-7A73DDE841F9_selection</key>
@@ -1855,7 +1857,7 @@
 			<key>Normal Font</key>
 			<string>RictyForPowerline-Bold 22</string>
 			<key>Only The Default BG Color Uses Transparency</key>
-			<true/>
+			<false/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -3633,7 +3635,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-10-03T03:18:10Z</date>
+	<date>2018-10-05T07:46:15Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>

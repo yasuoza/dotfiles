@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+KEY_REPEAT=1.2
+INITIAL_KEY_REPEAT=10
+
+function setup () {
+    clean
+
+		defaults write -g KeyRepeat -float $KEY_REPEAT
+		defaults write -g InitialKeyRepeat $INITIAL_KEY_REPEAT
+}
+
+function clean () {
+	defaults delete -g KeyRepeat
+	defaults delete -g InitialKeyRepeat
+}
+
+function read () {
+	echo "KeyRepeat: $(defaults read -g KeyRepeat)"
+	echo "InitialKeyRepeat: $(defaults read -g InitialKeyRepeat)"
+}
+
+function usage () {
+    echo "setup: set keyrepeat"
+    echo "clean: reset keyrepeat"
+		echo "read: read curent keyrepeat"
+}
+
+if [ -z $1 ]; then
+  usage
+  exit 1
+fi
+
+while [ "$1" != "" ]; do
+    case "$1" in
+        setup | install )       setup
+                                exit
+                                ;;
+        clean | uninstall )     clean
+                                exit
+                                ;;
+        read | show | current ) read
+                                exit
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+

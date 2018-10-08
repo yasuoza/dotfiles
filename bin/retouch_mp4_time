@@ -1,11 +1,20 @@
 #!/usr/bin/env ruby
 
-require 'rexml/document'
-require 'date'
+require 'optparse'
+require 'optparse/time'
+require 'shellwords'
 
-if ARGV.empty?
-  puts "USAGE: retouch_mp4_time [MP4_FILE]"
-  return
+require 'date'
+require 'rexml/document'
+
+Option = Struct.new(:movie_file, :datetime_original, :help)
+
+def created_at_from(option)
+  return option.datetime_original.to_datetime unless option.datetime_original.nil?
+
+  xml_file = option.movie_file.sub(/(?:-1)?\.MP4/i, 'M01.XML')
+  xml      = REXML::Document.new(File.open(xml_file).read)
+  DateTime.parse(xml.elements['NonRealTimeMeta/CreationDate'].attributes['value'])
 end
 
 def execute(command)
@@ -13,11 +22,30 @@ def execute(command)
   system command
 end
 
-movie_file     = ARGV.first
-xml_file       = movie_file.sub(/(?:-1)?\.MP4/i, 'M01.XML')
-xml            = REXML::Document.new(File.open(xml_file).read)
-created_at     = DateTime.parse(xml.elements['NonRealTimeMeta/CreationDate'].attributes['value'])
+option = Option.new
+opt_parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: retouch_mp4_time [FILE] [option]'
+
+  opts.on('-t', '--time [TIME]', Time, 'Force set media time at give time like "2018-10-10 10:10:30" or just "10:10:30"') do |time|
+    option.datetime_original = time
+  end
+
+  opts.on_tail('-h', '--help', 'Show this message') do
+    puts opts
+    exit 0
+  end
+end
+opt_parser.parse!(ARGV)
+option.movie_file = ARGV.first.shellescape
+
+unless File.exist?(option.movie_file)
+  puts "File '#{option.movie_file}' does not exist."
+  exit 1
+end
+
+created_at = created_at_from(option)
 created_at_utc = created_at.to_time.utc.strftime('%Y:%m:%d %H:%M:%S%:z')
 
-execute "exiftool -overwrite_original -CreateDate='#{created_at_utc}' -MediaCreateDate='#{created_at_utc}' -DateTimeOriginal='#{created_at}' #{movie_file}"
-execute "touch -t #{created_at.strftime('%Y%m%d%H%M.%S')} #{movie_file}"
+execute "exiftool -overwrite_original -CreateDate='#{created_at_utc}' \
+        -MediaCreateDate='#{created_at_utc}' -DateTimeOriginal='#{created_at}' #{option.movie_file}"
+execute "touch -t #{created_at.strftime('%Y%m%d%H%M.%S')} #{option.movie_file}"

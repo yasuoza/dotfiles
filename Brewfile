@@ -33,6 +33,7 @@ brew 'tig'
 brew 'python'
 brew 'ruby-build'
 brew 'rbenv'
+brew 'nodebrew'
 
 # DB
 brew 'mysql-client'

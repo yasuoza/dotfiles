@@ -82,6 +82,7 @@ fi
 
 if type "nvim" > /dev/null; then
     alias vim=nvim
+    alias vi=nvim
     export EDITOR=nvim
 fi
 

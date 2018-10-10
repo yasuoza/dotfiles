@@ -109,7 +109,7 @@ set noundofile                   " Prevent from creating un~ file
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
 
-" edit and reflect via  Ev/Rv
+" edit and reflect via Ev/Rv
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
@@ -123,6 +123,7 @@ nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 "" Color
 "*****************************************************************************
 let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
 set background=dark
 colorscheme hybrid
 syntax enable " highlight on

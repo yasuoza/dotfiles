@@ -30,6 +30,7 @@ brew 'hub'
 brew 'tig'
 
 # Languages
+brew 'pyenv'
 brew 'python'
 brew 'ruby-build'
 brew 'rbenv'

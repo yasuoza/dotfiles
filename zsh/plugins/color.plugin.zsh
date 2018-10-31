@@ -25,19 +25,19 @@ case ${UID} in
 
         # Change color when terminal is vim mode
         # http://memo.officebrook.net/20090226.html
-        function zle-line-init zle-keymap-select {
-            case $KEYMAP in
-                vicmd)
-                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
-                    ;;
-                main|viins)
-                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
-                    ;;
-            esac
-            zle reset-prompt
-        }
-        zle -N zle-line-init
-        zle -N zle-keymap-select
+        # function zle-line-init zle-keymap-select {
+            # case $KEYMAP in
+                # vicmd)
+                    # PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
+                    # ;;
+                # main|viins)
+                    # PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
+                    # ;;
+            # esac
+            # zle reset-prompt
+        # }
+        # zle -N zle-line-init
+        # zle -N zle-keymap-select
 
         # Blight red when previous command failed status 0
         local MY_COLOR="$ESCX"'%(0?.${MY_PROMPT_COLOR}.31)'m
@@ -63,19 +63,12 @@ case ${UID} in
             zstyle ':vcs_info:git:*' actionformats '(%s)-[%c%u%b|%a]'
         fi
 
-        function _update_vcs_info_msg() {
-            psvar=()
-            LANG=en_US.UTF-8 vcs_info
-            psvar[2]=$(_git_not_pushed)
-            [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-
-            # http://stnard.jp/2010/10/25/402/
-            if [[ -e $PWD/.git/refs/stash ]]; then
-                stashes=$(git stash list 2>/dev/null | wc -l)
-                psvar[2]=" @${stashes// /}"
+        function _venv() {
+            if [ -n "$VIRTUAL_ENV" ]; then
+                echo " (`basename \"$VIRTUAL_ENV\"`:`python --version | awk -F' ' '{print $2}'`)"
             fi
+            return 0
         }
-        add-zsh-hook precmd _update_vcs_info_msg
 
         function _git_not_pushed() {
             if [ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
@@ -90,7 +83,24 @@ case ${UID} in
             fi
             return 0
         }
-        RPROMPT="%1(v|%F${CYAN}%1v%2v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}"
+
+        function _update_vcs_info_msg() {
+            psvar=()
+            psvar[1]=$(_venv)
+            LANG=en_US.UTF-8 vcs_info
+            psvar[3]=$(_git_not_pushed)
+            [[ -n "$vcs_info_msg_0_" ]] && psvar[2]="$vcs_info_msg_0_"
+
+            # http://stnard.jp/2010/10/25/402/
+            if [[ -e $PWD/.git/refs/stash ]]; then
+                stashes=$(git stash list 2>/dev/null | wc -l)
+                psvar[3]=" @${stashes// /}"
+            fi
+        }
+        add-zsh-hook precmd _update_vcs_info_msg
+
+        PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
+        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}"
         ;;
 esac
 

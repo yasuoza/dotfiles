@@ -32,6 +32,7 @@ esac
 # Color
 #=============================
 # Load terminal color configuration
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 source $HOME/dotfiles/zsh/plugins/color.plugin.zsh
 
 #=============================

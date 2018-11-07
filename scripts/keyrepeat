@@ -4,10 +4,9 @@ KEY_REPEAT=1.2
 INITIAL_KEY_REPEAT=10
 
 function setup () {
-    clean
-
-		defaults write -g KeyRepeat -float $KEY_REPEAT
-		defaults write -g InitialKeyRepeat $INITIAL_KEY_REPEAT
+	clean
+	defaults write -g KeyRepeat -float $KEY_REPEAT
+	defaults write -g InitialKeyRepeat -int $INITIAL_KEY_REPEAT
 }
 
 function clean () {
@@ -21,9 +20,9 @@ function read () {
 }
 
 function usage () {
-    echo "setup: set keyrepeat"
-    echo "clean: reset keyrepeat"
-		echo "read: read curent keyrepeat"
+	echo "setup: set keyrepeat"
+	echo "clean: reset keyrepeat"
+	echo "read: read curent keyrepeat"
 }
 
 if [ -z $1 ]; then

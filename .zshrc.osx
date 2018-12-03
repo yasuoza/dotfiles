@@ -76,10 +76,6 @@ if type "rbenv" > /dev/null; then
     eval "$(rbenv init -)"
 fi
 
-if type "plenv" > /dev/null; then
-    eval "$(plenv init -)"
-fi
-
 if type "nvim" > /dev/null; then
     alias vim=nvim
     alias vi=nvim

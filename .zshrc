@@ -133,20 +133,6 @@ if type rbenv > /dev/null; then
 fi
 
 #=============================
-# plenv
-#=============================
-if type plenv > /dev/null; then
-    eval "$(plenv init -)"
-fi
-
-#=============================
-# pyenv
-#=============================
-if type pyenv > /dev/null; then
-    eval "$(pyenv init -)"
-fi
-
-#=============================
 # nodebrew
 #=============================
 if [ -d $HOME/.nodebrew ] ; then

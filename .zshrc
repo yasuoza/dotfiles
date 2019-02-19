@@ -46,7 +46,7 @@ bindkey "^B" backward-word
 # zstyle
 #=============================
 # Autocomplete when sudo
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:sudo:*' command-path /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*' list-colors "" # Autocomplete with color
 zstyle ':zle:*' word-chars " _-./;@"
 zstyle ':zle:*' word-style unspecified

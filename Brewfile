@@ -22,6 +22,7 @@ brew 'htop'
 brew 'terminal-notifier'
 brew 'yarn'
 brew 'jq'
+brew 'envchain'
 
 # SCM
 brew 'git'

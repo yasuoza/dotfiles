@@ -32,6 +32,10 @@ repo = 'tpope/vim-markdown'
 on_ft = 'markdown'
 
 [[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
 repo = 'kchmck/vim-coffee-script'
 on_ft = ['coffee', 'markdown']
 

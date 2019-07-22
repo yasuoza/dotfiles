@@ -1,0 +1,32 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "Ricty for Powerline",
+    "editor.fontSize": 18,
+    "editor.fontWeight": "bold",
+    "editor.renderLineHighlight": "all",
+    "editor.renderIndentGuides": true,
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+    "editor.minimap.enabled": false,
+
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.fontFamily": "Ricty for Powerline",
+    "terminal.integrated.fontSize": 18,
+
+    "files.insertFinalNewline": true,
+
+    "breadcrumbs.enabled": true,
+
+    "workbench.statusBar.visible": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorCustomizations": {
+      "editor.lineHighlightBackground": "#303030"
+    },
+
+    "[ruby]": {
+      "editor.tabSize": 2
+    },
+    "[typescript]": {
+      "editor.tabSize": 2
+    }
+}

@@ -47,17 +47,18 @@ set runtimepath^=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
 let s:cache_path = expand('$HOME/.cache/nvim/dein')
-call dein#load_state(s:cache_path)
 
-let s:toml = '$HOME/dotfiles/nvim/dein.toml'
-let s:lazy_toml = '$HOME/dotfiles/nvim/dein_lazy.toml'
+if dein#load_state(s:cache_path)
+  let s:toml = '$HOME/dotfiles/nvim/dein.toml'
+  let s:lazy_toml = '$HOME/dotfiles/nvim/dein_lazy.toml'
 
-call dein#begin(s:cache_path, [expand('<sfile>')])
-call dein#load_toml(s:toml, {'lazy': 0})
-call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#begin(s:cache_path, [expand('<sfile>')])
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-call dein#end()
-call dein#save_state()
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
 
@@ -101,7 +102,7 @@ set wildchar=<tab>               " command completion hot key
 set wildmode=list:full           " show list and long match
 set history=100                  " number of command and search history
 set complete+=k                  " add dictionary file to complete
-set completeopt=menu,preview
+set completeopt=menuone
 set wrapscan                     " go back to top after bottom
 set ignorecase                   " ignore charactor case
 set smartcase                    " Consider capital case when keyword contains it
@@ -153,16 +154,6 @@ highlight CursorLine ctermbg=236 guibg=black
 
 " Airline {{{
   " tabline
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_nr_show = 1
-  let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-  " statusline
-  let g:airline_powerline_fonts = 1  " Use powerline patched font
-  let g:airline_section_c = '%F%m'   " Display full file path
-  let g:airline#extensions#whitespace#enabled = 0
-  let g:airline_theme='super_hybrid' " Use hybrid statusline theme
 " }}}
 
 " markdown {{{

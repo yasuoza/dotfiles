@@ -12,6 +12,11 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'neoclide/coc.nvim'
+merge = 0
+rev = 'release'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
   autocmd vimrc BufEnter *
@@ -106,3 +111,18 @@ repo = 'bling/vim-airline'
 repo = 'yasuoza/vim-airline-super-hybrid-theme'
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
+hook_add = '''
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+  " statusline
+  let g:airline_powerline_fonts = 1  " Use powerline patched font
+  let g:airline_section_c = '%F%m'   " Display full file path
+  let g:airline#extensions#whitespace#enabled = 0
+  let g:airline_theme='super_hybrid' " Use hybrid statusline theme
+
+  " Disable coc integration
+  let g:airline#extensions#coc#enabled = 0
+'''

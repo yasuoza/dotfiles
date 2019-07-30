@@ -9,6 +9,9 @@ build = 'make'
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
+
+  " Completion starts more than 4 chars
+  call deoplete#custom#source('_', 'min_pattern_length', 4)
 '''
 
 [[plugins]]

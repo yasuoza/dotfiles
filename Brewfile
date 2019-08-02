@@ -50,6 +50,7 @@ brew 'neovim'
 
 # CASK
 cask 'alfred'
+cask 'dash'
 cask 'docker'
 cask 'keyboard-cleaner'
 cask 'karabiner-elements'

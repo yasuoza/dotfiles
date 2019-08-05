@@ -69,7 +69,11 @@ if type "brew" > /dev/null && [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
 fi
 
 if type "hub" > /dev/null ; then
-    alias git=hub
+    eval "$(hub alias -s)"
+
+    # For completion
+    # FYI: https://github.com/git/git/blob/7c20df8/contrib/completion/git-completion.bash#L1029
+    alias __git=hub
 fi
 
 if type "rbenv" > /dev/null; then

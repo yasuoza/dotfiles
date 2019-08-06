@@ -197,7 +197,7 @@
                     }
                 }
             ],
-            "name": "Default profile",
+            "name": "Pro",
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },

@@ -16,7 +16,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-merge = 0
 rev = 'release'
 [[plugins]]
 repo = 'neoclide/coc-json'
@@ -122,13 +121,13 @@ repo = 'Konfekt/FastFold'
 repo = 'vim-scripts/smartword'
 
 # matchit.vim : move to corresponding parentheses via %
-# [[plugins]]
+[[plugins]]
 repo = 'vim-scripts/matchit.zip'
 
-# [[plugins]]
+[[plugins]]
 repo = 'thinca/vim-quickrun'
 
-# [[plugins]]
+[[plugins]]
 repo = 'tpope/vim-fugitive'
 
 # Cool status line

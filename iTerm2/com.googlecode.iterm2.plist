@@ -1092,7 +1092,7 @@
 	<key>DimBackgroundWindows</key>
 	<false/>
 	<key>DimInactiveSplitPanes</key>
-	<true/>
+	<false/>
 	<key>DimOnlyText</key>
 	<false/>
 	<key>DisableFullscreenTransparency</key>
@@ -1226,9 +1226,9 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>407 329 1016 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 22 1913 1035 0 0 1920 1057 </string>
+	<string>176 165 2166 1252 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 21 1913 1036 0 0 1920 1057 </string>
+	<string>351 163 2166 1252 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 18 2010 1039 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -3599,9 +3599,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{612, 758}</string>
+		<string>{985, 883}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -3612,7 +3612,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>562294295.12788606</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>7</integer>
+	<integer>13</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>586398078.67054296</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>

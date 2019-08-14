@@ -52,7 +52,7 @@ function end_timetrack() {
 }
 
 autoload -Uz add-zsh-hook
-if type terminal-notifier >/dev/null; then
+if type "terminal-notifier" > /dev/null; then
     add-zsh-hook preexec store_last_command
     add-zsh-hook precmd end_timetrack
 fi

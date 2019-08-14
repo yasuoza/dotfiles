@@ -45,14 +45,14 @@ function end_timetrack() {
     title="$status_message $last_command"
     message="Time: $exec_time seconds"
 
-    /usr/local/bin/terminal-notifier -title $title -message $message \
+    terminal-notifier -title $title -message $message \
         > /dev/null 2>&1
 
     unset_last_command
 }
 
 autoload -Uz add-zsh-hook
-if [ -f /usr/local/bin/terminal-notifier ]; then
+if type terminal-notifier >/dev/null; then
     add-zsh-hook preexec store_last_command
     add-zsh-hook precmd end_timetrack
 fi

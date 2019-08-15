@@ -43,7 +43,7 @@ let g:mapleader = ","
 if &compatible
   set nocompatible
 endif
-set runtimepath^=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 let s:cache_path = expand('$HOME/.cache/nvim/dein')

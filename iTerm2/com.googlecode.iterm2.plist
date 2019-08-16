@@ -1226,7 +1226,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>407 329 1016 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<string>0 0 1680 1027 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1450,7 +1450,7 @@
 			<key>Columns</key>
 			<integer>196</integer>
 			<key>Command</key>
-			<string>/usr/local/bin/zsh</string>
+			<string></string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>

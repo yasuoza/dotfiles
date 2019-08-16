@@ -1,14 +1,17 @@
 #=============================
 # PATH
 #=============================
-export PATH=/usr/local/bin:$PATH
+if [ -d "$HOME/Homebrew" ]; then
+    PATH="$HOME/Homebrew/bin:$PATH"
+    HOMEBREW_CACHE="$HOME/Homebrew/cache"
+fi
 if [ -d $HOME/.bin ]; then
-    export PATH=$HOME/.bin:$PATH
+    PATH=$HOME/.bin:$PATH
 fi
 
-MANPATH=/usr/share/man/:/usr/local/share/man:$MANPATH
+MANPATH=/usr/share/man/:`brew --prefix`/share/man:$MANPATH
 export MANPATH
-INFOPATH=/usr/local/info:$INFOPATH
+INFOPATH=`brew --prefix`/info:$INFOPATH
 export INFOPATH
 
 # zsh-completion from Homebrew
@@ -33,12 +36,12 @@ export XDG_CONFIG_HOME=$HOME/.config
 #=============================
 # Dev-PATH
 #=============================
-if [ -s /usr/local/opt/android-sdk ]; then
-    export ANDROID_HOME=/usr/local/opt/android-sdk
+if [ -s `brew --prefix`/opt/android-sdk ]; then
+    export ANDROID_HOME=`brew --prefix`/opt/android-sdk
 fi
 
-if [ -d /usr/local/opt/go/libexec ]; then
-    export GOROOT=/usr/local/opt/go/libexec
+if [ -d `brew --prefix`/opt/go/libexec ]; then
+    export GOROOT=`brew --prefix`/opt/go/libexec
 fi
 
 #=============================
@@ -54,7 +57,7 @@ export EDITOR=$(which vim)
 #=============================
 # Plugins
 #=============================
-if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+if type "gls" > /dev/null ; then
     alias ls='gls --color'
     alias dircolors=gdircolors
 fi
@@ -86,6 +89,6 @@ if type "nvim" > /dev/null; then
     export EDITOR=nvim
 fi
 
-if [ -d /usr/local/opt/mysql-client/bin ]; then
+if [ -d `brew --prefix`/opt/mysql-client/bin ]; then
     export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 fi

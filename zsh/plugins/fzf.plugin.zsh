@@ -1,7 +1,7 @@
 if type fzf &> /dev/null; then
     # /usr/local/opt/fzf/install
     # FYI: brew info fzf
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    [ -f ~/dotfiles/.fzf.zsh ] && source ~/dotfiles/.fzf.zsh
 
     # Override default fzf option
     export FZF_DEFAULT_OPTS="--extended --cycle --reverse --ansi"

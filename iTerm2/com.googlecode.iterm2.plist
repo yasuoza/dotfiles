@@ -1226,9 +1226,9 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>407 329 1016 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>176 165 2166 1252 0 0 2560 1417 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>351 163 2166 1252 0 0 2560 1417 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>0 18 2010 1039 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -3599,9 +3599,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {2560, 1440}}</string>
+		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{985, 883}</string>
+		<string>{392, 733}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -3612,7 +3612,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>562294295.12788606</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>13</integer>
+	<integer>14</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>586398078.67054296</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -4393,7 +4393,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-08-13T05:02:05Z</date>
+	<date>2019-08-15T07:23:44Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUSkippedVersion</key>

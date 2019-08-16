@@ -37,9 +37,6 @@ brew 'ruby-build'
 brew 'rbenv'
 brew 'nodebrew'
 
-# DB
-brew 'mysql-client'
-
 # Infra
 brew 'awscli'
 brew 'amazon-ecs-cli'

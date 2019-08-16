@@ -3,7 +3,8 @@
 #=============================
 if [ -d "$HOME/Homebrew" ]; then
     PATH="$HOME/Homebrew/bin:$PATH"
-    HOMEBREW_CACHE="$HOME/Homebrew/cache"
+    export HOMEBREW_CACHE="$HOME/Homebrew/cache"
+    export HOMEBREW_NO_ANALYTICS=1
 fi
 if [ -d $HOME/.bin ]; then
     PATH=$HOME/.bin:$PATH

@@ -46,6 +46,7 @@ brew 'terraform'
 brew 'neovim'
 
 # CASK
+cask 'adobe-creative-cloud'
 cask 'alfred'
 cask 'dash'
 cask 'docker'

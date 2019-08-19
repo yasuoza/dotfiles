@@ -1226,15 +1226,15 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>407 329 1016 512 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1680 1027 0 0 2560 1417 </string>
+	<string>0 0 1920 1057 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<string>0 0 1680 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 18 2010 1039 0 0 1920 1057 </string>
+	<string>394 111 2166 1252 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 16 1671 1011 0 0 1680 1027 </string>
+	<string>0 0 2166 1252 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>0 0 1920 1057 0 0 1920 1057 </string>
+	<string>0 0 2166 1252 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_5527D99F-4842-4618-A2A9-7A73DDE841F9</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_5527D99F-4842-4618-A2A9-7A73DDE841F9_selection</key>
@@ -3593,6 +3593,7 @@
 		<string>3.3.1</string>
 		<string>3.2.5</string>
 		<string>3.3.0</string>
+		<string>3.3.2</string>
 	</array>
 	<key>NoSyncAutoBurialReveal</key>
 	<true/>
@@ -3612,7 +3613,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>562294295.12788606</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>14</integer>
+	<integer>17</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>586398078.67054296</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -3993,7 +3994,23 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentTab.currentSession.terminalWindowName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession.tmuxPaneTitle</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.currentSession.terminalIconName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -4393,11 +4410,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-08-15T07:23:44Z</date>
+	<date>2019-08-19T07:24:36Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.3.1</string>
+	<key>SUUpdateRelaunchingMarker</key>
+	<false/>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -4465,7 +4482,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.2beta2</string>
+	<string>3.3.2</string>
 	<key>preferIntegratedGPU</key>
 	<false/>
 </dict>

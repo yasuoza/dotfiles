@@ -5,7 +5,7 @@ DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
 function setup () {
     ln -s $DOTFILES_DIR/.vimrc $HOME/.vimrc
 
-    pip3 install --force-reinstall --user neovim
+    pip3 install --force-reinstall --user pynvim
     mkdir -p $HOME/.config/nvim
     ln -s $DOTFILES_DIR/nvim/init.vim $HOME/.config/nvim/init.vim
     ln -s $DOTFILES_DIR/nvim/coc-settings.json $HOME/.config/nvim/coc-settings.json

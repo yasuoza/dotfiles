@@ -26,12 +26,17 @@ function run_local_configure () {
 	_EOF_
 }
 
+function setup_gpg_key () {
+	gpg --full-generate-key
+}
+
 function setup () {
 	for file in ${GIT_CONFIG_FILES[@]}; do
 		ln -s $DOTFILES_DIR/$file $HOME/$file
 	done
 
 	run_local_configure
+	setup_gpg_key
 }
 
 function clean () {

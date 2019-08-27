@@ -1,4 +1,4 @@
-# vim: expandtab ft=ruby
+# vim: expandtab filetype=ruby
 
 # To bootstrap development, run following commands.
 # brew bundle

@@ -74,3 +74,5 @@
   fetch-pull = !sh -c 'git fetch $1 pull/$2/head:remotes/$1/pull/$2' -
   br-merged  = !"git branch --merged | grep -v master | grep -v '*'"
   pull-req   = !"hub pull-request"
+[gpg]
+	program = gpg

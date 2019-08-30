@@ -23,8 +23,8 @@
 [grep]
   linenumber = true
 [core]
-  excludesfile   = ~/.gitignore_global
-  attributesfile = ~/.gitattributes_global
+  excludesfile   = ~/dotfiles/.gitignore_global
+  attributesfile = ~/dotfiles/.gitattributes_global
 [credential]
  helper = osxkeychain
 [color]

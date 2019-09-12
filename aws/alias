@@ -1,0 +1,18 @@
+# vim: set expandtab :
+
+[toplevel]
+
+whoami = sts get-caller-identity
+
+# List or set your region
+region = !f() { [[ $# -eq 1 ]] && aws configure set region "$1" || aws configure get region; }; f
+
+myip =
+  !f() {
+    dig +short myip.opendns.com @resolver1.opendns.com
+  }; f
+
+latest-spot-price = !f() {
+    max_items=${2:-2} # Default 2 histories
+    aws ec2 describe-spot-price-history --instance-type "$1" --product-description 'Linux/UNIX' --max-items "$max_items"
+  }; f

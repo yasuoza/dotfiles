@@ -9,7 +9,7 @@ region = !f() { [[ $# -eq 1 ]] && aws configure set region "$1" || aws configure
 
 myip =
   !f() {
-    dig +short myip.opendns.com @resolver1.opendns.com
+    dig +short -4 myip.opendns.com @resolver1.opendns.com
   }; f
 
 latest-spot-price = !f() {

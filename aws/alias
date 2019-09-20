@@ -2,6 +2,9 @@
 
 [toplevel]
 
+# List alias commands
+aliases = !f() { cut -f 1 -d '=' $HOME/.aws/cli/alias | grep -E '^[a-z]+' | grep -v 'aliases' | sort; }; f
+
 whoami = sts get-caller-identity
 
 # List or set your region

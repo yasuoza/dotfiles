@@ -1,3 +1,4 @@
+# vim:set expandtab :
 [include]
   path = .gitconfig.local
 [push]
@@ -74,5 +75,6 @@
   fetch-pull = !sh -c 'git fetch $1 pull/$2/head:remotes/$1/pull/$2' -
   br-merged  = !"git branch --merged | grep -v master | grep -v '*'"
   pull-req   = !"hub pull-request"
+  open-ci-status = !"open `hub ci-status --format %U`"
 [gpg]
-	program = gpg
+  program = gpg

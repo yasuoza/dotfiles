@@ -23,11 +23,11 @@ repo = 'Shougo/denite.nvim'
 hook_add = '''
   autocmd vimrc BufEnter *
     \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately-1 -highlight-matched-char=Normal -default-action=open tag<CR>
+    \|      nnoremap <buffer> <C-]> :<C-u>DeniteCursorWord -immediately-1 -highlight-matched-char=Normal -default-action=open yasuoza/tag<CR>
     \|  endif
 
   call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#source('tag', 'matchers', ['matcher/substring'])
+  call denite#custom#source('yasuoza/tag', 'matchers', ['matcher/substring'])
 
   call denite#custom#map('insert', '<C-n>',
     \ '<denite:move_to_next_line>', 'noremap')

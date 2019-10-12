@@ -3,3 +3,5 @@
 /fish/fishd*
 /.vagrant/
 /karabiner/automatic_backups/
+
+/nvim/rplugin/python3/denite/source/__pycache__

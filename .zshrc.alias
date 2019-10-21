@@ -36,6 +36,10 @@ alias tma='tmux attach'
 alias tml='tmux ls'
 alias tmn='tmux new'
 
+# docker
+alias d='docker'
+alias dc='docker-compose'
+
 # git
 alias g='git'
 alias gi='git'

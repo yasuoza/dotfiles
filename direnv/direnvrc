@@ -24,3 +24,17 @@ layout_python-venv() {
     fi
     PATH_add "$VIRTUAL_ENV/bin"
 }
+
+# Usage: export_alias zz "ls -la"
+# https://github.com/direnv/direnv/issues/73
+export_alias() {
+  local name=$1
+  shift
+  local alias_dir=$PWD/.direnv/aliases/$(pwd)
+  local target="$alias_dir/$name"
+  mkdir -p "$alias_dir"
+  PATH_add "$alias_dir"
+  echo "#!/usr/bin/env bash" > "$target"
+  echo "$@ \"\$@\"" >> "$target"
+  chmod +x "$target"
+}

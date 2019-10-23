@@ -90,6 +90,6 @@ if type "nvim" > /dev/null; then
     export EDITOR=nvim
 fi
 
-if [ -d `brew --prefix`/opt/mysql-client/bin ]; then
-    export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+if type "fzf" > /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag'
 fi

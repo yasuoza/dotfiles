@@ -91,5 +91,5 @@ if type "nvim" > /dev/null; then
 fi
 
 if type "fzf" > /dev/null; then
-    export FZF_DEFAULT_COMMAND='ag'
+    export FZF_DEFAULT_COMMAND='ag -g ""'
 fi

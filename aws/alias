@@ -16,6 +16,12 @@ myip =
   }; f
 
 latest-spot-price = !f() {
-    max_items=${2:-2} # Default 2 histories
-    aws ec2 describe-spot-price-history --instance-type "$1" --product-description 'Linux/UNIX' --max-items "$max_items"
+    region=${2:-$AWS_DEFAULT_REGION}
+    max_items=${3:-2} # Default 2 histories
+    aws ec2 describe-spot-price-history \
+      --instance-type "$1" \
+      --product-description 'Linux/UNIX' \
+      --region "$region" \
+      --max-items "$max_items" \
+      --query 'sort_by(SpotPriceHistory[].{Az: AvailabilityZone, Price: SpotPrice, InstanceType: InstanceType, Timestamp: Timestamp}, &Price)'
   }; f

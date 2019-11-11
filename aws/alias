@@ -25,3 +25,7 @@ latest-spot-price = !f() {
       --max-items "$max_items" \
       --query 'sort_by(SpotPriceHistory[].{Az: AvailabilityZone, Price: SpotPrice, InstanceType: InstanceType, Timestamp: Timestamp}, &Price)'
   }; f
+
+list-ec2-instances = \
+  ec2 describe-instances --query \
+  "Reservations[].Instances[].{Instance:InstanceId,Name:Tags[?Key=='Name'].Value|[0],PublicIP:PublicIpAddress,State:State.Name}"

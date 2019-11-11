@@ -81,6 +81,7 @@ set nobackup                     " do not make backup
 set autoread                     " auto reload when another application rewrite
 set noswapfile                   " do not make swap file
 set hidden                       " enable to open in editting
+set expandtab                    " Default half space
 set backspace=indent,eol,start   " Enable to delete via backspace
 set formatoptions=lmoq           " Add multibyte to reoder
 set vb t_vb=                     " do not make beep

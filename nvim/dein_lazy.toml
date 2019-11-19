@@ -21,6 +21,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'neoclide/jsonc.vim'
+on_ft = 'jsonc'
+
+[[plugins]]
 repo = 'osyo-manga/vim-over'
 on_cmd = 'OverCommandLine'
 

@@ -19,6 +19,18 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 
 [[plugins]]
+repo = 'neoclide/coc-tsserver'
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-json'
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-solargraph'
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
   autocmd vimrc BufEnter *

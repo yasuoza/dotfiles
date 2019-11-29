@@ -111,6 +111,7 @@ set incsearch                    " Incremental search
 set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
+set regexpengine=1               " Use old regexpengine for fast scrolling
 set fileencodings=utf-8,sjis
 
 " tab indent setting

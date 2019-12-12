@@ -1,0 +1,47 @@
+# vim: expandtab filetype=ruby
+
+# Prepare linux environment.
+# https://docs.brew.sh/Homebrew-on-Linux
+
+# Then, run following commands.
+# brew bundle --file Brewflile.linux
+
+# Environments
+brew 'z'
+brew 'fzf'
+brew 'the_silver_searcher'
+brew 'tmux'
+
+# Utils
+brew 'ctags'
+brew 'readline'
+brew 'tree'
+brew 'hr'
+brew 'direnv'
+brew 'pngquant'
+brew 'pigz'
+brew 'yarn'
+brew 'jq'
+
+# SCM
+brew 'git'
+brew 'git-now'
+brew 'hub'
+brew 'tig'
+
+# Languages
+brew 'pyenv'
+brew 'python'
+brew 'ruby-build'
+brew 'rbenv'
+brew 'nodebrew'
+
+# Infra
+brew 'awscli'
+brew 'amazon-ecs-cli'
+
+# EDITOR
+brew 'neovim'
+
+# CASK
+cask 'session-manager-plugin'

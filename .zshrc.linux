@@ -2,24 +2,52 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-alias ls='ls --color'
+alias ls="ls --color"
 
-# man path
-MANPATH=/usr/local/man:$MANPATH
-export MANPATH
-INFOPATH=/usr/local/info:$INFOPATH
-export INFOPATH
+#=============================
+# PATH
+#=============================
+if [ -d "$HOME/.linuxbrew" ]; then
+    eval $(~/.linuxbrew/bin/brew shellenv)
+fi
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+if type "brew" > /dev/null; then
+    eval $($(brew --prefix)/bin/brew shellenv)
+fi
+if [ -d $HOME/.bin ]; then
+    export PATH=$HOME/.bin:$PATH
+fi
 
-# Java
-export JAVA_HOME=/usr/java/default
-export PATH=$JAVA_HOME/bin:$PATH
+#=============================
+# For Neovim
+#=============================
+export XDG_CONFIG_HOME=$HOME/.config
 
-# Maven2
-export MAVEN_HOME=/usr/local/apache-maven-2.2.1
-export PATH=$MAVEN_HOME/bin:$PATH
-export MAVEN_OPTS=-Xmx1024M
+#=============================
+# $EDITOR
+#=============================
+export EDITOR=$(which vi)
 
-# Go
-if [ -d /usr/local/go ]; then
-    export PATH=$PATH:/usr/local/go/bin
+#=============================
+# Plugins
+#=============================
+if type "brew" > /dev/null && [ -s `brew --prefix`/etc/profile.d/z.sh ]; then
+    _Z_CMD=j
+    . `brew --prefix`/etc/profile.d/z.sh
+fi
+
+if type "rbenv" > /dev/null; then
+    eval "$(rbenv init -)"
+fi
+
+if type "nvim" > /dev/null; then
+    alias vim=nvim
+    alias vi=nvim
+    export EDITOR=nvim
+fi
+
+if type "fzf" > /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag -g ""'
 fi

@@ -14,8 +14,7 @@ RUN apt-get update \
 RUN useradd -m ${USER}
 RUN chmod u+s /usr/sbin/useradd \
     && chmod u+s /usr/sbin/groupadd \
-    && chmod u+s /usr/sbin/usermod \
-    && chmod u+s /usr/sbin/groupmod
+    && chmod u+s /usr/sbin/usermod
 
 # Run as $USER
 ENV HOME /home/${USER}
@@ -24,16 +23,14 @@ USER ${USER}
 WORKDIR ${HOME}
 
 # Install linuxbrew
-ADD https://api.github.com/repos/Homebrew/brew/git/refs/heads/master /tmp/homebrew-version.json
-RUN git clone https://github.com/Homebrew/brew ${HOME}/.linuxbrew/Homebrew
-RUN mkdir ${HOME}/.linuxbrew/bin
-RUN ln -s ${HOME}/.linuxbrew/Homebrew/bin/brew ${HOME}/.linuxbrew/bin
+RUN env CI=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+RUN chmod -R 777 /home/linuxbrew
 
-# Prepare dotfiles
+# # Prepare dotfiles
 ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/master /tmp/dotfiles-version.json
 RUN git clone --recursive --depth 1 https://github.com/yasuoza/dotfiles
 RUN cd dotfiles \
-    && ${HOME}/.linuxbrew/bin/brew bundle --file=Brewfile.linux --verbose \
+    && /home/linuxbrew/.linuxbrew/bin/brew bundle --file=Brewfile.linux --verbose \
     && make zsh vim
 
 COPY docker/entrypoint.sh /

@@ -1,0 +1,21 @@
+name: Docker build and push
+on: [push]
+
+jobs:
+  build:
+    name: docker build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Build image
+        run: |
+          if [ ${{ github.ref }} = 'refs/heads/master' ]; then
+            TAG='latest'
+          else
+            TAG=$(echo ${{ github.ref }} | sed -E 's#refs/(tags|heads)/##g')
+          fi
+          docker build . -t ${{ github.repository }}:$TAG

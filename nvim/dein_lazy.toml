@@ -74,6 +74,11 @@ repo = 'leafgarland/typescript-vim'
 on_ft = 'typescript'
 
 [[plugins]]
+repo = 'mattn/vim-sqlfmt'
+on_ft = 'sql'
+build = 'pip3 install --upgrade sqlparse'
+
+[[plugins]]
 repo = 'Shougo/vimfiler.vim'
 on_cmd = ['VimFiler', 'VimFilerCurrentDir', 'VimFilerBufferDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerDouble']
 on_path = '.*'

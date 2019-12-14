@@ -98,8 +98,6 @@ SAVEHIST=10000
 function history-all { history -E 1 }
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
-bindkey "\\ep" history-beginning-search-backward-end
-bindkey "\\en" history-beginning-search-forward-end
 
 #=============================
 # misc

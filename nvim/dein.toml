@@ -16,6 +16,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+merged = 0
 rev = 'release'
 hook_add = '''
 " Use K to show documentation in preview window

@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+nvim -c "try | call dein#update() | :UpdateRemotePlugins | finally | qall! | endtry" \
+  -N -u $HOME/.config/nvim/init.vim -U NONE -i NONE -V1 -e -s

@@ -1,9 +1,12 @@
 name: Docker build and push
-on: [push]
+on:
+  push:
+  schedule:
+    - cron:  '0 20 * * *' # 05:00 JST
 
 jobs:
   build:
-    name: docker build
+    name: docker build and push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

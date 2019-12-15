@@ -1,3 +1,6 @@
+# reload zsh
+alias reload="exec zsh -l"
+
 # ls
 alias l="ls"
 alias la="ls -a"

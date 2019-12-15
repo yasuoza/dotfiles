@@ -7,6 +7,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates curl file g++ git locales make uuid-runtime \
     && apt-get install -y --no-install-recommends sudo zsh \
     && apt-get install -y --no-install-recommends gosu \
+    && apt-get install -y --no-install-recommends libssl-dev zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 \

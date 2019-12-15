@@ -33,6 +33,7 @@ RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
     && eval $($(brew --prefix)/bin/brew shellenv) \
     && sudo rm -rf ${HOME}/.cache ${HOME}/.cpan \
     && make zsh vim \
+    && $(brew --prefix)/bin/nodebrew setup_dirs \
     && touch ${HOME}/.z
 
 USER root

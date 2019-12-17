@@ -23,7 +23,7 @@ WORKDIR ${HOME}
 # Install linuxbrew
 RUN env CI=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
-# # Prepare dotfiles
+# Prepare dotfiles
 ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/master /tmp/dotfiles-version.json
 RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
     && cd ${HOME}/dotfiles \

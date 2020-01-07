@@ -29,6 +29,8 @@ brew 'git'
 brew 'git-now'
 brew 'hub'
 brew 'tig'
+brew 'gpg'
+brew 'pinentry-mac'
 
 # Languages
 brew 'pyenv'

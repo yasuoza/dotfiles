@@ -135,9 +135,9 @@ repo = 'Konfekt/FastFold'
 [[plugins]]
 repo = 'vim-scripts/smartword'
 
-# matchit.vim : move to corresponding parentheses via %
+# Replace matchit.vim
 [[plugins]]
-repo = 'vim-scripts/matchit.zip'
+repo = 'andymass/vim-matchup'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'

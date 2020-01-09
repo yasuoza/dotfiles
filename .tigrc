@@ -46,4 +46,5 @@ bind stash <Space> enter
 bind stash <Enter> view-diff
 
 # Color
-color cursor white color4 bold
+color cursor      black cyan dim
+color title-focus black white

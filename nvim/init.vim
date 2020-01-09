@@ -130,11 +130,7 @@ nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 "*****************************************************************************
 "" Color
 "*****************************************************************************
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
-set background=dark
-colorscheme hybrid
-syntax enable " highlight on
+colorscheme iceberg
 
 "*****************************************************************************
 "" Apperance
@@ -145,18 +141,13 @@ set list                                          " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
 set t_Co=256
+set termguicolors                                 " Enble True Color
 set lazyredraw                                    " do not rerender while command execution
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
 set guicursor=a:blinkon0                          " Force stop blinking
 set cursorline
-hi clear CursorLine
-highlight CursorLine ctermbg=236 guibg=black
-
-" Airline {{{
-  " tabline
-" }}}
 
 " markdown {{{
 let g:markdown_fenced_languages = [

@@ -1,43 +1,40 @@
-! Hybrid Terminal Colours
 ! vim: ft=xdefaults
+! https://gist.github.com/cocopon/1d481941907d12db7a0df2f8806cfd41
+! Use this .Xresources at https://terminal.sexy/ to generate configuration file.
 
-! Tomorrow-Night Palette
-#define t_background #1D1F21
-#define t_current_line #282A2E
-#define t_selection #373B41
-#define t_foreground #C5C8C6
-#define t_comment #707880
-#define t_red #CC6666
-#define t_orange #DE935F
-#define t_yellow #F0C674
-#define t_green #B5BD68
-#define t_aqua #8ABEB7
-#define t_blue #81A2BE
-#define t_purple #B294BB
+! special
+*.foreground:   #c6c8d1
+*.background:   #161821
+*.cursorColor:  #c6c8d1
 
-*background: t_background
-*foreground: t_foreground
 ! black
-*color0: t_current_line
-*color8: t_selection
+*.color0:       #161821
+*.color8:       #6b7089
+
 ! red
-*color1: #A54242
-*color9: t_red
+*.color1:       #e27878
+*.color9:       #e98989
+
 ! green
-*color2: #8C9440
-*color10: t_green
+*.color2:       #b4be82
+*.color10:      #c0ca8e
+
 ! yellow
-*color3: t_orange
-*color11: t_yellow
+*.color3:       #e2a478
+*.color11:      #e9b189
+
 ! blue
-*color4: #5F819D
-*color12: t_blue
+*.color4:       #84a0c6
+*.color12:      #91acd1
+
 ! magenta
-*color5: #85678F
-*color13: t_purple
+*.color5:       #a093c7
+*.color13:      #ada0d3
+
 ! cyan
-*color6: #5E8D87
-*color14: t_aqua
+*.color6:       #89b8c2
+*.color14:      #95c4ce
+
 ! white
-*color7: t_comment
-*color15: t_foreground
+*.color7:       #c6c8d1
+*.color15:      #d2d4de

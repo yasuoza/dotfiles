@@ -145,13 +145,11 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-# Cool status line
+# Cool colors
 [[plugins]]
 repo = 'bling/vim-airline'
 [[plugins]]
-repo = 'yasuoza/vim-airline-super-hybrid-theme'
-[[plugins]]
-repo = 'w0ng/vim-hybrid'
+repo = 'cocopon/iceberg.vim'
 hook_add = '''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -162,7 +160,7 @@ hook_add = '''
   let g:airline_powerline_fonts = 1  " Use powerline patched font
   let g:airline_section_c = '%F%m'   " Display full file path
   let g:airline#extensions#whitespace#enabled = 0
-  let g:airline_theme='super_hybrid' " Use hybrid statusline theme
+  let g:airline_theme='iceberg' " Use hybrid statusline theme
 
   " Disable coc integration
   let g:airline#extensions#coc#enabled = 0

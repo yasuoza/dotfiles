@@ -1,7 +1,24 @@
 if type fzf &> /dev/null; then
-    # /usr/local/opt/fzf/install
-    # FYI: brew info fzf
-    [ -f ~/dotfiles/.fzf.zsh ] && source ~/dotfiles/.fzf.zsh
+    # Setup fzf
+    # ---------
+    if [[ ! "$PATH" == *`brew --prefix`/opt/fzf/bin* ]]; then
+      export PATH="${PATH:+${PATH}:}`brew --prefix`/opt/fzf/bin"
+    fi
+
+    # Auto-completion
+    # ---------------
+    [[ $- == *i* ]] && source "`brew --prefix`/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+    # https://github.com/junegunn/fzf#settings
+    #
+    # Use fd (https://github.com/sharkdp/fd) instead of the default find
+    _fzf_compgen_path() {
+      fd --hidden --follow --exclude ".git" . "$1"
+    }
+    # Use fd to generate the list for directory completion
+    _fzf_compgen_dir() {
+      fd --type d --hidden --follow --exclude ".git" . "$1"
+    }
 
     # Override default fzf option
     export FZF_DEFAULT_OPTS="--extended --cycle --reverse --ansi"

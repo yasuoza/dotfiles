@@ -167,8 +167,10 @@ let g:markdown_fenced_languages = [
 "*****************************************************************************
 "" Filetype
 "*****************************************************************************
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
+autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 "*****************************************************************************
 "" Indent

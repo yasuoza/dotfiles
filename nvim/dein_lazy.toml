@@ -72,6 +72,11 @@ on_ft = 'python'
 repo = 'leafgarland/typescript-vim'
 on_ft = 'typescript'
 
+# For React
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
+on_ft = ['javascript', 'typescript']
+
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'
 on_ft = 'sql'

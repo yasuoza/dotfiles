@@ -61,6 +61,8 @@ if dein#load_state(s:cache_path)
 endif
 
 filetype plugin indent on
+set t_Co=256 " set 256colors
+syntax enable
 
 if dein#check_install()
   call dein#install()
@@ -131,6 +133,8 @@ nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 "" Color
 "*****************************************************************************
 colorscheme iceberg
+" disable line number underline
+hi CursorLineNr term=NONE cterm=NONE
 
 "*****************************************************************************
 "" Apperance
@@ -140,7 +144,6 @@ set number                                        " show line number
 set list                                          " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
-set t_Co=256
 set termguicolors                                 " Enble True Color
 set lazyredraw                                    " do not rerender while command execution
 set ttyfast                                       " use fast terminal connection

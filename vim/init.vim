@@ -32,6 +32,10 @@ endif
   " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " endif
 
+"*****************************************************************************
+"" Leader
+"*****************************************************************************
+let g:mapleader = ","
 
 "*****************************************************************************
 "" Bundle
@@ -39,33 +43,34 @@ endif
 if &compatible
   set nocompatible
 endif
-set runtimepath^=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 let s:cache_path = expand('$HOME/.cache/vim/dein')
-call dein#load_state(s:cache_path)
 
-let s:toml = '$HOME/dotfiles/vim/dein.toml'
-let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
+if dein#load_state(s:cache_path)
+  let s:toml = '$HOME/dotfiles/vim/dein.toml'
+  let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
 
-call dein#begin(s:cache_path, [expand('<sfile>')])
-call dein#load_toml(s:toml, {'lazy': 0})
-call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#begin(s:cache_path, [expand('<sfile>')])
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-call dein#end()
-call dein#save_state()
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
+set t_Co=256 " set 256colors
+syntax enable
 
 if dein#check_install()
   call dein#install()
 endif
 
-
 "*****************************************************************************
 "" Basic
 "*****************************************************************************
-let mapleader = ","
 noremap ,, ,
 map ; :
 noremap ;; ;
@@ -78,6 +83,7 @@ set nobackup                     " do not make backup
 set autoread                     " auto reload when another application rewrite
 set noswapfile                   " do not make swap file
 set hidden                       " enable to open in editting
+set expandtab                    " Default half space
 set backspace=indent,eol,start   " Enable to delete via backspace
 set formatoptions=lmoq           " Add multibyte to reoder
 set vb t_vb=                     " do not make beep
@@ -90,7 +96,6 @@ set modeline                     " enable mode line
 set clipboard=unnamed            " use os's clipboard
 set mouse=a                      " use mouse on terminal
 set guioptions+=a
-set ttymouse=xterm2
 set helpfile=$VIMRUNTIME/doc/help.txt
 set autoindent                   " auto indent
 set smartindent                  " set same amount of indent when insert new line
@@ -100,7 +105,7 @@ set wildchar=<tab>               " command completion hot key
 set wildmode=list:full           " show list and long match
 set history=100                  " number of command and search history
 set complete+=k                  " add dictionary file to complete
-set completeopt=menu,preview
+set completeopt=menuone
 set wrapscan                     " go back to top after bottom
 set ignorecase                   " ignore charactor case
 set smartcase                    " Consider capital case when keyword contains it
@@ -108,11 +113,13 @@ set incsearch                    " Incremental search
 set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
+set regexpengine=1               " Use old regexpengine for fast scrolling
+set fileencodings=utf-8,sjis
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
 
-" edit and reflect via  Ev/Rv
+" edit and reflect via Ev/Rv
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
@@ -122,15 +129,12 @@ botright cwindow
 " remove highlight by pushing Esc twice
 nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
-
 "*****************************************************************************
 "" Color
 "*****************************************************************************
-let g:hybrid_use_Xresources = 1
-set background=dark
-colorscheme hybrid
-syntax enable " highlight on
-
+colorscheme iceberg
+" disable line number underline
+hi CursorLineNr term=NONE cterm=NONE
 
 "*****************************************************************************
 "" Apperance
@@ -140,39 +144,13 @@ set number                                        " show line number
 set list                                          " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
-set t_Co=256
+set termguicolors                                 " Enble True Color
 set lazyredraw                                    " do not rerender while command execution
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
-set regexpengine=1                                " Use old regexp engine for cursorline performance
-
-" {{{ Cursor
-  " show line on current window
-  augroup cch
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-  augroup END
-
-  hi clear CursorLine
-  hi CursorLine gui=underline
-  highlight CursorLine ctermbg=234 guibg=black cterm=underline
-" }}}
-
-" Airline {{{
-  " tabline
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_nr_show = 1
-  let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-  " statusline
-  let g:airline_powerline_fonts = 1  " Use powerline patched font
-  let g:airline_section_c = '%F%m'   " Display full file path
-  let g:airline#extensions#whitespace#enabled = 0
-  let g:airline_theme='super_hybrid' " Use hybrid statusline theme
-" }}}
+set guicursor=a:blinkon0                          " Force stop blinking
+set cursorline
 
 " markdown {{{
 let g:markdown_fenced_languages = [
@@ -189,49 +167,49 @@ let g:markdown_fenced_languages = [
       \]
 " }}}
 
-
 "*****************************************************************************
 "" Filetype
 "*****************************************************************************
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
-
 
 "*****************************************************************************
 "" Indent
 "*****************************************************************************
 augroup indention
   autocmd!
-  autocmd FileType apache     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType cs         setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType go         setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType scss       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType diff       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType eruby      setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType json       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType haml       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType sql        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType vb         setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType wsh        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType zsh        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType markdown   setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType apache          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType aspvbs          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType c               setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cpp             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cs              setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType go              setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css             setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType scss            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType diff            setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType eruby           setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType html            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType java            setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType javascriptreact setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType perl            setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType ruby            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType json            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType coffee          setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType haml            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sql             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vb              setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType vim             setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType wsh             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xhtml           setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType xml             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType yaml            setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType zsh             setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala           setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType markdown        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType terraform       setlocal et
 augroup END
 
 "*****************************************************************************
@@ -242,52 +220,6 @@ cnoremap <C-p> <Up>
 cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
-" NeoComplete {{{
-  let g:acp_enableAtStartup = 0   " Enable NeoComplCahe at vim start
-  let g:neocomplete#enable_at_startup = 1
-
-  if dein#tap('neocomplete')
-    let g:neocomplete#enable_smart_case = 1   " Use smartcase.
-    let g:neocomplete#sources#syntax#min_keyword_length = 5 " Set minimum syntax keyword length.
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-      let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    " Plugin key-mappings.
-    inoremap <expr><C-g>     neocomplete#undo_completion()
-    inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-      return neocomplete#close_popup() . "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplete#close_popup()
-    inoremap <expr><C-e>  neocomplete#cancel_popup()
-    " Enable omni completion.
-    autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd vimrc FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd vimrc FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-    " Enable heavy omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-      let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-  endif
-" }}}
-
 
 "*****************************************************************************
 "" Cursor Moving
@@ -297,9 +229,9 @@ nmap 1 0
 nmap 0 ^
 nmap 9 $
 
-" window up and down via <space>j, <space>k
-noremap <Space>j <C-f>
-noremap <Space>k <C-b>
+" half window up and down via <space>j, <space>k
+noremap <Space>j <C-d>
+noremap <Space>k <C-u>
 
 " next buffer by pushing space twice,  previous buffer by pushing back-space twice
 nmap <Space><Space> :<C-U>bn<CR>
@@ -324,7 +256,6 @@ nnoremap <C-h> <C-w>h
 
 " goto previous editted line
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-
 
 "*****************************************************************************
 "" Editor Support
@@ -402,17 +333,9 @@ function! s:write_check_typo(file)
     endif
 endfunction
 
-
 "*****************************************************************************
 ""  Bundle setting
 "*****************************************************************************
-" YankRing.vim {{{
-  nmap ,y ;YRShow<CR> " show Yank history
-  let g:yankring_manual_clipboard_check = 1
-  let g:yankring_history_dir = '$HOME/.vim'
-  let g:yankring_max_history = 100
-" }}}
-
 " MiniBufExplorer {{{
   let g:miniBufExplMapWindowNavVim=1 "move hjkl
   let g:miniBufExplSplitBelow=0  " Put new window above
@@ -425,23 +348,9 @@ endfunction
   command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
 " }}}
 
-" VimFiler {{{
-  " Use VimFiler instead of netrw
-  let g:vimfiler_as_default_explorer = 1
-
-  nmap <silent> <leader>fl :VimFilerExplorer<CR>
-" }}}
-
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>
-" }}}
-
-" NERD_commenter.vim {{{
-  " put space between comment
-  let NERDSpaceDelims = 1
-  " do not show error although opening incorrect file
-  let NERDShutUp=1
 " }}}
 
 " FZF {{{
@@ -468,64 +377,6 @@ endfunction
   \ })<CR>
 " }}}
 
-" Tagbar.Vim {{{
-  let g:tagbar_width = 30
-  let g:tagbar_compact = 1
-  let g:tagbar_left = 1
-  let g:tagbar_sort = 0
-  nmap <silent> <leader>t :TagbarToggle<CR>
-  " If there is patched [ripper-tags](https://github.com/yasuoza/ripper-tags/tree/vim%2Bline_no), use it for ruby ctags generator
-  if executable('ripper-tags')
-    let ripper_tags_path = substitute(system('which ripper-tags'), '\n$', '', 'g')
-    let g:tagbar_type_ruby = {
-        \ 'ctagsbin'  : ripper_tags_path,
-        \ 'ctagsargs' : ['-f', '-', '-R', '--exclude=vendor'],
-        \ 'kinds' : [
-                      \ 'a:aliases',
-                      \ 'm:modules',
-                      \ 'c:classes',
-                      \ 'd:describes',
-                      \ 'C:constants',
-                      \ 'f:methods',
-                      \ 'F:singleton methods'
-                    \ ]
-    \ }
-  endif
-" }}}
-
-" open-blowser.vim {{{
-  let g:netrw_nogx = 1 " disable netrw's gx mapping.
-  nmap gx <Plug>(openbrowser-smart-search)
-  vmap gx <Plug>(openbrowser-smart-search)
-" }}}
-
-" unite.vim {{{
-  " unite tag
-  autocmd vimrc BufEnter *
-    \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
-    \|  endif
-  let g:unite_source_tag_max_fname_length = 50
-  let g:unite_source_tag_strict_truncate_string = 0
-
-  " configuration
-  if dein#tap('unite.vim')
-    let g:unite_source_file_mru_limit = 200
-    let g:unite_source_rec_async_command =
-          \ ['ag', '--follow', '--nocolor', '--nogroup',
-          \  '--hidden', '-g', '']
-  endif
-
-  autocmd vimrc FileType unite call s:unite_my_settings()
-  function! s:unite_my_settings() "{{{
-    " Open like a VimFiler
-    nnoremap <silent><buffer><expr> e   unite#do_action('open')
-
-    " Delete buffer with 'dd'
-    nnoremap <silent><buffer><expr> dd  unite#do_action('delete')
-  endfunction "}}}
-" }}}
-
 " quickrun.vim {{{
   let g:quickrun_config = {}
   let g:quickrun_config = {
@@ -544,15 +395,6 @@ endfunction
   \       "runner/vimproc/updatetime" : 40,
   \   }
   \}
-" }}}
-
-" Indent-Guides {{{
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 0
-  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=233
-  autocmd vimrc VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
-  let g:indent_guides_enable_on_vim_startup = 1
 " }}}
 
 " vim-go {{{

@@ -155,8 +155,6 @@ repo = 'tpope/vim-fugitive'
 # Cool colors
 [[plugins]]
 repo = 'bling/vim-airline'
-[[plugins]]
-repo = 'cocopon/iceberg.vim'
 hook_add = '''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -167,8 +165,13 @@ hook_add = '''
   let g:airline_powerline_fonts = 1  " Use powerline patched font
   let g:airline_section_c = '%F%m'   " Display full file path
   let g:airline#extensions#whitespace#enabled = 0
-  let g:airline_theme='iceberg' " Use hybrid statusline theme
 
   " Disable coc integration
   let g:airline#extensions#coc#enabled = 0
+'''
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  let g:airline_theme='iceberg' " Use hybrid statusline theme
 '''

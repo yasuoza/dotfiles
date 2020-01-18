@@ -46,7 +46,8 @@ brew 'amazon-ecs-cli'
 brew 'terraform'
 
 # EDITOR
-brew 'neovim'
+brew 'vim'
+brew 'luarocks'
 
 # CASK
 cask 'adobe-creative-cloud'

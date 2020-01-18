@@ -42,7 +42,8 @@ brew 'awscli'
 brew 'amazon-ecs-cli'
 
 # EDITOR
-brew 'neovim'
+brew 'vim'
+brew 'luarocks'
 
 # CASK
 cask 'session-manager-plugin'

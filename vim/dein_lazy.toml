@@ -69,13 +69,13 @@ on_ft = 'python'
 
 # For TypeScript
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
-on_ft = 'typescript'
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = ['typescript', 'typescriptreact']
 
 # For React
 [[plugins]]
 repo = 'peitalin/vim-jsx-typescript'
-on_ft = ['javascript', 'typescript']
+on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
 
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'

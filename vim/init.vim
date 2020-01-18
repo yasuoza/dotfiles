@@ -61,7 +61,6 @@ if dein#load_state(s:cache_path)
 endif
 
 filetype plugin indent on
-set t_Co=256 " set 256colors
 syntax enable
 
 if dein#check_install()
@@ -130,13 +129,6 @@ botright cwindow
 nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 
 "*****************************************************************************
-"" Color
-"*****************************************************************************
-colorscheme iceberg
-" disable line number underline
-hi CursorLineNr term=NONE cterm=NONE
-
-"*****************************************************************************
 "" Apperance
 "*****************************************************************************
 set showmatch                                     " highlight correspongind parentheses
@@ -144,13 +136,20 @@ set number                                        " show line number
 set list                                          " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex
-set termguicolors                                 " Enble True Color
 set lazyredraw                                    " do not rerender while command execution
 set ttyfast                                       " use fast terminal connection
 set scrolljump=5                                  " Scroll 5 lines at a time at bottom/top
 set laststatus=2                                  " Enforce to display statusline
 set guicursor=a:blinkon0                          " Force stop blinking
 set cursorline
+set t_Co=256
+set termguicolors                                 " Enble True Color
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" colorscheme
+colorscheme iceberg
+hi CursorLineNr term=NONE cterm=NONE |            " disable line number underline
 
 " markdown {{{
 let g:markdown_fenced_languages = [

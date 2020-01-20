@@ -155,7 +155,6 @@ hi CursorLineNr term=NONE cterm=NONE              " disable line number underlin
 
 " markdown {{{
 let g:markdown_fenced_languages = [
-      \  'coffee',
       \  'css',
       \  'erb=eruby',
       \  'javascript',

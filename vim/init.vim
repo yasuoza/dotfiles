@@ -66,6 +66,8 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
+" Trigger hook_post_source
+autocmd VimEnter * call dein#call_hook('post_source')
 
 "*****************************************************************************
 "" Basic
@@ -149,7 +151,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " colorscheme
 colorscheme iceberg
-hi CursorLineNr term=NONE cterm=NONE |            " disable line number underline
+hi CursorLineNr term=NONE cterm=NONE              " disable line number underline
 
 " markdown {{{
 let g:markdown_fenced_languages = [

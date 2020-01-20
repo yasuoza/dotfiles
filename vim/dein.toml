@@ -175,3 +175,6 @@ repo = 'cocopon/iceberg.vim'
 hook_add = '''
   let g:airline_theme='iceberg' " Use hybrid statusline theme
 '''
+hook_post_source = '''
+  hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
+'''

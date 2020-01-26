@@ -3964,17 +3964,28 @@
 		<string>Cica</string>
 		<string>Ricty for Powerline</string>
 	</array>
-	<key>NoSyncFrame_SharedPreferences</key>
+	<key>NoSyncFrame_SessionsPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{269, 595}</string>
+		<string>{537, 899}</string>
+	</dict>
+	<key>NoSyncFrame_SharedPreferences</key>
+	<dict>
+		<key>screenFrame</key>
+		<string>{{0, 0}, {1920, 1080}}</string>
+		<key>topLeft</key>
+		<string>{311, 723}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>C060A0AB-ADC7-4534-A727-29E28BC6C222</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
 	<integer>5</integer>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>600053259.06097603</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -4759,7 +4770,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-17T03:27:37Z</date>
+	<date>2020-01-24T14:10:31Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -4830,6 +4841,10 @@
 	<false/>
 	<key>iTerm Version</key>
 	<string>3.3.7</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 	<key>preferIntegratedGPU</key>
 	<false/>
 </dict>

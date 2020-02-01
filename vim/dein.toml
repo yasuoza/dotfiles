@@ -145,6 +145,9 @@ repo = 'vim-scripts/smartword'
 # Replace matchit.vim
 [[plugins]]
 repo = 'andymass/vim-matchup'
+hook_add = '''
+  let g:matchup_matchparen_deferred = 1 " improves cursor movement performance
+'''
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'

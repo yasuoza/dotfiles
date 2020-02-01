@@ -114,7 +114,6 @@ set incsearch                    " Incremental search
 set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
-set regexpengine=1               " Use old regexpengine for fast scrolling
 set fileencodings=utf-8,sjis
 
 " tab indent setting
@@ -171,8 +170,8 @@ let g:markdown_fenced_languages = [
 "" Filetype
 "*****************************************************************************
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
-" autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
+
 
 "*****************************************************************************
 "" Completion
@@ -249,11 +248,6 @@ function! s:remove_dust()
   unlet cursor
 endfunction
 autocmd vimrc BufWritePre * call <SID>remove_dust()
-
-" entrust fold to FileType
-set foldmethod=syntax
-" fold start whren all loaded
-set foldlevelstart=99
 
 " close quickfix via q/ESC
 autocmd vimrc FileType qf nnoremap <buffer> q :ccl<CR>

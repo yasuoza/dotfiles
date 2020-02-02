@@ -26,9 +26,11 @@ latest-spot-price = !f() {
       --query 'sort_by(SpotPriceHistory[].{Az: AvailabilityZone, Price: SpotPrice, InstanceType: InstanceType, Timestamp: Timestamp}, &Price)'
   }; f
 
-list-ec2-instances = \
-  ec2 describe-instances --query \
-  "Reservations[].Instances[].{Instance:InstanceId,Name:Tags[?Key=='Name'].Value|[0],PublicIP:PublicIpAddress,State:State.Name}"
+list-ec2-instances = !f() {
+    region=${1:-$AWS_DEFAULT_REGION}
+    aws ec2 describe-instances --region $region --query \
+    "Reservations[].Instances[].{Instance:InstanceId,Name:Tags[?Key=='Name'].Value|[0],PublicIP:PublicIpAddress,State:State.Name}"
+  }; f
 
 # Start session powered by fzf
 ssm-start-session =

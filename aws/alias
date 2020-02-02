@@ -29,3 +29,14 @@ latest-spot-price = !f() {
 list-ec2-instances = \
   ec2 describe-instances --query \
   "Reservations[].Instances[].{Instance:InstanceId,Name:Tags[?Key=='Name'].Value|[0],PublicIP:PublicIpAddress,State:State.Name}"
+
+# Start session powered by fzf
+ssm-start-session =
+  !f() {
+    region=${1:-$AWS_DEFAULT_REGION}
+    instance_id=$(aws ec2 describe-instances \
+        --region $region \
+        --query 'Reservations[].Instances[].[InstanceId, State.Name, InstanceType, PrivateIpAddress, Platform || `Linux`, Tags[?Key == `Name`].Value | [0]]' \
+        --output text | column -t | fzf-tmux --reverse | cut -d ' ' -f 1)
+    aws ssm start-session --target ${instance_id} --region $region
+  }; f

@@ -111,6 +111,10 @@ git-escape-magic
 #=============================
 # Plugins
 #=============================
+# Load chpwd plugin
+# Hook cd action
+source $HOME/dotfiles/zsh/plugins/chpwd.zsh
+
 # Load notify plugin
 # Loading this plugins blocks command line execution on El Capitan.
 # Will be back when zsh(?) has been fixed.

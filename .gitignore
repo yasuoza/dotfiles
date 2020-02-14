@@ -1,4 +1,4 @@
-/direnv/allow/
+/direnv/allow
 /fish/fish_history
 /fish/fishd*
 /.vagrant/

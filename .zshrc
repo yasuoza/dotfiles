@@ -58,7 +58,6 @@ setopt auto_cd              # auto cd
 setopt auto_pushd           # show dir list pushing Tab
 setopt pushd_ignore_dups    # Do not add directory to same directory stack
 setopt correct              # command spell check
-setopt correct_all          # Check all spell on command line
 setopt no_clobber           # Forbit to overwrite redirect
 setopt list_packed          # Shorten complete list
 setopt list_types           # Show file type with auto_list

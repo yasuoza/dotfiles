@@ -147,6 +147,7 @@ repo = 'vim-scripts/smartword'
 repo = 'andymass/vim-matchup'
 hook_add = '''
   let g:matchup_matchparen_deferred = 1 " improves cursor movement performance
+  let g:matchup_matchparen_offscreen = {} " Disable statusline entry
 '''
 
 [[plugins]]

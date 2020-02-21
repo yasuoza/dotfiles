@@ -4,7 +4,7 @@ ENV USER developer
 
 # For Linuxbrew
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates curl file g++ git locales make uuid-runtime \
+    && apt-get install -y --no-install-recommends ca-certificates curl file build-essential g++ git locales make uuid-runtime \
     && apt-get install -y --no-install-recommends sudo zsh \
     && apt-get install -y --no-install-recommends gosu \
     && apt-get install -y --no-install-recommends libssl-dev zlib1g-dev \
@@ -27,10 +27,10 @@ RUN env CI=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/ins
 ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/master /tmp/dotfiles-version.json
 RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
     && cd ${HOME}/dotfiles \
-    && /home/linuxbrew/.linuxbrew/bin/brew bundle --file=Brewfile.linux --verbose \
-    && /home/linuxbrew/.linuxbrew/bin/brew cleanup \
     && test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) \
     && eval $($(brew --prefix)/bin/brew shellenv) \
+    && brew bundle --file=Brewfile.linux --verbose \
+    && brew cleanup \
     && sudo rm -rf ${HOME}/.cache ${HOME}/.cpan \
     && make zsh vim misc \
     && $(brew --prefix)/bin/nodebrew setup_dirs \

@@ -28,11 +28,6 @@ alias -g V="| vim -"
 # grep
 alias 'gr'='grep --color=auto -RUIn'
 
-# make
-alias 'm'='make'
-alias 'mn'='make native-code'
-alias 'mc'='make clean'
-
 # tmux
 alias tm='tmux'
 alias tma='tmux attach'
@@ -42,6 +37,9 @@ alias tmn='tmux new'
 # docker
 alias d='docker'
 alias dc='docker-compose'
+
+# mutagen
+alias m='mutagen'
 
 # git
 alias g='git'

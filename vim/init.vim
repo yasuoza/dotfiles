@@ -170,6 +170,8 @@ let g:markdown_fenced_languages = [
 "" Filetype
 "*****************************************************************************
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+autocmd BufNewFile,BufRead *.jsonnet setfiletype jsonnet
+autocmd BufNewFile,BufRead *.libsonnet setfiletype jsonnet
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
 
 

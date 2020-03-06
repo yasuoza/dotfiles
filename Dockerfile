@@ -39,4 +39,4 @@ RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
 USER root
 COPY docker/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/bin/zsh"]
+CMD ["tail", "-f", "/dev/null"]

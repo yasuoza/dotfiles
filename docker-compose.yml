@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dotfiles:
+    image: yasuoza/dotfiles:latest
+    container_name: 'dotfiles'
+    stop_grace_period: 0s
+    command: 'tail -f /dev/null'

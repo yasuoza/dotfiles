@@ -5,3 +5,7 @@
 /karabiner/automatic_backups/
 
 /vim/rplugin/python3/denite/source/__pycache__
+
+/Brewfile.*.lock.*
+/mutagen.yml.lock
+

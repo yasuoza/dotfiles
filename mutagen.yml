@@ -1,0 +1,20 @@
+beforeCreate:
+  - docker-compose up --detach dotfiles
+
+afterTerminate:
+  - docker-compose down --volumes
+
+sync:
+  defaults:
+    flushOnCreate: true
+    ignore:
+      vcs: true
+    symlink:
+      mode: 'ignore'
+  code:
+    alpha: '.'
+    beta: 'docker://dotfiles/home/developer/dotfiles'
+    mode: 'two-way-resolved'
+    configurationBeta:
+      permissions:
+        defaultOwner: 'developer'

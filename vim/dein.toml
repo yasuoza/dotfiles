@@ -13,15 +13,6 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-
-  " Completion starts more than 4 chars
-  call deoplete#custom#source('_', 'min_pattern_length', 4)
-'''
-
-[[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
 rev = 'release'

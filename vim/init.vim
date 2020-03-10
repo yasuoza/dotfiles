@@ -115,6 +115,7 @@ set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
 set fileencodings=utf-8,sjis
+set updatetime=300               " Faster updatetime
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0

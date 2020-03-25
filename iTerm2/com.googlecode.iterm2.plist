@@ -2413,7 +2413,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.0897696101347807</real>
+			<real>0.083411326142131981</real>
 			<key>Triggers</key>
 			<array>
 				<dict>
@@ -3980,14 +3980,14 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{311, 723}</string>
+		<string>{784, 793}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>C060A0AB-ADC7-4534-A727-29E28BC6C222</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>13</integer>
+	<integer>16</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4776,7 +4776,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-02-17T08:12:01Z</date>
+	<date>2020-03-24T08:17:30Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

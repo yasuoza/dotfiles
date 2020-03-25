@@ -41,13 +41,11 @@ brew 'rbenv'
 brew 'nodebrew'
 
 # Infra
-brew 'awscli'
-brew 'amazon-ecs-cli'
 brew 'terraform'
 
 # EDITOR
-brew 'vim'
 brew 'luarocks'
+brew 'vim'
 
 # CASK
 cask 'adobe-creative-cloud'

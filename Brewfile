@@ -25,6 +25,7 @@ brew 'yarn'
 brew 'jq'
 brew 'envchain'
 brew 'mutagen'
+brew 'exiftool'
 
 # SCM
 brew 'git'

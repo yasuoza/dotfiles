@@ -24,6 +24,7 @@ brew 'terminal-notifier'
 brew 'yarn'
 brew 'jq'
 brew 'envchain'
+brew 'mutagen'
 
 # SCM
 brew 'git'

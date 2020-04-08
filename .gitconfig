@@ -77,3 +77,7 @@
   open-ci-status = !"open `hub ci-status --format %U`"
 [gpg]
   program = gpg
+[rebase]
+	autosquash = true
+[fetch]
+	prune = true

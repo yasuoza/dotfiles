@@ -2413,7 +2413,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.083411326142131981</real>
+			<real>0.090638880076142139</real>
 			<key>Triggers</key>
 			<array>
 				<dict>
@@ -4776,7 +4776,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-24T08:17:30Z</date>
+	<date>2020-04-09T00:22:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

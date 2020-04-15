@@ -15,7 +15,7 @@ build = 'make'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
-rev = 'v0.0.77'
+rev = 'release'
 hook_add = '''
   " Use K to show documentation in preview window
   nnoremap <silent> K :call <SID>show_documentation()<CR>

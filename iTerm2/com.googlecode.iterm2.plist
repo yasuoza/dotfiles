@@ -1974,6 +1974,13 @@
 					<key>Text</key>
 					<string></string>
 				</dict>
+				<key>0x69-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>13</integer>
+					<key>Text</key>
+					<string></string>
+				</dict>
 				<key>0x77-0x100000</key>
 				<dict>
 					<key>Action</key>
@@ -4776,7 +4783,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-09T00:22:16Z</date>
+	<date>2020-04-15T00:25:40Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

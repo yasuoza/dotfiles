@@ -103,7 +103,7 @@ set smartindent                  " set same amount of indent when insert new lin
 set cindent                      " start c lang indent mode
 set wildmenu                     " power to command completeion
 set wildchar=<tab>               " command completion hot key
-set wildmode=list:full           " show list and long match
+set wildmode=list:longest,full   " show list and long match
 set history=100                  " number of command and search history
 set complete+=k                  " add dictionary file to complete
 set completeopt=menuone

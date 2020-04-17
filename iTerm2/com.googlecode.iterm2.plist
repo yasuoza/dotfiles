@@ -1953,20 +1953,6 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
-				<key>0x62-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>h</string>
-				</dict>
-				<key>0x66-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>l</string>
-				</dict>
 				<key>0x68-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -4783,7 +4769,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-15T00:25:40Z</date>
+	<date>2020-04-17T00:25:41Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

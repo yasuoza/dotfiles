@@ -20,24 +20,23 @@ case ${UID} in
 
         # Prompt
         setopt prompt_subst
-        PROMPT='${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}'
-        RPROMPT='${RESET}${GREEN}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}'
+        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}"
 
         # Change color when terminal is vim mode
         # http://memo.officebrook.net/20090226.html
-        # function zle-line-init zle-keymap-select {
-            # case $KEYMAP in
-                # vicmd)
-                    # PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
-                    # ;;
-                # main|viins)
-                    # PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m ${RESET}${WHITE}$ ${RESET}"
-                    # ;;
-            # esac
-            # zle reset-prompt
-        # }
-        # zle -N zle-line-init
-        # zle -N zle-keymap-select
+        function zle-line-init zle-keymap-select {
+            case $KEYMAP in
+                vicmd)
+                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
+                    ;;
+                main|viins)
+                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
+                    ;;
+            esac
+            zle reset-prompt
+        }
+        zle -N zle-line-init
+        zle -N zle-keymap-select
 
         # Blight red when previous command failed status 0
         local MY_COLOR="$ESCX"'%(0?.${MY_PROMPT_COLOR}.31)'m
@@ -98,9 +97,6 @@ case ${UID} in
             fi
         }
         add-zsh-hook precmd _update_vcs_info_msg
-
-        PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
-        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}"
         ;;
 esac
 

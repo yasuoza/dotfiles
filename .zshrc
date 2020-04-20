@@ -38,9 +38,17 @@ source $HOME/dotfiles/zsh/plugins/color.plugin.zsh
 #=============================
 # Keybind
 #=============================
-bindkey -v # Keybind configuration
-bindkey "^W" forward-word
-bindkey "^B" backward-word
+bindkey -v # vi-mode
+bindkey -M viins '^A'  beginning-of-line
+bindkey -M viins '^B'  backward-char
+bindkey -M viins '^D'  delete-char-or-list
+bindkey -M viins '^E'  end-of-line
+bindkey -M viins '^F'  forward-char
+bindkey -M viins '^G'  send-break
+bindkey -M viins '^H'  backward-delete-char
+bindkey -M viins '^J' vi-cmd-mode
+bindkey -M viins '^K'  kill-line
+bindkey -M viins '^U'  backward-kill-line
 
 #=============================
 # zstyle

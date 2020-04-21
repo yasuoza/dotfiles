@@ -81,6 +81,7 @@ setglobal nobomb                 " disable bomb
 set scrolloff=5                  " buffer for scrolling
 set textwidth=0                  " do not turn back if long line
 set nobackup                     " do not make backup
+set nowritebackup                " do not create backup file
 set autoread                     " auto reload when another application rewrite
 set noswapfile                   " do not make swap file
 set hidden                       " enable to open in editting

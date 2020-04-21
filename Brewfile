@@ -43,7 +43,7 @@ brew 'rbenv'
 brew 'nodebrew'
 
 # Infra
-brew 'terraform'
+brew 'tfenv'
 
 # EDITOR
 brew 'luarocks'

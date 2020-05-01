@@ -75,10 +75,6 @@ if type "hub" > /dev/null ; then
     alias __git=hub
 fi
 
-if type "rbenv" > /dev/null; then
-    eval "$(rbenv init -)"
-fi
-
 if type "vim" > /dev/null; then
     alias vi=vim
 fi

@@ -24,9 +24,9 @@ if type fzf &> /dev/null; then
     export FZF_DEFAULT_OPTS="--extended --cycle --reverse --ansi"
 
     function _fzf_select_history() {
-        BUFFER=$(fc -l -n 1 | fzf-tmux --tac --ansi)
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
+      BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+      CURSOR=$#BUFFER # move cursor
+      zle -R -c       # refresh
     }
     zle -N _fzf_select_history
     bindkey '^R' _fzf_select_history

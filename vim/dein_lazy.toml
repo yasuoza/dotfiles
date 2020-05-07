@@ -25,30 +25,6 @@ repo = 'neoclide/jsonc.vim'
 on_ft = 'jsonc'
 
 [[plugins]]
-repo = 'neoclide/coc-tsserver'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-on_ft = ['typescript', 'typescriptreact']
-
-[[plugins]]
-repo = 'neoclide/coc-json'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-on_ft = 'json'
-
-[[plugins]]
-repo = 'neoclide/coc-solargraph'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-on_ft = 'ruby'
-
-[[plugins]]
-repo = 'neoclide/coc-yaml'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-on_ft = 'yaml'
-
-[[plugins]]
 repo = 'google/vim-jsonnet'
 on_ft = 'jsonnet'
 

@@ -31,6 +31,26 @@ hook_add = '''
   nmap <silent> <C-]> <Plug>(coc-definition)
 '''
 
+[[plugins]]
+repo = 'neoclide/coc-tsserver'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-json'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-solargraph'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-yaml'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'

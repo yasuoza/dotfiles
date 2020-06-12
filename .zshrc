@@ -134,6 +134,9 @@ source $HOME/dotfiles/zsh/plugins/alias-nocorrect.plugin.zsh
 # Load fzf plugin
 source $HOME/dotfiles/zsh/plugins/fzf.plugin.zsh
 
+# Load docker plugin
+source $HOME/dotfiles/zsh/plugins/docker.plugin.zsh
+
 #=============================
 # rbenv
 #=============================

@@ -30,6 +30,7 @@ brew 'exiftool'
 # SCM
 brew 'git'
 brew 'git-now'
+brew 'git-when-merged'
 brew 'hub'
 brew 'tig'
 brew 'gpg'

@@ -18,3 +18,7 @@ sync:
     configurationBeta:
       permissions:
         defaultOwner: 'developer'
+    ignore:
+      paths:
+        - '/mutagen.yml'
+        - '/mutagen.yml.lock'

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-KEY_REPEAT=1.2
-INITIAL_KEY_REPEAT=10
+KEY_REPEAT=1.8
+INITIAL_KEY_REPEAT=12
 
 function setup () {
 	clean

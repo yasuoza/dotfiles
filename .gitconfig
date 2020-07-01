@@ -18,6 +18,7 @@
 [pull]
   rebase = true
 [commit]
+  cleanup = scissors
  template = ~/dotfiles/.gitcommit_template
 [rerere]
   enabled = true

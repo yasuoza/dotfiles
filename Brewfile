@@ -37,6 +37,7 @@ brew 'gpg'
 brew 'pinentry-mac'
 
 # Languages
+brew 'go'
 brew 'pyenv'
 brew 'python'
 brew 'ruby-build'

@@ -66,6 +66,36 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
+hook_add = '''
+  " Syntax Highlight
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_types = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+
+  " Faster update
+  let g:go_updatetime = 0
+
+  " Use coc-go for autocomplete
+  let g:go_def_mapping_enabled = 0
+
+  " Use coc-go for completion
+  let g:go_code_completion_enabled = 0
+
+  " Floating window for GoDoc
+  let g:go_doc_popup_window = 1
+
+  " gofmt + goimports on save
+  let g:go_fmt_command = "goimports"
+
+  " Silent errors
+  let g:go_fmt_fail_silently = 1
+  let g:go_list_height = 0
+  let g:go_highlight_diagnostic_errors = 0
+  let g:go_highlight_diagnostic_warnings = 0
+'''
 
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'

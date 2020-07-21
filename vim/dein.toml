@@ -51,6 +51,11 @@ repo = 'neoclide/coc-yaml'
 merged = 0
 build = 'yarn install --frozen-lockfile'
 
+[[plugins]]
+repo = 'josa42/coc-go'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'

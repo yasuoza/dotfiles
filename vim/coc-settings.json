@@ -2,5 +2,7 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
 
-  "solargraph.checkGemVersion": false
+  "solargraph.checkGemVersion": false,
+
+  "diagnostic.locationlist": false
 }

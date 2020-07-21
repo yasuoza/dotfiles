@@ -116,7 +116,7 @@ set hlsearch                     " highlight searched words
 set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
 set fileencodings=utf-8,sjis
-set updatetime=300               " Faster updatetime
+set shortmess+=c                 " Don't pass messages to ins-completion-menu
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
@@ -136,6 +136,8 @@ nmap <ESC><ESC> ;nohlsearch<CR><ESC>
 "*****************************************************************************
 set showmatch                                     " highlight correspongind parentheses
 set number                                        " show line number
+set updatetime=300                                " Faster updatetime
+set signcolumn=number                             " Merge signcolumn and number column into one
 set list                                          " show hidden words
 set listchars=tab:>.,trail:_,extends:>,precedes:< " setting for hidden words
 set display=uhex                                  " show unrecognized words via uhex

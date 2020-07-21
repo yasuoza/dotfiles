@@ -145,6 +145,7 @@ set scrolljump=5                                  " Scroll 5 lines at a time at 
 set laststatus=2                                  " Enforce to display statusline
 set guicursor=a:blinkon0                          " Force stop blinking
 set cursorline
+set background=dark
 set t_Co=256
 set termguicolors                                 " Enble True Color
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

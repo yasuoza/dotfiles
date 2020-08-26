@@ -4,5 +4,11 @@
 
   "solargraph.checkGemVersion": false,
 
-  "diagnostic.locationlist": false
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".git/"],
+      "filetypes": ["go"]
+    }
+  }
 }

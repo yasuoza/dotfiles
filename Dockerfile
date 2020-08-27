@@ -10,6 +10,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends libssl-dev zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/include/locale.h /usr/include/xlocale.h \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 \
     && useradd -m ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/${USER}

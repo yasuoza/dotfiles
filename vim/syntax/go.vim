@@ -227,7 +227,7 @@ syn match goTypeConstructor      /\<\w\+{\@=/
 syn match goTypeDecl             /\<type\>/ nextgroup=goTypeName skipwhite skipnl
 syn match goTypeName             /\w\+/ contained nextgroup=goDeclType skipwhite skipnl
 syn match goDeclType             /\<\%(interface\|struct\)\>/ skipwhite skipnl
-hi def link     goReceiverType      Type
+hi def link     goReceiverType      Title
 hi def link     goTypeConstructor   Title
 hi def link     goTypeName          Title
 hi def link     goTypeDecl          Keyword

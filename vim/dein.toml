@@ -27,8 +27,16 @@ hook_add = '''
     endif
   endfunction
 
-  " GoTo code navigation.
-  nmap <silent> <C-]> <Plug>(coc-definition)
+  " Jump definition respecting for tags file.
+  function! s:jump_definition()
+    let tags_file = findfile('tags', escape(expand('<afile>:p:h'), ' ') . ';', 1)
+    if filereadable(expand(tags_file))
+      execute 'tag '.expand("<cword>")
+    else
+      call CocAction('jumpDefinition')
+    endif
+  endfunction
+  nmap <silent> <C-]> :call <SID>jump_definition()<CR>
 '''
 
 [[plugins]]

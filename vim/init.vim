@@ -26,12 +26,6 @@ if isdirectory(s:fzf_directory)
   exe "set rtp+=".s:fzf_directory
 endif
 
-" http://mattn.kaoriya.net/software/vim/20130531000559.htm
-" if ($GOROOT != "") && ($GOPATH != "")
-  " set rtp+=$GOROOT/misc/vim
-  " exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-" endif
-
 "*****************************************************************************
 "" Leader
 "*****************************************************************************
@@ -117,6 +111,7 @@ set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
 set fileencodings=utf-8,sjis
 set shortmess+=c                 " Don't pass messages to ins-completion-menu
+set splitright                   " Open new window at right side
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0
@@ -178,7 +173,6 @@ autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufNewFile,BufRead *.jsonnet setfiletype jsonnet
 autocmd BufNewFile,BufRead *.libsonnet setfiletype jsonnet
 autocmd BufNewFile,BufRead PULLREQ_EDITMSG set filetype=gitcommit
-
 
 "*****************************************************************************
 "" Completion

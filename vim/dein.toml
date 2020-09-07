@@ -127,6 +127,24 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+[[plugins]]
+repo = 'mileszs/ack.vim'
+hook_add = '''
+  " Use `:Ack` without jumping to first result.
+  cnoreabbrev Ack Ack!
+
+  " Use the_silver_searcher
+  let g:ackprg = 'ag --vimgrep'
+
+  " Mappings
+  " e: Open and close quickfix
+  " v: Open right and close quickfix
+  let g:ack_mappings = {
+    \ "e": "<CR><C-W><C-W>:ccl<CR>zz",
+    \ "v": "<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p<C-W>:ccl<CR>zz",
+  \ }
+'''
+
 # Cool colors
 [[plugins]]
 repo = 'bling/vim-airline'

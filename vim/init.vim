@@ -44,10 +44,12 @@ let s:cache_path = expand('$HOME/.cache/vim/dein')
 
 if dein#load_state(s:cache_path)
   let s:toml = '$HOME/dotfiles/vim/dein.toml'
+  let s:coc_toml = '$HOME/dotfiles/vim/dein_coc.toml'
   let s:lazy_toml = '$HOME/dotfiles/vim/dein_lazy.toml'
 
   call dein#begin(s:cache_path, [expand('<sfile>')])
   call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:coc_toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   call dein#end()

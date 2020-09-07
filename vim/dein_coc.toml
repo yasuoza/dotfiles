@@ -1,0 +1,51 @@
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merged = 0
+rev = 'release'
+hook_add = '''
+  " Use K to show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+  " Jump definition respecting for tags file.
+  function! s:jump_definition()
+    let tags_file = findfile('tags', expand('%:p:h').';'.$HOME, 1)
+    if &filetype == 'ruby' && filereadable(expand(tags_file))
+      execute 'tag '.RubyCursorTag()
+    else
+      call CocAction('jumpDefinition')
+    endif
+  endfunction
+  nmap <silent> <C-]> :call <SID>jump_definition()<CR>
+'''
+
+[[plugins]]
+repo = 'neoclide/coc-highlight'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-tsserver'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-json'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-solargraph'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-yaml'
+merged = 0
+build = 'yarn install --frozen-lockfile'

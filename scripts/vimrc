@@ -8,6 +8,7 @@ function setup () {
     pip3 install --force-reinstall --user pynvim msgpack
 
     mkdir -p $HOME/.vim
+    ln -s $DOTFILES_DIR/vim/syntax $HOME/.vim/syntax
     ln -s $DOTFILES_DIR/vim/coc-settings.json $HOME/.vim/coc-settings.json
 
     mkdir -p $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim

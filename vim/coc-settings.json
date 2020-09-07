@@ -1,4 +1,6 @@
 {
+  "coc.preferences.useQuickfixForLocations": true,
+
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
 
@@ -7,8 +9,12 @@
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".git/"],
-      "filetypes": ["go"]
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true
+      }
     }
   }
 }

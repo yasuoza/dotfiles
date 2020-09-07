@@ -32,6 +32,11 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'neoclide/coc-highlight'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
 repo = 'neoclide/coc-tsserver'
 merged = 0
 build = 'yarn install --frozen-lockfile'

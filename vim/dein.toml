@@ -29,7 +29,7 @@ hook_add = '''
 
   " Jump definition respecting for tags file.
   function! s:jump_definition()
-    let tags_file = findfile('tags', escape(expand('<afile>:p:h'), ' ') . ';', 1)
+    let tags_file = findfile('tags', '.;', 1)
     if filereadable(expand(tags_file))
       execute 'tag '.expand("<cword>")
     else

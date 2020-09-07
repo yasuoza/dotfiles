@@ -31,7 +31,7 @@ hook_add = '''
   function! s:jump_definition()
     let tags_file = findfile('tags', '.;', 1)
     if filereadable(expand(tags_file))
-      execute 'tag '.expand("<cword>")
+      execute 'tag '.expand("<cWORD>")
     else
       call CocAction('jumpDefinition')
     endif

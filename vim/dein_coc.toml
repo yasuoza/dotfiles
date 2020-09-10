@@ -49,3 +49,13 @@ build = 'yarn install --frozen-lockfile'
 repo = 'neoclide/coc-yaml'
 merged = 0
 build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-html'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'neoclide/coc-css'
+merged = 0
+build = 'yarn install --frozen-lockfile'

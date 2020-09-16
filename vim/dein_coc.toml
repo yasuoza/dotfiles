@@ -16,7 +16,8 @@ hook_add = '''
   " Jump definition respecting for tags file.
   function! s:jump_definition()
     let tags_file = findfile('tags', expand('%:p:h').';'.$HOME, 1)
-    if &filetype == 'ruby' && filereadable(expand(tags_file))
+    let ruby_filetypes = ['ruby', 'eruby', 'slim']
+    if match(ruby_filetypes, &filetype) != -1 && filereadable(expand(tags_file))
       execute 'tag '.RubyCursorTag()
     else
       call CocAction('jumpDefinition')

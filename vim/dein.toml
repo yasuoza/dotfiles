@@ -89,6 +89,9 @@ repo = 'thinca/vim-quickrun'
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
+repo = 'mattn/vim-molder'
+
+[[plugins]]
 repo = 'mileszs/ack.vim'
 hook_add = '''
   " Use `:Ack` without jumping to first result.

@@ -334,8 +334,8 @@ endfunction
   nnoremap <silent> <Leader>lb :call fzf#run({
   \   'source':  reverse(<sid>buflist()),
   \   'sink':    function('<sid>bufopen'),
-  \   'options': '+m',
-  \   'down':    '50%'
+  \   'options': '--multi',
+  \   'down':    '~40%'
   \ })<CR>
 " }}}
 

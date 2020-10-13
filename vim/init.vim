@@ -316,6 +316,9 @@ endfunction
   " Like CtrlP
   noremap <silent> <C-\> :FZF<Enter>
 
+  " Do not use popup
+  let g:fzf_layout = { 'down': '~40%' }
+
   " <Leader>lb opens buffer list
   function! s:buflist()
     redir => ls

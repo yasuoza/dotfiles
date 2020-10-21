@@ -300,11 +300,6 @@ endfunction
   command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
 " }}}
 
-" vim-easy-align {{{
-  " to use vim-easy-align in Japanese environment
-  vnoremap <silent> <Enter> :EasyAlign<Enter>
-" }}}
-
 " quickrun.vim {{{
   let g:quickrun_config = {}
   let g:quickrun_config = {

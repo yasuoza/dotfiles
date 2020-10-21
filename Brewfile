@@ -7,7 +7,7 @@
 brew 'z'
 brew 'fd'
 brew 'fzf'
-brew 'the_silver_searcher'
+brew 'ripgrep'
 brew 'tmux'
 
 # Utils

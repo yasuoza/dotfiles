@@ -19,13 +19,6 @@ if isdirectory($HOME.'/dotfiles/vim')
   set rtp+=$HOME/dotfiles/vim/
 endif
 
-" Enable FZF command
-" https://github.com/junegunn/fzf#usage-as-vim-plugin
-let s:fzf_directory = globpath($HOMEBREW_PREFIX, 'opt/fzf')
-if isdirectory(s:fzf_directory)
-  exe "set rtp+=".s:fzf_directory
-endif
-
 "*****************************************************************************
 "" Leader
 "*****************************************************************************
@@ -310,33 +303,6 @@ endfunction
 " vim-easy-align {{{
   " to use vim-easy-align in Japanese environment
   vnoremap <silent> <Enter> :EasyAlign<Enter>
-" }}}
-
-" FZF {{{
-  " Like CtrlP
-  noremap <silent> <C-\> :FZF<Enter>
-
-  " Do not use popup
-  let g:fzf_layout = { 'down': '~40%' }
-
-  " <Leader>lb opens buffer list
-  function! s:buflist()
-    redir => ls
-    silent ls
-    redir END
-    return split(ls, '\n')
-  endfunction
-
-  function! s:bufopen(e)
-    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-  endfunction
-
-  nnoremap <silent> <Leader>lb :call fzf#run({
-  \   'source':  reverse(<sid>buflist()),
-  \   'sink':    function('<sid>bufopen'),
-  \   'options': '--multi',
-  \   'down':    '~40%'
-  \ })<CR>
 " }}}
 
 " quickrun.vim {{{

@@ -92,21 +92,39 @@ repo = 'tpope/vim-fugitive'
 repo = 'mattn/vim-molder'
 
 [[plugins]]
-repo = 'mileszs/ack.vim'
+repo = 'junegunn/fzf'
+merged = 0
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+merged = 0
 hook_add = '''
-  " Use `:Ack` without jumping to first result.
-  cnoreabbrev Ack Ack!
+  " Like CtrlP
+  noremap <silent> <C-\> :Files<Enter>
 
-  " Use the_silver_searcher
-  let g:ackprg = 'ag --vimgrep'
+  " Do not use popup
+  let g:fzf_layout = { 'down': '~40%' }
 
-  " Mappings
-  " e: Open and close quickfix
-  " v: Open right and close quickfix
-  let g:ack_mappings = {
-    \ "e": "<CR><C-W><C-W>:ccl<CR>zz",
-    \ "v": "<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p<C-W>:ccl<CR>zz",
-  \ }
+  " <Leader>lb opens buffer list
+  function! s:buflist()
+    redir => ls
+    silent ls
+    redir END
+    return split(ls, '\n')
+  endfunction
+
+  function! s:bufopen(e)
+    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+  endfunction
+
+  nnoremap <silent> <Leader>lb :Buffers<Enter>
+
+  if executable('rg')
+    command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(expand('<cword>')), 1,
+      \   fzf#vim#with_preview(), <bang>0)
+  endif
 '''
 
 # Cool colors

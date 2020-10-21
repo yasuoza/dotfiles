@@ -8,6 +8,7 @@ brew 'z'
 brew 'fd'
 brew 'fzf'
 brew 'ripgrep'
+brew 'bat'
 brew 'tmux'
 
 # Utils

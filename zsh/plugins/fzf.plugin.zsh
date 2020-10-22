@@ -56,4 +56,33 @@ if type fzf &> /dev/null; then
   }
   zle -N _fzf_select_local_git_branch
   bindkey '^G^J' _fzf_select_local_git_branch
+
+  # List GitHub Issues
+  # Accepts gh issue list query like
+  # $ fzf_gh_issue -a whoami
+  # $ fzf_gh_issue -A whoami
+  function fzf_gh_issue() {
+    local issue_query=$@
+    local base_command="gh issue list --limit 100 $issue_query"
+    local bind_commands="ctrl-a:reload($base_command --state all)"
+    bind_commands="$bind_commands,ctrl-o:reload($base_command --state open)"
+    bind_commands="$bind_commands,ctrl-c:reload($base_command --state closed)"
+
+    local out=$( \
+      eval $base_command | \
+      fzf \
+      --prompt='Open issue list > ' \
+      --preview="gh issue view {1}" \
+      --header='C-a: all, C-o: open, C-c: closed' \
+      --bind="$bind_commands" \
+    )
+
+    if [ -z "$out" ]; then
+      return
+    fi
+
+    local issue_id=$(echo $out | awk '{ print $1 }')
+    $(gh issue view -w $issue_id)
+  }
+  alias gh-issues=fzf_gh_issue
 fi

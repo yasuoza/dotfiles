@@ -67,6 +67,7 @@ if type fzf &> /dev/null; then
     local bind_commands="ctrl-a:reload($base_command --state all)"
     bind_commands="$bind_commands,ctrl-o:reload($base_command --state open)"
     bind_commands="$bind_commands,ctrl-c:reload($base_command --state closed)"
+    bind_commands="$bind_commands,ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
 
     local out=$( \
       eval $base_command | \

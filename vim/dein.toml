@@ -102,9 +102,6 @@ hook_add = '''
   " Like CtrlP
   noremap <silent> <C-\> :Files<Enter>
 
-  " Do not use popup
-  let g:fzf_layout = { 'down': '~40%' }
-
   " <Leader>lb opens buffer list
   function! s:buflist()
     redir => ls
@@ -113,17 +110,20 @@ hook_add = '''
     return split(ls, '\n')
   endfunction
 
-  function! s:bufopen(e)
-    execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-  endfunction
-
   nnoremap <silent> <Leader>lb :Buffers<Enter>
+
+  " Use ctrl-j and ctrl-k to preview window page up and down
+  let s:preview_option = { 'options': ['--bind', 'ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up'] }
+
+  " Customize Files
+  command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(s:preview_option), <bang>0)
 
   if executable('rg')
     command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(expand('<cword>')), 1,
-      \   fzf#vim#with_preview(), <bang>0)
+      \   fzf#vim#with_preview(s:preview_option), <bang>0)
   endif
 '''
 

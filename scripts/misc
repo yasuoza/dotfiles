@@ -21,6 +21,7 @@ function setup () {
     ln -s $DOTFILES_DIR/bin $HOME/.bin
 		ln -s $DOTFILES_DIR/karabiner $HOME/.config/karabiner
 		ln -s $DOTFILES_DIR/direnv $HOME/.config/direnv
+		ln -s $DOTFILES_DIR/bat $HOME/.config/bat
 		ln -s $DOTFILES_DIR/aws/alias $HOME/.aws/cli/alias
 
     cp $DOTFILES_DIR/docker/config.json $HOME/.docker/config.json

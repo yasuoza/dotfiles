@@ -65,6 +65,7 @@ if type fzf &> /dev/null; then
     local issue_query=$@
     local base_command="gh issue list --limit 100 $issue_query"
     local bind_commands="ctrl-a:reload($base_command --state all)"
+    bind_commands="$bind_commands,ctrl-b:execute-silent(gh issue view -w {1})"
     bind_commands="$bind_commands,ctrl-o:reload($base_command --state open)"
     bind_commands="$bind_commands,ctrl-c:reload($base_command --state closed)"
     bind_commands="$bind_commands,ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
@@ -86,4 +87,35 @@ if type fzf &> /dev/null; then
     $(gh issue view -w $issue_id)
   }
   alias gh-issues=fzf_gh_issue
+
+  # List GitHub Pull Requestss
+  # Accepts gh pr list query like
+  # $ fzf_gh_pr -a whoami
+  # $ fzf_gh_pr -A whoami
+  function fzf_gh_pr() {
+    local pr_query=$@
+    local base_command="gh pr list --limit 100 $pr_query"
+    local bind_commands="ctrl-a:reload($base_command --state all)"
+    bind_commands="$bind_commands,ctrl-b:execute-silent(gh pr view -w {1})"
+    bind_commands="$bind_commands,ctrl-o:reload($base_command --state open)"
+    bind_commands="$bind_commands,ctrl-c:reload($base_command --state closed)"
+    bind_commands="$bind_commands,ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
+
+    local out=$( \
+      eval $base_command | \
+      fzf \
+      --prompt='Open pr list > ' \
+      --preview="gh pr view {1}" \
+      --header='C-a: all, C-o: open, C-c: closed' \
+      --bind="$bind_commands" \
+    )
+
+    if [ -z "$out" ]; then
+      return
+    fi
+
+    local pr_id=$(echo $out | awk '{ print $1 }')
+    $(gh pr view -w $pr_id)
+  }
+  alias gh-pr=fzf_gh_pr
 fi

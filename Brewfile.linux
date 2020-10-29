@@ -10,7 +10,8 @@
 brew 'z'
 brew 'fd'
 brew 'fzf'
-brew 'the_silver_searcher'
+brew 'ripgrep'
+brew 'bat'
 brew 'tmux'
 
 # Utils
@@ -25,10 +26,13 @@ brew 'yarn'
 brew 'jq'
 
 # SCM
+brew 'gh'
 brew 'git'
 brew 'git-now'
+brew 'git-when-merged'
 brew 'hub'
 brew 'tig'
+brew 'gpg'
 
 # Languages
 brew 'pyenv'
@@ -38,6 +42,7 @@ brew 'rbenv'
 brew 'nodebrew'
 
 # Infra
+brew 'ctop'
 brew 'tfenv'
 
 # EDITOR

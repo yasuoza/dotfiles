@@ -29,6 +29,7 @@ brew 'mutagen'
 brew 'exiftool'
 
 # SCM
+brew 'gh'
 brew 'git'
 brew 'git-now'
 brew 'git-when-merged'
@@ -46,6 +47,7 @@ brew 'rbenv'
 brew 'nodebrew'
 
 # Infra
+brew 'ctop'
 brew 'tfenv'
 
 # EDITOR

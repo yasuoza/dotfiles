@@ -42,7 +42,6 @@ brew 'rbenv'
 brew 'nodebrew'
 
 # Infra
-brew 'ctop'
 brew 'tfenv'
 
 # EDITOR

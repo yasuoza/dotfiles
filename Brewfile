@@ -4,12 +4,13 @@
 # brew bundle
 
 # Environments
-brew 'z'
+brew 'bat'
 brew 'fd'
 brew 'fzf'
+brew 'grpcurl'
 brew 'ripgrep'
-brew 'bat'
 brew 'tmux'
+brew 'z'
 
 # Utils
 brew 'coreutils'

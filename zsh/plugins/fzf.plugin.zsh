@@ -75,7 +75,7 @@ if type fzf &> /dev/null; then
       fzf \
       --prompt='Open issue list > ' \
       --preview="gh issue view {1}" \
-      --header='C-a: all, C-o: open, C-c: closed' \
+      --header='C-a: all, C-o: open, C-c: closed, C-b: open in browser' \
       --bind="$bind_commands" \
     )
 
@@ -92,7 +92,7 @@ if type fzf &> /dev/null; then
   # Accepts gh pr list query like
   # $ fzf_gh_pr -a whoami
   # $ fzf_gh_pr -A whoami
-  function fzf_gh_pr() {
+  function fzf_gh_pulls() {
     local pr_query=$@
     local base_command="gh pr list --limit 100 $pr_query"
     local bind_commands="ctrl-a:reload($base_command --state all)"
@@ -106,7 +106,7 @@ if type fzf &> /dev/null; then
       fzf \
       --prompt='Open pr list > ' \
       --preview="gh pr view {1}" \
-      --header='C-a: all, C-o: open, C-c: closed' \
+      --header='C-a: all, C-o: open, C-c: closed, C-b: open in browser' \
       --bind="$bind_commands" \
     )
 
@@ -117,5 +117,5 @@ if type fzf &> /dev/null; then
     local pr_id=$(echo $out | awk '{ print $1 }')
     $(gh pr view -w $pr_id)
   }
-  alias gh-pr=fzf_gh_pr
+  alias gh-pulls=fzf_gh_pulls
 fi

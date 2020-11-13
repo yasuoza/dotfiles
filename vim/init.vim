@@ -164,6 +164,7 @@ let g:markdown_fenced_languages = [
 "*****************************************************************************
 "" Filetype
 "*****************************************************************************
+autocmd FileType python setlocal tabstop=2 shiftwidth=0 expandtab
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufNewFile,BufRead *.jsonnet setfiletype jsonnet
 autocmd BufNewFile,BufRead *.libsonnet setfiletype jsonnet

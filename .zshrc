@@ -28,6 +28,10 @@ case "${OSTYPE}" in
         ;;
 esac
 
+if [ -f ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 #=============================
 # Color
 #=============================

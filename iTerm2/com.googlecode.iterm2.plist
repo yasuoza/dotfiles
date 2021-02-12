@@ -4007,7 +4007,7 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>disableMetalWhenUnplugged</key>
-	<false/>
+	<true/>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findMode_iTerm</key>

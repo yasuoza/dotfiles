@@ -153,5 +153,7 @@ hook_add = '''
   let g:airline_theme='iceberg' " Use hybrid statusline theme
 '''
 hook_post_source = '''
+  hi! Normal guibg=NONE ctermbg=NONE " Transparent background
+
   hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
 '''

@@ -286,6 +286,17 @@ function! s:write_check_typo(file)
     endif
 endfunction
 
+" Yank without indent.
+" Useful for copy and paste indented code.
+function! s:yank_without_indent() abort
+  normal! gvy
+  let content = getreg(v:register, 1, v:true)
+  let leading = min(map(copy(content), { _, v -> len(matchstr(v, '^\s*')) }))
+  call map(content, { _, v -> v[leading:] })
+  call setreg(v:register, content, getregtype(v:register))
+endfunction
+vnoremap gy <Esc>:<C-u>call <SID>yank_without_indent()<CR>
+
 "*****************************************************************************
 ""  Bundle setting
 "*****************************************************************************

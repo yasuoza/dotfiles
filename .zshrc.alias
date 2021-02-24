@@ -28,6 +28,11 @@ alias -g V="| vim -"
 # grep
 alias 'gr'='grep --color=auto -RUIn'
 
+# GNU implementation of sed
+if type "gsed" > /dev/null; then
+    alias sed=gsed
+fi
+
 # tmux
 alias tm='tmux'
 alias tma='tmux attach'
@@ -53,6 +58,7 @@ alias ts='tig status'
 alias tb='tig blame'
 alias tal='tig --all'
 
+
 # open with Google Chrome
 alias ogc='open -a Google\ Chrome'
 
@@ -64,6 +70,7 @@ if ! type rmrf > /dev/null; then
     alias rmrf='rm -rf'
 fi
 alias cpa='cp -a'
+
 
 # Ruby
 # http://travisjeffery.com/b/2012/01/zshs-extended-glob-and-octopresss-new-post-script/

@@ -29,6 +29,7 @@ brew 'jq'
 brew 'envchain'
 brew 'mutagen'
 brew 'exiftool'
+brew 'gnu-sed'
 
 # SCM
 brew 'gh'

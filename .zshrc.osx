@@ -75,8 +75,10 @@ if type "hub" > /dev/null ; then
     alias __git=hub
 fi
 
-if type "vim" > /dev/null; then
-    alias vi=vim
+if type "nvim" > /dev/null; then
+    alias vim=nvim
+    alias vi=nvim
+    export EDITOR=nvim
 fi
 
 if type "fzf" > /dev/null; then

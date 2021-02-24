@@ -54,8 +54,7 @@ brew 'ctop'
 brew 'tfenv'
 
 # EDITOR
-brew 'luarocks'
-brew 'vim'
+brew 'neovim', args: ['HEAD']
 
 # CASK
 cask 'adobe-creative-cloud'

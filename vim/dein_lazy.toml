@@ -102,10 +102,5 @@ on_ft = 'sql'
 build = 'pip3 install --upgrade sqlparse'
 
 [[plugins]]
-repo = 'Shougo/vimfiler.vim'
-on_cmd = ['VimFiler', 'VimFilerCurrentDir', 'VimFilerBufferDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerDouble']
-on_path = '.*'
-
-[[plugins]]
 repo = 'hashivim/vim-terraform'
 on_ft = 'terraform'

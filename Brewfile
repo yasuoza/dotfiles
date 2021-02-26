@@ -54,6 +54,7 @@ brew 'ctop'
 brew 'tfenv'
 
 # EDITOR
+brew 'luajit', args: ['HEAD']
 brew 'neovim', args: ['HEAD']
 
 # CASK

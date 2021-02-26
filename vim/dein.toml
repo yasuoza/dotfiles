@@ -157,3 +157,25 @@ hook_post_source = '''
 
   hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
 '''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+hook_post_source = '''
+" Update installed parsers
+:TSUpdate
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "bash",
+    "go",
+    "python",
+    "typescript",
+  },
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+'''

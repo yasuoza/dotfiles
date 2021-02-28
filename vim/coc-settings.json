@@ -7,6 +7,8 @@
 
   "solargraph.checkGemVersion": false,
 
+  "python.pythonPath": "python3",
+
   "languageserver": {
     "golang": {
       "command": "gopls",

@@ -60,3 +60,8 @@ build = 'yarn install --frozen-lockfile'
 repo = 'neoclide/coc-css'
 merged = 0
 build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
+repo = 'fannheyward/coc-pyright'
+merged = 0
+build = 'yarn install --frozen-lockfile'

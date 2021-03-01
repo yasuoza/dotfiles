@@ -21,12 +21,14 @@ hook_add = '''
   " do not show error although opening incorrect file
   let NERDShutUp=1
 '''
+
 # visually indent guide
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
   let g:indentLine_char = '¦'
 '''
+
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
 hook_add ='''
@@ -41,15 +43,33 @@ hook_add ='''
   let g:yankround_dir = '~/.cache/vim/yankround'
 '''
 
-# # viaualstar : search *
+# viaualstar : search *
 [[plugins]]
 repo = 'thinca/vim-visualstar'
 
-# # surround.vim : surround text and comment with parentheses
+# surround.vim : surround text and comment with parentheses
 [[plugins]]
 repo = 'vim-scripts/surround.vim'
 
-# # vim-textobj-syntax : change selected text to text object
+# Insert or delete brackets, parens, quotes in pair
+[[plugins]]
+repo = 'LunarWatcher/auto-pairs'
+hook_add = '''
+  " Disable `{|word` to be `{|}word`
+  let g:AutoPairsCompleteOnlyOnSpace = 1
+
+  " Disable mappings
+  let g:AutoPairsShortcutToggle = 0
+  let g:AutoPairsShortcutFastWrap = 0
+  let g:AutoPairsShortcutJump = 0
+  let g:AutoPairsShortcutBackInsert = 0
+
+  " Backspace and Ctrl-H delete pairs
+  let g:AutoPairsMapBS = 1
+  inoremap <buffer> <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
+'''
+
+# vim-textobj-syntax : change selected text to text object
 [[plugins]]
 repo = 'kana/vim-textobj-user'
 [[plugins]]

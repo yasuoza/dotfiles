@@ -11,11 +11,6 @@ hook_add = '''
 repo = 'vim-scripts/textobj-rubyblock'
 on_ft = 'ruby'
 
-# autocomplete required in ruby
-[[plugins]]
-repo = 'ujihisa/neco-ruby'
-on_ft = 'ruby'
-
 [[plugins]]
 repo = 'elzr/vim-json'
 on_ft = 'json'
@@ -42,10 +37,6 @@ on_cmd = 'OverCommandLine'
 # expand ruby matchit
 [[plugins]]
 repo = 'yasuoza/ruby-matchit'
-
-[[plugins]]
-repo = 'vim-ruby/vim-ruby'
-on_ft = 'ruby'
 
 [[plugins]]
 repo = 'tpope/vim-markdown'

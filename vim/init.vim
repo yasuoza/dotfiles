@@ -215,6 +215,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
+" Emacs like cursor moving while insert mode
+inoremap <C-a> <C-o>^
+inoremap <C-e> <End>
+inoremap <C-f> <right>
+inoremap <C-b> <left>
+
 " goto previous editted line
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 

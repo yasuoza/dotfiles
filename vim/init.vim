@@ -221,6 +221,10 @@ inoremap <C-e> <End>
 inoremap <C-f> <right>
 inoremap <C-b> <left>
 
+" Very magic as default pattern mode
+nnoremap / /\v
+cnoremap s/ s/\v
+
 " goto previous editted line
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 

@@ -181,21 +181,21 @@ hook_post_source = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 merged = 0
+if = 'has("nvim")'
+hook_post_update = '''
+  " Update installed parsers
+  :TSUpdate
+'''
 hook_post_source = '''
-" Update installed parsers
-:TSUpdate
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    "bash",
-    "go",
-    "python",
-    "typescript",
-  },
-  highlight = {
-    enable = true,
-  },
-}
+  lua <<EOF
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = {
+        "bash",
+        "go",
+      },
+      highlight = {
+        enable = true,
+      },
+    }
 EOF
 '''

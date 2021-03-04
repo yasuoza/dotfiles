@@ -191,7 +191,6 @@ hook_post_source = '''
     require'nvim-treesitter.configs'.setup {
       ensure_installed = {
         "bash",
-        "go",
       },
       highlight = {
         enable = true,

@@ -199,7 +199,7 @@ syn match goParamType        /\%([^,)]\|\_s\)\+,\?/ contained nextgroup=goParamN
 hi def link   goReceiverVar    goParamName
 " hi def link   goParamName      Identifier
 syn match goReceiver          /(\s*\w\+\%(\s\+\*\?\s*\w\+\)\?\s*)\ze\s*\w/ contained nextgroup=goFunction contains=goReceiverVar skipwhite skipnl
-hi def link     goFunction          Function
+hi def link     goFunction          Title
 
 " Function calls;
 syn match goFunctionCall      /\w\+\ze(/ contains=goBuiltins,goDeclaration
@@ -227,9 +227,9 @@ syn match goTypeConstructor      /\<\w\+{\@=/
 syn match goTypeDecl             /\<type\>/ nextgroup=goTypeName skipwhite skipnl
 syn match goTypeName             /\w\+/ contained nextgroup=goDeclType skipwhite skipnl
 syn match goDeclType             /\<\%(interface\|struct\)\>/ skipwhite skipnl
-hi def link     goReceiverType      Title
-hi def link     goTypeConstructor   Title
-hi def link     goTypeName          Title
+hi def link     goReceiverType      Constant
+hi def link     goTypeConstructor   Constant
+hi def link     goTypeName          Constant
 hi def link     goTypeDecl          Keyword
 hi def link     goDeclType          Keyword
 

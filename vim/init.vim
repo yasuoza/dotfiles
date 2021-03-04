@@ -225,6 +225,12 @@ inoremap <C-b> <left>
 nnoremap / /\v
 cnoremap s/ s/\v
 
+" Disable comment mark
+augroup vimrc-formatoptions
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+augroup END
+
 " goto previous editted line
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 

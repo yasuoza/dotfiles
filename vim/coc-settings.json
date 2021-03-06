@@ -16,8 +16,7 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
-        "usePlaceholders": true,
-        "completeUnimported": true
+        "usePlaceholders": true
       }
     }
   }

@@ -66,7 +66,7 @@ hook_add = '''
 
   " Backspace and Ctrl-H delete pairs
   let g:AutoPairsMapBS = 1
-  inoremap <buffer> <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
+  inoremap <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
 '''
 
 # vim-textobj-syntax : change selected text to text object

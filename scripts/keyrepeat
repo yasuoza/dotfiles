@@ -7,11 +7,15 @@ function setup () {
 	clean
 	defaults write -g KeyRepeat -float $KEY_REPEAT
 	defaults write -g InitialKeyRepeat -int $INITIAL_KEY_REPEAT
+
+	# bold font
+	defaults write -g AppleFontSmoothing -int 3
 }
 
 function clean () {
 	defaults delete -g KeyRepeat
 	defaults delete -g InitialKeyRepeat
+	defaults delete -g AppleFontSmoothin
 }
 
 function read () {

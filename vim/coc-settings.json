@@ -12,6 +12,9 @@
   "python.pythonPath": "python3",
 
   // coc-sql
+  "sql.lintOnOpen": false,
+  "sql.lintOnChange": false,
+  "sql.lintOnSave": false,
   "sql.formatOptions": {
     // supported language are:
     // db2,mariadb,mysql,n1ql,plsql,postgresql,redshift,spark,sql,tsql

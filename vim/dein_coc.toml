@@ -62,6 +62,11 @@ merged = 0
 build = 'yarn install --frozen-lockfile'
 
 [[plugins]]
+repo = 'fannheyward/coc-sql'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
 repo = 'fannheyward/coc-pyright'
 merged = 0
 build = 'yarn install --frozen-lockfile'

@@ -5,10 +5,19 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
 
-  // solargraphのバージョンチェックを行わない
+  // coc-solargraph
   "solargraph.checkGemVersion": false,
 
+  // coc-pyright
   "python.pythonPath": "python3",
+
+  // coc-sql
+  "sql.formatOptions": {
+    // supported language are:
+    // db2,mariadb,mysql,n1ql,plsql,postgresql,redshift,spark,sql,tsql
+    "language": "mysql",
+    "uppercase": true
+  },
 
   "languageserver": {
     "golang": {

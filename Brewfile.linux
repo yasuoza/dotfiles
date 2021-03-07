@@ -7,13 +7,14 @@
 # brew bundle --file Brewflile.linux
 
 # Environments
-brew 'z'
+brew 'bat'
 brew 'fd'
 brew 'fzf'
+brew 'grpcurl'
 brew 'the_silver_searcher'
 brew 'ripgrep'
-brew 'bat'
 brew 'tmux'
+brew 'z'
 
 # Utils
 brew 'ctags'
@@ -36,6 +37,7 @@ brew 'tig'
 brew 'gpg'
 
 # Languages
+brew 'go'
 brew 'pyenv'
 brew 'python'
 brew 'ruby-build'
@@ -46,8 +48,8 @@ brew 'nodebrew'
 brew 'tfenv'
 
 # EDITOR
-brew 'luarocks'
-brew 'vim'
+brew 'luajit', args: ['HEAD']
+brew 'neovim', args: ['HEAD']
 
 # CASK
 cask 'session-manager-plugin'

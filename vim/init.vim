@@ -221,10 +221,6 @@ inoremap <C-e> <End>
 inoremap <C-f> <right>
 inoremap <C-b> <left>
 
-" Very magic as default pattern mode
-nnoremap / /\v
-cnoremap s/ s/\v
-
 " Disable comment mark
 augroup vimrc-formatoptions
   autocmd!

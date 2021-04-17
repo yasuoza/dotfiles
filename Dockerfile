@@ -25,7 +25,7 @@ WORKDIR ${HOME}
 RUN env CI=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 # Prepare dotfiles
-ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/master /tmp/dotfiles-version.json
+ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/main /tmp/dotfiles-version.json
 RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
     && cd ${HOME}/dotfiles \
     && test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) \

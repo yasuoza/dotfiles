@@ -27,6 +27,7 @@
 [core]
   excludesfile   = ~/dotfiles/.gitignore_global
   attributesfile = ~/dotfiles/.gitattributes_global
+  quotepath = false
 [credential]
  helper = osxkeychain
 [color]

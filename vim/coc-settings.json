@@ -3,7 +3,6 @@
   "coc.preferences.useQuickfixForLocations": true,
 
   "suggest.autoTrigger": "always",
-  "suggest.minTriggerInputLength": 2,
 
   // coc-solargraph
   "solargraph.checkGemVersion": false,
@@ -28,7 +27,10 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
-        "usePlaceholders": true
+        "usePlaceholders": true,
+        "analyses": {
+          "fillstruct": true // Trigger with :CocAction
+        }
       }
     }
   }

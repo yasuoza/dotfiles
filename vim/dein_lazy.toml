@@ -3,9 +3,6 @@
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_cmd = 'EasyAlign'
-hook_add = '''
-  vnoremap <silent> <Enter> :EasyAlign<Enter>
-'''
 
 [[plugins]]
 repo = 'vim-scripts/textobj-rubyblock'

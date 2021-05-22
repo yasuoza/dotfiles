@@ -52,6 +52,7 @@ brew 'nodebrew'
 # Infra
 brew 'ctop'
 brew 'tfenv'
+brew 'terraform-ls'
 
 # EDITOR
 brew 'luajit', args: ['HEAD']

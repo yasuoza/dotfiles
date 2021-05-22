@@ -36,6 +36,7 @@
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
+      "rootPatterns": [".terraform.lock.hcl", ".terraform/"],
       "filetypes": [
         "terraform",
         "tf"

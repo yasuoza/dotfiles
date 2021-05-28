@@ -85,11 +85,6 @@ repo = 'MaxMEllon/vim-jsx-pretty'
 on_ft = ['javascriptreact', 'typescriptreact']
 
 [[plugins]]
-repo = 'mattn/vim-sqlfmt'
-on_ft = 'sql'
-build = 'pip3 install --upgrade sqlparse'
-
-[[plugins]]
 repo = 'hashivim/vim-terraform'
 on_ft = 'terraform'
 hook_add = '''

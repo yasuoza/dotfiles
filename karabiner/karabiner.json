@@ -89,7 +89,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                          "^at\\.eggerapps\\.Postico$"
+                                            "^at\\.eggerapps\\.Postico$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }

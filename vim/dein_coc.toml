@@ -67,6 +67,11 @@ merged = 0
 build = 'yarn install --frozen-lockfile'
 
 [[plugins]]
+repo = 'neoclide/coc-prettier'
+merged = 0
+build = 'yarn install --frozen-lockfile'
+
+[[plugins]]
 repo = 'neoclide/coc-json'
 merged = 0
 build = 'yarn install --frozen-lockfile'

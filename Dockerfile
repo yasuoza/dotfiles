@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ruby:2.6-buster
 
 ENV USER developer
 
@@ -22,14 +22,16 @@ USER ${USER}
 WORKDIR ${HOME}
 
 # Install linuxbrew
-RUN env CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+ADD https://api.github.com/repos/Homebrew/brew/git/refs/heads/master /tmp/homebrew-version.json
+RUN git clone --depth 1 https://github.com/Homebrew/brew ${HOME}/.linuxbrew/Homebrew \
+    && mkdir ${HOME}/.linuxbrew/bin \
+    && ln -s ${HOME}/.linuxbrew/Homebrew/bin/brew ${HOME}/.linuxbrew/bin
 
 # Prepare dotfiles
 ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/main /tmp/dotfiles-version.json
 RUN git clone --depth 1 https://github.com/yasuoza/dotfiles ${HOME}/dotfiles \
     && cd ${HOME}/dotfiles \
-    && test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) \
-    && eval $($(brew --prefix)/bin/brew shellenv) \
+    && eval $(${HOME}/.linuxbrew/bin/brew shellenv) \
     && brew bundle --file=Brewfile.linux --verbose \
     && brew cleanup \
     && sudo rm -rf ${HOME}/.cache ${HOME}/.cpan \

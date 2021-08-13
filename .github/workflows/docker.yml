@@ -13,6 +13,7 @@ jobs:
       matrix:
         distro:
           - debian
+        include:
           - distro: debian
             platforms: >-
               linux/amd64,

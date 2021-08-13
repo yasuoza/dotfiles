@@ -22,7 +22,7 @@ USER ${USER}
 WORKDIR ${HOME}
 
 # Install linuxbrew
-RUN env CI=1 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+RUN env CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Prepare dotfiles
 ADD https://api.github.com/repos/yasuoza/dotfiles/git/refs/heads/main /tmp/dotfiles-version.json

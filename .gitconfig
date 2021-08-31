@@ -6,6 +6,7 @@
 [diff]
   tool = vimdiff
   algorithm = histogram
+  colorMoved = dimmed-zebra
 [diff  "localizablestrings"]
   textconv = "iconv -f utf-16 -t utf-8"
 [merge]

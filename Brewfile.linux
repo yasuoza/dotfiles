@@ -22,9 +22,6 @@ brew 'readline'
 brew 'tree'
 brew 'hr'
 brew 'direnv'
-brew 'pngquant'
-brew 'pigz'
-brew 'yarn'
 brew 'jq'
 
 # SCM
@@ -34,7 +31,6 @@ brew 'git-now'
 brew 'git-when-merged'
 brew 'hub'
 brew 'tig'
-brew 'gpg'
 
 # Languages
 brew 'go'
@@ -48,8 +44,8 @@ brew 'nodebrew'
 brew 'tfenv'
 
 # EDITOR
-brew 'luajit'
-brew 'neovim'
+brew 'luajit', args: ['HEAD']
+brew 'neovim', args: ['HEAD']
 
 # CASK
 cask 'session-manager-plugin'

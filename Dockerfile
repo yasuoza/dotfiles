@@ -23,8 +23,7 @@ WORKDIR ${HOME}
 ADD . ${HOME}/dotfiles
 RUN <<EOM
   cd ${HOME}/dotfiles
-  # brew bundle --file=Brewfile.linux --verbose
-  brew install tmux neovim
+  brew bundle --file=Brewfile.linux --verbose
   brew cleanup
   make zsh vim misc
   $(brew --prefix)/bin/nodebrew setup_dirs

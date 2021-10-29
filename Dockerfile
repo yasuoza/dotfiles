@@ -6,7 +6,7 @@ ENV USER developer
 
 RUN <<EOM
   apt update
-  apt install -y sudo zsh
+  apt install -y sudo zsh gosu
 
   useradd -m ${USER} -s /bin/zsh
   usermod -aG linuxbrew ${USER}

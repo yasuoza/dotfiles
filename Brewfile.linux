@@ -48,8 +48,8 @@ brew 'nodebrew'
 brew 'tfenv'
 
 # EDITOR
-brew 'luajit', args: ['HEAD']
-brew 'neovim', args: ['HEAD']
+brew 'luajit'
+brew 'neovim'
 
 # CASK
 cask 'session-manager-plugin'

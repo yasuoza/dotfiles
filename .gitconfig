@@ -4,18 +4,22 @@
 [push]
   default = simple
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
   algorithm = histogram
   colorMoved = dimmed-zebra
 [diff  "localizablestrings"]
   textconv = "iconv -f utf-16 -t utf-8"
 [merge]
   ff = false
-  tool = vimdiff
+  tool = nvimdiff
 [mergetool]
   prompt = false
   writeToTemp = true
   keepBackup = false
+[difftool "nvimdiff"]
+  cmd = "nvim -R -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
+[mergetool "nvimdiff"]
+  cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"  \"$MERGED\""
 [pull]
   rebase = true
 [commit]

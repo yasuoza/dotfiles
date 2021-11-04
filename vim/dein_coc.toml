@@ -51,59 +51,18 @@ hook_add = '''
 	  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   endif
+
+  let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-highlight',
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-solargraph',
+  \ 'coc-yaml',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-sql',
+  \ 'coc-pyright'
+  \]
 '''
-
-[[plugins]]
-repo = 'neoclide/coc-snippets'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-highlight'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-tsserver'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-prettier'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-json'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-solargraph'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-yaml'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-html'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'neoclide/coc-css'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'fannheyward/coc-sql'
-merged = 0
-build = 'yarn install --frozen-lockfile'
-
-[[plugins]]
-repo = 'fannheyward/coc-pyright'
-merged = 0
-build = 'yarn install --frozen-lockfile'

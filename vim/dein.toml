@@ -173,7 +173,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
-rev ='support_LSP'
 hook_add = '''
   let g:airline_theme='iceberg' " Use hybrid statusline theme
 '''

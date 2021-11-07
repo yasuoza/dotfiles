@@ -25,7 +25,7 @@ RUN <<EOM
   cd ${HOME}/dotfiles
   brew bundle --file=Brewfile.linux --verbose
   brew cleanup
-  make zsh vim misc
+  make zsh vim misc git
   $(brew --prefix)/bin/nodebrew setup_dirs
   touch ${HOME}/.z
 EOM

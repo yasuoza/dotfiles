@@ -31,7 +31,9 @@ function setup () {
 		ln -s $DOTFILES_DIR/$file $HOME/$file
 	done
 
-	run_local_configure
+	if [ "$CI" != "true" ]; then
+		run_local_configure
+	fi
 }
 
 function clean () {

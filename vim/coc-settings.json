@@ -28,9 +28,18 @@
       "filetypes": ["go"],
       "initializationOptions": {
         "usePlaceholders": true,
+        "staticcheck": true,
         "analyses": {
+          // staticcheck
+          "ST1003": true, // Identifiers, such as variable and package names, follow certain rules.
+          "ST1016": true, // Use consistent method receiver names
+          "ST1020": true, // The documentation of an exported function should start with the function's name
+          "ST1021": true, // The documentation of an exported type should start with type's name
+          "ST1022": true, // The documentation of an exported variable or constant should start with variable's name
+
           "fillstruct": true // Trigger with :CocAction
-        }
+        },
+        "hoverKind": "SynopsisDocumentation"
       }
     },
     "terraform": {

@@ -38,10 +38,6 @@ case ${UID} in
         zle -N zle-line-init
         zle -N zle-keymap-select
 
-        # Blight red when previous command failed status 0
-        local MY_COLOR="$ESCX"'%(0?.${MY_PROMPT_COLOR}.31)'m
-        local NORMAL_COLOR="$ESCX"m
-
         # Show git branch when you are in git repository
         # http://d.hatena.ne.jp/mollifier/20100906/p1
         autoload -Uz add-zsh-hook
@@ -58,8 +54,8 @@ case ${UID} in
             zstyle ':vcs_info:git:*' check-for-changes true
             zstyle ':vcs_info:git:*' stagedstr "+"
             zstyle ':vcs_info:git:*' unstagedstr "-"
-            zstyle ':vcs_info:git:*' formats '(%s)-[%c%u%b]'
-            zstyle ':vcs_info:git:*' actionformats '(%s)-[%c%u%b|%a]'
+            zstyle ':vcs_info:git:*' formats '[%c%u%b]'
+            zstyle ':vcs_info:git:*' actionformats '[%c%u%b|%a]'
         fi
 
         function _venv() {

@@ -16,10 +16,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'neoclide/jsonc.vim'
-on_ft = 'jsonc'
-
-[[plugins]]
 repo = 'google/vim-jsonnet'
 on_ft = 'jsonnet'
 

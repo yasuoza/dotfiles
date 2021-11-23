@@ -92,6 +92,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'jparise/vim-graphql'
+on_ft = 'graphql'
+
+[[plugins]]
 repo = 'mattn/webapi-vim'
 
 [[plugins]]

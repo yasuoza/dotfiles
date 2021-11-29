@@ -60,7 +60,6 @@ brew 'neovim', args: ['HEAD']
 # CASK
 cask 'adobe-creative-cloud'
 cask 'alfred'
-cask 'dash'
 cask 'docker'
 cask 'keyboard-cleaner'
 cask 'karabiner-elements'

@@ -3,6 +3,7 @@
   "coc.preferences.useQuickfixForLocations": true,
 
   "suggest.autoTrigger": "always",
+  "suggest.minTriggerInputLength": 2,
 
   // coc-solargraph
   "solargraph.checkGemVersion": false,

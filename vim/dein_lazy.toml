@@ -61,8 +61,8 @@ hook_add = '''
   let g:goimports_simplify = 1
 '''
 hook_post_update = '''
-  call system('GO111MODULE=on go get -u golang.org/x/tools/gopls@latest')
-  call system('GO111MODULE=on go get -u golang.org/x/tools/cmd/goimports@latest')
+  call system('go install golang.org/x/tools/gopls@latest')
+  call system('go install golang.org/x/tools/cmd/goimports@latest')
 '''
 
 [[plugins]]

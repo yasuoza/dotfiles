@@ -12,6 +12,9 @@ if = '!has("nvim")'
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
+[[plugins]]
+repo = 'nathom/filetype.nvim'
+
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'

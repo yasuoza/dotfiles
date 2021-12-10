@@ -149,10 +149,10 @@ if type rbenv > /dev/null; then
 fi
 
 #=============================
-# nodebrew
+# nodenv
 #=============================
-if [ -d $HOME/.nodebrew ] ; then
-    export PATH=$HOME/.nodebrew/current/bin:$PATH
+if type nodenv > /dev/null; then
+    eval "$(nodenv init -)"
 fi
 
 #=============================

@@ -320,10 +320,8 @@ endfunction
 vnoremap gy <Esc>:<C-u>call <SID>yank_without_indent()<CR>
 
 " Delete without saving to register
-nnoremap x "_x
-xnoremap x "_x
-nnoremap X "_X
-xnoremap X "_X
+xnoremap d "_d
+nnoremap D "_D
 
 
 "*****************************************************************************

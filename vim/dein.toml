@@ -150,37 +150,45 @@ hook_add = '''
   endif
 '''
 
-# Cool colors
-[[plugins]]
-repo = 'bling/vim-airline'
-hook_add = '''
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_nr_show = 1
-  let g:airline#extensions#tabline#buffer_nr_format = '[%s]'
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-  let g:airline#extensions#tabline#ignore_bufadd_pat =
-    \ 'defx|gundo|nerd_tree|startify|tagbar|term://|undotree|vimfiler'
-
-  " statusline
-  let g:airline_powerline_fonts = 1  " Use powerline patched font
-  let g:airline_section_c = '%F%m'   " Display full file path
-  let g:airline#extensions#whitespace#enabled = 0
-
-  " Disable coc integration
-  let g:airline#extensions#coc#enabled = 0
-
-  " Disable error and warning section
-  let g:airline_section_error = ''
-  let g:airline_section_warning = ''
-'''
-
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
-hook_add = '''
-  let g:airline_theme='iceberg' " Use hybrid statusline theme
-'''
 hook_post_source = '''
   hi! Normal guibg=NONE ctermbg=NONE " Transparent background
 
   hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
+'''
+
+[[plugins]]
+repo = 'kdheepak/tabline.nvim'
+hook_add = '''
+lua << EOF
+require'tabline'.setup {
+  options = {
+    show_bufnr = true,
+  }
+}
+EOF
+'''
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+hook_add = '''
+lua << END
+require'lualine'.setup {
+  options = {
+    theme = 'iceberg_dark',
+  },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 1, -- Show relative path
+      }
+    },
+    lualine_x = {
+      'encoding', 'filetype',
+    },
+  },
+}
+END
 '''

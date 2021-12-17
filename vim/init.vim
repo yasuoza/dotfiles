@@ -147,7 +147,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " colorscheme
 colorscheme iceberg
-hi CursorLineNr term=NONE cterm=NONE              " disable line number underline
+
 
 " markdown {{{
 let g:markdown_fenced_languages = [

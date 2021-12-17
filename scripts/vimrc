@@ -9,7 +9,6 @@ function setup () {
     mkdir -p $HOME/.config/nvim
     ln -sf $DOTFILES_DIR/vim/* $HOME/.config/nvim
 
-    mkdir -p $HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
     git clone --depth 1 https://github.com/Shougo/dein.vim  $HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 }
 

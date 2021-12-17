@@ -18,10 +18,12 @@ hook_add = '''
 [[plugins]]
 repo = 'google/vim-jsonnet'
 on_ft = 'jsonnet'
+merge_ftdetect = true
 
 [[plugins]]
 repo = 'gutenye/json5.vim'
 on_ft = 'json5'
+merge_ftdetect = true
 
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'

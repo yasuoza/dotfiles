@@ -53,6 +53,9 @@ repo = 'thinca/vim-visualstar'
 # surround.vim : surround text and comment with parentheses
 [[plugins]]
 repo = 'vim-scripts/surround.vim'
+hook_add = '''
+let g:surround_no_insert_mappings = 1
+'''
 
 # Insert or delete brackets, parens, quotes in pair
 [[plugins]]
@@ -62,10 +65,13 @@ hook_add = '''
   let g:AutoPairsCompleteOnlyOnSpace = 1
 
   " Disable mappings
-  let g:AutoPairsShortcutToggle = 0
-  let g:AutoPairsShortcutFastWrap = 0
-  let g:AutoPairsShortcutJump = 0
-  let g:AutoPairsShortcutBackInsert = 0
+  let g:AutoPairsShortcutToggle = ''
+  let g:AutoPairsShortcutFastWrap = ''
+  let g:AutoPairsShortcutJump = ''
+  let g:AutoPairsShortcutBackInsert = ''
+  let g:AutoPairsShortcutIgnore = ''
+  let g:AutoPairsShortcutToggleMultilineClose = ''
+  let g:AutoPairsMoveExpression = ''
 
   " Backspace and Ctrl-H delete pairs
   let g:AutoPairsMapBS = 1
@@ -103,6 +109,7 @@ hook_add = '''
   let g:matchup_matchparen_deferred_hide_delay = 100 " fast highlighting disappears
   let g:matchup_matchparen_stopline = 100  " for match highlighting only
   let g:matchup_matchparen_offscreen = {} " Disable statusline entry
+  let g:matchup_mappings_enabled = 0
 '''
 
 [[plugins]]
@@ -115,39 +122,39 @@ repo = 'tpope/vim-fugitive'
 repo = 'mattn/vim-molder'
 
 [[plugins]]
-repo = 'junegunn/fzf'
-merged = 0
-
+repo = 'nvim-lua/plenary.nvim'
 [[plugins]]
-repo = 'junegunn/fzf.vim'
-merged = 0
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
 hook_add = '''
-  " Like CtrlP
-  noremap <silent> <C-\> :Files<Enter>
-
-  " <Leader>lb opens buffer list
-  function! s:buflist()
-    redir => ls
-    silent ls
-    redir END
-    return split(ls, '\n')
-  endfunction
-
-  nnoremap <silent> <Leader>lb :Buffers<Enter>
-
-  " Use ctrl-j and ctrl-k to preview window page up and down
-  let s:preview_option = { 'options': ['--bind', 'ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up'] }
-
-  " Customize Files
-  command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(s:preview_option), <bang>0)
-
+  nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
+  nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
   if executable('rg')
-    command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(expand('<cword>')), 1,
-      \   fzf#vim#with_preview(s:preview_option), <bang>0)
+    command! -bang -nargs=* Rg Telescope grep_string
   endif
+
+lua << END
+local actions = require("telescope.actions")
+require("telescope").setup{
+  defaults = {
+    sorting_strategy = "ascending",
+    mappings = {
+      i = {
+        ["<C-g>"] = actions.close,
+      },
+    },
+    layout_config = {
+      prompt_position = "top",
+    },
+    preview = {
+      treesitter = false,
+      timeout = 1000,
+    },
+  },
+}
+END
 '''
 
 [[plugins]]
@@ -179,7 +186,7 @@ hook_add = '''
 lua << END
 require'lualine'.setup {
   options = {
-    theme = 'iceberg_dark',
+    theme = 'iceberg',
   },
   sections = {
     lualine_c = {

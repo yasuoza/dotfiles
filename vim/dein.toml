@@ -19,31 +19,31 @@ repo = 'nathom/filetype.nvim'
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''
-  " put space between comment
-  let NERDSpaceDelims = 1
-  " do not show error although opening incorrect file
-  let NERDShutUp=1
+" put space between comment
+let NERDSpaceDelims = 1
+" do not show error although opening incorrect file
+let NERDShutUp=1
 '''
 
 # visually indent guide
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
-  let g:indentLine_char = '¦'
+let g:indentLine_char = '¦'
 '''
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
 hook_add ='''
-  nmap p <Plug>(yankround-p)
-  xmap p <Plug>(yankround-p)
-  nmap P <Plug>(yankround-P)
-  nmap gp <Plug>(yankround-gp)
-  xmap gp <Plug>(yankround-gp)
-  nmap gP <Plug>(yankround-gP)
-  nmap <C-p> <Plug>(yankround-prev)
-  nmap <C-n> <Plug>(yankround-next)
-  let g:yankround_dir = '~/.cache/vim/yankround'
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_dir = '~/.cache/vim/yankround'
 '''
 
 # viaualstar : search *
@@ -61,21 +61,21 @@ let g:surround_no_insert_mappings = 1
 [[plugins]]
 repo = 'LunarWatcher/auto-pairs'
 hook_add = '''
-  " Disable `{|word` to be `{|}word`
-  let g:AutoPairsCompleteOnlyOnSpace = 1
+" Disable `{|word` to be `{|}word`
+let g:AutoPairsCompleteOnlyOnSpace = 1
 
-  " Disable mappings
-  let g:AutoPairsShortcutToggle = ''
-  let g:AutoPairsShortcutFastWrap = ''
-  let g:AutoPairsShortcutJump = ''
-  let g:AutoPairsShortcutBackInsert = ''
-  let g:AutoPairsShortcutIgnore = ''
-  let g:AutoPairsShortcutToggleMultilineClose = ''
-  let g:AutoPairsMoveExpression = ''
+" Disable mappings
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutBackInsert = ''
+let g:AutoPairsShortcutIgnore = ''
+let g:AutoPairsShortcutToggleMultilineClose = ''
+let g:AutoPairsMoveExpression = ''
 
-  " Backspace and Ctrl-H delete pairs
-  let g:AutoPairsMapBS = 1
-  inoremap <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
+" Backspace and Ctrl-H delete pairs
+let g:AutoPairsMapBS = 1
+inoremap <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
 '''
 
 # vim-textobj-syntax : change selected text to text object
@@ -104,12 +104,12 @@ repo = 'vim-scripts/smartword'
 [[plugins]]
 repo = 'andymass/vim-matchup'
 hook_add = '''
-  let g:matchup_matchparen_deferred = 1 " improves cursor movement performance
-  let g:matchup_matchparen_deferred_show_delay = 100 " slow deferred highlighting
-  let g:matchup_matchparen_deferred_hide_delay = 100 " fast highlighting disappears
-  let g:matchup_matchparen_stopline = 100  " for match highlighting only
-  let g:matchup_matchparen_offscreen = {} " Disable statusline entry
-  let g:matchup_mappings_enabled = 0
+let g:matchup_matchparen_deferred = 1 " improves cursor movement performance
+let g:matchup_matchparen_deferred_show_delay = 100 " slow deferred highlighting
+let g:matchup_matchparen_deferred_hide_delay = 100 " fast highlighting disappears
+let g:matchup_matchparen_stopline = 100  " for match highlighting only
+let g:matchup_matchparen_offscreen = {} " Disable statusline entry
+let g:matchup_mappings_enabled = 0
 '''
 
 [[plugins]]
@@ -129,11 +129,11 @@ build = 'make'
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 hook_add = '''
-  nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
-  nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
-  if executable('rg')
-    command! -bang -nargs=* Rg Telescope grep_string
-  endif
+nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
+nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
+if executable('rg')
+  command! -bang -nargs=* Rg Telescope grep_string
+endif
 
 lua << END
 local actions = require("telescope.actions")
@@ -160,12 +160,11 @@ END
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
 hook_add = '''
-  colorscheme iceberg
+colorscheme iceberg
 '''
 hook_post_source = '''
-  hi! Normal guibg=NONE ctermbg=NONE " Transparent background
-
-  hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
+hi! Normal guibg=NONE ctermbg=NONE " Transparent background
+hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
 '''
 
 [[plugins]]

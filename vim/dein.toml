@@ -132,7 +132,8 @@ hook_add = '''
 nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
 nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
 if executable('rg')
-  command! -bang -nargs=* Rg Telescope grep_string
+  command! Rg Telescope live_grep
+  command! Rgw Telescope grep_string word_match=-w
 endif
 
 lua << END

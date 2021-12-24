@@ -164,17 +164,6 @@ let g:markdown_fenced_languages = [
 "" Filetype
 "*****************************************************************************
 autocmd FileType python setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd BufNewFile,BufRead *.es6 setfiletype javascript
-autocmd BufNewFile,BufRead *.jsonnet setfiletype jsonnet
-autocmd BufNewFile,BufRead *.libsonnet setfiletype jsonnet
-autocmd BufNewFile,BufRead PULLREQ_EDITMSG setfiletype markdown
-
-" terraform
-silent! autocmd! filetypedetect BufRead,BufNewFile *.tf
-autocmd BufRead,BufNewFile *.hcl set filetype=hcl
-autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl
-autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform
-autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json
 
 "*****************************************************************************
 "" Completion

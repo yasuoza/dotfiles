@@ -21,6 +21,10 @@ on_ft = 'jsonnet'
 merge_ftdetect = true
 
 [[plugins]]
+repo = 'neoclide/jsonc.vim'
+on_ft = 'jsonc'
+
+[[plugins]]
 repo = 'gutenye/json5.vim'
 on_ft = 'json5'
 merge_ftdetect = true

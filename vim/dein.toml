@@ -149,7 +149,7 @@ require("telescope").setup{
     },
     layout_config = {
       prompt_position = "top",
-      width = 0.95,
+      width = 0.90,
     },
     preview = {
       treesitter = false,

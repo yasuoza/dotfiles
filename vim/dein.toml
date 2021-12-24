@@ -143,11 +143,13 @@ require("telescope").setup{
     sorting_strategy = "ascending",
     mappings = {
       i = {
+        ["<esc>"] = actions.close,
         ["<C-g>"] = actions.close,
       },
     },
     layout_config = {
       prompt_position = "top",
+      width = 0.95,
     },
     preview = {
       treesitter = false,

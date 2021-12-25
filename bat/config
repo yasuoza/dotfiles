@@ -1,4 +1,4 @@
---theme="base16-256"
+--theme="iceberg"
 
 # Show line numbers, Git modifications and file header (but no grid)
 --style="numbers,changes,header"

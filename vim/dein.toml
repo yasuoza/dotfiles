@@ -181,6 +181,22 @@ END
 '''
 
 [[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+hook_add = '''
+lua << END
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+
+  highlight = {
+    enable = true,
+  },
+}
+END
+'''
+hook_post_update = 'TSUpdate'
+
+[[plugins]]
 repo = 'cocopon/iceberg.vim'
 hook_add = '''
 colorscheme iceberg

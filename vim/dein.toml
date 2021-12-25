@@ -13,7 +13,8 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'nathom/filetype.nvim'
+repo = 'yasuoza/filetype.nvim'
+rev = 'make-function-works'
 hook_add = '''
 lua << END
 require("filetype").setup {
@@ -29,6 +30,12 @@ require("filetype").setup {
       complex = {
         [".*git/config"] = "gitconfig", -- Included in the plugin
       },
+
+      function_complex = {
+        [".*vim/dein.*.toml"] = function()
+          vim.cmd([[call dein#toml#syntax()]])
+        end,
+      }
     },
 }
 END

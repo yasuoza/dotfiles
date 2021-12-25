@@ -1,3 +1,6 @@
+# Generate cache via
+# $ bat cache --build
+
 --theme="iceberg"
 
 # Show line numbers, Git modifications and file header (but no grid)

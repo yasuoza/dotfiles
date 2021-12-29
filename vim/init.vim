@@ -307,39 +307,3 @@ vnoremap gy <Esc>:<C-u>call <SID>yank_without_indent()<CR>
 " Delete without saving to register
 xnoremap d "_d
 nnoremap D "_D
-
-
-"*****************************************************************************
-""  Bundle setting
-"*****************************************************************************
-" MiniBufExplorer {{{
-  let g:miniBufExplMapWindowNavVim=1 "move hjkl
-  let g:miniBufExplSplitBelow=0  " Put new window above
-  let g:miniBufExplMapWindowNavArrows=1
-  let g:miniBufExplMapCTabSwitchBufs=1
-  let g:miniBufExplModSelTarget=1
-  let g:miniBufExplSplitToEdge=1
-  let g:miniBufExplMaxSize = 10
-  let g:miniBufExplCycleArround=1
-  command! Mt :TMiniBufExplorer "toggle MiniBufferExporeer via :Mt
-" }}}
-
-" quickrun.vim {{{
-  let g:quickrun_config = {}
-  let g:quickrun_config = {
-  \   "_" : {
-  \       "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-  \       "hook/unite_quickfix/enable_failure" : 1,
-  \       "hook/close_quickfix/enable_exit" : 1,
-  \       "hook/close_buffer/enable_failure" : 1,
-  \       "hook/close_buffer/enable_empty_data" : 1,
-  \       "outputter" : "multi:buffer:quickfix",
-  \       "hook/shabadoubi_touch_henshin/enable" : 1,
-  \       "hook/shabadoubi_touch_henshin/wait" : 20,
-  \       "split" : "rightbelow",
-  \       "outputter/buffer/running_mark" : "",
-  \       "runner" : "vimproc",
-  \       "runner/vimproc/updatetime" : 40,
-  \   }
-  \}
-" }}}

@@ -5,29 +5,22 @@ repo = 'junegunn/vim-easy-align'
 on_cmd = 'EasyAlign'
 
 [[plugins]]
+repo = 'nvim-treesitter/playground'
+on_cmd = 'TSHighlightCapturesUnderCursor'
+
+[[plugins]]
 repo = 'vim-scripts/textobj-rubyblock'
 on_ft = 'ruby'
 
-[[plugins]]
-repo = 'elzr/vim-json'
-on_ft = 'json'
-hook_add = '''
-let g:vim_json_syntax_conceal = 0
-'''
+ [[plugins]]
+ repo = 'google/vim-jsonnet'
+ on_ft = 'jsonnet'
+ merge_ftdetect = true
 
-[[plugins]]
-repo = 'google/vim-jsonnet'
-on_ft = 'jsonnet'
-merge_ftdetect = true
-
-[[plugins]]
-repo = 'neoclide/jsonc.vim'
-on_ft = 'jsonc'
-
-[[plugins]]
-repo = 'gutenye/json5.vim'
-on_ft = 'json5'
-merge_ftdetect = true
+ [[plugins]]
+ repo = 'gutenye/json5.vim'
+ on_ft = 'json5'
+ merge_ftdetect = true
 
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'

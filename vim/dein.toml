@@ -12,33 +12,6 @@ if = '!has("nvim")'
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
-[[plugins]]
-repo = 'nathom/filetype.nvim'
-hook_add = '''
-lua << END
-require("filetype").setup {
-    overrides = {
-      extensions = {
-        ["tf"] = "terraform",
-        ["tfstate"] = "terraform",
-      },
-      literal = {
-        ["coc-settings.json"] = "jsonc",
-        ["tsconfig.json"] = "jsonc",
-      },
-      complex = {
-        [".*git/config"] = "gitconfig", -- Included in the plugin
-
-        ["dein.*.toml"] = function()
-          vim.bo.filetype = "toml"
-          vim.cmd([[call dein#toml#syntax()]])
-        end,
-      }
-    },
-}
-END
-'''
-
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'

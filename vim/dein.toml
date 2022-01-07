@@ -106,7 +106,14 @@ let g:matchup_matchparen_deferred_show_delay = 100 " slow deferred highlighting
 let g:matchup_matchparen_deferred_hide_delay = 100 " fast highlighting disappears
 let g:matchup_matchparen_stopline = 100  " for match highlighting only
 let g:matchup_matchparen_offscreen = {} " Disable statusline entry
-let g:matchup_mappings_enabled = 0
+
+" mappings
+let g:matchup_motion_enabled = 0
+nnoremap <silent> %
+        \ :<c-u>call matchup#motion#find_matching_pair(0, 1)<cr>
+xnoremap <silent> %
+        \ :<c-u>call matchup#motion#find_matching_pair(1, 1)<cr>
+xmap     <silent> <plug>(matchup-%) <sid>(matchup-%)
 '''
 
 [[plugins]]
@@ -165,6 +172,10 @@ hook_add = '''
 lua << END
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
+
+  matchup = {
+    enable = true,
+  },
 
   highlight = {
     enable = true,

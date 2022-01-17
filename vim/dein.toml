@@ -183,7 +183,7 @@ require'nvim-treesitter.configs'.setup {
 }
 END
 '''
-hook_post_update = 'TSUpdate'
+hook_post_update = 'TSUpdateSync'
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'

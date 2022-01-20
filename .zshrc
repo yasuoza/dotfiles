@@ -29,6 +29,9 @@ case "${OSTYPE}" in
 esac
 
 if [ -f ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  # Make zsh-autosuggestions works
+  ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-beginning-search-backward-end history-beginning-search-forward-end)
+
   source ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 

@@ -36,7 +36,7 @@ let g:did_load_filetypes = 0
 if &compatible
   set nocompatible
 endif
-set runtimepath^=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.cache/vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 let s:cache_path = expand('$HOME/.cache/vim/dein')

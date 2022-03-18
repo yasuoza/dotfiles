@@ -157,11 +157,14 @@ require'telescope'.setup {
       preview_width = 0.50,
     },
     preview = {
-      treesitter = false,
-      timeout = 1000,
+      treesitter = true,
     },
   },
 }
+
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension('fzf')
 END
 '''
 

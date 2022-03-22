@@ -46,7 +46,7 @@ brew 'pyenv'
 brew 'python'
 brew 'ruby-build'
 brew 'rbenv'
-brew 'nodeenv'
+brew 'nodenv'
 
 # Infra
 brew 'ctop'

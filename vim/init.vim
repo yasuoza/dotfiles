@@ -36,10 +36,10 @@ let g:did_load_filetypes = 0
 if &compatible
   set nocompatible
 endif
-set runtimepath^=$HOME/.cache/vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.cache/nvim/dein
 
 " Required:
-let s:cache_path = expand('$HOME/.cache/vim/dein')
+let s:cache_path = expand('$HOME/.cache/nvim/dein')
 
 if dein#load_state(s:cache_path)
   let s:toml = '$HOME/dotfiles/vim/dein.toml'
@@ -58,9 +58,6 @@ endif
 filetype plugin indent on
 syntax enable
 
-if dein#check_install(['vimproc.vim'])
-  call dein#install(['vimproc.vim'])
-endif
 if dein#check_install()
   call dein#install()
 endif

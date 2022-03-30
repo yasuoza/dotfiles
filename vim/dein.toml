@@ -2,15 +2,17 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim")'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+colorscheme iceberg
+
+hi! Normal guibg=NONE ctermbg=NONE " Transparent background
+hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
+'''
 
 # NERD_commenter.vim :toggle comment via <Leader>c<space>
 [[plugins]]
@@ -40,7 +42,7 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-let g:yankround_dir = '~/.cache/vim/yankround'
+let g:yankround_dir = '~/.cache/nvim/yankround'
 '''
 
 # viaualstar : search *
@@ -126,13 +128,36 @@ repo = 'tpope/vim-fugitive'
 repo = 'mattn/vim-molder'
 
 [[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+hook_post_source = '''
+lua << END
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+
+  matchup = {
+    enable = true,
+  },
+
+  highlight = {
+    enable = true,
+  },
+}
+END
+'''
+hook_post_update = 'TSUpdateSync'
+
+[[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 [[plugins]]
 repo = 'nvim-telescope/telescope-fzf-native.nvim'
 build = 'make'
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
-depends = 'nvim-telescope/telescope-fzf-native.nvim'
+depends = [
+  'nvim-lua/plenary.nvim',
+  'nvim-telescope/telescope-fzf-native.nvim',
+]
 hook_add = '''
 nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
 nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
@@ -140,7 +165,8 @@ if executable('rg')
   command! Rg Telescope live_grep
   command! Rgw Telescope grep_string word_match=-w
 endif
-
+'''
+hook_post_source = '''
 lua << END
 local actions = require("telescope.actions")
 require'telescope'.setup {
@@ -170,50 +196,20 @@ END
 '''
 
 [[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-merged = 0
-hook_add = '''
-lua << END
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-
-  matchup = {
-    enable = true,
-  },
-
-  highlight = {
-    enable = true,
-  },
-}
-END
-'''
-hook_post_update = 'TSUpdateSync'
-
-[[plugins]]
-repo = 'cocopon/iceberg.vim'
-hook_add = '''
-colorscheme iceberg
-'''
-hook_post_source = '''
-hi! Normal guibg=NONE ctermbg=NONE " Transparent background
-hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
-'''
-
-[[plugins]]
 repo = 'kdheepak/tabline.nvim'
-hook_add = '''
-lua << EOF
+hook_post_source = '''
+lua << END
 require'tabline'.setup {
   options = {
     show_bufnr = true,
   }
 }
-EOF
+END
 '''
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-hook_add = '''
+hook_post_source = '''
 lua << END
 require'lualine'.setup {
   options = {

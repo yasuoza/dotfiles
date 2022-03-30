@@ -9,7 +9,7 @@ function setup () {
     mkdir -p $HOME/.config/nvim
     ln -sf $DOTFILES_DIR/vim/* $HOME/.config/nvim
 
-    git clone --depth 1 https://github.com/Shougo/dein.vim  $HOME/.cache/vim/dein/repos/github.com/Shougo/dein.vim
+    git clone --depth 1 https://github.com/Shougo/dein.vim  $HOME/.cache/nvim/dein
 }
 
 function update () {
@@ -20,6 +20,7 @@ function clean () {
     rm -rf $HOME/.config/nvim
     rm -rf $HOME/.vimrc
     rm -rf $HOME/.vim
+    rm -rf $HOME/.cache/nvim
 }
 
 function usage () {

@@ -9,6 +9,7 @@ function setup () {
     clean
 
 		mkdir -p $HOME/.config
+		mkdir -p $HOME/.config/gh
 		mkdir -p $HOME/.aws/cli
     mkdir -p $HOME/.docker
     mkdir -p $HOME/.go
@@ -23,6 +24,7 @@ function setup () {
 		ln -s $DOTFILES_DIR/direnv $HOME/.config/direnv
 		ln -s $DOTFILES_DIR/bat $HOME/.config/bat
 		ln -s $DOTFILES_DIR/aws/alias $HOME/.aws/cli/alias
+    ln -s $DOTFILES_DIR/gh/config.yml $HOME/.config/gh/config.yml
 
     cp $DOTFILES_DIR/docker/config.json $HOME/.docker/config.json
 }
@@ -34,6 +36,7 @@ function clean () {
     done
 
     rm -rf $HOME/.bin
+		rm -rf $HOME/.config/gh/config.yml
 		rm -rf $HOME/.config/karabiner
 		rm -rf $HOME/.config/direnv
     rm -rf $HOME/.docker

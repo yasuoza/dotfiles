@@ -41,7 +41,26 @@ alias t='tig'
 
 # defaultbrowser
 if type defaultbrowser > /dev/null; then
-  alias set-defaultbrowser="osascript $HOME/dotfiles/scripts/apple/setdefaultbrowser.scpt"
+  defaultbrowser() {
+    if [ -z $1 ]; then
+      command defaultbrowser
+    else
+      osascript <<-AS
+        do shell script "defaultbrowser $1"
+        try
+          tell application "System Events"
+            tell application process "CoreServicesUIAgent"
+              tell window 1
+                tell (first button whose name starts with "use")
+                  perform action "AXPress"
+                end tell
+              end tell
+            end tell
+          end tell
+        end try
+AS
+    fi
+  }
 fi
 
 # Common sense

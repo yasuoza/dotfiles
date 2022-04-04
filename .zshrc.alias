@@ -39,6 +39,11 @@ alias gs='git status -s -b'
 # tig
 alias t='tig'
 
+# defaultbrowser
+if type defaultbrowser > /dev/null; then
+  alias set-defaultbrowser="osascript $HOME/dotfiles/scripts/apple/setdefaultbrowser.scpt"
+fi
+
 # Common sense
 if ! type rmr > /dev/null; then
     alias rmr='rm -r'

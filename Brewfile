@@ -29,6 +29,7 @@ brew 'envchain'
 brew 'mutagen-io/mutagen/mutagen'
 brew 'exiftool'
 brew 'gnu-sed'
+brew 'defaultbrowser'
 
 # SCM
 brew 'gh'

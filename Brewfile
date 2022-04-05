@@ -29,7 +29,6 @@ brew 'envchain'
 brew 'mutagen-io/mutagen/mutagen'
 brew 'exiftool'
 brew 'gnu-sed'
-brew 'defaultbrowser'
 
 # SCM
 brew 'gh'
@@ -57,6 +56,9 @@ brew 'terraform-ls'
 # EDITOR
 brew 'luajit', args: ['HEAD']
 brew 'neovim', args: ['HEAD']
+
+# Custom
+brew File.join(File.expand_path("..", __FILE__), "Formulae", "defaultbrowser.rb"), args: ['HEAD']
 
 # CASK
 cask 'adobe-creative-cloud'

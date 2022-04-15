@@ -134,7 +134,8 @@ merged = 0
 hook_post_source = '''
 lua << END
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
+  ignore_install = { "phpdoc" },
 
   matchup = {
     enable = true,

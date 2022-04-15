@@ -54,7 +54,6 @@ brew 'tfenv'
 brew 'terraform-ls'
 
 # EDITOR
-brew 'luajit', args: ['HEAD']
 brew 'neovim', args: ['HEAD']
 
 # Custom

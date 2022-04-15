@@ -57,7 +57,7 @@ brew 'terraform-ls'
 brew 'neovim', args: ['HEAD']
 
 # Custom
-brew File.join(File.expand_path("..", __FILE__), "Formulae", "defaultbrowser.rb"), args: ['HEAD']
+brew File.join(File.expand_path('..', __FILE__), 'Formulae', 'defaultbrowser.rb'), args: ['HEAD']
 
 # CASK
 cask 'adobe-creative-cloud'

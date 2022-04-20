@@ -27,9 +27,18 @@ let NERDShutUp=1
 
 # visually indent guide
 [[plugins]]
-repo = 'Yggdroot/indentLine'
-hook_add = '''
-let g:indentLine_char = '¦'
+repo = 'lukas-reineke/indent-blankline.nvim'
+hook_post_source = '''
+lua << END
+vim.opt.list = false -- Disable space mark
+require'indent_blankline'.setup {
+  -- Customize indent mark
+  char = '¦',
+
+  -- Disable the first column indent display
+  show_first_indent_level = false,
+}
+END
 '''
 
 [[plugins]]

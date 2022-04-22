@@ -213,7 +213,7 @@ lua << END
 require'tabline'.setup {
   options = {
     show_bufnr = true,
-    show_tabs_always = true,
+    show_tabs_always = false,
   }
 }
 END

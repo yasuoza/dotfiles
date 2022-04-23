@@ -53,6 +53,7 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 let g:yankround_dir = '~/.cache/nvim/yankround'
+let g:yankround_max_history = 100
 '''
 
 # viaualstar : search *

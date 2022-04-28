@@ -171,11 +171,11 @@ depends = [
   'nvim-telescope/telescope-fzf-native.nvim',
 ]
 hook_add = '''
-nnoremap <silent> <C-\> <cmd>Telescope find_files<cr>
-nnoremap <silent> <Leader>lb <cmd>Telescope buffers<cr>
+nnoremap <silent> <C-\> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <silent> <Leader>lb <cmd>lua require('telescope.builtin').buffers()<cr>
 if executable('rg')
-  command! Rg Telescope live_grep
-  command! Rgw Telescope grep_string word_match=-w
+  command! Rg lua require('telescope.builtin').live_grep()
+  command! Rgw lua require('telescope.builtin').grep_string({ word_match='-w' })
 endif
 '''
 hook_post_source = '''

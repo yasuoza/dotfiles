@@ -20,6 +20,9 @@ if type "gsed" > /dev/null; then
     alias sed=gsed
 fi
 
+# EDITOR
+alias e=$EDITOR
+
 # tmux
 alias tm='tmux'
 

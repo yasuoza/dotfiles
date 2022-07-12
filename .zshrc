@@ -89,7 +89,6 @@ setopt extended_glob        # Match without pattern
 setopt hist_ignore_all_dups # Delete old command line
 setopt share_history        # Share history
 setopt hist_reduce_blanks   # Delete vain space
-setopt inc_append_history   # add history when command executed.
 setopt hist_no_store        # Remove history command
 setopt path_dirs            # Search PATH sub directory if command contain /
 setopt autopushd            # Auto pushd

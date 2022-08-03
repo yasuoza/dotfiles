@@ -13,6 +13,7 @@ function! s:show_documentation()
 endfunction
 
 " Jump definition respecting for tags file.
+nmap <silent> <C-]> :call <SID>jump_definition()<CR>
 function! s:jump_definition()
   let tags_file = findfile('tags', expand('%:p:h').';'.$HOME, 1)
   let ruby_filetypes = ['ruby', 'eruby', 'slim']
@@ -22,31 +23,21 @@ function! s:jump_definition()
     call CocAction('jumpDefinition')
   endif
 endfunction
-nmap <silent> <C-]> :call <SID>jump_definition()<CR>
 
 " TAB triggers completion
 let g:coc_snippet_next = '<TAB>'
 
 inoremap <silent><expr> <TAB>
-  \ <SID>check_completion_selected()
-  \ ? coc#_select_confirm()
-  \ : coc#expandableOrJumpable()
-  \ ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
-  \ : <SID>check_back_space()
-  \ ? "\<TAB>"
-  \ : coc#refresh()
+  \ coc#pum#visible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ CheckBackspace() ? "\<TAB>" :
+  \ coc#refresh()
 
-function! s:check_completion_selected() abort
-  return pumvisible() && coc#_selected()
-endfunction
-
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
-   return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Ctrl-n triggers completion
-inoremap <silent><expr> <C-n> coc#refresh()
 
 " Scroll floating window
 if has('nvim-0.4.0') || has('patch-8.2.0750')

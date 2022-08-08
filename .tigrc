@@ -19,6 +19,7 @@ bind generic h scroll-left
 bind generic g move-first-line
 bind generic G move-last-line
 bind generic c !@sh -c 'echo %(commit) | tr -d "\\n" | pbcopy'
+bind generic S !@sh -c 'git log -n 1 --pretty="%h %s" %(commit) | tr -d "\\n" | pbcopy'
 bind generic o !@sh -c "hub browse -- commit/%(commit)"
 
 ## For main

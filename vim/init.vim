@@ -164,6 +164,7 @@ let g:markdown_fenced_languages = [
 lua << END
 vim.filetype.add({
   extension = {
+    ["jbuilder"] = "ruby",
     ["tf"] = "terraform",
     ["tfstate"] = "terraform",
   },

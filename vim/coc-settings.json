@@ -8,6 +8,8 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 1,
 
+  "snippets.ultisnips.pythonPrompt": false,
+
   // coc-solargraph
   "solargraph.checkGemVersion": false,
 

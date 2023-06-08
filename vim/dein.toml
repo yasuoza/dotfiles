@@ -139,6 +139,37 @@ repo = 'tpope/vim-fugitive'
 repo = 'mattn/vim-molder'
 
 [[plugins]]
+repo = 'github/copilot.vim'
+lua_post_source = '''
+vim.b.copilot_enabled = true
+vim.g.copilot_no_tab_map = true
+
+local keymap = vim.keymap.set
+keymap(
+  "i",
+  "<C-f>",
+  'copilot#Accept("<CR>")',
+  { silent = true, expr = true, script = true, replace_keycodes = false }
+)
+keymap(
+  "i",
+  "<C-j>",
+  function()
+      local s = vim.call("copilot#GetDisplayedSuggestion")
+      if s.text == nil or s.text == "" then
+          return vim.api.nvim_replace_termcodes([[<Esc>]], true, true, true)
+      else
+          return vim.call("copilot#Next")
+      end
+  end,
+  { silent = true, expr = true, script = true, replace_keycodes = false }
+)
+keymap("i", "<C-k>", "<Plug>(copilot-previous)")
+keymap("i", "<C-g>", "<Plug>(copilot-dismiss)")
+keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+'''
+
+[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 merged = 0
 hook_post_source = '''

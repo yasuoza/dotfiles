@@ -84,3 +84,7 @@ fi
 if type "fzf" > /dev/null; then
     export FZF_DEFAULT_COMMAND='fd --type f --follow'
 fi
+
+if [ -s $HOME/.ripgreprc ]; then
+  export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+fi

@@ -148,7 +148,7 @@ local keymap = vim.keymap.set
 keymap(
   "i",
   "<C-f>",
-  'copilot#Accept("<CR>")',
+  'copilot#Accept("<right>")',
   { silent = true, expr = true, script = true, replace_keycodes = false }
 )
 keymap(

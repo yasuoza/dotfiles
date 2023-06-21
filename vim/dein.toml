@@ -214,6 +214,9 @@ require'telescope'.setup {
       i = {
         ["<esc>"] = actions.close,
         ["<C-g>"] = actions.close,
+
+        ["<C-k>"] = actions.preview_scrolling_up,
+        ["<C-j>"] = actions.preview_scrolling_down,
       },
     },
     layout_config = {

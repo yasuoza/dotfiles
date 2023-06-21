@@ -28,8 +28,7 @@ let NERDShutUp=1
 # visually indent guide
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-hook_post_source = '''
-lua << END
+lua_post_source = '''
 vim.opt.list = false -- Disable space mark
 require'indent_blankline'.setup {
   -- Customize indent mark
@@ -38,7 +37,6 @@ require'indent_blankline'.setup {
   -- Disable the first column indent display
   show_first_indent_level = false,
 }
-END
 '''
 
 [[plugins]]
@@ -172,8 +170,7 @@ keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 merged = 0
-hook_post_source = '''
-lua << END
+lua_post_source = '''
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   ignore_install = { "phpdoc" },
@@ -186,7 +183,6 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
-END
 '''
 hook_post_update = 'TSUpdateSync'
 
@@ -209,8 +205,7 @@ if executable('rg')
   command! Rgw lua require('telescope.builtin').grep_string({ word_match='-w' })
 endif
 '''
-hook_post_source = '''
-lua << END
+lua_post_source = '''
 local actions = require("telescope.actions")
 require'telescope'.setup {
   defaults = {
@@ -235,26 +230,22 @@ require'telescope'.setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-END
 '''
 
 [[plugins]]
 repo = 'kdheepak/tabline.nvim'
-hook_post_source = '''
-lua << END
+lua_post_source = '''
 require'tabline'.setup {
   options = {
     show_bufnr = true,
     show_tabs_always = false,
   }
 }
-END
 '''
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-hook_post_source = '''
-lua << END
+lua_post_source = '''
 require'lualine'.setup {
   options = {
     theme = 'iceberg',
@@ -271,5 +262,4 @@ require'lualine'.setup {
     },
   },
 }
-END
 '''

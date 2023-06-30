@@ -40,18 +40,48 @@ require'indent_blankline'.setup {
 '''
 
 [[plugins]]
-repo = 'LeafCage/yankround.vim'
-hook_add ='''
-nmap p <Plug>(yankround-p)
-xmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-xmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-let g:yankround_dir = '~/.cache/nvim/yankround'
-let g:yankround_max_history = 100
+repo = 'kkharji/sqlite.lua'
+[[plugins]]
+repo = 'gbprod/yanky.nvim'
+depends = [
+  'kkharji/sqlite.lua'
+]
+lua_post_source = '''
+-- For sqlite.lua
+local os = vim.loop.os_uname().sysname
+if os == "Darwin" then
+  vim.fn.setenv('LIBSQLITE', '/usr/lib/sqlite3/libtclsqlite3.dylib')
+end
+
+local utils = require("yanky.utils")
+local mapping = require("yanky.telescope.mapping")
+require'yanky'.setup {
+  ring = {
+    storage = 'sqlite'
+  },
+  picker = {
+    telescope = {
+      use_default_mappings = false,
+      mappings = {
+        default = mapping.put("p"),
+        i = {
+          ["<c-y>"] = mapping.set_register(utils.get_default_register()),
+        },
+      },
+    },
+  },
+  highlight = {
+    on_put = false,
+    on_yank = false,
+  },
+}
+
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleForward)") -- Previous
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleBackward)") -- Next
 '''
 
 # viaualstar : search *
@@ -230,9 +260,22 @@ require'telescope'.setup {
   },
 }
 
+vim.keymap.set('n', '<C-\\>', '<cmd>lua require("telescope.builtin").find_files()<cr>', { silent = true })
+vim.keymap.set('n', '<Leader>lb', '<cmd>lua require("telescope.builtin").buffers()<cr>', { silent = true })
+
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+
+-- yanky.nvim integration
+if vim.fn.exists(':YankyRingHistory') then
+  vim.keymap.set(
+    'n',
+    '<Leader>ly',
+    require("telescope").extensions.yank_history.yank_history,
+    { silent = true }
+  )
+end
 '''
 
 [[plugins]]

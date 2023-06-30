@@ -250,6 +250,16 @@ require'telescope'.setup {
       treesitter = true,
     },
   },
+
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<c-d>"] = require("telescope.actions").delete_buffer,
+        },
+      }
+    }
+  },
 }
 
 -- To get fzf loaded and working with telescope, you need to call

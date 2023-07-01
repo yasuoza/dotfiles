@@ -247,6 +247,11 @@ inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 " alias %% = %:h<Tab>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
+" new as enew
+" vnew as split vertical and open and move to right new buffer
+cnoreabbrev new enew
+cnoreabbrev vnew vertical belowright new
+
 " delete line end whitespace
 " convert tab to space when save file
 " http://qiita.com/items/bc9720826120f5f61fc1

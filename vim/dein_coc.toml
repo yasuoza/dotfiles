@@ -60,7 +60,8 @@ let g:coc_global_extensions = [
 \ 'coc-html',
 \ 'coc-css',
 \ 'coc-sql',
-\ 'coc-pyright'
+\ 'coc-pyright',
+\ 'coc-rust-analyzer',
 \]
 '''
 hook_post_update = 'CocUpdateSync'

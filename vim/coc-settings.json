@@ -8,6 +8,8 @@
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 1,
 
+  "coc.preferences.formatOnSave": true,
+
   "snippets.ultisnips.pythonPrompt": false,
 
   // coc-solargraph
@@ -52,10 +54,7 @@
       "command": "terraform-ls",
       "args": ["serve"],
       "rootPatterns": [".terraform.lock.hcl", ".terraform/"],
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
+      "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
     }

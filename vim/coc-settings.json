@@ -25,8 +25,9 @@
   "sql.formatOptions": {
     // supported language are:
     // db2,mariadb,mysql,n1ql,plsql,postgresql,redshift,spark,sql,tsql
-    "language": "mysql",
-    "uppercase": true
+    "language": "postgresql",
+    "keywordCase": "upper",
+    "expressionWidth": 120
   },
 
   "languageserver": {

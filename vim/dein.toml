@@ -50,7 +50,7 @@ lua_post_source = '''
 -- For sqlite.lua
 local os = vim.loop.os_uname().sysname
 if os == "Darwin" then
-  vim.fn.setenv('LIBSQLITE', '/usr/lib/sqlite3/libtclsqlite3.dylib')
+  vim.g.sqlite_clib_path = '/usr/lib/sqlite3/libtclsqlite3.dylib'
 end
 
 local utils = require("yanky.utils")

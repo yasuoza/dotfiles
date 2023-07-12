@@ -54,7 +54,7 @@ brew 'tfenv'
 brew 'terraform-ls'
 
 # EDITOR
-brew 'neovim', args: ['HEAD']
+brew 'neovim'
 
 # Custom
 brew File.join(File.expand_path('..', __FILE__), 'Formulae', 'defaultbrowser.rb'), args: ['formula', 'HEAD']

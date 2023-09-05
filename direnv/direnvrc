@@ -3,12 +3,17 @@
 # Usage:
 #   export VIRTUAL_ENV=venv
 #   layout python-venv python3
+#   layout python-venv $HOME/.pyenv/versions/3.10.13/bin/python
 # See: https://github.com/direnv/direnv/wiki/Python#venv-stdlib-module
 layout_python-venv() {
     local python=${1:-python3}
     [[ $# -gt 0 ]] && shift
     unset PYTHONHOME
     if [[ -n $VIRTUAL_ENV ]]; then
+        if [[ ! -d $VIRTUAL_ENV ]]; then
+            log_status "no venv found; creating $VIRTUAL_ENV"
+            mkdir -p $VIRTUAL_ENV
+        fi
         VIRTUAL_ENV=$(realpath "${VIRTUAL_ENV}")
     else
         local python_version
@@ -20,10 +25,7 @@ layout_python-venv() {
         VIRTUAL_ENV=$PWD/.direnv/python-venv-$python_version
     fi
     export VIRTUAL_ENV
-    if [[ ! -d $VIRTUAL_ENV ]]; then
-        log_status "no venv found; creating $VIRTUAL_ENV"
-        "$python" -m venv "$VIRTUAL_ENV"
-    fi
+    "$python" -m venv "$VIRTUAL_ENV"
     PATH_add "$VIRTUAL_ENV/bin"
 }
 

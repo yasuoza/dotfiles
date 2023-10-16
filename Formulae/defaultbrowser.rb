@@ -8,11 +8,6 @@ class Defaultbrowser < Formula
 
   depends_on :macos
 
-  patch do
-    url "https://github.com/saifulwebid/defaultbrowser/commit/e9541fa7d6aa0f9977d65fd2e777a7422ca73032.diff"
-    sha256 "333a1fddbbc98a879a0ad476dcc5c223a22459b39610c828e6b5b9d8e720c3d6"
-  end
-
   def install
     system "make", "install", "PREFIX=#{prefix}"
   end

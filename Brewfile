@@ -33,6 +33,7 @@ brew 'gnu-sed'
 # SCM
 brew 'gh'
 brew 'git'
+brew 'git-lfs'
 brew 'git-now'
 brew 'git-when-merged'
 brew 'hub'

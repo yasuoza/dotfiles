@@ -30,12 +30,16 @@ let NERDShutUp=1
 repo = 'lukas-reineke/indent-blankline.nvim'
 lua_post_source = '''
 vim.opt.list = false -- Disable space mark
-require'indent_blankline'.setup {
-  -- Customize indent mark
-  char = '¦',
+require'ibl'.setup {
+  indent = {
+    -- Customize indent mark
+    char = "|",
+  },
 
-  -- Disable the first column indent display
-  show_first_indent_level = false,
+  scope = {
+   show_start = false,
+   show_end = false,
+  }
 }
 '''
 

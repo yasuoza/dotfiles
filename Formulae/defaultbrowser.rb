@@ -12,6 +12,11 @@ class Defaultbrowser < Formula
     system "make", "install", "PREFIX=#{prefix}"
   end
 
+  patch do
+    url "https://patch-diff.githubusercontent.com/raw/kerma/defaultbrowser/pull/26.patch"
+    sha256 "4b99933196b99b62e2b39b01f7604cce6f89f5efa757625a2dd9967112d05dda"
+  end
+
   test do
     # defaultbrowser outputs a list of browsers by default;
     # safari is pretty much guaranteed to be in that list

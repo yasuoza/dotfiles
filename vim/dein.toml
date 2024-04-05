@@ -12,6 +12,7 @@ colorscheme iceberg
 '''
 hook_post_source = '''
 hi! Normal guibg=NONE ctermbg=NONE " Transparent background
+hi! NormalFloat ctermbg=251 ctermfg=237 guibg=#cad0de guifg=#33374c " Change for floating window
 hi! Visual ctermbg=236 guibg=#3C4154  " Change Visual color
 '''
 

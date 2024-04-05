@@ -5,7 +5,6 @@ DOTFILES_DIR=`cd $(dirname $(dirname $0));pwd`
 function setup () {
     ln -sf $DOTFILES_DIR/vim/init.vim $HOME/.vimrc
 
-    pip3 install --force-reinstall --user pynvim
     mkdir -p $HOME/.config/nvim
     ln -sf $DOTFILES_DIR/vim/* $HOME/.config/nvim
 

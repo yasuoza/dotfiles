@@ -3,6 +3,7 @@
   path = .gitconfig.local
 [push]
   default = simple
+  autoSetupRemote = true
 [diff]
   tool = nvimdiff
   algorithm = histogram

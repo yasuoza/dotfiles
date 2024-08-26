@@ -107,6 +107,7 @@ set synmaxcol=200                " Restrict syntax search columns
 set noundofile                   " Prevent from creating un~ file
 set fileencodings=utf-8,sjis
 set shortmess+=c                 " Don't pass messages to ins-completion-menu
+set exrc                         " Enable .vimrc in current directory
 
 " tab indent setting
 set tabstop=2 shiftwidth=2 softtabstop=0

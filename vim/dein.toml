@@ -102,23 +102,11 @@ let g:surround_no_insert_mappings = 1
 
 # Insert or delete brackets, parens, quotes in pair
 [[plugins]]
-repo = 'LunarWatcher/auto-pairs'
-hook_add = '''
-" Disable `{|word` to be `{|}word`
-let g:AutoPairsCompleteOnlyOnSpace = 1
-
-" Disable mappings
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutFastWrap = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutBackInsert = ''
-let g:AutoPairsShortcutIgnore = ''
-let g:AutoPairsShortcutToggleMultilineClose = ''
-let g:AutoPairsMoveExpression = ''
-
-" Backspace and Ctrl-H delete pairs
-let g:AutoPairsMapBS = 1
-inoremap <silent> <C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
+repo = 'windwp/nvim-autopairs'
+lua_post_source = '''
+require("nvim-autopairs").setup {
+  check_ts = true, -- check treesitter
+}
 '''
 
 # vim-textobj-syntax : change selected text to text object

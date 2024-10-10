@@ -324,3 +324,11 @@ vnoremap gy <Esc>:<C-u>call <SID>yank_without_indent()<CR>
 " Delete without saving to register
 xnoremap d "_d
 nnoremap D "_D
+
+"*****************************************************************************
+"" Terminal
+"*****************************************************************************
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
+
+tnoremap <ESC> <C-\><C-n>

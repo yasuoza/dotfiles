@@ -53,7 +53,6 @@ let g:coc_global_extensions = [
 \ 'coc-snippets',
 \ 'coc-highlight',
 \ 'coc-tsserver',
-\ 'coc-prettier',
 \ 'coc-json',
 \ 'coc-solargraph',
 \ 'coc-yaml',
@@ -65,3 +64,7 @@ let g:coc_global_extensions = [
 \]
 '''
 hook_post_update = 'CocUpdateSync'
+
+[[plugins]]
+repo = 'neoclide/coc-prettier'
+build = 'yarn install --frozen-lockfile'

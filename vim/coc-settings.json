@@ -15,9 +15,6 @@
   // coc-solargraph
   "solargraph.checkGemVersion": false,
 
-  // coc-pyright
-  "python.pythonPath": "python3",
-
   // coc-sql
   "sql.lintOnOpen": false,
   "sql.lintOnChange": false,
@@ -29,6 +26,10 @@
     "keywordCase": "upper",
     "expressionWidth": 120
   },
+
+  // coc-pyright
+  "python.formatting.provider": "black",
+  "pyright.organizeimports.provider": "isort",
 
   "languageserver": {
     "golang": {

@@ -65,10 +65,6 @@ call system('go install golang.org/x/tools/cmd/goimports@latest')
 '''
 
 [[plugins]]
-repo = 'Vimjas/vim-python-pep8-indent'
-on_ft = 'python'
-
-[[plugins]]
 repo = 'pangloss/vim-javascript'
 on_ft = ['javascript', 'javascriptreact']
 

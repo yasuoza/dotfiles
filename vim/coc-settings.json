@@ -31,6 +31,10 @@
   "python.formatting.provider": "black",
   "pyright.organizeimports.provider": "isort",
 
+  // coc-prettier
+  // Let coc-yaml format files with extensions .yaml, .yml
+  "prettier.disableLanguages": ["yaml"],
+
   "languageserver": {
     "golang": {
       "command": "gopls",

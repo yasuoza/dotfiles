@@ -26,7 +26,6 @@ brew 'terminal-notifier'
 brew 'yarn'
 brew 'jq'
 brew 'envchain'
-brew 'mutagen-io/mutagen/mutagen'
 brew 'exiftool'
 brew 'gnu-sed'
 

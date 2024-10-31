@@ -1,152 +1,173 @@
 {
-    "global": { "show_in_menu_bar": false },
-    "profiles": [
+  "global": { "show_in_menu_bar": false },
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "control+j to control+j & eisuu",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.apple\\.Terminal$",
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["control"],
+                    "optional": ["caps_lock"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": ["control"]
+                  },
+                  { "key_code": "japanese_eisuu" }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "escape to escape & eisuu",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.apple\\.Terminal$",
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": { "key_code": "escape" },
+                "to": [
+                  { "key_code": "escape" },
+                  { "key_code": "japanese_eisuu" }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "control+h to backspace in Postico.app",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^at\\.eggerapps\\.Postico$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["control"],
+                    "optional": ["caps_lock"]
+                  }
+                },
+                "to": [{ "key_code": "delete_or_backspace" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "control+space to key_code:fn in iPhone Mirroring.app",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.apple\\.ScreenContinuity$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": ["control"],
+                    "optional": ["caps_lock"]
+                  }
+                },
+                "to": [{ "key_code": "fn" }],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "fn_function_keys": [
         {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "control+j to control+j & eisuu",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": {
-                                        "mandatory": ["control"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "j",
-                                        "modifiers": ["control"]
-                                    },
-                                    { "key_code": "japanese_eisuu" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "escape to escape & eisuu",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": { "key_code": "escape" },
-                                "to": [
-                                    { "key_code": "escape" },
-                                    { "key_code": "japanese_eisuu" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control+h to backspace in Postico.app",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^at\\.eggerapps\\.Postico$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": {
-                                        "mandatory": ["control"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f1" },
-                    "to": [{ "key_code": "display_brightness_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f2" },
-                    "to": [{ "key_code": "display_brightness_increment" }]
-                },
-                {
-                    "from": { "key_code": "f3" },
-                    "to": [{ "key_code": "mission_control" }]
-                },
-                {
-                    "from": { "key_code": "f4" },
-                    "to": [{ "key_code": "launchpad" }]
-                },
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "illumination_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [{ "key_code": "illumination_increment" }]
-                },
-                {
-                    "from": { "key_code": "f7" },
-                    "to": [{ "key_code": "rewind" }]
-                },
-                {
-                    "from": { "key_code": "f8" },
-                    "to": [{ "key_code": "play_or_pause" }]
-                },
-                {
-                    "from": { "key_code": "f9" },
-                    "to": [{ "key_code": "fastforward" }]
-                },
-                {
-                    "from": { "key_code": "f10" },
-                    "to": [{ "key_code": "mute" }]
-                },
-                {
-                    "from": { "key_code": "f11" },
-                    "to": [{ "key_code": "volume_decrement" }]
-                },
-                {
-                    "from": { "key_code": "f12" },
-                    "to": [{ "key_code": "volume_increment" }]
-                }
-            ],
-            "name": "Pro",
-            "selected": true,
-            "simple_modifications": [
-                {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "left_control" }]
-                }
-            ],
-            "virtual_hid_keyboard": {
-                "caps_lock_delay_milliseconds": 0,
-                "country_code": 0,
-                "keyboard_type": "ansi",
-                "keyboard_type_v2": "ansi"
-            }
+          "from": { "key_code": "f1" },
+          "to": [{ "key_code": "display_brightness_decrement" }]
+        },
+        {
+          "from": { "key_code": "f2" },
+          "to": [{ "key_code": "display_brightness_increment" }]
+        },
+        {
+          "from": { "key_code": "f3" },
+          "to": [{ "key_code": "mission_control" }]
+        },
+        {
+          "from": { "key_code": "f4" },
+          "to": [{ "key_code": "launchpad" }]
+        },
+        {
+          "from": { "key_code": "f5" },
+          "to": [{ "key_code": "illumination_decrement" }]
+        },
+        {
+          "from": { "key_code": "f6" },
+          "to": [{ "key_code": "illumination_increment" }]
+        },
+        {
+          "from": { "key_code": "f7" },
+          "to": [{ "key_code": "rewind" }]
+        },
+        {
+          "from": { "key_code": "f8" },
+          "to": [{ "key_code": "play_or_pause" }]
+        },
+        {
+          "from": { "key_code": "f9" },
+          "to": [{ "key_code": "fastforward" }]
+        },
+        {
+          "from": { "key_code": "f10" },
+          "to": [{ "key_code": "mute" }]
+        },
+        {
+          "from": { "key_code": "f11" },
+          "to": [{ "key_code": "volume_decrement" }]
+        },
+        {
+          "from": { "key_code": "f12" },
+          "to": [{ "key_code": "volume_increment" }]
         }
-    ]
+      ],
+      "name": "Pro",
+      "selected": true,
+      "simple_modifications": [
+        {
+          "from": { "key_code": "caps_lock" },
+          "to": [{ "key_code": "left_control" }]
+        }
+      ],
+      "virtual_hid_keyboard": {
+        "caps_lock_delay_milliseconds": 0,
+        "country_code": 0,
+        "keyboard_type": "ansi",
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
 }
+

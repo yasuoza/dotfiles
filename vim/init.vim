@@ -79,7 +79,6 @@ set expandtab                    " Default half space
 set backspace=indent,eol,start   " Enable to delete via backspace
 set formatoptions=lmoq           " Add multibyte to reoder
 set vb t_vb=                     " do not make beep
-set browsedir=buffer             " home directory from Explore
 set whichwrap=b,s,h,l,<,>,[,]    " do not stop cursor at frirst and end
 set showcmd                      " show command on status
 set showmode                     " show current mode
@@ -87,7 +86,6 @@ set viminfo='50,<1000,s100,\"50  " setting for viminfo
 set modeline                     " enable mode line
 set clipboard=unnamed            " use os's clipboard
 set mouse=a                      " use mouse on terminal
-set guioptions+=a
 set helpfile=$VIMRUNTIME/doc/help.txt
 set autoindent                   " auto indent
 set smartindent                  " set same amount of indent when insert new line
@@ -237,8 +235,6 @@ autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe
 "*****************************************************************************
 "" Editor Support
 "*****************************************************************************
-" IMF off after insert mode
-set imdisable
 set iminsert=0 imsearch=0
 set noimcmdline
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>

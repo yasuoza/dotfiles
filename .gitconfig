@@ -25,7 +25,8 @@
   rebase = true
 [commit]
   cleanup = scissors
- template = ~/dotfiles/.gitcommit_template
+  template = ~/dotfiles/.gitcommit_template
+  verbose = true
 [rerere]
   enabled = true
 [grep]

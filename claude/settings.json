@@ -1,0 +1,50 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "deny": [
+      "Read(**/.env.*)",
+      "Read(**/.env)",
+      "Read(**/.envrc)",
+      "Read(**/.secrets.*)",
+      "Read(**/.secrets)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/scripts/notifications/permission_prompt-notification.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/scripts/notifications/stop-notification.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "spinnerTipsEnabled": false,
+  "prefersReducedMotion": true,
+  "enabledPlugins": {
+    "example-skills@anthropic-agent-skills": true
+  }
+}

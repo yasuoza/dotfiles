@@ -288,6 +288,7 @@ require'tabline'.setup {
   options = {
     show_bufnr = true,
     show_tabs_always = false,
+    modified_italic = false,
   }
 }
 '''

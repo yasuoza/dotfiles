@@ -20,17 +20,17 @@ case ${UID} in
 
         # Prompt
         setopt prompt_subst
-        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${WINDOW:+"[$WINDOW]"} ${RESET}"
+        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)${WHITE}]${RESET}"
 
         # Change color when terminal is vim mode
         # http://memo.officebrook.net/20090226.html
         function zle-line-init zle-keymap-select {
             case $KEYMAP in
                 vicmd)
-                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{$fg_bold[cyan]%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
+                    PROMPT="${RESET}${GREEN}${RESET}%{$fg_bold[cyan]%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
                     ;;
                 main|viins)
-                    PROMPT="${RESET}${GREEN}${WINDOW:+"[$WINDOW]"}${RESET}%{${GREEN}%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
+                    PROMPT="${RESET}${GREEN}${RESET}%{${GREEN}%}${USER}@%m%F${RESET}%1v%f ${RESET}${WHITE}$ ${RESET}"
                     ;;
             esac
             zle reset-prompt

@@ -1,0 +1,51 @@
+# Theme and Appearance
+theme = Iceberg Dark
+
+# Window
+background-opacity = 0.80
+background-blur = 5
+
+title = " "
+window-subtitle = false
+
+window-height = 45
+window-width = 170
+
+window-padding-x = 4
+window-padding-y = 0,10
+
+# Notifications
+app-notifications = false
+bell-features = no-attention,no-title
+
+# macOS
+macos-window-shadow = false
+macos-titlebar-proxy-icon = hidden
+
+# Shell Integration
+shell-integration-features = no-cursor
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Font
+font-size = 26
+font-family = RictyDiscord Nerd Font
+font-style = Bold
+font-thicken = true
+font-thicken-strength = 255
+
+# Behavior
+quit-after-last-window-closed = true
+
+# Clipboard
+clipboard-trim-trailing-spaces = true
+
+# Key Bindings
+keybind = all:cmd+w=ignore
+keybind = all:cmd+q=ignore
+## For new line without executing especially for Claude Code
+keybind = all:shift+enter=text:\n
+## Do not open config file with cmd+,
+keybind = all:cmd+,=ignore

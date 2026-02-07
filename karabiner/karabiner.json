@@ -13,7 +13,8 @@
                     "bundle_identifiers": [
                       "^com\\.apple\\.Terminal$",
                       "^com\\.googlecode\\.iterm2$",
-                      "^com\\.microsoft\\.VSCode$"
+                      "^com\\.microsoft\\.VSCode$",
+                      "^com\\.mitchellh\\.ghostty"
                     ],
                     "type": "frontmost_application_if"
                   }
@@ -45,7 +46,8 @@
                     "bundle_identifiers": [
                       "^com\\.apple\\.Terminal$",
                       "^com\\.googlecode\\.iterm2$",
-                      "^com\\.microsoft\\.VSCode$"
+                      "^com\\.microsoft\\.VSCode$",
+                      "^com\\.mitchellh\\.ghostty"
                     ],
                     "type": "frontmost_application_if"
                   }
@@ -172,4 +174,3 @@
     }
   ]
 }
-

@@ -42,13 +42,13 @@
       }
     ]
   },
-  "spinnerTipsEnabled": false,
-  "prefersReducedMotion": true,
-  "enabledPlugins": {
-    "example-skills@anthropic-agent-skills": true
-  },
   "statusLine": {
     "type": "command",
     "command": "~/dotfiles/claude/scripts/statusline-command.sh"
-  }
+  },
+  "enabledPlugins": {
+    "example-skills@anthropic-agent-skills": true
+  },
+  "spinnerTipsEnabled": false,
+  "plansDirectory": "./.claude/plans"
 }

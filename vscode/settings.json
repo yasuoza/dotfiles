@@ -1,32 +1,394 @@
 {
-    "editor.renderWhitespace": "all",
-    "editor.fontFamily": "Ricty for Powerline",
-    "editor.fontSize": 18,
-    "editor.fontWeight": "bold",
-    "editor.renderLineHighlight": "all",
-    "editor.renderIndentGuides": true,
-    "editor.cursorStyle": "block",
-    "editor.cursorBlinking": "solid",
-    "editor.minimap.enabled": false,
+  /*
+    Window & Workbench
+  */
+  "window.confirmBeforeClose": "keyboardOnly",
+  "window.newWindowDimensions": "inherit",
+  "window.zoomLevel": 0.2,
+  "workbench.colorTheme": "Iceberg",
+  "workbench.colorCustomizations": {
+    "tab.activeBorder": "#E98989",
+    "scrollbarSlider.background": "#4a548266",
+    "tab.unfocusedActiveBorder": "#000000",
+  },
+  "workbench.activityBar.location": "top",
+  "workbench.editor.tabActionLocation": "left",
+  "workbench.secondarySideBar.showLabels": false,
 
-    "terminal.external.osxExec": "iTerm.app",
-    "terminal.integrated.fontFamily": "Ricty for Powerline",
-    "terminal.integrated.fontSize": 18,
+  /*
+    Editor
+  */
+  "editor.fontFamily": "RictyDiscord Nerd Font",
+  "editor.fontSize": 24,
+  "editor.fontWeight": "bold",
+  "editor.lineHeight": 1.2,
+  "editor.cursorStyle": "block",
+  "editor.cursorBlinking": "solid",
+  "editor.wordWrap": "on",
+  "editor.renderWhitespace": "trailing",
+  "editor.renderFinalNewline": "off",
+  "editor.minimap.enabled": false,
+  "editor.minimap.showSlider": "always",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.bracketPairColorization.enabled": false,
+  "editor.accessibilitySupport": "off",
 
-    "files.insertFinalNewline": true,
+  /*
+    Files
+  */
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.associations": {
+    "*.html.erb": "erb",
+  },
 
-    "breadcrumbs.enabled": true,
+  /*
+    Terminal
+  */
+  "terminal.integrated.fontSize": 22,
+  "terminal.integrated.fontWeight": "bold",
 
-    "workbench.statusBar.visible": true,
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorCustomizations": {
-      "editor.lineHighlightBackground": "#303030"
+  /*
+    Explorer & SCM
+  */
+  "explorer.confirmDragAndDrop": false,
+  "diffEditor.codeLens": true,
+
+  /*
+    Debug & Notebook
+  */
+  "debug.console.fontSize": 22,
+  "notebook.insertFinalNewline": true,
+
+  /*
+    Accessibility
+  */
+  "accessibility.signals.chatUserActionRequired": {
+    "sound": "on",
+  },
+
+  /*
+    Network & System
+  */
+  "http.systemCertificatesNode": true,
+  "extensions.ignoreRecommendations": true,
+
+  /*
+    Prettier
+  */
+  "prettier.resolveGlobalModules": true,
+
+  /*
+    direnv
+  */
+
+  /*
+    Docker
+  */
+  "docker.extension.enableComposeLanguageServer": false,
+
+  /*
+    AWS
+  */
+  "aws.cloudformation.telemetry.enabled": false,
+
+  /*
+    GitHub Pull Requests
+  */
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.fileListLayout": "tree",
+  "githubPullRequests.commentExpandState": "collapseAll",
+
+  /*
+    GitHub Copilot
+  */
+  "github.copilot.enable": {
+    "markdown": true,
+    "plaintext": true,
+  },
+  "github.copilot.selectedCompletionModel": "",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "必ず日本語で記述してください",
     },
-
-    "[ruby]": {
-      "editor.tabSize": 2
+    {
+      // https://www.conventionalcommits.org/
+      "text": "Conventional Commitsの形式で記述してください",
     },
-    "[typescript]": {
-      "editor.tabSize": 2
-    }
+  ],
+
+  /*
+    Chat (Copilot Chat)
+  */
+  "chat.agent.enabled": true,
+  "chat.agent.maxRequests": 100,
+  "chat.agentsControl.enabled": false,
+  "chat.editor.fontSize": 18,
+  "chat.fontSize": 14,
+  "chat.todoListTool.enabled": true,
+  "chat.mcp.autostart": "newAndOutdated",
+  "chat.tools.terminal.autoApprove": {
+    "cat": true,
+    "cd": true,
+    "echo": true,
+    "ls": true,
+    "pwd": true,
+    "git checkout": true,
+    "/git (--no-pager)? diff .*/": true,
+    "git fetch": true,
+    "/git (--no-pager)? log .*/": true,
+    "git status": true,
+    "git show": true,
+    "git branch": true,
+    "git remote": true,
+    "/git (--no-pager)? rev-parse .*/": true,
+    "/^git --no-pager show origin/develop:config/clock\\.rb \\| tail -n 80$/": {
+      "approve": true,
+      "matchCommandLine": true,
+    },
+    "pytest": true,
+  },
+
+  /*
+    Gemini Code Assist
+  */
+  "geminicodeassist.updateChannel": "Insiders",
+  "geminicodeassist.enableTelemetry": false,
+  "geminicodeassist.inlineSuggestions.enableAuto": false,
+  "geminicodeassist.displayInlineContextHint": false,
+
+  /*
+    Claude Code
+  */
+  "claudeCode.hideOnboarding": true,
+  "claudeCode.disableLoginPrompt": true,
+  "claudeCode.selectedModel": "default",
+  "claudeCode.preferredLocation": "panel",
+
+  /*
+    Python
+  */
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.unusedImports": "explicit",
+    },
+  },
+
+  /*
+    Ruby
+  */
+  "solargraph.checkGemVersion": false,
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "rbenv",
+  },
+  "rubyLsp.formatter": "rubocop",
+  "rubyLsp.enabledFeatures": {
+    "codeActions": true,
+    "codeLens": true,
+    "completion": true,
+    "definition": true,
+    "diagnostics": true,
+    "documentHighlights": true,
+    "documentLink": true,
+    "documentSymbols": true,
+    "foldingRanges": true,
+    "formatting": true,
+    "hover": true,
+    "inlayHint": true,
+    "onTypeFormatting": true,
+    "selectionRanges": true,
+    "semanticHighlighting": true,
+    "signatureHelp": true,
+    "typeHierarchy": true,
+    "workspaceSymbol": true,
+  },
+  "rubyLsp.featuresConfiguration": {
+    "inlayHint": {
+      "implicitHashValue": false,
+      "implicitRescue": false,
+    },
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2, // Use 2 spaces for indentation
+    "editor.insertSpaces": true, // Use spaces instead of tabs
+    "editor.semanticHighlighting.enabled": true, // Enable semantic highlighting
+    "editor.formatOnType": true,
+    "editor.language.brackets": [
+      ["[", "]"],
+      ["(", ")"],
+      ["{", "}"],
+    ],
+    "editor.language.colorizedBracketPairs": [
+      ["def", "end"],
+      ["do", "end"],
+      // ["if", "end"],
+      // ["unless", "end"],
+      ["case", "end"],
+      ["begin", "end"],
+      ["while", "end"],
+      ["until", "end"],
+      ["for", "end"],
+      ["class", "end"],
+      ["module", "end"],
+      ["[", "]"],
+      ["(", ")"],
+      ["{", "}"],
+    ],
+  },
+
+  /*
+    ERB
+  */
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+  },
+  "vscode-erb-beautify.keepBlankLines": 1,
+
+  /*
+    JavaScript
+  */
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  /*
+    JSON / JSONC
+  */
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  /*
+    HTML
+  */
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+  },
+
+  /*
+    Markdown
+  */
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "files.trimTrailingWhitespace": false,
+  },
+  "markdownlint.config": {
+    "default": true, // Enable all rules
+    "MD007": false, // Unordered list indentation
+    "MD024": false, // Multiple headings with the same content
+    "MD029": false, // Ordered list item prefix
+    "MD034": false, // Bare URL used
+    "MD041": false, // First line in file should be a top level heading
+  },
+  "markdown.preview.fontSize": 22,
+
+  /*
+    YAML
+  */
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "full",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.defaultColorDecorators": "auto",
+    "editor.quickSuggestions": {
+      "strings": true,
+      "other": true,
+      "comments": false,
+    },
+  },
+  "yaml.customTags": [
+    "!Base64",
+    "!Base64 mapping",
+    "!Cidr sequence",
+    "!And sequence",
+    "!Equals sequence",
+    "!If sequence",
+    "!Not sequence",
+    "!Or sequence",
+    "!Condition",
+    "!FindInMap sequence",
+    "!GetAtt",
+    "!GetAtt sequence",
+    "!GetAZs",
+    "!ImportValue",
+    "!Join sequence",
+    "!Select sequence",
+    "!Split sequence",
+    "!Sub",
+    "!Sub sequence",
+    "!Transform mapping",
+    "!Ref",
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap",
+    "!Join",
+    "!Cidr",
+    "!ImportValue sequence",
+    "!Select",
+    "!Split",
+  ],
+
+  /*
+    SQL
+  */
+  "[sql]": {
+    "editor.defaultFormatter": "ReneSaarsoo.sql-formatter-vsc",
+  },
+  "SQL-Formatter-VSCode.keywordCase": "upper",
+  "SQL-Formatter-VSCode.expressionWidth": 120,
+
+  /*
+    Terraform
+  */
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+  },
+
+  /*
+    Docker Compose
+  */
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true,
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+
+  /*
+    GitHub Actions
+  */
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
 }

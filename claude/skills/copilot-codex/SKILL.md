@@ -3,6 +3,9 @@ name: copilot-codex
 description: Delegate code implementation or review tasks to an external coding agent via the copilot CLI tool. Use when the user explicitly requests delegation with phrases like "Use codex", "Use copilot-codex", or similar. This skill provides access to an external expert coding agent specialized in code generation, review, and refactoring tasks.
 context: fork
 user-invocable: true
+allowed-tools:
+  - Read
+  - Bash(copilot *)
 ---
 
 # Copilot Codex

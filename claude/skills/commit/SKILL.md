@@ -3,6 +3,9 @@ name: commit
 description: Generate a Conventional Commits format commit message from staged changes and execute the commit after user confirmation. Use when changes have been staged with git add.
 argument-hint: "[--amend]"
 context: fork
+allowed-tools:
+  - Bash(git diff --cached *)
+  - Bash(git commit *)
 ---
 
 # Commit Skill

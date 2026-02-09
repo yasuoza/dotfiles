@@ -6,6 +6,14 @@ context: fork
 allowed-tools:
   - Read
   - Bash(git symbolic-ref *)
+  - Bash(git branch --show-current)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(gh pr create *)
+  - Bash(mkdir *)
+  - Bash(rm *)
+  - Bash(ls *)
+  - Bash(code *)
 ---
 
 # Create Pull Request Skill

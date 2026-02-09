@@ -2,7 +2,7 @@
 theme = Iceberg Dark
 
 # Window
-background-opacity = 0.80
+background-opacity = 0.85
 background-blur = 5
 
 title = " "

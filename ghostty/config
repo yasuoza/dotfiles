@@ -33,8 +33,11 @@ cursor-style-blink = false
 font-size = 26
 font-family = RictyDiscord Nerd Font
 font-style = Bold
+font-style-italic = Bold Oblique
+font-style-bold-italic = Bold Oblique
 font-thicken = true
 font-thicken-strength = 255
+font-feature = -calt,-liga,-dlig
 
 # Behavior
 quit-after-last-window-closed = true
@@ -49,3 +52,5 @@ keybind = all:cmd+q=ignore
 keybind = all:shift+enter=text:\n
 ## Do not open config file with cmd+,
 keybind = all:cmd+,=ignore
+## Disable new tab with cmd+t
+keybind = all:cmd+t=ignore

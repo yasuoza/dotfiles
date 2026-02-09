@@ -2,10 +2,12 @@
 name: commit
 description: Generate a Conventional Commits format commit message from staged changes and execute the commit after user confirmation. Use when changes have been staged with git add.
 argument-hint: "[--amend]"
-context: fork
 allowed-tools:
+  - Read
   - Bash(git diff --cached *)
   - Bash(git commit *)
+  - Bash(git log *)
+  - AskUserQuestion
 ---
 
 # Commit Skill
@@ -16,14 +18,14 @@ Analyze staged changes, generate a Conventional Commits format commit message, a
 
 ## Workflow
 
-| Step | Action                              | Completion Criteria                         |
-| ---- | ----------------------------------- | ------------------------------------------- |
-| 1    | Check staging                       | Staged changes exist                        |
-| 2    | Retrieve diff                       | git diff --cached output retrieved          |
-| 3    | Generate and present commit message | Message generated and displayed to user     |
-| 4    | Wait for user confirmation          | User has entered "OK" or a modified message |
-| 5    | Execute commit                      | git commit succeeded                        |
-| 6    | Display result                      | Commit hash displayed                       |
+| Step | Action                  | Completion Criteria                          |
+| ---- | ----------------------- | -------------------------------------------- |
+| 1    | Check staging           | Staged changes exist                         |
+| 2    | Retrieve diff           | git diff --cached output retrieved           |
+| 3    | Generate commit message | Message drafted                              |
+| 4    | Confirm with user       | User confirmed via AskUserQuestion tool call |
+| 5    | Execute commit          | git commit succeeded                         |
+| 6    | Display result          | Commit hash displayed                        |
 
 ---
 
@@ -48,7 +50,7 @@ git diff --cached --name-status
 
 ---
 
-## Step 3. Generate and Present Commit Message
+## Step 3. Generate Commit Message
 
 ### Conventional Commits Format
 
@@ -84,33 +86,24 @@ Include whenever possible:
 - Do not end with a period
 - Use recent commit language (Based on git logs)
 
-### Display Format for Generated Message
-
-Present the message in the following format:
-
-```
-Proposed commit message:
-
-feat(api): add user authentication endpoint
-
-- Implement POST /api/auth/login
-- Add JWT token generation
-
----
-Enter "OK" to proceed with this message.
-To modify, enter your revised commit message.
-```
-
 ---
 
-## Step 4. Wait for User Confirmation
+## Step 4. Confirm with User
 
-**Important**: Do not proceed to the next step until the user responds.
+**YOU MUST call the `AskUserQuestion` tool.** Do NOT substitute with text output, markdown, or any other method.
 
-**Branching Logic**:
+Call `AskUserQuestion` with the following parameters:
 
-- User responds with "OK", "ok", "yes", "y", "Y", "YES" → Use the message generated in Step 3
-- User enters anything else → Use the entered content as the commit message
+- **question**: `"Commit with this message?\n\n<generated commit message>"`
+- **header**: `"Commit"`
+- **options** (exactly 2):
+  - `{ "label": "OK", "description": "Proceed with the generated message" }`
+  - `{ "label": "Modify", "description": "Enter a revised message" }`
+
+### Branching Logic
+
+- User selects **"OK"** → Use the generated message as-is
+- User selects **"Modify"** or enters custom text via **"Other"** → Use the user's input as the commit message
 
 ---
 

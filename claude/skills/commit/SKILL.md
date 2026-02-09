@@ -90,9 +90,7 @@ Include whenever possible:
 
 ## Step 4. Confirm with User
 
-**YOU MUST call the `AskUserQuestion` tool.** Do NOT substitute with text output, markdown, or any other method.
-
-Call `AskUserQuestion` with the following parameters:
+Call the `AskUserQuestion` tool with the following parameters:
 
 - **question**: `"Commit with this message?\n\n<generated commit message>"`
 - **header**: `"Commit"`

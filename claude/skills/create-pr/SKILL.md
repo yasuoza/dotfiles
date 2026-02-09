@@ -2,9 +2,9 @@
 name: create-pr
 description: Create GitHub Pull Requests with auto-generated content based on diff and PR template.
 argument-hint: "<base-branch> [--draft]"
-context: fork
 allowed-tools:
   - Read
+  - AskUserQuestion
   - Bash(git symbolic-ref *)
   - Bash(git branch --show-current)
   - Bash(git diff *)
@@ -22,21 +22,19 @@ This skill creates GitHub Pull Requests targeting a specified branch.
 
 ## Prerequisites
 
-- Git is installed
-- GitHub CLI is installed and authenticated
-- The repository is a GitHub repository (not GitLab, Bitbucket, etc.)
-- The repository is cloned locally
+- Git and GitHub CLI (`gh`) are installed and authenticated
+- The repository is a GitHub repository cloned locally
 - The skill is executed from the repository root directory
 
 ## Argument Interpretation
 
-- `<base-branch>`: The target branch for merging the PR (automatically detects default branch if omitted)
-- `--draft`: When this flag is present, creates the PR as a draft
+- `<base-branch>`: The target branch for merging the PR (auto-detects default branch if omitted)
+- `--draft`: Creates the PR as a draft
 
 Examples:
 
-- `/create-pr main` → Regular PR to the main branch
-- `/create-pr main --draft` → Draft PR to the main branch
+- `/create-pr main` → Regular PR to main
+- `/create-pr main --draft` → Draft PR to main
 - `/create-pr --draft` → Draft PR to the default branch
 
 ---
@@ -50,11 +48,10 @@ Examples:
 | 3    | PR template loading                  | Template content is retrieved             |
 | 4    | PR content generation                | PR body is generated                      |
 | 5    | Save temporary file + Launch VS Code | File created and VS Code launched         |
-| 6    | Wait for user confirmation           | User has responded with "OK"              |
-| 7    | Draft confirmation (conditional)     | Draft status is determined                |
-| 8    | PR creation                          | `gh pr create` succeeded                  |
-| 9    | Temporary file deletion              | `.tmp/pr_draft.md` is deleted             |
-| 10   | Display results                      | PR URL is displayed to user               |
+| 6    | Confirm with user                    | User confirmed via AskUserQuestion        |
+| 7    | PR creation                          | `gh pr create` succeeded                  |
+| 8    | Temporary file deletion              | `.tmp/pr_draft.md` is deleted             |
+| 9    | Display results                      | PR URL is displayed to user               |
 
 ---
 
@@ -62,10 +59,8 @@ Examples:
 
 Parse the arguments:
 
-1. Check for the presence of `--draft` flag → Store in `isDraft` variable
-2. Retrieve the base branch name (from arguments, or detect the default branch)
-
-Default branch detection:
+1. Check for `--draft` flag → Store in `isDraft` variable
+2. Retrieve the base branch name from arguments, or detect the default branch:
 
 ```bash
 git symbolic-ref refs/remotes/origin/HEAD --short | sed 's|origin/||'
@@ -110,47 +105,40 @@ code .tmp/pr_draft.md
 
 ---
 
-## Step 6. Wait for User Confirmation
+## Step 6. Confirm with User
 
-Display the following message and wait for user response:
+Call the `AskUserQuestion` tool with the following parameters:
 
-```
-The PR content has been saved to `.tmp/pr_draft.md` and opened in VS Code.
-Once you have finished editing, save the file and type "OK".
-```
+### When `--draft` was specified in Step 1:
 
-**Important**: Do not proceed to the next step until the user responds with "OK".
+- **question**: `"PR content has been saved to .tmp/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
+- **header**: `"Create PR"`
+- **options** (exactly 2):
+  - `{ "label": "OK", "description": "Create the draft PR" }`
+  - `{ "label": "Re-edit", "description": "Re-open VS Code and continue editing" }`
 
----
+### When `--draft` was NOT specified in Step 1:
 
-## Step 7. Draft Confirmation (Conditional)
+- **question**: `"PR content has been saved to .tmp/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
+- **header**: `"Create PR"`
+- **options** (exactly 3):
+  - `{ "label": "Draft", "description": "Create as draft PR" }`
+  - `{ "label": "Publish", "description": "Create as regular PR" }`
+  - `{ "label": "Re-edit", "description": "Re-open VS Code and continue editing" }`
 
-**Condition**: Execute only if `--draft` flag was not specified in Step 1
+### Branching Logic
 
-Display the following message and wait for user response:
-
-```
-Would you like to create this PR as a draft?
-- "draft" or "yes" → Create as draft PR
-- "publish" or "no" → Create as regular PR
-```
-
-**Important**: Do not proceed to the next step until the user responds.
-
-**Branching Logic**:
-
-- User responds with "draft", "yes", "y", "Y", "YES" → Add `--draft` flag
-- User responds with "publish", "no", "n", "N", "NO" → No `--draft` flag
+- User selects **"OK"** or **"Draft"** → Create as draft PR
+- User selects **"Publish"** → Create as regular PR
+- User selects **"Re-edit"** → Re-open VS Code (`code .tmp/pr_draft.md`) and call `AskUserQuestion` again (loop)
 
 ---
 
-## Step 8. PR Creation
+## Step 7. PR Creation
 
-Read the latest content from the temporary file and create the PR.
+Re-read `.tmp/pr_draft.md` to pick up any user edits, then create the PR.
 
-**CRITICAL: The `-a @me` flag is MANDATORY. NEVER omit it.**
-
-The command MUST follow this exact structure:
+Always include `-a @me` to self-assign the PR (this is a team convention):
 
 ```bash
 gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md
@@ -162,11 +150,9 @@ If draft, append `--draft`:
 gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md --draft
 ```
 
-- `-a @me` — Self-assignment. **NEVER omit this flag.**
-- `<title>` — Concise, Conventional Commits format. Determine the language by inspecting the recent `git log` messages from Step 2.
-- `--draft` — Added based on Step 1 or Step 7 result
+**Title format**: Use concise Conventional Commits format. Match the language used in recent `git log` messages from Step 2.
 
-**Japanese Title Rule**: When writing the title in Japanese, ALWAYS use past tense (完了形) for the description part. Use "〜した" instead of "〜する".
+**Japanese title rule**: Use past tense (完了形) — "〜した" not "〜する".
 
 | Good (past tense)                              | Bad (present tense)                            |
 | ----------------------------------------------- | ----------------------------------------------- |
@@ -176,25 +162,20 @@ gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md --draft
 
 ---
 
-## Step 9. Temporary File Deletion
+## Step 8. Temporary File Deletion
 
-**Execute only if PR creation succeeded**:
+On PR creation success, delete the temporary file and verify:
 
 ```bash
 rm .tmp/pr_draft.md
-```
-
-Deletion verification:
-
-```bash
 ls .tmp/pr_draft.md 2>/dev/null && echo "ERROR: File still exists" || echo "OK: Deletion complete"
 ```
 
-**If PR creation failed**: Do not delete the temporary file, and inform the user "The temporary file has been preserved."
+On PR creation failure, preserve the file and inform the user: "The temporary file has been preserved."
 
 ---
 
-## Step 10. Display Results
+## Step 9. Display Results
 
 On successful PR creation:
 
@@ -202,18 +183,6 @@ On successful PR creation:
 Pull Request created: [PR URL]
 Temporary file `.tmp/pr_draft.md` has been deleted.
 ```
-
----
-
-## Pre-Completion Checklist
-
-Before completing the process, verify the following:
-
-1. Has the draft status been determined? (from arguments or user response)
-2. **Was `-a @me` included in the `gh pr create` command?**
-3. If PR creation succeeded, has `.tmp/pr_draft.md` been deleted?
-4. Has the deletion been reported to the user?
-5. Has the PR URL been displayed to the user?
 
 ---
 
@@ -225,5 +194,3 @@ Before completing the process, verify the following:
 | GitHub CLI not authenticated | Prompt user to run `gh auth login`  |
 | PR template not found        | Generate basic PR content structure |
 | PR creation failure          | Preserve temporary file             |
-| PR creation success          | Delete temporary file               |
-| `-a @me` missing             | NEVER proceed without `-a @me`      |

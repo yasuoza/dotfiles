@@ -10,84 +10,38 @@ allowed-tools:
 
 # Copilot Codex
 
-## Overview
+Triggered when the user requests delegation with phrases like "use codex", "use codex for this task", "use copilot-codex", or "delegate this to codex".
 
-This skill enables Claude to delegate code implementation and review tasks to an external coding agent through the `copilot` CLI tool. When invoked, Claude constructs an appropriate prompt and delegates the work to the external agent.
-
-## When to Use This Skill
-
-Use this skill when the user explicitly requests delegation with phrases such as:
-
-- "Use codex to implement this feature"
-- "Use codex for this task"
-- "Use copilot-codex"
-- "Delegate this to codex"
-
-This skill is particularly valuable for:
-
-- Complex implementation tasks that benefit from specialized coding capabilities
-- Code review and validation
-- Scenarios where the user wants an additional expert perspective
-- Tasks that require focused code generation or refactoring
+Well-suited for: complex implementation, code generation, refactoring, code review, and getting an additional expert perspective.
 
 ## Invocation Command
 
-The copilot CLI tool is invoked with the following command:
-
 ```bash
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.2-codex --prompt "<prompt>"
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>"
 ```
 
-**Flag explanations:**
+Flags: `--yolo` skips confirmations, `--no-ask-user` prevents interactive prompts, `--silent` reduces verbose output, `--stream on` streams the response, `--model` selects the model, `--prompt` passes the task.
 
-- `--yolo`: Execute without additional confirmations
-- `--no-ask-user`: Do not prompt for user input during execution
-- `--silent`: Minimize verbose output
-- `--stream on`: Stream the response as it is generated
-- `--model gpt-5.2-codex`: Specify the model to use
-- `--prompt "<prompt>"`: The prompt to send to the agent
+## Workflow
 
-## Constructing Effective Prompts
+1. **Read relevant files** to understand the codebase structure, conventions, and constraints. This context is what makes the delegated prompt effective.
+2. **Construct a detailed prompt** including:
+   - File paths and relevant code snippets
+   - Goal, requirements, and constraints
+   - Language, framework, coding standards, and dependencies
+   - Examples: "Implement a user authentication system with JWT tokens", "Review this code for security vulnerabilities and suggest improvements"
+3. **Execute** the copilot command with the constructed prompt.
+4. **Review the output** and present it to the user. Validate generated code for correctness before accepting it.
 
-When delegating tasks, construct prompts that:
+## Example
 
-1. **Provide clear context**
+User: "Use codex to implement a REST API endpoint for user registration"
 
-   - Include relevant file paths and code snippets
-   - Explain the goal and requirements clearly
-   - Specify any constraints or preferences
-
-2. **Be specific about the task**
-
-   - "Implement a user authentication system with JWT tokens"
-   - "Review this code for security vulnerabilities and suggest improvements"
-   - "Refactor this function to improve performance"
-
-3. **Include necessary technical details**
-   - Programming language and framework
-   - Coding standards or style guidelines
-   - Dependencies or libraries to use
-
-## Example Workflow
-
-**User request:** "Use codex to implement a REST API endpoint for user registration"
-
-**Execution steps:**
-
-1. Gather context by reading relevant files and understanding the codebase
-2. Construct a detailed prompt with all necessary information
-3. Execute the command: `copilot --yolo --no-ask-user --silent --stream on --model gpt-5.2-codex --prompt "Implement a REST API endpoint for user registration in Express.js. Requirements: ..."`
-4. Present the agent's response to the user
-
-## Best Practices
-
-- **Always gather context first** - Read relevant files before delegating to understand the codebase structure and conventions
-- **Construct detailed prompts** - The more context provided, the better the output quality
-- **Review the output** - Always validate and review the generated code before accepting it
-- **Use for appropriate tasks** - This skill excels at implementation and code generation, not exploration or architectural planning
+1. Read the existing route files, models, and middleware to understand patterns in use.
+2. Run: `copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "Implement a REST API endpoint for user registration in Express.js. The project uses [conventions from step 1]. Requirements: ..."`
+3. Review and present the result.
 
 ## Notes
 
-- This skill requires the `copilot` CLI tool to be installed and accessible in the system PATH
-- The tool connects to the external coding agent via the copilot service
-- Execution is performed via the Bash tool with the command specified above
+- Requires the `copilot` CLI to be installed and on PATH.
+- This skill excels at implementation and code generation, not exploration or architectural planning.

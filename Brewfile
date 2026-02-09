@@ -8,7 +8,6 @@ brew 'bat'
 brew 'fd'
 brew 'fzf'
 brew 'grpcurl'
-brew 'the_silver_searcher'
 brew 'ripgrep'
 brew 'tmux'
 brew 'z'
@@ -20,7 +19,6 @@ brew 'readline'
 brew 'tree'
 brew 'hr'
 brew 'direnv'
-brew 'pngquant'
 brew 'htop'
 brew 'terminal-notifier'
 brew 'yarn'
@@ -34,11 +32,8 @@ brew 'gh'
 brew 'git'
 brew 'git-lfs'
 brew 'git-now'
-brew 'git-when-merged'
 brew 'hub'
 brew 'tig'
-brew 'gpg'
-brew 'pinentry-mac'
 
 # Languages
 brew 'go'
@@ -56,9 +51,6 @@ brew 'terraform-ls'
 # EDITOR
 brew 'neovim', args: ['HEAD']
 
-# Custom
-brew File.join(File.expand_path('..', __FILE__), 'Formulae', 'defaultbrowser.rb'), args: ['formula', 'HEAD']
-
 # CASK
 cask 'adobe-creative-cloud'
 cask 'alfred'
@@ -67,7 +59,6 @@ cask 'keyboard-cleaner'
 cask 'karabiner-elements'
 cask 'appcleaner'
 cask 'google-chrome'
-cask 'iterm2'
-cask 'session-manager-plugin'
+cask 'ghostty'
 cask 'slack'
 cask 'visual-studio-code'

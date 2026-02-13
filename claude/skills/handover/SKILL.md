@@ -19,26 +19,24 @@ Analyze the current session and git state, then generate a structured handover d
 
 ## Workflow
 
-| Step | Action                 | Completion Criteria                                  |
-| ---- | ---------------------- | ---------------------------------------------------- |
-| 1    | Gather git context     | Current branch, recent commits, uncommitted changes  |
-| 2    | Analyze session        | Session work summarized from conversation history    |
-| 3    | Generate handover doc  | Structured markdown document drafted                 |
-| 4    | Write file             | `.claude/HANDOVER-YYYYMMDD-HHmm.md` written successfully |
-| 5    | Display confirmation   | File path and summary shown to user                  |
+| Step | Action                | Completion Criteria                                      |
+| ---- | --------------------- | -------------------------------------------------------- |
+| 1    | Gather git context    | Current branch, recent commits, uncommitted changes      |
+| 2    | Analyze session       | Session work summarized from conversation history        |
+| 3    | Generate handover doc | Structured markdown document drafted                     |
+| 4    | Write file            | `.claude/HANDOVER-YYYYMMDD-HHmm.md` written successfully |
+| 5    | Display confirmation  | File path and summary shown to user                      |
 
 ---
 
 ## Step 1. Gather Git Context
 
-Run the following commands to collect repository state:
+Run each command as a **separate Bash call in parallel** (do NOT chain with `&&` or `;`):
 
-```bash
-git branch --show-current
-git log --oneline -10
-git status --short
-git diff --stat
-```
+1. `git branch --show-current`
+2. `git log --oneline -10`
+3. `git status --short`
+4. `git diff --stat`
 
 ---
 
@@ -66,21 +64,27 @@ Produce a markdown document following this exact structure:
 > Project: {project root path}
 
 ## What Was Done
+
 - {completed work items, be specific}
 
 ## What Worked and What Didn't
+
 - {successes, bugs encountered, how they were fixed}
 
 ## Key Decisions
+
 - {architectural/implementation decisions and rationale}
 
 ## Lessons Learned & Gotchas
+
 - {pitfalls, unexpected behaviors, workarounds}
 
 ## Next Steps
+
 - [ ] {clear actionable items with enough context to execute}
 
 ## Important Files
+
 - `path/to/file` — {why it matters}
 ```
 

@@ -42,26 +42,24 @@ To create one, run /handover in a session before closing it.
 
 - **Exactly one file found** → read it directly and proceed to Step 2.
 
-- **Multiple files found** → call `AskUserQuestion` to let the user choose:
+- **Multiple files found** → read the first few lines of each file to extract a summary, then call `AskUserQuestion` to let the user choose:
   - **question**: `"Multiple handover files found. Which one do you want to resume from?"`
   - **header**: `"Handover"`
   - **options**: One option per file, with:
     - `label`: the filename (e.g. `HANDOVER-20260213-1430.md`)
-    - `description`: the date/time from the filename
-  - After the user selects, read that file and proceed to Step 2.
+    - `description`: first bullet from "What Was Done" section (truncated to fit), giving the user a quick sense of what each session covered
+  - After the user selects, read the full file and proceed to Step 2.
 
 ---
 
 ## Step 2. Gather Current Git State
 
-Run the following commands to compare against the handover state:
+Run each command as a **separate Bash call in parallel** (do NOT chain with `&&` or `;`):
 
-```bash
-git branch --show-current
-git log --oneline -5
-git status --short
-git diff --stat
-```
+1. `git branch --show-current`
+2. `git log --oneline -5`
+3. `git status --short`
+4. `git diff --stat`
 
 ---
 

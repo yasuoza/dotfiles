@@ -1,6 +1,6 @@
 ---
 name: takeover
-description: Resume work from a previous session by reading the handover document. Use at the start of a new session to pick up where the last session left off.
+description: Load context from a previous session's handover document and present it to the user. This is a context-loading skill — present the information and let the user decide what to do next.
 allowed-tools:
   - Read
   - Glob
@@ -8,23 +8,24 @@ allowed-tools:
   - Bash(git status *)
   - Bash(git log *)
   - Bash(git diff *)
+  - Bash(git branch *)
   - AskUserQuestion
 ---
 
 # Takeover Skill
 
-Read the handover document from a previous session, present context, and prepare to continue work.
+Load and present context from a previous session's handover document. The user will decide what to work on after reviewing the context, so this skill only reads and displays information — it ends after presenting the summary and cleaning up the handover file.
 
 ---
 
 ## Workflow
 
-| Step | Action                  | Completion Criteria                                      |
-| ---- | ----------------------- | -------------------------------------------------------- |
-| 1    | Find handover files     | Available `.claude/HANDOVER-*.md` files discovered       |
-| 2    | Gather current git state| Branch, uncommitted changes, recent commits checked      |
-| 3    | Present context summary | Handover content displayed with current state comparison |
-| 4    | Confirm and clean up    | User confirms, selected handover file deleted            |
+| Step | Action                   | Completion Criteria                                      |
+| ---- | ------------------------ | -------------------------------------------------------- |
+| 1    | Find handover files      | Available `.claude/HANDOVER-*.md` files discovered       |
+| 2    | Gather current git state | Branch, uncommitted changes, recent commits checked      |
+| 3    | Present context summary  | Handover content displayed with current state comparison |
+| 4    | Clean up and finish      | User chooses whether to delete the handover file         |
 
 ---
 
@@ -32,7 +33,7 @@ Read the handover document from a previous session, present context, and prepare
 
 Use the Glob tool to search for `.claude/HANDOVER-*.md`.
 
-- **No files found** → display the following message and exit:
+- **No files found** → display the following message and finish:
 
 ```
 No handover files found.
@@ -40,21 +41,21 @@ No handover files found.
 To create one, run /handover in a session before closing it.
 ```
 
-- **Exactly one file found** → read it directly and proceed to Step 2.
+- **Exactly one file found** → read it and proceed to Step 2.
 
 - **Multiple files found** → read the first few lines of each file to extract a summary, then call `AskUserQuestion` to let the user choose:
   - **question**: `"Multiple handover files found. Which one do you want to resume from?"`
   - **header**: `"Handover"`
   - **options**: One option per file, with:
     - `label`: the filename (e.g. `HANDOVER-20260213-1430.md`)
-    - `description`: first bullet from "What Was Done" section (truncated to fit), giving the user a quick sense of what each session covered
+    - `description`: first bullet from "What Was Done" section (truncated to fit)
   - After the user selects, read the full file and proceed to Step 2.
 
 ---
 
 ## Step 2. Gather Current Git State
 
-Run each command as a **separate Bash call in parallel** (do NOT chain with `&&` or `;`):
+Run each command as a separate Bash call in parallel:
 
 1. `git branch --show-current`
 2. `git log --oneline -5`
@@ -75,20 +76,22 @@ Display the handover content to the user in a clear format:
 3. Show the "What Was Done" section
 4. Show the "Next Steps" section with actionable items highlighted
 
+After presenting, proceed directly to Step 4. The user will decide what to work on after the skill finishes.
+
 ---
 
-## Step 4. Confirm and Clean Up
+## Step 4. Clean Up and Finish
 
-Call the `AskUserQuestion` tool with the following parameters:
+Call `AskUserQuestion` with:
 
-- **question**: `"Ready to continue with these next steps?"`
+- **question**: `"Delete the handover file?"`
 - **header**: `"Takeover"`
 - **options** (exactly 2):
-  - `{ "label": "Continue", "description": "Delete handover file and start working on next steps" }`
-  - `{ "label": "Keep file", "description": "Proceed but keep the handover file for reference" }`
+  - `{ "label": "Delete", "description": "Remove the handover file now that context is loaded" }`
+  - `{ "label": "Keep", "description": "Keep the handover file for reference" }`
 
-### Branching Logic
+- User selects **"Delete"** → delete the selected handover file with `rm .claude/HANDOVER-YYYYMMDD-HHmm.md`, then finish
+- User selects **"Keep"** → leave the file in place, then finish
+- User enters custom text via **"Other"** → follow the user's instructions
 
-- User selects **"Continue"** → Delete only the selected handover file with `rm .claude/HANDOVER-YYYYMMDD-HHmm.md`, then begin working on the first next step
-- User selects **"Keep file"** → Leave the file in place, then begin working on the first next step
-- User enters custom text via **"Other"** → Follow the user's instructions
+The skill is complete after this step.

@@ -31,7 +31,7 @@ Analyze the current session and git state, then generate a structured handover d
 
 ## Step 1. Gather Git Context
 
-Run each command as a **separate Bash call in parallel** (do NOT chain with `&&` or `;`):
+Run each command as a separate Bash call in parallel:
 
 1. `git branch --show-current`
 2. `git log --oneline -10`

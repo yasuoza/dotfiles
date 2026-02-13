@@ -16,4 +16,5 @@ terminal-notifier \
     -subtitle "${PROJECT_PATH} (${SESSION_ID:0:8})" \
     -message "> ${MESSAGE}" \
     -sound "default" \
+    -activate "com.mitchellh.ghostty" \
     -group "claude-code-stop-notification-#${PROJECT_NAME}"

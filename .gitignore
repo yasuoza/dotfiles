@@ -9,3 +9,5 @@
 /Brewfile.*.lock.*
 /mutagen.yml.lock
 
+.claude/HANDOVER-*.md
+

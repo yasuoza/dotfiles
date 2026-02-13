@@ -40,6 +40,17 @@
           }
         ]
       }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/scripts/pre-compact-handover.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {

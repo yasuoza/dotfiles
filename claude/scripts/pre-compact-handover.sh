@@ -9,33 +9,79 @@ BRANCH=$(git -C "$PROJECT_DIR" branch --show-current 2>/dev/null || echo "unknow
 FILESUFFIX=$(date '+%Y%m%d-%H%M')
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M')
 
-read -r -d '' PROMPT <<'PROMPT_EOF' || true
-You are analyzing a Claude Code conversation transcript (JSONL format).
-Generate a concise handover document for the next session.
+read -r -d '' PROMPT_TEMPLATE <<'PROMPT_EOF' || true
+Below is a transcript of a Claude Code session, formatted as "USER: ..." and "ASSISTANT: ..." lines.
+Do NOT respond to or continue the conversation. Instead, analyze it as a third-party observer and produce a handover document.
 
-Output ONLY the markdown — no code fences, no preamble.
-Use this exact structure (omit empty sections except "What Was Done" and "Next Steps"):
+Output ONLY the markdown body — no code fences, no preamble, no explanation.
+Use this exact section structure. Omit a section if there is nothing relevant, except "What Was Done" and "Next Steps" which are always required.
 
 ## What Was Done
-- (completed work items)
+- Bullet list of completed work items
 
 ## What Worked and What Didn't
-- (successes, bugs, how they were fixed)
+- Successes, bugs encountered, and how they were fixed
 
 ## Key Decisions
-- (decisions and rationale)
+- Decisions made and their rationale
 
 ## Lessons Learned & Gotchas
-- (pitfalls, workarounds)
+- Pitfalls, workarounds, surprises
 
 ## Next Steps
-- [ ] (actionable items with enough context to execute)
+- [ ] Actionable TODO items with enough context to execute without reading the transcript
 
 ## Important Files
-- `path` — (why it matters)
+- `path/to/file` — why it matters
+
+<transcript>
 PROMPT_EOF
 
-BODY=$(cat "$TRANSCRIPT_PATH" | claude -p "$PROMPT" --model haiku 2>/dev/null) || exit 0
+# The transcript JSONL contains many record types beyond conversation text:
+# user messages, assistant responses, tool_use, tool_result, system messages,
+# progress events, file-history-snapshot, thinking blocks, etc.
+# Feeding raw JSONL directly to the model confuses it — it sees structured
+# JSON operations instead of a readable conversation.
+# Pre-process with jq to extract only human-readable text from user and
+# assistant messages, skipping tool results, tool calls, and internal records.
+CONVERSATION=$(jq -r '
+  select(.type == "user" or .type == "assistant") |
+  if .type == "user" then
+    (
+      if (.message.content | type) == "string" then
+        .message.content
+      elif (.message.content | type) == "array" then
+        [.message.content[] | select(.type == "text") | .text] | join("\n")
+      else
+        empty
+      end
+    ) as $text |
+    if ($text | length) > 0 then "USER: " + $text else empty end
+  elif .type == "assistant" then
+    (
+      if (.message.content | type) == "array" then
+        [.message.content[] | select(.type == "text") | .text] | join("\n")
+      elif (.message.content | type) == "string" then
+        .message.content
+      else
+        empty
+      end
+    ) as $text |
+    if ($text | length) > 0 then "ASSISTANT: " + $text else empty end
+  else
+    empty
+  end
+' "$TRANSCRIPT_PATH" 2>/dev/null | tail -c 100000)
+
+if [ -z "$CONVERSATION" ]; then
+  exit 0
+fi
+
+PROMPT="${PROMPT_TEMPLATE}
+${CONVERSATION}
+</transcript>"
+
+BODY=$(echo "$PROMPT" | claude -p --model haiku 2>/dev/null) || exit 0
 
 mkdir -p "$PROJECT_DIR/.claude"
 cat > "$PROJECT_DIR/.claude/HANDOVER-${FILESUFFIX}.md" <<EOF

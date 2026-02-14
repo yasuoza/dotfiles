@@ -9,7 +9,7 @@ fi
 
 SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
 PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
-MESSAGE=$(cat $HOME/.claude/history.jsonl | jq -s -r ". | map(select(.sessionId | startswith(\"${SESSION_ID}\"))) | sort_by(.timestamp) | .[-1].display")
+MESSAGE=$(cat $HOME/.claude/history.jsonl | jq -s -r ". | map(select(.sessionId | startswith(\"${SESSION_ID}\"))) | sort_by(.timestamp) | .[-1].display // \"(empty message)\"")
 
 terminal-notifier \
     -title "✅ Task Completed" \

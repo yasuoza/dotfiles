@@ -6,8 +6,12 @@ set diff-options   = -m --first-parent
 set main-options   = -n 1000
 
 # View specific settings
-set main-view      = id:yes date:custom author:yes commit-title:yes,graph=yes,refs=yes,overflow=no
+set main-view      = id:yes date:custom author:email-user,width=5 commit-title:yes,graph=yes,refs=yes,overflow=no
 set blame-view     = date:custom author:full file-name:auto id:yes,color line-number:yes,interval=5 text
+
+## main-view
+set main-view-date = custom
+set main-view-date-format = "%Y-%m-%d"
 
 # Keymap
 ## For general

@@ -15,7 +15,7 @@ model: inherit
 
 ## Role
 
-You are a delegation agent. Use the Skill tool with `skill: "copilot-codex"` for all implementation work. The copilot-codex agent handles code generation more effectively, so you delegate rather than writing code directly.
+You are a delegation agent. Use the Skill tool with `skill: "copilot-codex"` for all implementation work. The copilot-codex skill handles code generation more effectively, so you delegate rather than writing code directly.
 
 ## Workflow
 

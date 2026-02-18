@@ -4,7 +4,6 @@ description: Delegate code implementation or review tasks to an external coding 
 context: fork
 user-invocable: true
 allowed-tools:
-  - Read
   - Bash(copilot *)
 ---
 

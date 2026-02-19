@@ -1,5 +1,6 @@
 {
   "env": {
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet-4-6",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "DISABLE_AUTOUPDATER": "1",
     "DISABLE_ERROR_REPORTING": "1",
@@ -37,6 +38,17 @@
           {
             "type": "command",
             "command": "~/dotfiles/claude/scripts/notifications/stop-notification.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/scripts/hooks/approve-copilot.sh"
           }
         ]
       }

@@ -26,12 +26,21 @@ If no diff is found after these steps, ask the user what to review.
 
 Store the diff content for use in both review prompts.
 
+## Step 1.5: Detect follow-up review
+
+Check the conversation history for previous cross-review invocations in this session.
+
+- If a prior cross-review exists, this is a **follow-up review**. Retrieve the `agent_id` returned by the previous code-reviewer Task call from the conversation context.
+- If no prior cross-review exists, this is a **first review**.
+
 ## Step 2: Launch background reviews
 
 <use_parallel_tool_calls>
 The two reviews have no dependency on each other. Launch both Task tool calls in a single message so they execute concurrently. Both must use `run_in_background: true` so the user can continue working while reviews run.
 
 ### Review A: Claude Opus (code-reviewer)
+
+#### First review
 
 | Parameter         | Value           |
 | ----------------- | --------------- |
@@ -47,12 +56,25 @@ Include the full diff in the prompt and request review covering:
 - Maintainability and readability
 - Concrete fix suggestions with file path and line number
 
+#### Follow-up review
+
+| Parameter         | Value                                  |
+| ----------------- | -------------------------------------- |
+| subagent_type     | `code-reviewer`                        |
+| model             | `opus`                                 |
+| run_in_background | `true`                                 |
+| resume            | agent ID from the previous code-reviewer Task call |
+
+When `resume` is set, the agent retains its full prior context (the previous diff and review). Provide only the **new diff** and instruct the agent to review the changes made since the last review, noting which previous findings have been addressed and identifying any new issues.
+
 ### Review B: GitHub Copilot codex
 
 | Parameter         | Value  |
 | ----------------- | ------ |
 | subagent_type     | `Bash` |
 | run_in_background | `true` |
+
+#### First review
 
 Execute the copilot CLI to perform the review:
 
@@ -66,12 +88,26 @@ Build a self-contained prompt that includes:
 - A review request covering correctness, security, performance, and maintainability
 - Language instruction: append `"Match the language of the codebase's comments and documentation in your output."` to the end of the prompt
 
+#### Follow-up review
+
+Add `--continue` to resume the previous Copilot session:
+
+```
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --continue --prompt "<prompt>"
+```
+
+The prompt for a follow-up review should include:
+
+- The new diff content
+- An instruction to review changes since the last review, noting addressed and new issues
+- Language instruction: append `"Match the language of the codebase's comments and documentation in your output."` to the end of the prompt
+
 <single_line_command>
 The entire copilot command must be a single line. Use a single double-quoted string for the `--prompt` value. Avoid heredocs, `$(cat ...)`, or other multi-line constructs. The Bash permission pattern `Bash(copilot *)` uses glob matching, and `*` does not match newlines.
 </single_line_command>
 </use_parallel_tool_calls>
 
-After launching both reviews, immediately inform the user that reviews are running in the background and they can continue working. Record the `output_file` paths returned by each Task call.
+After launching both reviews, immediately inform the user that reviews are running in the background and they can continue working. Record the `output_file` paths and agent IDs returned by each Task call for potential follow-up reviews. Always include the agent IDs explicitly in your response message so they survive context compaction.
 
 ## Step 3: Collect results and produce unified report
 

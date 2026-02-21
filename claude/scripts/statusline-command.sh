@@ -51,16 +51,8 @@ if git -C "$cwd" rev-parse --is-inside-work-tree &>/dev/null; then
     fi
 
     if [ -n "$branch" ]; then
-        git_info=" [\033[36m${staged}${unstaged}${branch}\033[0m]"
+        git_info=$' [\033[36m'"${staged}${unstaged}${branch}"$'\033[0m]'
     fi
-fi
-
-# Get virtual env info
-venv_info=""
-if [ -n "$VIRTUAL_ENV" ]; then
-    venv_name=$(basename "$VIRTUAL_ENV")
-    python_ver=$(python --version 2>&1 | awk '{print $2}')
-    venv_info=" (${venv_name}:${python_ver})"
 fi
 
 # Get context usage
@@ -70,7 +62,10 @@ if [ -n "$remaining" ]; then
     context_info="(ctx:${remaining}%)"
 fi
 
-# Build: [$model](ctx:$remaining) $cwd $venv_info $git_info
-# cwd path in cyan inside brackets
-printf "[%s]%s [\033[32m%s\033[0m]%s%b" \
-    "$model" "$context_info" "$short_cwd" "$venv_info" "$git_info"
+# Build:
+# $cwd $git_info
+# [$model](ctx:$remaining)
+# cwd path in green inside brackets
+printf "\033[32m[%s]\033[0m%s" "$short_cwd" "$git_info"
+printf '\n'
+printf "[%s]%s" "$model" "$context_info"

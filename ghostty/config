@@ -1,18 +1,19 @@
+# TERM
+term = xterm-256color
+
 # Theme and Appearance
 theme = Iceberg Dark
 
 # Window
 background-opacity = 0.85
 background-blur = 5
-
 title = " "
 window-subtitle = false
-
 window-height = 45
 window-width = 170
-
 window-padding-x = 4
 window-padding-y = 0,10
+window-colorspace = display-p3
 
 # Notifications
 app-notifications = false
@@ -21,9 +22,14 @@ bell-features = no-attention,no-title
 # macOS
 macos-window-shadow = false
 macos-titlebar-proxy-icon = hidden
+macos-non-native-fullscreen = true
+macos-option-as-alt = left
 
 # Shell Integration
 shell-integration-features = no-cursor
+mouse-hide-while-typing = false
+copy-on-select = true
+link-url = true
 
 # Cursor
 cursor-style = block

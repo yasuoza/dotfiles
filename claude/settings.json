@@ -69,9 +69,7 @@
     "type": "command",
     "command": "~/dotfiles/claude/scripts/statusline-command.sh"
   },
-  "enabledPlugins": {
-    "example-skills@anthropic-agent-skills": true
-  },
+  "enabledPlugins": {},
   "spinnerTipsEnabled": false,
   "plansDirectory": "./.claude/plans"
 }

@@ -30,7 +30,7 @@ Store the diff content for use in both review prompts.
 
 Check the conversation history for previous cross-review invocations in this session.
 
-- If a prior cross-review exists, this is a **follow-up review**. Retrieve the `agent_id` returned by the previous code-reviewer Task call from the conversation context.
+- If a prior cross-review exists, this is a **follow-up review**. Retrieve the `agent_id` returned by the previous code-reviewer Task call and the Copilot `session_id` from the conversation context.
 - If no prior cross-review exists, this is a **first review**.
 
 ## Step 2: Launch background reviews
@@ -76,10 +76,10 @@ When `resume` is set, the agent retains its full prior context (the previous dif
 
 #### First review
 
-Execute the copilot CLI to perform the review:
+Execute the copilot CLI to perform the review, then capture the session ID:
 
 ```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>"
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>" && echo "COPILOT_SESSION_ID=$(ls -t ~/.copilot/session-state/ | head -1)"
 ```
 
 Build a self-contained prompt that includes:
@@ -88,13 +88,17 @@ Build a self-contained prompt that includes:
 - A review request covering correctness, security, performance, and maintainability
 - Language instruction: append `"Match the language of the codebase's comments and documentation in your output."` to the end of the prompt
 
+After the command completes, extract the session ID from the `COPILOT_SESSION_ID=...` line in the output.
+
 #### Follow-up review
 
-Add `--continue` to resume the previous Copilot session:
+Use `--resume <session-id>` with the session ID captured from the previous review to resume the exact Copilot session:
 
 ```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --continue --prompt "<prompt>"
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --resume <session-id> --prompt "<prompt>" && echo "COPILOT_SESSION_ID=$(ls -t ~/.copilot/session-state/ | head -1)"
 ```
+
+This is more reliable than `--continue` (which resumes the most recent session) because it targets a specific session by ID, avoiding interference from other Copilot sessions that may have run in between.
 
 The prompt for a follow-up review should include:
 
@@ -107,7 +111,7 @@ The entire copilot command must be a single line. Use a single double-quoted str
 </single_line_command>
 </use_parallel_tool_calls>
 
-After launching both reviews, immediately inform the user that reviews are running in the background and they can continue working. Record the `output_file` paths and agent IDs returned by each Task call for potential follow-up reviews. Always include the agent IDs explicitly in your response message so they survive context compaction.
+After launching both reviews, immediately inform the user that reviews are running in the background and they can continue working. Record the `output_file` paths, agent IDs, and Copilot session IDs returned by each Task call for potential follow-up reviews. Always include the agent IDs and Copilot session ID explicitly in your response message so they survive context compaction.
 
 ## Step 3: Collect results and produce unified report
 

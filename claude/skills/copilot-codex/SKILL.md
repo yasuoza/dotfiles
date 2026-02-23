@@ -16,9 +16,19 @@ Your role is exclusively to gather context, construct a high-quality prompt, exe
 
 ## Invocation Command
 
+### First invocation (no prior session ID in conversation)
+
 ```bash
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>"
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>" && echo "COPILOT_SESSION_ID=$(ls -t ~/.copilot/session-state/ | head -1)"
 ```
+
+### Subsequent invocations (session ID exists in conversation)
+
+```bash
+copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --resume <session-id> --prompt "<prompt>"
+```
+
+The session ID does not change across resumes, so there is no need to re-query it. Using `--resume <session-id>` instead of `--continue` ensures the correct session is resumed even if other Copilot sessions have run in between. When Claude Code's context is cleared (new session), the stored session ID is naturally lost, so Copilot starts a fresh session automatically.
 
 | Flag | Purpose |
 |------|---------|
@@ -28,16 +38,24 @@ copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt
 | `--stream on` | Stream the response |
 | `--model` | Select the model |
 | `--prompt` | Pass the task as a single-line string |
+| `--resume` | Resume a specific Copilot session by ID |
 
 ## Workflow
 
 <workflow>
 
-### Step 1: Gather context
+### Step 1: Detect session continuity
+
+Check the conversation history for a previously stored Copilot session ID (from a prior invocation of this skill in the current session).
+
+- If a session ID exists, this is a **follow-up invocation** — use `--resume <session-id>`.
+- If no session ID exists, this is a **first invocation** — run without `--resume`.
+
+### Step 2: Gather context
 
 Read relevant files to understand the codebase structure, conventions, and constraints. This context is what makes the delegated prompt effective. Gather enough information so the copilot agent can work without needing to explore the codebase itself.
 
-### Step 2: Construct the prompt
+### Step 3: Construct the prompt
 
 Build a detailed, self-contained prompt string that includes:
 
@@ -50,17 +68,20 @@ Build a detailed, self-contained prompt string that includes:
 The prompt is the single most important input to the copilot agent. Invest effort here — a well-constructed prompt with rich context produces significantly better results than a vague one. Include actual code snippets and file contents rather than placeholders like `[relevant code]`.
 </prompt_quality>
 
-### Step 3: Execute the copilot command
+### Step 4: Execute the copilot command
 
-Run the copilot command with the constructed prompt. Always execute the command — this is the core purpose of this skill.
+Run the copilot command with the constructed prompt. Always execute the command — this is the core purpose of this skill. Use `--resume <session-id>` if a session ID was found in Step 1.
 
 <single_line_command>
 The entire copilot command must be a single line. Use a single double-quoted string for the `--prompt` value, keeping everything on one line. Avoid heredocs, `$(cat ...)`, or other multi-line constructs. This is because the Bash permission pattern `Bash(copilot *)` uses glob matching, and `*` does not match newline characters — a multi-line command will trigger a permission prompt.
 </single_line_command>
 
-### Step 4: Return the raw output
+### Step 5: Return the raw output and session ID
 
 Return the copilot output to the user as-is, without editing, summarizing, or reformatting. The main agent will handle review and processing — preserving the raw output avoids information loss and is easier for downstream processing.
+
+- **First invocation**: Extract the Copilot session ID from the `COPILOT_SESSION_ID=...` line in the command output and explicitly include it in your response so it persists in the conversation context for future invocations.
+- **Subsequent invocations**: The session ID is already known and does not change across resumes. Simply restate the existing session ID — do not run a separate command to re-query it.
 
 </workflow>
 

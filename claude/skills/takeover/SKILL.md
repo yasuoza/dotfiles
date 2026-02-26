@@ -12,9 +12,9 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# Takeover Skill
+# Takeover
 
-Load and present context from a previous session's handover document. The user will decide what to work on after reviewing the context, so this skill only reads and displays information — it ends after presenting the summary and cleaning up the handover file.
+Load and present context from a previous session's handover document. The user will decide what to work on after reviewing the context, so this skill only reads and displays information -- it ends after presenting the summary and cleaning up the handover file.
 
 ---
 

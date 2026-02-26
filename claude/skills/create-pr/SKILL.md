@@ -1,6 +1,6 @@
 ---
 name: create-pr
-description: Create GitHub Pull Requests with auto-generated content based on diff and PR template.
+description: "Create GitHub Pull Requests with auto-generated content based on diff and PR template. Use when the user asks to create a PR, open a pull request, or submit changes for review."
 argument-hint: "<base-branch> [--draft]"
 allowed-tools:
   - Read
@@ -18,55 +18,42 @@ allowed-tools:
 
 # Create Pull Request Skill
 
-This skill creates GitHub Pull Requests targeting a specified branch.
+Create a GitHub PR targeting a specified branch with auto-generated content from diff and PR template.
+
+## Arguments
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `<base-branch>` | No | Target branch for the PR. Auto-detects default branch if omitted. |
+| `--draft` | No | Creates the PR as a draft. |
+
+Examples: `/create-pr main`, `/create-pr main --draft`, `/create-pr --draft`
 
 ## Prerequisites
 
-- Git and GitHub CLI (`gh`) are installed and authenticated
-- The repository is a GitHub repository cloned locally
-- The skill is executed from the repository root directory
-
-## Argument Interpretation
-
-- `<base-branch>`: The target branch for merging the PR (auto-detects default branch if omitted)
-- `--draft`: Creates the PR as a draft
-
-Examples:
-
-- `/create-pr main` → Regular PR to main
-- `/create-pr main --draft` → Draft PR to main
-- `/create-pr --draft` → Draft PR to the default branch
-
----
+- Git and GitHub CLI (`gh`) installed and authenticated
+- Repository is a GitHub repo cloned locally
+- Executed from the repository root directory
 
 ## Processing Flow
 
-| Step | Process                              | Completion Criteria                       |
-| ---- | ------------------------------------ | ----------------------------------------- |
-| 1    | Parameter validation                 | Base branch and draft flag are determined |
-| 2    | Diff retrieval                       | git diff and git log results are obtained |
-| 3    | PR template loading                  | Template content is retrieved             |
-| 4    | PR content generation                | PR body is generated                      |
-| 5    | Save temporary file + Launch VS Code | File created and VS Code launched         |
-| 6    | Confirm with user                    | User confirmed via AskUserQuestion        |
-| 7    | PR creation                          | `gh pr create` succeeded                  |
-| 8    | Temporary file deletion              | `.tmp/pr_draft.md` is deleted             |
-| 9    | Display results                      | PR URL is displayed to user               |
+| Step | Process | Completion Criteria |
+| --- | --- | --- |
+| 1 | Parameter validation | Base branch and draft flag determined |
+| 2 | Diff retrieval | git diff and git log results obtained |
+| 3 | PR template loading | Template content retrieved |
+| 4 | PR content generation | PR body generated |
+| 5 | Save temp file + open VS Code | File created and VS Code launched |
+| 6 | Confirm with user | User confirmed via AskUserQuestion |
+| 7 | PR creation | `gh pr create` succeeded |
+| 8 | Cleanup + display results | Temp file handled, PR URL displayed |
 
 ---
 
 ## Step 1. Parameter Validation
 
-Parse the arguments:
-
-1. Check for `--draft` flag → Store in `isDraft` variable
-2. Retrieve the base branch name from arguments, or detect the default branch:
-
-```bash
-git symbolic-ref refs/remotes/origin/HEAD --short | sed 's|origin/||'
-```
-
----
+1. Check for `--draft` flag -> store as `isDraft`
+2. Get base branch from arguments, or detect default: `git symbolic-ref refs/remotes/origin/HEAD --short | sed 's|origin/||'`
 
 ## Step 2. Diff Retrieval
 
@@ -77,19 +64,13 @@ git diff --name-status [base-branch]...HEAD
 git log [base-branch]...HEAD --oneline
 ```
 
----
-
 ## Step 3. PR Template Loading
 
-Read `.github/PULL_REQUEST_TEMPLATE.md`. If it does not exist, generate a basic PR content structure.
-
----
+Read `.github/PULL_REQUEST_TEMPLATE.md`. If not found, generate a basic PR content structure.
 
 ## Step 4. PR Content Generation
 
 Generate PR content based on the diff and template.
-
----
 
 ## Step 5. Save Temporary File + Launch VS Code
 
@@ -97,100 +78,57 @@ Generate PR content based on the diff and template.
 mkdir -p .tmp
 ```
 
-Save the PR content to `.tmp/pr_draft.md`.
+Save PR content to `.tmp/pr_draft.md`, then open it:
 
 ```bash
 code .tmp/pr_draft.md
 ```
 
----
-
 ## Step 6. Confirm with User
 
-Call the `AskUserQuestion` tool with the following parameters:
-
-### When `--draft` was specified in Step 1:
-
+Call `AskUserQuestion` with:
 - **question**: `"PR content has been saved to .tmp/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
 - **header**: `"Create PR"`
-- **options** (exactly 2):
-  - `{ "label": "OK", "description": "Create the draft PR" }`
-  - `{ "label": "Re-edit", "description": "Re-open VS Code and continue editing" }`
 
-### When `--draft` was NOT specified in Step 1:
+**Options** depend on `isDraft`:
 
-- **question**: `"PR content has been saved to .tmp/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
-- **header**: `"Create PR"`
-- **options** (exactly 3):
-  - `{ "label": "Draft", "description": "Create as draft PR" }`
-  - `{ "label": "Publish", "description": "Create as regular PR" }`
-  - `{ "label": "Re-edit", "description": "Re-open VS Code and continue editing" }`
+- If `isDraft` is true: `"OK"` (create draft) | `"Re-edit"` (reopen VS Code, loop)
+- If `isDraft` is false: `"Draft"` (create as draft) | `"Publish"` (create as regular PR) | `"Re-edit"` (reopen VS Code, loop)
 
-### Branching Logic
-
-- User selects **"OK"** or **"Draft"** → Create as draft PR
-- User selects **"Publish"** → Create as regular PR
-- User selects **"Re-edit"** → Re-open VS Code (`code .tmp/pr_draft.md`) and call `AskUserQuestion` again (loop)
-
----
+When user selects **"Re-edit"**, run `code .tmp/pr_draft.md` and call `AskUserQuestion` again.
 
 ## Step 7. PR Creation
 
-Re-read `.tmp/pr_draft.md` to pick up any user edits, then create the PR.
+Re-read `.tmp/pr_draft.md` to pick up user edits, then create the PR.
 
-Always include `-a @me` to self-assign the PR (this is a team convention):
-
-```bash
-gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md
-```
-
-If draft, append `--draft`:
+Always include `-a @me` (team convention for self-assignment):
 
 ```bash
-gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md --draft
+gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md [--draft]
 ```
 
-**Title format**: Use concise Conventional Commits format. Match the language used in recent `git log` messages from Step 2.
+**Title format**: Concise Conventional Commits format. Match the language of recent `git log` messages from Step 2.
 
-**Japanese title rule**: Use past tense (完了形) — "〜した" not "〜する".
+**Japanese title rule**: Always use past tense (完了形) -- e.g. "〜した" not "〜する". Example: `fix: ログインバリデーションを修正した`
 
-| Good (past tense)                              | Bad (present tense)                            |
-| ----------------------------------------------- | ----------------------------------------------- |
-| `fix: ログインバリデーションを修正した`          | `fix: ログインバリデーションを修正する`          |
-| `feat: ユーザー検索機能を追加した`               | `feat: ユーザー検索機能を追加する`               |
-| `refactor: 認証ロジックをリファクタリングした`   | `refactor: 認証ロジックをリファクタリングする`   |
+## Step 8. Cleanup + Display Results
 
----
-
-## Step 8. Temporary File Deletion
-
-On PR creation success, delete the temporary file and verify:
+**On success**: Delete temp file, verify deletion, display PR URL.
 
 ```bash
 rm .tmp/pr_draft.md
 ls .tmp/pr_draft.md 2>/dev/null && echo "ERROR: File still exists" || echo "OK: Deletion complete"
 ```
 
-On PR creation failure, preserve the file and inform the user: "The temporary file has been preserved."
-
----
-
-## Step 9. Display Results
-
-On successful PR creation:
-
-```
-Pull Request created: [PR URL]
-Temporary file `.tmp/pr_draft.md` has been deleted.
-```
+**On failure**: Preserve `.tmp/pr_draft.md` and inform user.
 
 ---
 
 ## Error Handling
 
-| Error                        | Action                              |
-| ---------------------------- | ----------------------------------- |
-| Git command failure          | Display error message and abort     |
-| GitHub CLI not authenticated | Prompt user to run `gh auth login`  |
-| PR template not found        | Generate basic PR content structure |
-| PR creation failure          | Preserve temporary file             |
+| Error | Action |
+| --- | --- |
+| Git command failure | Display error message and abort |
+| GitHub CLI not authenticated | Prompt user to run `gh auth login` |
+| PR template not found | Generate basic PR content structure |
+| PR creation failure | Preserve temporary file |

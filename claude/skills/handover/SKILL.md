@@ -15,17 +15,21 @@ allowed-tools:
 
 Analyze the current session and git state, then generate a structured handover document for the next Claude session.
 
+## Arguments
+
+This skill takes no arguments. It reads all context from the current conversation history and git state automatically.
+
 ---
 
 ## Workflow
 
-| Step | Action                | Completion Criteria                                      |
-| ---- | --------------------- | -------------------------------------------------------- |
-| 1    | Gather git context    | Current branch, recent commits, uncommitted changes      |
-| 2    | Analyze session       | Session work summarized from conversation history        |
-| 3    | Generate handover doc | Structured markdown document drafted                     |
-| 4    | Write file            | `.claude/HANDOVER-YYYYMMDD-HHmm.md` written successfully |
-| 5    | Display confirmation  | File path and summary shown to user                      |
+| Step | Action                | Completion Criteria                                                        |
+| ---- | --------------------- | -------------------------------------------------------------------------- |
+| 1    | Gather git context    | Branch name, last 10 commits, `git status --short`, and `git diff --stat` collected |
+| 2    | Analyze session       | Completed items, in-progress items, decisions, and gotchas extracted from conversation |
+| 3    | Generate handover doc | All required sections ("What Was Done", "Next Steps") populated with actionable detail |
+| 4    | Write file            | `.claude/HANDOVER-YYYYMMDD-HHmm.md` written with actual timestamp         |
+| 5    | Display confirmation  | File path and 1-2 line summary shown to user                               |
 
 ---
 

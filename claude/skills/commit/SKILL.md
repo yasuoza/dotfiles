@@ -14,6 +14,12 @@ allowed-tools:
 
 Analyze staged changes, generate a Conventional Commits format commit message, and execute the commit.
 
+## Arguments
+
+| Argument  | Required | Description                                             |
+| --------- | -------- | ------------------------------------------------------- |
+| `--amend` | No       | Amend the previous commit instead of creating a new one |
+
 ---
 
 ## Workflow
@@ -31,24 +37,22 @@ Analyze staged changes, generate a Conventional Commits format commit message, a
 
 ## Step 1. Check Staging
 
+Run the following to verify staged changes exist:
+
 ```bash
 git diff --cached --stat
 ```
 
-If no staged changes exist:
-
-- Display "No staged changes found. Please stage files with `git add`." and exit
-
----
+If no staged changes exist, display "No staged changes found. Please stage files with `git add`." and exit.
 
 ## Step 2. Retrieve Diff
+
+Collect the full diff and file change summary for analysis:
 
 ```bash
 git diff --cached
 git diff --cached --name-status
 ```
-
----
 
 ## Step 3. Generate Commit Message
 
@@ -65,7 +69,7 @@ git diff --cached --name-status
 - `feat`: A new feature
 - `fix`: A bug fix
 - `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code (whitespace, formatting, etc.)
+- `style`: Changes that do not affect the meaning of the code (whitespace, formatting)
 - `refactor`: A code change that neither fixes a bug nor adds a feature
 - `perf`: A code change that improves performance
 - `test`: Adding or modifying tests
@@ -73,22 +77,18 @@ git diff --cached --name-status
 
 ### Scope (Recommended)
 
-Include whenever possible:
-
-- Directory name: `feat(api)`, `fix(ui)`
-- Feature name: `feat(auth)`, `fix(payment)`
-- File type: `docs(readme)`, `test(unit)`
+Derive from the primary area of change — directory or feature name: `feat(api)`, `fix(auth)`, `test(unit)`
 
 ### Description (Required)
 
 - Write in imperative mood (e.g., "add", "fix", "update")
 - Keep under 50 characters as a guideline
 - Do not end with a period
-- Use recent commit language (Based on git logs)
-
----
+- Match recent commit language style (check git log)
 
 ## Step 4. Confirm with User
+
+Confirm before executing to prevent accidental commits with an incorrect message.
 
 Call the `AskUserQuestion` tool with the following parameters:
 
@@ -102,8 +102,6 @@ Call the `AskUserQuestion` tool with the following parameters:
 
 - User selects **"OK"** → Use the generated message as-is
 - User selects **"Modify"** or enters custom text via **"Other"** → Use the user's input as the commit message
-
----
 
 ## Step 5. Execute Commit
 
@@ -122,17 +120,15 @@ EOF
 )"
 ```
 
-If the `--amend` flag is specified:
+If the `--amend` argument was provided:
 
 ```bash
 git commit --amend -m "<commit message>"
 ```
 
----
-
 ## Step 6. Display Result
 
-On successful commit:
+Report the outcome to the user:
 
 ```
 Committed: [short commit hash]

@@ -1,7 +1,6 @@
 ---
 name: cross-review
 description: Run code reviews in parallel using Claude Opus and GitHub Copilot (codex), then produce a unified report. Use when the user requests a cross-review, xreview, multi-LLM review, or wants diverse perspectives on code changes.
-user-invocable: true
 allowed-tools:
   - Task
   - Write
@@ -12,7 +11,16 @@ allowed-tools:
 
 # Cross Review
 
-Run two independent code reviews in parallel — one via Claude Opus (code-reviewer agent) and one via GitHub Copilot codex — then merge the results into a single unified report.
+Run two independent code reviews in parallel and merge the results into a single unified report.
+
+## Arguments
+
+| Argument    | Required | Description                                              |
+| ----------- | -------- | -------------------------------------------------------- |
+| PR number   | no       | A pull request number (e.g. `#42`) to review via `gh pr diff` |
+| File paths  | no       | One or more file paths to scope the review to specific files |
+
+When neither argument is provided, the skill reviews the current uncommitted diff (falling back to the last commit if the working tree is clean).
 
 ## Step 1: Identify the review target
 

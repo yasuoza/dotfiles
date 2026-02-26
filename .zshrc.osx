@@ -89,3 +89,18 @@ fi
 if [ -s $HOME/.ripgreprc ]; then
   export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 fi
+
+if type "caffeinate" > /dev/null; then
+  claude() {
+    setopt local_options no_notify no_monitor
+    local started_caffeinate=false
+    if ! pgrep -x caffeinate > /dev/null; then
+      caffeinate -dims &
+      started_caffeinate=true
+    fi
+    command claude "$@"
+    if $started_caffeinate; then
+      { kill $! && wait $!; } 2>/dev/null
+    fi
+  }
+fi

@@ -1,152 +1,70 @@
 ---
 name: cross-review
-description: Run code reviews in parallel using Claude Opus and GitHub Copilot (codex), then produce a unified report. Use when the user requests a cross-review, xreview, multi-LLM review, or wants diverse perspectives on code changes.
-allowed-tools:
-  - Task
-  - Write
-  - Bash(git diff*)
-  - Bash(git log*)
-  - Bash(gh pr diff*)
+description: Run code reviews in parallel using Claude Opus and GitHub Copilot (codex), then produce a unified report. Use when the user requests a cross-review, xreview, multi-LLM review, or wants diverse perspectives on code changes. Accepts optional PR number or file paths as arguments.
 ---
 
 # Cross Review
 
-Run two independent code reviews in parallel and merge the results into a single unified report.
+Run two independent code reviews in parallel and merge results into a unified report.
 
 ## Arguments
 
-| Argument    | Required | Description                                              |
-| ----------- | -------- | -------------------------------------------------------- |
-| PR number   | no       | A pull request number (e.g. `#42`) to review via `gh pr diff` |
-| File paths  | no       | One or more file paths to scope the review to specific files |
+| Argument   | Required | Description                                        |
+| ---------- | -------- | -------------------------------------------------- |
+| PR number  | no       | Pull request number (e.g. `#42`) via `gh pr diff`  |
+| File paths | no       | Scope review to specific files                     |
 
-When neither argument is provided, the skill reviews the current uncommitted diff (falling back to the last commit if the working tree is clean).
+No arguments: review current uncommitted diff (fallback to last commit if clean).
 
-## Step 1: Identify the review target
+## Workflow
 
-Determine the diff to review based on user input:
+### Step 1: Get the diff
 
-- If the user specifies a PR number, run `gh pr diff <number>`.
-- If the user specifies file paths, run `git diff HEAD -- <paths>`.
-- Otherwise, run `git diff HEAD`. If empty, fall back to `git diff HEAD~1`.
+- PR number given: `gh pr diff <number>`
+- File paths given: `git diff HEAD -- <paths>`
+- Otherwise: `git diff HEAD` (if empty, `git diff HEAD~1`)
 
-If no diff is found after these steps, ask the user what to review.
+If no diff found, ask the user. Save diff to a temp file for both reviewers.
 
-Store the diff content for use in both review prompts.
+### Step 2: Detect follow-up
 
-## Step 1.5: Detect follow-up review
+Check conversation history for prior cross-review in this session.
 
-Check the conversation history for previous cross-review invocations in this session.
+- **First review**: No prior context.
+- **Follow-up**: Retrieve the previous `agent_id` (Opus) and `COPILOT_SESSION_ID` (Copilot) from the conversation.
 
-- If a prior cross-review exists, this is a **follow-up review**. Retrieve the `agent_id` returned by the previous code-reviewer Task call and the Copilot `session_id` from the conversation context.
-- If no prior cross-review exists, this is a **first review**.
+### Step 3: Launch parallel reviews
 
-## Step 2: Launch background reviews
+Both reviews MUST be launched in a single message with `run_in_background: true`.
 
-<use_parallel_tool_calls>
-The two reviews have no dependency on each other. Launch both Task tool calls in a single message so they execute concurrently. Both must use `run_in_background: true` so the user can continue working while reviews run.
+**Review A — Claude Opus:**
 
-### Review A: Claude Opus (code-reviewer)
+| Parameter     | First review    | Follow-up                    |
+| ------------- | --------------- | ---------------------------- |
+| subagent_type | `code-reviewer` | `code-reviewer`              |
+| model         | `opus`          | `opus`                       |
+| resume        | —               | previous agent_id            |
 
-#### First review
+Prompt: include full diff, request review of correctness, security, performance, maintainability with file:line fix suggestions. For follow-ups, include only the new diff and ask to note resolved/new issues.
 
-| Parameter         | Value           |
-| ----------------- | --------------- |
-| subagent_type     | `code-reviewer` |
-| model             | `opus`          |
-| run_in_background | `true`          |
+**Review B — GitHub Copilot codex:**
 
-Include the full diff in the prompt and request review covering:
+Write a review prompt to `/tmp/copilot-review-prompt.txt` (include the diff and review instructions), then run via shared script:
 
-- Correctness and edge cases
-- Security concerns
-- Performance implications
-- Maintainability and readability
-- Concrete fix suggestions with file path and line number
+```bash
+# First review
+bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-review-prompt.txt
 
-#### Follow-up review
-
-| Parameter         | Value                                  |
-| ----------------- | -------------------------------------- |
-| subagent_type     | `code-reviewer`                        |
-| model             | `opus`                                 |
-| run_in_background | `true`                                 |
-| resume            | agent ID from the previous code-reviewer Task call |
-
-When `resume` is set, the agent retains its full prior context (the previous diff and review). Provide only the **new diff** and instruct the agent to review the changes made since the last review, noting which previous findings have been addressed and identifying any new issues.
-
-### Review B: GitHub Copilot codex
-
-| Parameter         | Value  |
-| ----------------- | ------ |
-| subagent_type     | `Bash` |
-| run_in_background | `true` |
-
-#### First review
-
-Execute the copilot CLI to perform the review, then capture the session ID:
-
-```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "<prompt>" && echo "COPILOT_SESSION_ID=$(ls -t ~/.copilot/session-state/ | head -1)"
+# Follow-up
+bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-review-prompt.txt --resume <session_id>
 ```
 
-Build a self-contained prompt that includes:
+Add `--lang <language>` if the codebase uses a non-English language for comments.
 
-- The full diff content
-- A review request covering correctness, security, performance, and maintainability
-- Language instruction: append `"Match the language of the codebase's comments and documentation in your output."` to the end of the prompt
+Extract `COPILOT_SESSION_ID=...` from the last line of output.
 
-After the command completes, extract the session ID from the `COPILOT_SESSION_ID=...` line in the output.
+After launching both, inform the user that reviews are running. **Always include `agent_id` and `COPILOT_SESSION_ID` in the response message** so they survive context compaction.
 
-#### Follow-up review
+### Step 4: Merge and report
 
-Use `--resume <session-id>` with the session ID captured from the previous review to resume the exact Copilot session:
-
-```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --resume <session-id> --prompt "<prompt>" && echo "COPILOT_SESSION_ID=$(ls -t ~/.copilot/session-state/ | head -1)"
-```
-
-This is more reliable than `--continue` (which resumes the most recent session) because it targets a specific session by ID, avoiding interference from other Copilot sessions that may have run in between.
-
-The prompt for a follow-up review should include:
-
-- The new diff content
-- An instruction to review changes since the last review, noting addressed and new issues
-- Language instruction: append `"Match the language of the codebase's comments and documentation in your output."` to the end of the prompt
-
-<single_line_command>
-The entire copilot command must be a single line. Use a single double-quoted string for the `--prompt` value. Avoid heredocs, `$(cat ...)`, or other multi-line constructs. The Bash permission pattern `Bash(copilot *)` uses glob matching, and `*` does not match newlines.
-</single_line_command>
-</use_parallel_tool_calls>
-
-After launching both reviews, immediately inform the user that reviews are running in the background and they can continue working. Record the `output_file` paths, agent IDs, and Copilot session IDs returned by each Task call for potential follow-up reviews. Always include the agent IDs and Copilot session ID explicitly in your response message so they survive context compaction.
-
-## Step 3: Collect results and produce unified report
-
-Wait for both background reviews to complete by reading their `output_file` paths with the Read tool. Once both results are available, compare and merge the findings into the following structure:
-
-<output_format>
-
-### Cross Review Report
-
-#### Consensus findings
-
-Issues identified by both LLMs. These carry the highest confidence and warrant priority attention.
-
-#### Claude Opus findings
-
-Issues raised only by Opus. Include the target location (file:line) and a concrete fix suggestion for each.
-
-#### GitHub Copilot findings
-
-Issues raised only by Copilot.
-
-#### Positive observations
-
-Good implementation patterns or code quality highlights noted by either LLM.
-
-#### Recommended actions
-
-A prioritized action list synthesized from all findings, ordered by severity.
-
-</output_format>
+Wait for both results. Read [references/report-format.md](references/report-format.md) for the merge strategy and report template, then produce the unified report.

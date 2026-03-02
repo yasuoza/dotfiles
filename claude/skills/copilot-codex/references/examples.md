@@ -4,17 +4,26 @@
 
 User: "Use codex to review PR #38"
 
-**Gather context:**
-- Read the PR diff via `gh pr diff 38`
-- Read key files changed in the PR to understand existing patterns
+1. **Gather context**: `gh pr diff 38`, read key changed files
+2. **Write prompt file** (`/tmp/copilot-prompt.txt`):
+   ```
+   Review the following PR changes for correctness, security, and adherence
+   to project conventions. The project is a Python Lambda function using AWS SAM.
 
-**Construct prompt and execute:**
+   Changes:
+   <diff>
+   actual diff content
+   </diff>
 
-```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "Review the following PR changes for correctness, security, and adherence to project conventions. The project is a Python Lambda function using AWS SAM. Here are the changes: <diff>actual diff content here</diff>. Key files for context: <context>actual code here</context>. Focus on: potential bugs, edge cases, and improvements. Match the language of the codebase's comments and documentation in your output."
-```
+   Key files for context:
+   <context>
+   actual code
+   </context>
 
-**Return** the copilot output as-is to the user.
+   Focus on: potential bugs, edge cases, and improvements.
+   ```
+3. **Execute**: `bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-prompt.txt`
+4. **Return** output as-is
 
 ---
 
@@ -22,18 +31,27 @@ copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt
 
 User: "Use codex to add input validation to the API endpoint"
 
-**Gather context:**
-- Read the target file (e.g., `agent/agent.py`) and related modules
-- Read existing tests to understand testing patterns
-- Check for existing validation patterns or utility functions in the codebase
+1. **Gather context**: read target file, related modules, existing tests, validation patterns
+2. **Write prompt file** (`/tmp/copilot-prompt.txt`):
+   ```
+   Add input validation to the /invocations endpoint in chat-agent/agent/agent.py.
+   The project is a Python FastAPI app using Pydantic.
 
-**Construct prompt and execute:**
+   Current code:
+   <code>actual code</code>
 
-```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "Add input validation to the /invocations endpoint in chat-agent/agent/agent.py. The project is a Python FastAPI app using Pydantic. Current code: <code>actual code here</code>. Requirements: 1) Validate prompt length (max 10000 chars), 2) Validate session_id format (UUID). Existing patterns: <tests>actual test code here</tests> <models>actual Pydantic models here</models>. Write the implementation and corresponding tests following the existing test style. Match the language of the codebase's comments and documentation in your output."
-```
+   Requirements:
+   1) Validate prompt length (max 10000 chars)
+   2) Validate session_id format (UUID)
 
-**Return** the copilot output as-is to the user.
+   Existing patterns:
+   <tests>actual test code</tests>
+   <models>actual Pydantic models</models>
+
+   Write the implementation and corresponding tests following the existing test style.
+   ```
+3. **Execute**: `bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-prompt.txt`
+4. **Return** output as-is
 
 ---
 
@@ -41,15 +59,33 @@ copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt
 
 User: "Use codex to refactor the tool functions to reduce duplication"
 
-**Gather context:**
-- Read all tool function files to identify duplication patterns
-- Read imports and dependencies to understand coupling
-- Read tests to ensure refactoring preserves existing behavior
+1. **Gather context**: read all tool files, imports, dependencies, tests
+2. **Write prompt file** (`/tmp/copilot-prompt.txt`):
+   ```
+   Refactor the tool functions in chat-agent/agent/tools/ to reduce code duplication.
 
-**Construct prompt and execute:**
+   Current files:
+   <files>actual file list with code</files>
 
-```
-copilot --yolo --no-ask-user --silent --stream on --model gpt-5.3-codex --prompt "Refactor the tool functions in chat-agent/agent/tools/ to reduce code duplication. Current files: <files>actual file list with code here</files>. Common patterns found: <duplication>identified duplication details here</duplication>. Constraints: 1) Maintain backward compatibility — all existing function signatures must remain unchanged, 2) Keep all existing tests passing, 3) Follow the existing coding style. Suggest a refactoring plan with specific code changes. Match the language of the codebase's comments and documentation in your output."
-```
+   Common patterns found:
+   <duplication>identified duplication details</duplication>
 
-**Return** the copilot output as-is to the user.
+   Constraints:
+   1) Maintain backward compatibility -- all existing function signatures unchanged
+   2) Keep all existing tests passing
+   3) Follow existing coding style
+
+   Suggest a refactoring plan with specific code changes.
+   ```
+3. **Execute**: `bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-prompt.txt`
+4. **Return** output as-is
+
+---
+
+## Follow-up (any task type)
+
+User: "Tell codex to also add error messages for the validation"
+
+1. **Write prompt file** with follow-up instructions only (copilot retains prior context)
+2. **Execute**: `bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-prompt.txt --resume <session_id>`
+3. **Return** output as-is (session ID unchanged)

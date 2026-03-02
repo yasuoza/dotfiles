@@ -1,0 +1,1 @@
+../../copilot-codex/scripts/run_copilot.sh

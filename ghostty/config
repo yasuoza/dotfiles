@@ -1,8 +1,6 @@
-# TERM
-term = xterm-256color
-
 # Theme and Appearance
 theme = Iceberg Dark
+bold-color = bright
 
 # Window
 background-opacity = 0.85
@@ -13,7 +11,6 @@ window-height = 45
 window-width = 170
 window-padding-x = 4
 window-padding-y = 0,10
-window-colorspace = display-p3
 
 # Notifications
 app-notifications = false

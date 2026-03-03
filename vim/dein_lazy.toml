@@ -128,3 +128,11 @@ inoreabbrev <expr> __
           \ <SID>isAtStartOfLine('__') ?
           \ '<c-o>:silent! TableModeDisable<cr><escape>' : '__'
 '''
+
+[[plugins]]
+repo = 'git@github.com:yasuoza/box2md.git'
+rtp = 'vim'
+on_cmd = [
+  'Box2html',
+  'Box2md',
+]

@@ -16,6 +16,8 @@
 #   - Anthropic engineering sandboxing guide
 #   - OWASP AI Agent Security Cheat Sheet
 #   - Check Point CVE-2025-59536 (config self-modification)
+#   - Simon Willison "Lethal Trifecta" (private data + untrusted content + exfil vector)
+#   - CVE-2026-24052 (WebFetch domain validation bypass)
 #   - Community hooks: sgasser, Mandalorian007, kornysietsma
 
 set -euo pipefail
@@ -252,6 +254,44 @@ if [[ "$TOOL_NAME" == "Write" || "$TOOL_NAME" == "Edit" ]]; then
   # Package registry configs (registry redirect attacks)
   if echo "$FILE" | grep -qE '/\.(npmrc|yarnrc|pypirc)$'; then
     deny "Modifying package registry configs is blocked."
+  fi
+fi
+
+# ================================================================
+# WEBFETCH GUARDS - SSRF prevention & exfiltration blocking
+# ================================================================
+if [[ "$TOOL_NAME" == "WebFetch" ]]; then
+  URL=$(echo "$INPUT" | jq -r '.tool_input.url // ""')
+  # Extract hostname (handle IPv6 brackets and normal hostnames)
+  if echo "$URL" | grep -qE '://\['; then
+    FETCH_HOST=$(echo "$URL" | sed -E 's|^https?://(\[[^]]+\]).*|\1|')
+  else
+    FETCH_HOST=$(echo "$URL" | sed -E 's|^https?://([^/:?#]+).*|\1|')
+  fi
+
+  # ---- SSRF: localhost / loopback ----
+  if [[ "$FETCH_HOST" == "localhost" || "$FETCH_HOST" == "127.0.0.1" || "$FETCH_HOST" == "[::1]" ]]; then
+    deny "WebFetch to localhost/loopback is blocked (SSRF prevention)."
+  fi
+
+  # ---- SSRF: cloud metadata endpoint ----
+  if [[ "$FETCH_HOST" == "169.254.169.254" ]]; then
+    deny "WebFetch to cloud metadata endpoint is blocked (SSRF prevention)."
+  fi
+
+  # ---- SSRF: private network ranges ----
+  if echo "$FETCH_HOST" | grep -qE '^(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.)'; then
+    deny "WebFetch to private network is blocked (SSRF prevention)."
+  fi
+
+  # ---- Raw IP addresses (legitimate services use domain names) ----
+  if echo "$FETCH_HOST" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'; then
+    deny "WebFetch to raw IP address is blocked. Use domain names."
+  fi
+
+  # ---- Known exfiltration / tunneling services ----
+  if echo "$FETCH_HOST" | grep -qiE '(webhook\.site|requestbin\.|pipedream\.|burpcollaborator\.|oastify\.com|interact\.sh|hookbin\.com|requestcatcher\.com|ngrok\.io|ngrok-free\.app|ngrok\.app)'; then
+    deny "WebFetch to known data exfiltration/tunneling service is blocked."
   fi
 fi
 

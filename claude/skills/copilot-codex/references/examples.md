@@ -86,6 +86,15 @@ User: "Use codex to refactor the tool functions to reduce duplication"
 
 User: "Tell codex to also add error messages for the validation"
 
-1. **Write prompt file** with follow-up instructions only (copilot retains prior context)
+1. **Write prompt file** (`/tmp/copilot-prompt.txt`) -- only include follow-up instructions, copilot retains prior context:
+   ```
+   Add user-friendly error messages for each validation rule added in the previous step.
+
+   Requirements:
+   1) prompt length error: "Prompt must be 10,000 characters or fewer"
+   2) session_id format error: "Session ID must be a valid UUID"
+
+   Return the updated code and tests.
+   ```
 2. **Execute**: `bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-prompt.txt --resume <session_id>`
 3. **Return** output as-is (session ID unchanged)

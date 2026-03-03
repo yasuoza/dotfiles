@@ -1,6 +1,13 @@
 ---
 name: cross-review
 description: Run code reviews in parallel using Claude Opus and GitHub Copilot (codex), then produce a unified report. Use when the user requests a cross-review, xreview, multi-LLM review, or wants diverse perspectives on code changes. Accepts optional PR number or file paths as arguments.
+allowed-tools:
+  - Agent
+  - Bash(bash */run_copilot.sh *)
+  - Bash(gh *)
+  - Bash(git *)
+  - Read
+  - Write
 ---
 
 # Cross Review
@@ -24,7 +31,7 @@ No arguments: review current uncommitted diff (fallback to last commit if clean)
 - File paths given: `git diff HEAD -- <paths>`
 - Otherwise: `git diff HEAD` (if empty, `git diff HEAD~1`)
 
-If no diff found, ask the user. Save diff to a temp file for both reviewers.
+If no diff found, ask the user. Save diff to `/tmp/cross-review-diff.txt` for both reviewers.
 
 ### Step 2: Detect follow-up
 
@@ -37,19 +44,19 @@ Check conversation history for prior cross-review in this session.
 
 Both reviews MUST be launched in a single message with `run_in_background: true`.
 
-**Review A — Claude Opus:**
+**Review A -- Claude Opus:**
 
 | Parameter     | First review    | Follow-up                    |
 | ------------- | --------------- | ---------------------------- |
 | subagent_type | `code-reviewer` | `code-reviewer`              |
 | model         | `opus`          | `opus`                       |
-| resume        | —               | previous agent_id            |
+| resume        | --              | previous agent_id            |
 
 Prompt: include full diff, request review of correctness, security, performance, maintainability with file:line fix suggestions. For follow-ups, include only the new diff and ask to note resolved/new issues.
 
-**Review B — GitHub Copilot codex:**
+**Review B -- GitHub Copilot codex:**
 
-Write a review prompt to `/tmp/copilot-review-prompt.txt` (include the diff and review instructions), then run via shared script:
+Write a review prompt to `/tmp/copilot-review-prompt.txt` (include the diff and review instructions), then run via the bundled script:
 
 ```bash
 # First review
@@ -67,4 +74,6 @@ After launching both, inform the user that reviews are running. **Always include
 
 ### Step 4: Merge and report
 
-Wait for both results. Read [references/report-format.md](references/report-format.md) for the merge strategy and report template, then produce the unified report.
+Wait for both results. If one reviewer fails (timeout, crash, empty output), produce the report from the successful reviewer alone and note which reviewer failed and why. If both fail, report the errors to the user.
+
+Read [references/report-format.md](references/report-format.md) for the merge strategy and report template, then produce the unified report.

@@ -55,11 +55,22 @@ if git -C "$cwd" rev-parse --is-inside-work-tree &>/dev/null; then
     fi
 fi
 
-# Get context usage
+# Get context usage with pressure-based coloring
 context_info=""
 remaining=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 if [ -n "$remaining" ]; then
-    context_info="(ctx:${remaining}%)"
+    # Strip decimals for comparison
+    pct=${remaining%%.*}
+    if [ "$pct" -ge 80 ] 2>/dev/null; then
+        # Red + warning: compaction imminent, suggest /handover
+        context_info=$'\033[31m'"(ctx:${remaining}% /handover)"$'\033[0m'
+    elif [ "$pct" -ge 60 ] 2>/dev/null; then
+        # Yellow: context getting large
+        context_info=$'\033[33m'"(ctx:${remaining}%)"$'\033[0m'
+    else
+        # Default: no color
+        context_info="(ctx:${remaining}%)"
+    fi
 fi
 
 # Build:

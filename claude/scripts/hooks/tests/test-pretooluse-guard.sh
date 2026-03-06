@@ -162,39 +162,39 @@ check_deny "sed /e flag" \
 
 # -- Read: credential files --
 check_deny "Read SSH private key" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.ssh/id_ed25519"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.ssh/id_ed25519"}}'
 check_deny "Read SSH RSA key" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.ssh/id_rsa"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.ssh/id_rsa"}}'
 check_deny "Read SSH config" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.ssh/config"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.ssh/config"}}'
 check_deny "Read AWS credentials" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.aws/credentials"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.aws/credentials"}}'
 check_deny "Read AWS config" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.aws/config"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.aws/config"}}'
 check_deny "Read gcloud creds" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.config/gcloud/credentials.json"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.config/gcloud/credentials.json"}}'
 check_deny "Read kubeconfig" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.kube/config"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.kube/config"}}'
 check_deny "Read docker auth" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.docker/config.json"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.docker/config.json"}}'
 check_deny "Read git-credentials" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.git-credentials"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.git-credentials"}}'
 check_deny "Read .netrc" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.netrc"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.netrc"}}'
 check_deny "Read .npmrc" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.npmrc"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.npmrc"}}'
 check_deny "Read .pypirc" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.pypirc"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.pypirc"}}'
 check_deny "Read bash_history" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.bash_history"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.bash_history"}}'
 check_deny "Read zsh_history" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.zsh_history"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.zsh_history"}}'
 check_deny "Read .pgpass" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.pgpass"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.pgpass"}}'
 check_deny "Read .my.cnf" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/.my.cnf"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.my.cnf"}}'
 check_deny "Read .tfstate" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/infra/main.tfstate"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/infra/main.tfstate"}}'
 
 # -- WebFetch: SSRF prevention --
 check_deny "WebFetch localhost" \
@@ -232,35 +232,35 @@ check_deny "WebFetch ngrok" \
 
 # -- Write/Edit: config protection --
 check_deny "Write claude settings.json" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/project/.claude/settings.json"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/.claude/settings.json"}}'
 check_deny "Edit claude settings.local.json" \
-  '{"tool_name":"Edit","tool_input":{"file_path":"'""'/project/.claude/settings.local.json"}}'
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/project/.claude/settings.local.json"}}'
 check_deny "Write .claude.json" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.claude.json"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.claude.json"}}'
 check_deny "Write git hook" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/project/.git/hooks/pre-commit"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/.git/hooks/pre-commit"}}'
 check_deny "Write .bashrc" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.bashrc"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.bashrc"}}'
 check_deny "Write .zshrc" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.zshrc"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.zshrc"}}'
 check_deny "Write .profile" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.profile"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.profile"}}'
 check_deny "Write .ssh/config" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.ssh/config"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.ssh/config"}}'
 check_deny "Write .ssh/authorized_keys" \
-  '{"tool_name":"Edit","tool_input":{"file_path":"'""'/.ssh/authorized_keys"}}'
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/.ssh/authorized_keys"}}'
 check_deny "Write .aws/credentials" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.aws/credentials"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.aws/credentials"}}'
 check_deny "Write .kube/config" \
-  '{"tool_name":"Edit","tool_input":{"file_path":"'""'/.kube/config"}}'
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/.kube/config"}}'
 check_deny "Write .docker/config.json" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.docker/config.json"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.docker/config.json"}}'
 check_deny "Write .npmrc" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.npmrc"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.npmrc"}}'
 check_deny "Write .yarnrc" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/.yarnrc"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.yarnrc"}}'
 check_deny "Write .pypirc" \
-  '{"tool_name":"Edit","tool_input":{"file_path":"'""'/.pypirc"}}'
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/.pypirc"}}'
 
 echo ""
 echo "=== SHOULD BE ALLOWED ==="
@@ -315,21 +315,21 @@ check_allow "rm single file" \
 
 # -- Read: project files & .env --
 check_allow "Read .env" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/project/.env"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/project/.env"}}'
 check_allow "Read .env.local" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/project/.env.local"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/project/.env.local"}}'
 check_allow "Read source file" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/project/src/main.rs"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/project/src/main.rs"}}'
 check_allow "Read package.json" \
-  '{"tool_name":"Read","tool_input":{"file_path":"'""'/project/package.json"}}'
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/project/package.json"}}'
 
 # -- Write/Edit: project files --
 check_allow "Write source file" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/project/src/main.rs"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/src/main.rs"}}'
 check_allow "Edit source file" \
-  '{"tool_name":"Edit","tool_input":{"file_path":"'""'/project/src/lib.rs"}}'
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/project/src/lib.rs"}}'
 check_allow "Write Dockerfile" \
-  '{"tool_name":"Write","tool_input":{"file_path":"'""'/project/Dockerfile"}}'
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/Dockerfile"}}'
 
 # -- Other tools: passthrough --
 check_allow "Glob" \

@@ -1,1 +1,1 @@
-../../copilot-codex/scripts/run_copilot.sh
+../../codex-review/scripts/run_copilot.sh

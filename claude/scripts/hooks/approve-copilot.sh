@@ -1,12 +1,12 @@
 #!/bin/bash
-# PreToolUse hook: auto-approve Bash commands starting with "copilot "
-# Workaround for Claude Code bug #20449 where allow rules don't prevent
-# permission prompts for non-read-only commands.
+# PreToolUse hook: auto-approve copilot-related Bash commands.
+# - Commands starting with "copilot " (direct copilot CLI)
+# - Commands containing "run_copilot.sh" (skill wrapper, including heredoc pipes)
 
 INPUT=$(cat)
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
-if [[ "$COMMAND" == copilot\ * ]]; then
+if [[ "$COMMAND" == copilot\ * ]] || [[ "$COMMAND" == *run_copilot.sh* ]]; then
   jq -n '{
     hookSpecificOutput: {
       hookEventName: "PreToolUse",

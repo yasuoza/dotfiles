@@ -3,11 +3,10 @@ name: cross-review
 description: Run code reviews in parallel using Claude Opus and GitHub Copilot (codex), then produce a unified report. Use when the user requests a cross-review, xreview, multi-LLM review, or wants diverse perspectives on code changes. Accepts optional PR number or file paths as arguments.
 allowed-tools:
   - Agent
-  - Bash(bash */run_copilot.sh *)
-  - Bash(gh *)
-  - Bash(git *)
+  - Bash(cat *)
+  - Bash(gh pr diff *)
+  - Bash(git diff *)
   - Read
-  - Write
 ---
 
 # Cross Review
@@ -31,48 +30,29 @@ No arguments: review current uncommitted diff (fallback to last commit if clean)
 - File paths given: `git diff HEAD -- <paths>`
 - Otherwise: `git diff HEAD` (if empty, `git diff HEAD~1`)
 
-If no diff found, ask the user. Save diff to `/tmp/cross-review-diff.txt` for both reviewers.
+If no diff found, ask the user.
 
-### Step 2: Detect follow-up
-
-Check conversation history for prior cross-review in this session.
-
-- **First review**: No prior context.
-- **Follow-up**: Retrieve the previous `agent_id` (Opus) and `COPILOT_SESSION_ID` (Copilot) from the conversation.
-
-### Step 3: Launch parallel reviews
+### Step 2: Launch parallel reviews
 
 Both reviews MUST be launched in a single message with `run_in_background: true`.
 
 **Review A -- Claude Opus:**
 
-| Parameter     | First review    | Follow-up                    |
-| ------------- | --------------- | ---------------------------- |
-| subagent_type | `code-reviewer` | `code-reviewer`              |
-| model         | `opus`          | `opus`                       |
-| resume        | --              | previous agent_id            |
-
-Prompt: include full diff, request review of correctness, security, performance, maintainability with file:line fix suggestions. For follow-ups, include only the new diff and ask to note resolved/new issues.
+Launch a `code-reviewer` subagent with `model: opus`. Include full diff, request review of correctness, security, performance, maintainability with file:line fix suggestions.
 
 **Review B -- GitHub Copilot codex:**
 
-Write a review prompt to `/tmp/copilot-review-prompt.txt` (include the diff and review instructions), then run via the bundled script:
+Pipe a review prompt via heredoc to the bundled script. Add `--lang <language>` for non-English codebases.
 
 ```bash
-# First review
-bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-review-prompt.txt
-
-# Follow-up
-bash <skill_path>/scripts/run_copilot.sh /tmp/copilot-review-prompt.txt --resume <session_id>
+cat <<'EOF' | bash <skill_path>/scripts/run_copilot.sh
+...review prompt with diff...
+EOF
 ```
 
-Add `--lang <language>` if the codebase uses a non-English language for comments.
+After launching both, inform the user that reviews are running.
 
-Extract `COPILOT_SESSION_ID=...` from the last line of output.
-
-After launching both, inform the user that reviews are running. **Always include `agent_id` and `COPILOT_SESSION_ID` in the response message** so they survive context compaction.
-
-### Step 4: Merge and report
+### Step 3: Merge and report
 
 Wait for both results. If one reviewer fails (timeout, crash, empty output), produce the report from the successful reviewer alone and note which reviewer failed and why. If both fail, report the errors to the user.
 

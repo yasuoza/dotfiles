@@ -75,6 +75,7 @@
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
+  "plansDirectory": "./.claude/plans",
   "skipDangerousModePermissionPrompt": true,
-  "plansDirectory": "./.claude/plans"
+  "effortLevel": "high"
 }

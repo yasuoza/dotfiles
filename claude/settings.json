@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/dotfiles/claude/scripts/pre-compact-handover.sh"
+            "command": "~/dotfiles/claude/scripts/hooks/pre-compact-handover.sh"
           }
         ]
       }

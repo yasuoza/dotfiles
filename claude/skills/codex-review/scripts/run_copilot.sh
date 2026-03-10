@@ -57,7 +57,7 @@ Match the language of the codebase's comments and documentation in your output."
 fi
 
 # Build copilot command args (read-only: deny write and shell tools)
-ARGS=(--no-ask-user --silent --stream on --model gpt-5.3-codex)
+ARGS=(--no-ask-user --silent --stream on --model gpt-5.4)
 ARGS+=(--deny-tool 'write' --deny-tool 'shell')
 ARGS+=(--prompt "$PROMPT")
 

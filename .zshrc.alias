@@ -30,8 +30,8 @@ alias tm='tmux'
 alias d='docker'
 alias dc='docker compose'
 
-# mutagen
-alias m='mutagen'
+# claude-code
+alias cl='claude'
 
 # git
 alias g='git'

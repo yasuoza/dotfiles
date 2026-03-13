@@ -71,11 +71,13 @@
     "command": "~/dotfiles/claude/scripts/statusline-command.sh"
   },
   "enabledPlugins": {
-    "example-skills@anthropic-agent-skills": true
+    "skill-creator@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
   "plansDirectory": "./.claude/plans",
+  "voiceEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "effortLevel": "high"
 }

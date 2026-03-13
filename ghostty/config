@@ -57,3 +57,5 @@ keybind = all:shift+enter=text:\n
 keybind = all:cmd+,=ignore
 ## Disable new tab with cmd+t
 keybind = all:cmd+t=ignore
+## Disable toggle_fullscreen
+keybind = all:cmd+enter=ignore

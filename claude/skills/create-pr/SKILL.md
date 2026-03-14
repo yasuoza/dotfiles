@@ -4,13 +4,13 @@ description: "Create GitHub Pull Requests with auto-generated content based on d
 argument-hint: "<base-branch> [--draft]"
 allowed-tools:
   - Read
+  - Write
   - AskUserQuestion
   - Bash(git symbolic-ref *)
   - Bash(git branch --show-current)
   - Bash(git diff *)
   - Bash(git log *)
   - Bash(gh pr create *)
-  - Bash(mkdir *)
   - Bash(rm *)
   - Bash(ls *)
   - Bash(code *)
@@ -74,20 +74,16 @@ Generate PR content based on the diff and template.
 
 ## Step 5. Save Temporary File + Launch VS Code
 
-```bash
-mkdir -p .tmp
-```
-
-Save PR content to `.tmp/pr_draft.md`, then open it:
+Save PR content to `$TMPDIR/pr_draft.md` using the Write tool, then open it:
 
 ```bash
-code .tmp/pr_draft.md
+code "$TMPDIR/pr_draft.md"
 ```
 
 ## Step 6. Confirm with User
 
 Call `AskUserQuestion` with:
-- **question**: `"PR content has been saved to .tmp/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
+- **question**: `"PR content has been saved to $TMPDIR/pr_draft.md and opened in VS Code.\nEdit in VS Code if needed, then confirm."`
 - **header**: `"Create PR"`
 
 **Options** depend on `isDraft`:
@@ -95,16 +91,16 @@ Call `AskUserQuestion` with:
 - If `isDraft` is true: `"OK"` (create draft) | `"Re-edit"` (reopen VS Code, loop)
 - If `isDraft` is false: `"Draft"` (create as draft) | `"Publish"` (create as regular PR) | `"Re-edit"` (reopen VS Code, loop)
 
-When user selects **"Re-edit"**, run `code .tmp/pr_draft.md` and call `AskUserQuestion` again.
+When user selects **"Re-edit"**, run `code "$TMPDIR/pr_draft.md"` and call `AskUserQuestion` again.
 
 ## Step 7. PR Creation
 
-Re-read `.tmp/pr_draft.md` to pick up user edits, then create the PR.
+Re-read `$TMPDIR/pr_draft.md` to pick up user edits, then create the PR.
 
 Always include `-a @me` (team convention for self-assignment):
 
 ```bash
-gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md [--draft]
+gh pr create -a @me --title "<title>" --body-file "$TMPDIR/pr_draft.md" [--draft]
 ```
 
 **Title format**: Concise Conventional Commits format. Match the language of recent `git log` messages from Step 2.
@@ -116,11 +112,11 @@ gh pr create -a @me --title "<title>" --body-file .tmp/pr_draft.md [--draft]
 **On success**: Delete temp file, verify deletion, display PR URL.
 
 ```bash
-rm .tmp/pr_draft.md
-ls .tmp/pr_draft.md 2>/dev/null && echo "ERROR: File still exists" || echo "OK: Deletion complete"
+rm "$TMPDIR/pr_draft.md"
+ls "$TMPDIR/pr_draft.md" 2>/dev/null && echo "ERROR: File still exists" || echo "OK: Deletion complete"
 ```
 
-**On failure**: Preserve `.tmp/pr_draft.md` and inform user.
+**On failure**: Preserve `$TMPDIR/pr_draft.md` and inform user.
 
 ---
 

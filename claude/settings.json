@@ -43,17 +43,6 @@
         ]
       }
     ],
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/dotfiles/claude/scripts/hooks/approve-copilot.sh"
-          }
-        ]
-      }
-    ],
     "PreCompact": [
       {
         "matcher": "auto",

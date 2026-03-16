@@ -20,15 +20,13 @@ if [ -z "$MESSAGE" ]; then
     exit 0
 fi
 
-TITLE="✅ Task Completed"
-SUBTITLE="${PROJECT_PATH} (${SESSION_ID:0:8})"
+TITLE="✅ ${PROJECT_PATH} (${SESSION_ID:0:8})"
 
 if [[ -n $SSH_TTY ]]; then
-    printf '\e]777;notify;%s;%s - %s\a' "$TITLE" "$SUBTITLE" "$MESSAGE"
+    printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "> $MESSAGE" > /dev/tty
 else
     terminal-notifier \
         -title "$TITLE" \
-        -subtitle "$SUBTITLE" \
         -message "> ${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \

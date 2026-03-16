@@ -46,7 +46,7 @@ function end_timetrack() {
     message="Time: $exec_time seconds"
 
     if [[ -n $SSH_TTY ]]; then
-        printf '\e]777;notify;%s;%s\a' "$title" "$message"
+        printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$title" "$message"
     else
         terminal-notifier -title $title -message $message \
             > /dev/null 2>&1

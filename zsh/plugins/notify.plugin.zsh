@@ -3,6 +3,7 @@
 # http://qiita.com/hayamiz/items/d64730b61b7918fbb970
 #
 timetrack_threshold=20 # seconds
+_notify_from_ssh=$([[ -n $SSH_TTY ]] || [[ -n $SSH_CONNECTION ]] && echo 1)
 read -r -d '' timetrack_ignore_progs <<EOF
 tmux tmux-session less fg     emacs vi
 nvim vim          git  g      tig   t
@@ -45,7 +46,7 @@ function end_timetrack() {
     title="$status_message $last_command"
     message="Time: $exec_time seconds"
 
-    if [[ -n $SSH_TTY ]]; then
+    if [[ -n $_notify_from_ssh ]]; then
         printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$title" "$message"
     else
         terminal-notifier -title $title -message $message \
@@ -56,7 +57,7 @@ function end_timetrack() {
 }
 
 autoload -Uz add-zsh-hook
-if [[ -n $SSH_TTY ]] || type "terminal-notifier" > /dev/null; then
+if [[ -n $_notify_from_ssh ]] || type "terminal-notifier" > /dev/null; then
     add-zsh-hook preexec store_last_command
     add-zsh-hook precmd end_timetrack
 fi

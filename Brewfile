@@ -50,6 +50,8 @@ brew 'terraform-ls'
 
 # EDITOR
 brew 'neovim', args: ['HEAD']
+brew 'tree-sitter'
+brew 'tree-sitter-cli'
 
 # CASK
 cask 'adobe-creative-cloud'

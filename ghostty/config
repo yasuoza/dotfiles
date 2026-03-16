@@ -15,6 +15,7 @@ window-padding-y = 0,10
 # Notifications
 app-notifications = false
 bell-features = no-attention,no-title
+desktop-notifications = true
 
 # macOS
 macos-window-shadow = false

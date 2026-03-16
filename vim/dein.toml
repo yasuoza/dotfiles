@@ -192,23 +192,19 @@ keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+rev = 'main'
 merged = 0
-lua_post_source = '''
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  ignore_install = { "phpdoc" },
-
-  matchup = {
-    enable = true,
-    disable_virtual_text = true,
-  },
-
-  highlight = {
-    enable = true,
-  },
-}
+lua_add = '''
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
 '''
-hook_post_update = 'TSUpdateSync'
+lua_post_source = '''
+require'nvim-treesitter'.setup {}
+require'nvim-treesitter'.install('stable')
+'''
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'

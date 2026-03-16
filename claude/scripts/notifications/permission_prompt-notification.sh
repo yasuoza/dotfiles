@@ -13,28 +13,19 @@ MESSAGE=$(cat $HOME/.claude/history.jsonl | jq -s -r ". | map(select(.sessionId 
 
 TITLE="⚠️ ${PROJECT_PATH} (${SESSION_ID:0:8})"
 
-# Notification routing by environment:
-#   1. tmux(local) -> ssh -> tmux(remote) : OSC 777 with double tmux passthrough
-#   2. tmux(local) -> ssh                 : OSC 777 with single tmux passthrough
-#   3. VS Code Remote SSH                 : OSC 777 bare (Terminal Notification extension)
-#   4. SSH without TTY (other)            : no notification path available
-#   5. Local macOS                        : terminal-notifier
-if [[ -n $SSH_TTY ]]; then
+# Notification routing:
+#   SSH (VS Code Remote SSH): OSC 777 via printf. tmux requires Ptmux passthrough.
+#   Local macOS (Ghostty):    terminal-notifier.
+if [[ -n $SSH_CONNECTION ]]; then
     if [[ -n $TMUX ]]; then
-        # Case 1: remote tmux unwraps outer, local tmux unwraps inner
-        printf '\ePtmux;\e\ePtmux;\e\e\e\e]777;notify;%s;%s\a\e\e\\\e\\' "$TITLE" "> $MESSAGE" > /dev/tty
-    else
-        # Case 2: local tmux unwraps the single passthrough
+        # SSH + tmux: single passthrough (remote tmux unwraps → client receives bare OSC 777)
         printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "> $MESSAGE" > /dev/tty
+    else
+        # SSH without tmux: bare OSC 777
+        printf '\e]777;notify;%s;%s\a' "$TITLE" "> $MESSAGE" > /dev/tty
     fi
-elif [[ "$TERM_PROGRAM" == "vscode" ]]; then
-    # Case 3: VS Code parses OSC 777 on the client side
-    printf '\e]777;notify;%s;%s\a' "$TITLE" "> $MESSAGE" > /dev/tty
-elif [[ -n $SSH_CONNECTION ]]; then
-    # Case 4: no TTY and no VS Code — nothing we can send to
-    exit 0
 else
-    # Case 5: local macOS with Ghostty
+    # Local macOS
     terminal-notifier \
         -title "$TITLE" \
         -message "> ${MESSAGE}" \

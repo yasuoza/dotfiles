@@ -45,14 +45,18 @@ function end_timetrack() {
     title="$status_message $last_command"
     message="Time: $exec_time seconds"
 
-    terminal-notifier -title $title -message $message \
-        > /dev/null 2>&1
+    if [[ -n $SSH_TTY ]]; then
+        printf '\e]777;notify;%s;%s\a' "$title" "$message"
+    else
+        terminal-notifier -title $title -message $message \
+            > /dev/null 2>&1
+    fi
 
     unset_last_command
 }
 
 autoload -Uz add-zsh-hook
-if type "terminal-notifier" > /dev/null; then
+if [[ -n $SSH_TTY ]] || type "terminal-notifier" > /dev/null; then
     add-zsh-hook preexec store_last_command
     add-zsh-hook precmd end_timetrack
 fi

@@ -20,10 +20,17 @@ if [ -z "$MESSAGE" ]; then
     exit 0
 fi
 
-terminal-notifier \
-    -title "✅ Task Completed" \
-    -subtitle "${PROJECT_PATH} (${SESSION_ID:0:8})" \
-    -message "> ${MESSAGE}" \
-    -sound "default" \
-    -activate "com.mitchellh.ghostty" \
-    -group "claude-code-stop-notification-#${PROJECT_NAME}"
+TITLE="✅ Task Completed"
+SUBTITLE="${PROJECT_PATH} (${SESSION_ID:0:8})"
+
+if [[ -n $SSH_TTY ]]; then
+    printf '\e]777;notify;%s;%s - %s\a' "$TITLE" "$SUBTITLE" "$MESSAGE"
+else
+    terminal-notifier \
+        -title "$TITLE" \
+        -subtitle "$SUBTITLE" \
+        -message "> ${MESSAGE}" \
+        -sound "default" \
+        -activate "com.mitchellh.ghostty" \
+        -group "claude-code-stop-notification-#${PROJECT_NAME}"
+fi

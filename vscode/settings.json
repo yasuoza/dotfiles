@@ -54,7 +54,7 @@
 	/*
     Terminal
   */
-	"terminal.integrated.fontSize": 22,
+	"terminal.integrated.fontSize": 24,
 	"terminal.integrated.fontWeight": "bold",
 
 	/*
@@ -381,5 +381,6 @@
 		"https://json-schema.org/": true,
 		"https://developer.microsoft.com/json-schemas/": true,
 		"https://biomejs.dev": true
-	}
+	},
+	"terminalNotification.showVsCodeNotification": false
 }

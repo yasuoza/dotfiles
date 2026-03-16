@@ -28,9 +28,9 @@ len=${#parts[@]}
 
 # 3. Abbreviation logic: Only shorten if depth exceeds 4
 # Structure: [First 2] ... [Last 2]
-if (( len > 4 )); then
+if (( len > 3 )); then
     head="${parts[0]}/${parts[1]}"
-    tail="${parts[len-2]}/${parts[len-1]}"
+    tail="${parts[len-1]}"
 
     # If the path starts with '/' and was not replaced by '~', prepending '/' is necessary
     if [[ "$path" == /* ]]; then

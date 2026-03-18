@@ -180,7 +180,12 @@ if type aws_zsh_completer.sh > /dev/null; then
     source "$(which aws_zsh_completer.sh)"
 fi
 
-# #=============================
-# # Alias
-# #=============================
+#=============================
+# alias
+#=============================
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+
+#=============================
+# Local
+#=============================
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

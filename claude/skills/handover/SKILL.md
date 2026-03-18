@@ -1,6 +1,6 @@
 ---
 name: handover
-description: Save current session context to a handover document for the next Claude session. Use at any point to create a shift-change report.
+description: Save current session context to a handover document for the next Claude session. Use only when the user explicitly asks to save a handover, create a shift-change report, or says "/handover".
 allowed-tools:
   - Read
   - Write

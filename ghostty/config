@@ -22,9 +22,9 @@ macos-window-shadow = false
 macos-titlebar-proxy-icon = hidden
 macos-non-native-fullscreen = true
 macos-option-as-alt = left
+macos-titlebar-style = tabs
 
 # Shell Integration
-shell-integration-features = no-cursor
 mouse-hide-while-typing = false
 copy-on-select = true
 link-url = true
@@ -32,6 +32,9 @@ link-url = true
 # Cursor
 cursor-style = block
 cursor-style-blink = false
+
+# SSH
+shell-integration-features = ssh-terminfo,ssh-env,no-cursor
 
 # Font
 font-size = 26
@@ -47,6 +50,9 @@ font-feature = -calt,-liga,-dlig
 quit-after-last-window-closed = true
 
 # Clipboard
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
 clipboard-trim-trailing-spaces = true
 
 # Key Bindings
@@ -56,7 +62,5 @@ keybind = all:cmd+q=ignore
 keybind = all:shift+enter=text:\n
 ## Do not open config file with cmd+,
 keybind = all:cmd+,=ignore
-## Disable new tab with cmd+t
-keybind = all:cmd+t=ignore
 ## Disable toggle_fullscreen
 keybind = all:cmd+enter=ignore

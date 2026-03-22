@@ -46,7 +46,7 @@ if type fzf &> /dev/null; then
 
   # Select local git branche
   function _fzf_select_local_git_branch() {
-    local branch=$(command git branch -a | fzf-tmux | sed -e "s/^\*//g" | sed -e "s/^[ ]*//g" | sed -e "s/^remotes\///g")
+    local branch=$(command git branch -a | fzf-tmux | sed -e "s/^\(\*\|\+\)//g" | sed -e "s/^[ ]*//g" | sed -e "s/^remotes\///g")
     if [ -n "$branch" ]; then
         BUFFER="$LBUFFER'${branch}'"
         CURSOR=$#BUFFER         # move cursor

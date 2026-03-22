@@ -143,6 +143,9 @@ source $HOME/dotfiles/zsh/plugins/fzf.plugin.zsh
 # Load docker plugin
 source $HOME/dotfiles/zsh/plugins/docker.plugin.zsh
 
+# Load git-worktree plugin
+source $HOME/dotfiles/zsh/plugins/git-worktree.plugin.zsh
+
 #=============================
 # rbenv
 #=============================

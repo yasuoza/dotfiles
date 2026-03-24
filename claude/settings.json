@@ -19,7 +19,8 @@
       "Read(**/.envrc)",
       "Read(**/.secrets.*)",
       "Read(**/.secrets)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "Notification": [
@@ -69,5 +70,6 @@
   "effortLevel": "high",
   "plansDirectory": "./.claude/plans",
   "voiceEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }

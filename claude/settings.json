@@ -61,12 +61,13 @@
   },
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true
+    "claude-md-management@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
+  "effortLevel": "high",
   "plansDirectory": "./.claude/plans",
   "voiceEnabled": false,
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "skipDangerousModePermissionPrompt": true
 }

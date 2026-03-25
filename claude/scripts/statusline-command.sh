@@ -91,14 +91,14 @@ rate_info=""
 if [ ${#rate_parts[@]} -gt 0 ]; then
     joined=""
     for p in "${rate_parts[@]}"; do
-        joined="${joined:+${joined} ${dim}·${undim} }${p}"
+        joined="${joined:+${joined} }${p}"
     done
-    rate_info=" ${dim}·${undim} ${joined}"
+    rate_info=" ${joined}"
 fi
 
 # Build:
 # Line 1: $cwd $git_info ctx:$remaining%
 # Line 2: [$model] $rate_info
-printf "\033[32m[%s]\033[0m%s%s" "$short_cwd" "$git_info" "$ctx_info"
+printf "\033[32m[%s]\033[0m%s" "$short_cwd" "$git_info"
 printf '\n'
-printf "%s%s" "$model" "$rate_info"
+printf "%s%s%s" "$model" "$ctx_info" "$rate_info"

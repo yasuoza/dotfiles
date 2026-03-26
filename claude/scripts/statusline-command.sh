@@ -37,6 +37,15 @@ short_cwd=$(shorten_path "$cwd")
 git_info=""
 if git -C "$cwd" rev-parse --is-inside-work-tree &>/dev/null; then
     branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
+    # Detached HEAD: mimic vcs_info — show remotes/origin/main style ref
+    if [ -z "$branch" ]; then
+        ref=$(git -C "$cwd" describe --contains --all HEAD 2>/dev/null | sed 's|~[0-9]*$||')
+        # Resolve remotes/origin/HEAD → remotes/origin/main
+        if [ "$ref" = "remotes/origin/HEAD" ]; then
+            ref=$(git -C "$cwd" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/||')
+        fi
+        branch=${ref:-$(git -C "$cwd" rev-parse --short HEAD 2>/dev/null)}
+    fi
 
     # Check for staged changes
     staged=""
@@ -51,7 +60,7 @@ if git -C "$cwd" rev-parse --is-inside-work-tree &>/dev/null; then
     fi
 
     if [ -n "$branch" ]; then
-        git_info=$' [\033[36m'"${staged}${unstaged}${branch}"$'\033[0m]'
+        git_info=$'[\033[36m'"${staged}${unstaged}${branch}"$'\033[0m]'
     fi
 fi
 
@@ -81,7 +90,8 @@ fmt_remaining() {
 }
 
 ctx_info=""
-[ -n "$remaining" ] && ctx_info=" ctx:${remaining}%"
+sep="${dim}·${undim}"
+[ -n "$remaining" ] && ctx_info="${sep}ctx:${remaining}%"
 
 rate_parts=()
 [ -n "$rate_5h" ] && rate_parts+=("5h$([ -n "$reset_5h" ] && fmt_remaining "$reset_5h"):${rate_5h}%")
@@ -91,14 +101,16 @@ rate_info=""
 if [ ${#rate_parts[@]} -gt 0 ]; then
     joined=""
     for p in "${rate_parts[@]}"; do
-        joined="${joined:+${joined} }${p}"
+        joined="${joined:+${joined}${sep}}${p}"
     done
-    rate_info=" ${joined}"
+    rate_info="${sep}${joined}"
 fi
 
 # Build:
 # Line 1: $cwd $git_info ctx:$remaining%
 # Line 2: [$model] $rate_info
-printf "\033[32m[%s]\033[0m%s" "$short_cwd" "$git_info"
+printf "\033[32m[%s]" "$short_cwd"
+printf '\n'
+printf "\033[0m%s" "$git_info"
 printf '\n'
 printf "%s%s%s" "$model" "$ctx_info" "$rate_info"

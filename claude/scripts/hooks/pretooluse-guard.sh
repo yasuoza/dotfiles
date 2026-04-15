@@ -145,6 +145,22 @@ if [[ "$TOOL_NAME" == "Bash" ]]; then
     deny "Redirecting output to shell config files is blocked."
   fi
 
+  # ---- Docker: container escape ----
+  if echo "$CMD" | grep -qE 'docker\s+(run|create)\b.*--privileged\b'; then
+    deny "docker run --privileged is blocked (container escape vector)."
+  fi
+  if echo "$CMD" | grep -qE 'docker\s+(run|create)\b.*-v\s+/[^[:space:]]*:/'; then
+    deny "docker run with host root mount (-v /...) is blocked (container escape vector)."
+  fi
+
+  # ---- SSH: external connection / reverse tunnel ----
+  if echo "$CMD" | grep -qE '\bssh\b.*\s-[a-zA-Z]*R[a-zA-Z]*(\s|$)'; then
+    deny "ssh reverse tunnel (-R) is blocked."
+  fi
+  if echo "$CMD" | grep -qE '\bssh\s+([^-][^ ]*\s+)*[a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]'; then
+    deny "ssh to external hosts is blocked. Use gh CLI for GitHub operations."
+  fi
+
   # ---- Sneaky bypass techniques (Flatt Security research) ----
   if echo "$CMD" | grep -qE 'sort\s+--compress-program'; then
     deny "sort --compress-program (code execution vector) is blocked."
@@ -211,6 +227,16 @@ if [[ "$TOOL_NAME" == "Read" ]]; then
     deny "Reading .tfstate (contains cloud secrets) is blocked."
   fi
 
+  # Process environment variables (may contain DB passwords, API keys, etc.)
+  if echo "$FILE" | grep -qE '^/proc/[0-9]+/environ$'; then
+    deny "Reading /proc/PID/environ (process environment variables) is blocked."
+  fi
+
+  # GitHub CLI credentials
+  if echo "$FILE" | grep -qE '/\.config/gh/(hosts|config)\.yml$'; then
+    deny "Reading GitHub CLI credentials is blocked."
+  fi
+
   # NOTE: .env files are intentionally ALLOWED for docker-compose compatibility
 fi
 
@@ -231,6 +257,11 @@ if [[ "$TOOL_NAME" == "Write" || "$TOOL_NAME" == "Edit" ]]; then
   # Git hooks (persistence vector)
   if echo "$FILE" | grep -qE '/\.git/hooks/'; then
     deny "Writing to .git/hooks/ is blocked (persistence vector)."
+  fi
+
+  # CI/CD workflows (supply chain attack vector)
+  if echo "$FILE" | grep -qE '/\.github/workflows/'; then
+    deny "Writing to .github/workflows/ is blocked (CI/CD supply chain protection)."
   fi
 
   # Shell configs
@@ -262,9 +293,18 @@ fi
 # ================================================================
 if [[ "$TOOL_NAME" == "WebFetch" ]]; then
   URL=$(echo "$INPUT" | jq -r '.tool_input.url // ""')
-  # Extract hostname (handle IPv6 brackets and normal hostnames)
+
+  # ---- file:// scheme (local file read bypass) ----
+  if echo "$URL" | grep -qiE '^file://'; then
+    deny "WebFetch with file:// scheme is blocked (local file read bypass)."
+  fi
+
+  # Extract hostname (handle IPv6 brackets, @ userinfo, and normal hostnames)
+  # CVE-2026-24052: https://legit.com@evil.com/ → host is after @
   if echo "$URL" | grep -qE '://\['; then
     FETCH_HOST=$(echo "$URL" | sed -E 's|^https?://(\[[^]]+\]).*|\1|')
+  elif echo "$URL" | grep -qE '://[^@/?#]+@'; then
+    FETCH_HOST=$(echo "$URL" | sed -E 's|^https?://[^@]+@([^/:?#]+).*|\1|')
   else
     FETCH_HOST=$(echo "$URL" | sed -E 's|^https?://([^/:?#]+).*|\1|')
   fi

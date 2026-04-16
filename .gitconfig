@@ -62,7 +62,7 @@
   ga         = log --all --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %C(yellow)%d %Creset%s'
   gn         = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st         = status
-  cc         = !"claude --print --model haiku 'Check git log for recent commit style, then commit staged changes with a matching Conventional Commits message. Execute git commit immediately without confirmation.'"
+  cc         = !"claude --model haiku --print 'Check git log for recent commit style, then commit staged changes with a matching Conventional Commits message. Execute git commit immediately without confirmation. Output the commit hash and message in plain text without backticks or markdown formatting.'"
   cm         = commit -v
   cmw        = commit -v --cleanup=whitespace
   stt        = status -uno

@@ -79,10 +79,10 @@
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
+  "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
   "skipDangerousModePermissionPrompt": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": false,
-  "advisorModel": "opus"
+  "voiceEnabled": false
 }

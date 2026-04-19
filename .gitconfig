@@ -34,6 +34,7 @@
 [core]
   excludesfile   = ~/dotfiles/.gitignore_global
   attributesfile = ~/dotfiles/.gitattributes_global
+  pager = delta
   quotepath = false
 [credential]
  helper = osxkeychain
@@ -52,6 +53,8 @@
     added = yellow
     changed = green
     untracked = cyan
+[interactive]
+    diffFilter = delta --color-only
 [merge "mergepbx"]
   name = Xcode project files merger
   driver = mergepbx %O %A %B
@@ -95,6 +98,11 @@
 	defaultBranch = main
 [hub]
 	protocol = ssh
+[delta]
+  dark = true
+  line-numbers = true
+  navigate = true
+  true-color = always
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true

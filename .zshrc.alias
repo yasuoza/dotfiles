@@ -39,6 +39,9 @@ alias gi='git'
 alias gst='git status'
 alias gs='git status -s -b'
 
+# lazygit
+alias lg='lazygit'
+
 # tig
 alias t='tig'
 

@@ -1,0 +1,20 @@
+os:
+  copyToClipboardCmd: "printf {{text}} | pbcopy"
+
+gui:
+  # If true, show a random tip in the command log when Lazygit starts
+  showRandomTip: false
+
+  # If true, show the command log
+  showCommandLog: false
+
+# Keybindings
+keybinding:
+  universal:
+    prevBlock-alt: <c-k>
+    nextBlock-alt: <c-j>
+    executeShellCommand: '!'
+
+  commits:
+    moveDownCommit: ''
+    moveUpCommit: ''

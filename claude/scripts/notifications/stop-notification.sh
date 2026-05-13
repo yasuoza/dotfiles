@@ -39,8 +39,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
     # Linux: OSC 777 (SSH_CONNECTION は hook に引き継がれないため OS で判定)
     if [[ -n $TMUX ]]; then
-        # tmux: ペインの実PTYに直接書き込む（フック実行プロセスの /dev/tty とずれるため）
-        PANE_TTY=$(tmux display-message -p -t "${TMUX_PANE:-}" '#{pane_tty}' 2>/dev/null)
+        # tmux: ユーザーが今フォーカス中のアクティブペインに書き込む。
+        # 非アクティブペイン宛だと allow-passthrough all 設定でもパススルーが外側ターミナルに届かないため。
+        CLIENT_SESSION=$(tmux list-clients -F '#{client_session}' 2>/dev/null | head -1)
+        if [[ -n $CLIENT_SESSION ]]; then
+            PANE_TTY=$(tmux display-message -p -t "${CLIENT_SESSION}:" '#{pane_tty}' 2>/dev/null)
+        else
+            PANE_TTY=$(tmux display-message -p -t "${TMUX_PANE:-}" '#{pane_tty}' 2>/dev/null)
+        fi
         if [[ -z $PANE_TTY || ! -w $PANE_TTY ]]; then
             exit 0
         fi

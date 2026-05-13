@@ -38,23 +38,24 @@ if [[ "$(uname)" == "Darwin" ]]; then
         -group "claude-code-stop-notification-#${PROJECT_NAME}"
 else
     # Linux: OSC 777 (SSH_CONNECTION は hook に引き継がれないため OS で判定)
-    if [[ -n $TMUX ]]; then
-        # tmux: ユーザーが今フォーカス中のアクティブペインに書き込む。
-        # 非アクティブペイン宛だと allow-passthrough all 設定でもパススルーが外側ターミナルに届かないため。
-        CLIENT_SESSION=$(tmux list-clients -F '#{client_session}' 2>/dev/null | head -1)
+    #
+    # `claude agents` のバックグラウンドセッションでは hook がスーパーバイザー
+    # 配下で動くため $TMUX も /dev/tty も使えない。$TMUX 有無で分岐せず、tmux
+    # サーバーに直接問い合わせて「ユーザーがアタッチ中で最後にアクティブだった
+    # クライアント」の focused pane に書き込む（非アクティブペインだと
+    # allow-passthrough all でも外側ターミナルに届かないため）。
+    PANE_TTY=""
+    if command -v tmux >/dev/null 2>&1; then
+        CLIENT_SESSION=$(tmux list-clients -F '#{client_activity} #{client_session}' 2>/dev/null \
+            | sort -rn | head -1 | awk '{print $2}')
         if [[ -n $CLIENT_SESSION ]]; then
             PANE_TTY=$(tmux display-message -p -t "${CLIENT_SESSION}:" '#{pane_tty}' 2>/dev/null)
-        else
-            PANE_TTY=$(tmux display-message -p -t "${TMUX_PANE:-}" '#{pane_tty}' 2>/dev/null)
         fi
-        if [[ -z $PANE_TTY || ! -w $PANE_TTY ]]; then
-            exit 0
-        fi
+    fi
+
+    if [[ -n $PANE_TTY && -w $PANE_TTY ]]; then
         printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "> $MESSAGE" > "$PANE_TTY"
-    else
-        if ! { exec > /dev/tty; } 2>/dev/null; then
-            exit 0
-        fi
+    elif { exec > /dev/tty; } 2>/dev/null; then
         printf '\e]777;notify;%s;%s\a' "$TITLE" "> $MESSAGE" > /dev/tty
     fi
 fi

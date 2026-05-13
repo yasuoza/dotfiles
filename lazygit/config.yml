@@ -8,12 +8,17 @@ gui:
   # If true, show the command log
   showCommandLog: false
 
+  # Enable nerd font icons
+  nerdFontsVersion: "3"
+
 # Keybindings
 keybinding:
   universal:
     prevBlock-alt: <c-k>
     nextBlock-alt: <c-j>
     executeShellCommand: '!'
+    prevPage: <c-u>
+    nextPage: <c-d>
 
   commits:
     moveDownCommit: ''

@@ -93,6 +93,11 @@ ctx_info=""
 sep="${dim}·${undim}"
 [ -n "$remaining" ] && ctx_info="${sep}ctx:${remaining}%"
 
+# Effort level (absent when model doesn't support it; reflects live /effort changes)
+effort=$(echo "$input" | jq -r '.effort.level // empty')
+effort_info=""
+[ -n "$effort" ] && effort_info="${sep}${effort}"
+
 rate_parts=()
 [ -n "$rate_5h" ] && rate_parts+=("5h$([ -n "$reset_5h" ] && fmt_remaining "$reset_5h"):${rate_5h}%")
 [ -n "$rate_7d" ] && rate_parts+=("7d$([ -n "$reset_7d" ] && fmt_remaining "$reset_7d"):${rate_7d}%")
@@ -108,9 +113,9 @@ fi
 
 # Build:
 # Line 1: $cwd $git_info ctx:$remaining%
-# Line 2: [$model] $rate_info
+# Line 2: [$model] effort:$effort $rate_info
 printf "\033[32m[%s]" "$short_cwd"
 printf '\n'
 printf "\033[0m%s" "$git_info"
 printf '\n'
-printf "%s%s%s" "$model" "$ctx_info" "$rate_info"
+printf "%s%s%s%s" "$model" "$effort_info" "$ctx_info" "$rate_info"

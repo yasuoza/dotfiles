@@ -1,14 +1,15 @@
 {
   "env": {
+    "ANTHROPIC_MODEL": "opus[1m]",
     "DISABLE_AUTOUPDATER": "1",
     "DISABLE_EXTRA_USAGE_COMMAND": "1",
     "ENABLE_TOOL_SEARCH": "true",
     "DISABLE_FEEDBACK_COMMAND": "1",
-    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_CODE_TMPDIR": ".claude/tmp",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "attribution": {
     "commit": "",
@@ -24,7 +25,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet[1m]",
   "hooks": {
     "Notification": [
       {
@@ -67,7 +67,8 @@
     "skill-creator@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "security-guidance@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -82,7 +83,11 @@
   "effortLevel": "xhigh",
   "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": false
 }

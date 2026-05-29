@@ -65,7 +65,7 @@
   ga         = log --all --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %C(yellow)%d %Creset%s'
   gn         = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(blue bold)%cn %Cred%d %Creset%s' -n
   st         = status
-  cc         = "!f() { out=$(mktemp); err=$(mktemp); codex -a never exec -c model_reasoning_effort=\"low\" -o \"$out\" 'Check git log for recent commit style, then commit staged changes with a matching Conventional Commits message. Execute git commit immediately without confirmation. Output the commit hash and message in plain text without backticks or markdown formatting.' >/dev/null 2>\"$err\"; status=$?; if [ -s \"$out\" ]; then cat \"$out\"; last=$(tail -c 1 \"$out\"); [ \"$last\" = \"\" ] || printf '\\n'; elif [ -s \"$err\" ]; then cat \"$err\" >&2; fi; rm -f \"$out\" \"$err\"; exit $status; }; f"
+  cc         = "!f() { out=$(mktemp); err=$(mktemp); codex -a never exec -c model=\"gpt-5.4-mini\" -c model_reasoning_effort=\"low\" -o \"$out\" 'Check git log for recent commit style, then commit staged changes with a matching Conventional Commits message. Execute git commit immediately without confirmation. Output the commit hash and message in plain text without backticks or markdown formatting.' >/dev/null 2>\"$err\"; status=$?; if [ -s \"$out\" ]; then cat \"$out\"; last=$(tail -c 1 \"$out\"); [ \"$last\" = \"\" ] || printf '\\n'; elif [ -s \"$err\" ]; then cat \"$err\" >&2; fi; rm -f \"$out\" \"$err\"; exit $status; }; f"
   cm         = commit -v
   cmw        = commit -v --cleanup=whitespace
   stt        = status -uno

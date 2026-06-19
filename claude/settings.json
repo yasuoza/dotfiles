@@ -1,6 +1,5 @@
 {
   "env": {
-    "ANTHROPIC_MODEL": "opus[1m]",
     "DISABLE_AUTOUPDATER": "1",
     "DISABLE_EXTRA_USAGE_COMMAND": "1",
     "ENABLE_TOOL_SEARCH": "true",
@@ -10,10 +9,6 @@
     "CLAUDE_CODE_TMPDIR": ".claude/tmp",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_NO_FLICKER": "1"
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
   },
   "permissions": {
     "deny": [
@@ -80,11 +75,10 @@
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
-  "effortLevel": "xhigh",
   "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
   "tui": "fullscreen",
-  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,

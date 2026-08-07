@@ -1,21 +1,46 @@
 #!/bin/bash
 
-SESSION_ID=$(jq -r '.session_id')
-STOP_HOOK_ACTIVE=$(jq -r '.stop_hook_active')
+# stdin is consumed once - store it
+INPUT=$(cat)
+
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
+STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active')
 
 if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
     exit 0
 fi
 
+# One-off background subagents (Agent tool, run in background by default) wake
+# the main session when they finish, which replies briefly and stops again -
+# firing this same hook once per subagent instead of once for the real final
+# answer. `background_tasks` (undocumented, found empirically - not in the
+# public hooks reference) lists tasks still in flight at Stop time; skip while
+# any subagent is still running, since it'll cause another stop once it's done.
+#
+# Only `type == "subagent"` counts here. Persistent constructs like named
+# teammates (type "teammate") or long-running Monitors (type "shell") were
+# observed staying "running" indefinitely even while idle - counting those
+# would silently suppress notifications for the rest of the session.
+PENDING_SUBAGENTS=$(echo "$INPUT" | jq -r '[(.background_tasks // [])[] | select(.type == "subagent")] | length')
+if [ "${PENDING_SUBAGENTS:-0}" -gt 0 ]; then
+    exit 0
+fi
+
 SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
 PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
-MESSAGE=$(cat $HOME/.claude/history.jsonl | jq -s -r ". | map(select(.sessionId | startswith(\"${SESSION_ID}\"))) | sort_by(.timestamp) | .[-1].display // empty")
 
-# If the message is empty, it means there is no display message
-# for the last entry of this session. so we skip the notification.
-# This can happen when the session is closed before any message is displayed,
-# or if there was an error that prevented the message from being generated.
-# In either case, we don't want to show a notification with an empty message.
+# Use the assistant's own final reply for this turn instead of re-deriving it
+# from history.jsonl. It can be long, multi-line markdown (unlike the old
+# one-line user prompt), so strip control chars (ESC/BEL etc. would otherwise
+# corrupt the OSC 777 sequence), collapse it to a single line, and cap the
+# length at 200 chars (character-safe, so multi-byte UTF-8 isn't split).
+MESSAGE=$(echo "$INPUT" | jq -r '.last_assistant_message // empty' \
+    | tr -d '\000-\010\013\014\016-\037' | tr '\n\r' '  ' | tr -s ' ' \
+    | sed 's/^ *//; s/ *$//' \
+    | awk '{print substr($0, 1, 200)}')
+
+# If the message is empty, there is nothing to show, so skip the notification.
+# This can happen if there was an error that prevented an assistant reply.
 if [ -z "$MESSAGE" ]; then
     exit 0
 fi
@@ -32,7 +57,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     fi
     terminal-notifier \
         -title "$TITLE" \
-        -message "> ${MESSAGE}" \
+        -message "${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \
         -group "claude-code-stop-notification-#${PROJECT_NAME}"
@@ -54,8 +79,8 @@ else
     fi
 
     if [[ -n $PANE_TTY && -w $PANE_TTY ]]; then
-        printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "> $MESSAGE" > "$PANE_TTY"
+        printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MESSAGE" > "$PANE_TTY"
     elif { exec > /dev/tty; } 2>/dev/null; then
-        printf '\e]777;notify;%s;%s\a' "$TITLE" "> $MESSAGE" > /dev/tty
+        printf '\e]777;notify;%s;%s\a' "$TITLE" "$MESSAGE" > /dev/tty
     fi
 fi

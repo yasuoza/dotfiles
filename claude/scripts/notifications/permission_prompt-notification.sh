@@ -1,7 +1,10 @@
 #!/bin/bash
 
-SESSION_ID=$(jq -r '.session_id')
-STOP_HOOK_ACTIVE=$(jq -r '.stop_hook_active')
+# stdin is consumed once - store it
+INPUT=$(cat)
+
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
+STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active')
 
 if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
     exit 0
@@ -9,7 +12,16 @@ fi
 
 SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
 PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
-MESSAGE=$(cat $HOME/.claude/history.jsonl | jq -s -r ". | map(select(.sessionId | startswith(\"${SESSION_ID}\"))) | sort_by(.timestamp) | .[-1].display // \"(empty message)\"")
+
+# Use the Notification event's own message instead of re-deriving it from
+# history.jsonl. Sanitize the same way as stop-notification.sh: strip control
+# chars (ESC/BEL etc. would otherwise corrupt the OSC 777 sequence), collapse
+# to a single line, trim, and cap the length (character-safe for multi-byte
+# UTF-8).
+MESSAGE=$(echo "$INPUT" | jq -r '.message // "(empty message)"' \
+    | tr -d '\000-\010\013\014\016-\037' | tr '\n\r' '  ' | tr -s ' ' \
+    | sed 's/^ *//; s/ *$//' \
+    | awk '{print substr($0, 1, 200)}')
 
 TITLE="⚠️ ${PROJECT_PATH} (${SESSION_ID:0:8})"
 
@@ -23,7 +35,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     fi
     terminal-notifier \
         -title "$TITLE" \
-        -message "> ${MESSAGE}" \
+        -message "${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \
         -group "claude-code-permission_prompt-notification-#${PROJECT_NAME}"
@@ -45,8 +57,8 @@ else
     fi
 
     if [[ -n $PANE_TTY && -w $PANE_TTY ]]; then
-        printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "> $MESSAGE" > "$PANE_TTY"
+        printf '\ePtmux;\e\e]777;notify;%s;%s\a\e\\' "$TITLE" "$MESSAGE" > "$PANE_TTY"
     elif { exec > /dev/tty; } 2>/dev/null; then
-        printf '\e]777;notify;%s;%s\a' "$TITLE" "> $MESSAGE" > /dev/tty
+        printf '\e]777;notify;%s;%s\a' "$TITLE" "$MESSAGE" > /dev/tty
     fi
 fi

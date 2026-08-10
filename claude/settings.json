@@ -20,6 +20,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "sonnet",
   "hooks": {
     "Notification": [
       {
@@ -63,7 +64,11 @@
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "security-guidance@claude-plugins-official": true
+    "security-guidance@claude-plugins-official": true,
+    "aws-serverless@agent-plugins-for-aws": true,
+    "databases-on-aws@agent-plugins-for-aws": true,
+    "deploy-on-aws@agent-plugins-for-aws": true,
+    "sentry-cli@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -71,15 +76,24 @@
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "agent-plugins-for-aws": {
+      "source": {
+        "source": "github",
+        "repo": "awslabs/agent-plugins"
+      }
     }
   },
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
+  "effortLevel": "high",
   "advisorModel": "opus",
   "plansDirectory": "./.claude/plans",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
+  "switchModelsOnFlag": false,
+  "teammateMode": "in-process",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,

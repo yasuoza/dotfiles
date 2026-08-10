@@ -10,22 +10,6 @@ if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
     exit 0
 fi
 
-# One-off background subagents (Agent tool, run in background by default) wake
-# the main session when they finish, which replies briefly and stops again -
-# firing this same hook once per subagent instead of once for the real final
-# answer. `background_tasks` (undocumented, found empirically - not in the
-# public hooks reference) lists tasks still in flight at Stop time; skip while
-# any subagent is still running, since it'll cause another stop once it's done.
-#
-# Only `type == "subagent"` counts here. Persistent constructs like named
-# teammates (type "teammate") or long-running Monitors (type "shell") were
-# observed staying "running" indefinitely even while idle - counting those
-# would silently suppress notifications for the rest of the session.
-PENDING_SUBAGENTS=$(echo "$INPUT" | jq -r '[(.background_tasks // [])[] | select(.type == "subagent")] | length')
-if [ "${PENDING_SUBAGENTS:-0}" -gt 0 ]; then
-    exit 0
-fi
-
 SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
 PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
 

@@ -17,11 +17,13 @@ PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
 # from history.jsonl. It can be long, multi-line markdown (unlike the old
 # one-line user prompt), so strip control chars (ESC/BEL etc. would otherwise
 # corrupt the OSC 777 sequence), collapse it to a single line, and cap the
-# length at 200 chars (character-safe, so multi-byte UTF-8 isn't split).
+# length at 200 chars. The cap uses perl -CSD (character-based) rather than
+# awk, whose substr counts bytes unless the locale is UTF-8 aware and would
+# slice a multi-byte character in half, leaving a stray U+FFFD at the end.
 MESSAGE=$(echo "$INPUT" | jq -r '.last_assistant_message // empty' \
     | tr -d '\000-\010\013\014\016-\037' | tr '\n\r' '  ' | tr -s ' ' \
     | sed 's/^ *//; s/ *$//' \
-    | awk '{print substr($0, 1, 200)}')
+    | perl -CSD -ne 'chomp; print substr($_, 0, 200), "\n"')
 
 # If the message is empty, there is nothing to show, so skip the notification.
 # This can happen if there was an error that prevented an assistant reply.

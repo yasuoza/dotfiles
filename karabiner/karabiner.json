@@ -130,6 +130,27 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Ignore control+b in ChatGPT.app",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.openai\\.codex$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [{ "key_code": "left_arrow" }],
+                "type": "basic"
+              }
+            ]
           }
         ]
       },

@@ -58,8 +58,6 @@ clipboard-trim-trailing-spaces = true
 # Key Bindings
 keybind = all:cmd+w=ignore
 keybind = all:cmd+q=ignore
-## For new line without executing especially for Claude Code
-keybind = all:shift+enter=text:\n
 ## Do not open config file with cmd+,
 keybind = all:cmd+,=ignore
 ## Disable toggle_fullscreen

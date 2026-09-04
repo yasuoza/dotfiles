@@ -151,6 +151,27 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Ignore control+f in ChatGPT.app",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.openai\\.codex$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [{ "key_code": "right_arrow" }],
+                "type": "basic"
+              }
+            ]
           }
         ]
       },

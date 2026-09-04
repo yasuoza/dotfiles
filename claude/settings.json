@@ -67,8 +67,7 @@
     "security-guidance@claude-plugins-official": true,
     "aws-serverless@agent-plugins-for-aws": true,
     "databases-on-aws@agent-plugins-for-aws": true,
-    "deploy-on-aws@agent-plugins-for-aws": true,
-    "sentry-cli@claude-plugins-official": true
+    "deploy-on-aws@agent-plugins-for-aws": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {

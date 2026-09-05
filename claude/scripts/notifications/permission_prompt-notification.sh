@@ -3,27 +3,33 @@
 # stdin is consumed once - store it
 INPUT=$(cat)
 
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
-STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active')
+SESSION_ID=$(printf '%s' "$INPUT" | jq -r '.session_id // empty')
+STOP_HOOK_ACTIVE=$(printf '%s' "$INPUT" | jq -r '.stop_hook_active // empty')
 
 if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
     exit 0
 fi
 
-SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
-PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "$SCRIPT_DIR/notifications/session-name.sh"
+PROJECT_PATH=$("$SCRIPT_DIR/shorten_path.sh" "$PWD")
+SESSION_NAME=$(resolve_claude_session_name "$INPUT" "$SESSION_ID")
+DISPLAY_NAME=$(sanitize_notification_field "${SESSION_NAME:-$PROJECT_PATH}")
+if [[ -z "$DISPLAY_NAME" ]]; then
+    DISPLAY_NAME=$(sanitize_notification_field "$PROJECT_PATH")
+fi
 
 # Use the Notification event's own message instead of re-deriving it from
 # history.jsonl. Sanitize the same way as stop-notification.sh: strip control
 # chars (ESC/BEL etc. would otherwise corrupt the OSC 777 sequence), collapse
 # to a single line, trim, and cap the length (character-safe for multi-byte
 # UTF-8).
-MESSAGE=$(echo "$INPUT" | jq -r '.message // "(empty message)"' \
+MESSAGE=$(printf '%s' "$INPUT" | jq -r '.message // "(empty message)"' \
     | tr -d '\000-\010\013\014\016-\037' | tr '\n\r' '  ' | tr -s ' ' \
     | sed 's/^ *//; s/ *$//' \
-    | awk '{print substr($0, 1, 200)}')
+    | perl -CSD -ne 'chomp; print substr($_, 0, 200), "\n"')
 
-TITLE="⚠️ ${PROJECT_PATH} (${SESSION_ID:0:8})"
+TITLE="⚠️ ${DISPLAY_NAME} (${SESSION_ID:0:8})"
 
 # Notification routing:
 #   Linux (EC2 etc.): OSC 777 via printf. tmux requires Ptmux passthrough.
@@ -38,7 +44,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
         -message "${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \
-        -group "claude-code-permission_prompt-notification-#${PROJECT_NAME}"
+        -group "claude-code-permission_prompt-notification-#${DISPLAY_NAME}"
 else
     # Linux: OSC 777 (SSH_CONNECTION は hook に引き継がれないため OS で判定)
     #

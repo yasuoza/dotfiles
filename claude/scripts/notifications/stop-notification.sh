@@ -3,15 +3,21 @@
 # stdin is consumed once - store it
 INPUT=$(cat)
 
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id')
-STOP_HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active')
+SESSION_ID=$(printf '%s' "$INPUT" | jq -r '.session_id // empty')
+STOP_HOOK_ACTIVE=$(printf '%s' "$INPUT" | jq -r '.stop_hook_active // empty')
 
 if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
     exit 0
 fi
 
-SCRIPT_DIR="$(dirname $(dirname "$(realpath "$0")"))"
-PROJECT_PATH=$($SCRIPT_DIR/shorten_path.sh "$PWD")
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "$SCRIPT_DIR/notifications/session-name.sh"
+PROJECT_PATH=$("$SCRIPT_DIR/shorten_path.sh" "$PWD")
+SESSION_NAME=$(resolve_claude_session_name "$INPUT" "$SESSION_ID")
+DISPLAY_NAME=$(sanitize_notification_field "${SESSION_NAME:-$PROJECT_PATH}")
+if [[ -z "$DISPLAY_NAME" ]]; then
+    DISPLAY_NAME=$(sanitize_notification_field "$PROJECT_PATH")
+fi
 
 # Use the assistant's own final reply for this turn instead of re-deriving it
 # from history.jsonl. It can be long, multi-line markdown (unlike the old
@@ -31,7 +37,7 @@ if [ -z "$MESSAGE" ]; then
     exit 0
 fi
 
-TITLE="✅ ${PROJECT_PATH} (${SESSION_ID:0:8})"
+TITLE="✅ ${DISPLAY_NAME} (${SESSION_ID:0:8})"
 
 # Notification routing:
 #   Linux (EC2 etc.): OSC 777 via printf. tmux requires Ptmux passthrough.
@@ -46,7 +52,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
         -message "${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \
-        -group "claude-code-stop-notification-#${PROJECT_NAME}"
+        -group "claude-code-stop-notification-#${DISPLAY_NAME}"
 else
     # Linux: OSC 777 (SSH_CONNECTION は hook に引き継がれないため OS で判定)
     #

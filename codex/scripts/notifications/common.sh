@@ -11,6 +11,30 @@ sanitize_osc_field() {
             -e 's/ $//'
 }
 
+send_codex_notification() {
+    local title="${1-}"
+    local message="${2-}"
+    local group="${3-}"
+    local notifier="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/ChatGPT-Notifier.app/Contents/MacOS/terminal-notifier"
+
+    if [[ ! -x "$notifier" ]]; then
+        notifier="terminal-notifier"
+    fi
+
+    if [[ "$(uname)" == "Darwin" && -z ${SSH_CONNECTION:-} ]] \
+        && command -v "$notifier" >/dev/null 2>&1; then
+        # NSUserDefaults による先頭記号の解釈を避ける。表示時に先頭の \ は除去される。
+        "$notifier" \
+            -title "\\$title" \
+            -message "\\$message" \
+            -sound default \
+            -activate com.openai.codex \
+            -group "\\$group"
+    else
+        send_osc777_notification "$title" "$message"
+    fi
+}
+
 send_osc777_notification() {
     local title="${1-}"
     local message="${2-}"

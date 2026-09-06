@@ -23,23 +23,15 @@ if [[ -z "$DISPLAY_NAME" ]]; then
 fi
 
 REASON_RAW=$(printf '%s' "$INPUT" | jq -r '
-    .["input-messages"][-1]
-    // .input_messages[-1]
-    // ."last-user-message"
-    // .last_user_message
-    // ."last-assistant-message"
+    ."last-assistant-message"
     // .last_assistant_message
-    // .reason
-    // .message
-    // .summary
-    // .text
-    // .status
-    // "Task completed"
+    // empty
 ')
 REASON=$(sanitize_osc_field "$REASON_RAW")
+if [[ -z "$REASON" ]]; then
+    exit 0
+fi
 TITLE=$(sanitize_osc_field "Codex ${DISPLAY_NAME}")
 MESSAGE="$REASON"
 
-# Use the same OSC 777 routing for the legacy notify callback and command
-# hooks. The common helper also handles tmux passthrough and missing ttys.
-send_osc777_notification "$TITLE" "$MESSAGE"
+send_codex_notification "$TITLE" "$MESSAGE" "codex-agent-turn-complete-#${DISPLAY_NAME}"

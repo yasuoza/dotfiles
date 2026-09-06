@@ -34,4 +34,4 @@ fi
 TITLE=$(sanitize_osc_field "⚠️ Codex ${DISPLAY_NAME}")
 MESSAGE=$(sanitize_osc_field "${TOOL_NAME}: ${DETAIL}")
 
-send_osc777_notification "$TITLE" "$MESSAGE"
+send_codex_notification "$TITLE" "$MESSAGE" "codex-permission-request-#${DISPLAY_NAME}"

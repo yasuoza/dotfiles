@@ -1,12 +1,12 @@
 {
-  "description": "Send OSC 777 notifications when Codex requests approval.",
+  "description": "Notify when Codex requests approval.",
   "hooks": {
     "PermissionRequest": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "/home/ubuntu/dotfiles/codex/scripts/notifications/permission-request-notification.sh",
+            "command": "bash \"$HOME/dotfiles/codex/scripts/notifications/permission-request-notification.sh\"",
             "async": true
           }
         ]

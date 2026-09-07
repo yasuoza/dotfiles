@@ -41,6 +41,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     fi
     terminal-notifier \
         -title "$TITLE" \
+        -subtitle "$(printf '\342\240\200')" \
         -message "${MESSAGE}" \
         -sound "default" \
         -activate "com.mitchellh.ghostty" \

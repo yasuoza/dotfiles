@@ -26,6 +26,7 @@ send_codex_notification() {
         # NSUserDefaults による先頭記号の解釈を避ける。表示時に先頭の \ は除去される。
         "$notifier" \
             -title "\\$title" \
+            -subtitle "$(printf '\342\240\200')" \
             -message "\\$message" \
             -sound default \
             -activate com.openai.codex \

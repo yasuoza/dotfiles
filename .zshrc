@@ -6,6 +6,11 @@ export LC_ALL=en_US.UTF-8
 export LESSCHARSET=utf-8
 
 #=============================
+# Box cursor
+#=============================
+echo -ne '\e[2 q'
+
+#=============================
 # fpath
 #=============================
 autoload -U bashcompinit && bashcompinit -i

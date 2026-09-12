@@ -85,7 +85,7 @@
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
   "effortLevel": "high",
-  "advisorModel": "opus",
+  "advisorModel": "fable",
   "plansDirectory": "./.claude/plans",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,

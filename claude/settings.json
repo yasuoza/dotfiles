@@ -62,19 +62,12 @@
     "skill-creator@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
-    "codex@openai-codex": true,
     "security-guidance@claude-plugins-official": true,
     "aws-serverless@agent-plugins-for-aws": true,
     "databases-on-aws@agent-plugins-for-aws": true,
     "deploy-on-aws@agent-plugins-for-aws": true
   },
   "extraKnownMarketplaces": {
-    "openai-codex": {
-      "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
-      }
-    },
     "agent-plugins-for-aws": {
       "source": {
         "source": "github",
@@ -82,6 +75,7 @@
       }
     }
   },
+  "outputStyle": "Concise",
   "spinnerTipsEnabled": false,
   "syntaxHighlightingDisabled": false,
   "effortLevel": "high",
@@ -95,5 +89,6 @@
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": false
+  "voiceEnabled": false,
+  "inputNeededNotifEnabled": true
 }

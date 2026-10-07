@@ -22,7 +22,8 @@ function store_last_command() {
 function end_timetrack() {
     local last_status=$?
     local exec_time=$TTYIDLE
-    local prog=$(echo $last_command | tr -d '\r\n' |awk '{print $1}')
+    local -a words=(${=${last_command//$'\r'/}})
+    local prog=$words[1]
     local status_message title message
 
     if [ -z "$prog" ] || [ -z "$exec_time" ] || [ $exec_time -lt $timetrack_threshold ]; then
@@ -30,12 +31,10 @@ function end_timetrack() {
         return
     fi
 
-    for ignore_prog in $(echo $timetrack_ignore_progs); do
-        if [ "$prog" = "$ignore_prog" ]; then
-            unset_last_command
-            return
-        fi
-    done
+    if (( ${${=timetrack_ignore_progs}[(Ie)$prog]} )); then
+        unset_last_command
+        return
+    fi
 
     if [ $last_status -eq 0 ]; then
         status_message="✅"

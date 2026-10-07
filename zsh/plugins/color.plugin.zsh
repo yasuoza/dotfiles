@@ -44,7 +44,7 @@ case ${UID} in
         autoload -Uz add-zsh-hook
         autoload -Uz vcs_info
 
-        zstyle ':vcs_info:*' enable git svn hg bzr
+        zstyle ':vcs_info:*' enable git
         zstyle ':vcs_info:*' formats '(%s)-[%b]'
         zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
         zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
@@ -52,7 +52,7 @@ case ${UID} in
 
         autoload -Uz is-at-least
         if is-at-least 4.3.10; then
-            zstyle ':vcs_info:git:*' check-for-changes true
+            zstyle ':vcs_info:git:*' check-for-changes false
             zstyle ':vcs_info:git:*' stagedstr "+"
             zstyle ':vcs_info:git:*' unstagedstr "-"
             zstyle ':vcs_info:git:*' formats '[%c%u%b]'
@@ -68,7 +68,7 @@ case ${UID} in
 
         function _update_vcs_info_msg() {
             psvar=()
-            psvar[1]=$(_venv)
+            [[ -n "$VIRTUAL_ENV" ]] && psvar[1]=$(_venv)
             LANG=en_US.UTF-8 vcs_info
             [[ -n "$vcs_info_msg_0_" ]] && psvar[2]="$vcs_info_msg_0_"
         }

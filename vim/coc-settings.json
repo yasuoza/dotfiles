@@ -64,5 +64,9 @@
       "initializationOptions": {},
       "settings": {}
     }
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true,
+    "https://json.schemastore.org": true
   }
 }

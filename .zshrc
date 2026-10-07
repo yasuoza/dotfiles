@@ -197,6 +197,3 @@ fi
 # Local
 #=============================
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# sentry
-fpath=("/home/ubuntu/.local/share/zsh/site-functions" $fpath)

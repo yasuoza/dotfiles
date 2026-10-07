@@ -1,0 +1,6 @@
+{
+  "name": "limits-band",
+  "version": "0.1.0",
+  "description": "ctx / 5h / 7d usage as colored bars above the prompt",
+  "types": "./types/index.d.ts"
+}
